@@ -8,8 +8,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 
-const apiRoutes = require('./routes/api-users');
-app.use('/api/users', apiRoutes)
+const apiUsers = require('./routes/api-users');
+app.use('/api/users', apiUsers)
 
 // Sample GET route
 app.get('/api/data', (req, res) => res.json({
