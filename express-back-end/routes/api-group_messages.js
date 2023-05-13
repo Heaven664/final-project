@@ -20,6 +20,18 @@ module.exports = db => {
   });
 
   //CRUD READ(GET)
+  router.get("/gmsg/", (request, response) => {
+    db.query(
+      `
+      SELECT
+        *
+      FROM group_messages
+    `)
+    .then(({rows:group_messages}) => {
+      response.json(group_messages);
+    });
+  });
+
   router.get("/gmsg/:id", (request, response) => {
     db.query(
       `

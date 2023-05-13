@@ -20,6 +20,18 @@ module.exports = db => {
   });
 
   //CRUD READ(GET)
+  router.get("/fundraisers/", (request, response) => {
+    db.query(
+      `
+      SELECT
+        *
+      FROM fundraisers
+    `)
+    .then(({ rows: fundraisers }) => {
+      response.json(fundraisers);
+    });
+  });
+
   router.get("/fundraisers/:id", (request, response) => {
     db.query(
       `
