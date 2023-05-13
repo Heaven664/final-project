@@ -12,9 +12,9 @@ CREATE TABLE users (
   last_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password_digest VARCHAR(255) NOT NULL,
-  counrty VARCHAR(255),
+  country VARCHAR(255),
   city VARCHAR(255),
-  birthday DATE NOT NULL,
+  birthday DATE,
   photo VARCHAR(255),
   about TEXT
 );

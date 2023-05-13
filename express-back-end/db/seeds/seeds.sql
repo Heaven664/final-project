@@ -1,5 +1,5 @@
 -- Users table
-INSERT INTO users (first_name, last_name, email, password_digest, counrty, city, birthday, photo, about)
+INSERT INTO users (first_name, last_name, email, password_digest, country, city, birthday, photo, about)
 VALUES
   ('John', 'Doe', 'john.doe@example.com', 'password123', 'United States', 'New York', '1990-01-01', '/path/to/photo.jpg', 'I am a software engineer.'),
   ('Jane', 'Doe', 'jane.doe@example.com', 'password456', 'United States', 'Los Angeles', '1992-05-20', '/path/to/another_photo.jpg', 'I am a graphic designer.');
