@@ -4,9 +4,9 @@ const getAllUsers = () => {
   const queryString = `SELECT * FROM users`;
   return db.query(queryString)
     .then(result => {
-      return result.rows
+      return result.rows;
     })
-    .catch((err) => console.log(err.message))
-}
+    .catch((err) => console.log(err.message));
+};
 
-module.exports = getAllUsers;
+module.exports = { getAllUsers };
