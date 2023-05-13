@@ -14,6 +14,10 @@ app.use('/api/users', apiRoutes);
 const eventRoutes = require('./routes/api-event');
 app.use('/api/events', eventRoutes);
 
+const db = require("./db/connection.js");
+const fundraisers = require("./routes/api-fundraisers.js");
+app.use("/api", fundraisers(db));
+
 // Sample GET route
 app.get('/api/data', (req, res) => res.json({
   message: "Seems to work!",
