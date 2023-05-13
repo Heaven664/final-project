@@ -5,10 +5,10 @@ VALUES
   ('Jane', 'Doe', 'jane.doe@example.com', 'password456', 'United States', 'Los Angeles', '1992-05-20', '/path/to/another_photo.jpg', 'I am a graphic designer.');
 
 -- Events table
-INSERT INTO events (name, description, host_id)
+INSERT INTO events (name, description, agenda, host_id)
 VALUES
-  ('Charity Auction', 'An auction to raise funds for a local charity', 1),
-  ('Networking Event', 'A networking event for professionals in the tech industry', 2);
+  ('Charity Auction', 'An auction to raise funds for a local charity', 'playing golf', 1),
+  ('Networking Event', 'A networking event for professionals in the tech industry', 'eating pizza' ,2);
 
 -- Fundraisers table
 INSERT INTO fundraisers (event_id, target_amount, current_amount)
