@@ -9,7 +9,7 @@ const create = (name, description, agenda, host_id) => {
     .then((data) => {
       data.rows[0];
       newEventId = data.rows[0].id;
-      return newEventId; // newEventId 반환
+      return newEventId; 
     })
     .then((newEventId) => {
       return db.query(`INSERT INTO event_user (user_id, event_id) VALUES ($1, $2) RETURNING *;`, [host_id, newEventId]);
