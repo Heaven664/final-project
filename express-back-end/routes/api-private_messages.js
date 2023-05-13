@@ -13,13 +13,25 @@ module.exports = db => {
       VALUES ($1, $2, $3);
       `,
     [sender, Number(request.params.id), text])
-    .then(({rows:group_messages}) => {
-      response.json(group_messages);
+    .then(({rows:private_messages}) => {
+      response.json(private_messages);
     })
     .catch(error => console.log(error));
   });
 
   //CRUD READ(GET)
+  router.get("/pmsg/", (request, response) => {
+    db.query(
+      `
+      SELECT
+        *
+      FROM private_messages
+    `)
+    .then(({ rows: fundraisers }) => {
+      response.json(fundraisers);
+    });
+  });
+
   router.get("/pmsg/:id", (request, response) => {
     db.query(
       `
@@ -29,8 +41,8 @@ module.exports = db => {
       WHERE receiver_id = $1;
     `,
     [Number(request.params.id)])
-    .then(({rows:group_messages}) => {
-      response.json(group_messages);
+    .then(({rows:private_messages}) => {
+      response.json(private_messages);
     });
   });
 
