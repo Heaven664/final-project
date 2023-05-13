@@ -8,4 +8,13 @@ const getAll = () => {
     .then(res => res.rows);
 };
 
-module.exports = { getAll };
+const getById = (id) => {
+  const queryString = `
+  SELECT * FROM friendlists WHERE id = $1;
+  `;
+  const values = [id];
+  return db.query(queryString, values)
+    .then(res => res.rows[0]);
+};
+
+module.exports = { getAll, getById };
