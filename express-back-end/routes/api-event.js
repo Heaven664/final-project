@@ -22,8 +22,8 @@ router.post('/', (req, res) => {
   eventQueries
     .create(newEvent)
     .then((event) => {
-      res.status(201).json({ message: 'Event created!', note });
-      res.redirect('/');
+      res.status(201).json({ event });
+      // res.redirect('/:id');
     })
     .catch((err) => {
       res
@@ -48,7 +48,7 @@ router.get('/:id', (req, res) => {
         return res.status(400).json({ message: 'Event not found!' });
       }
 
-      res.status(201).json({ message: 'Here is your event!', event });
+      res.status(200).json({ event });
     })
     .catch((err) => {
       res
@@ -64,64 +64,64 @@ router.post('/:id/edit', (req, res) => {
     return res.status(401).json({ message: 'User is not logged in' });
   }
 
-  const { content } = req.body;
-  if (!content) {
+  const { name, description, agenda } = req.body;
+  if (!name || !description || !agenda) {
     return res
       .status(400)
-      .json({ message: 'All properties must be provided to update a note' });
+      .json({ message: 'All properties must be provided to update a event' });
   }
 
   const { id } = req.params;
-  notesQueries
+  eventQueries
     .getById(id)
-    .then((note) => {
-      if (!note) {
-        return res.status(404).json({ message: 'Note not found!' });
+    .then((event) => {
+      if (!event) {
+        return res.status(404).json({ message: 'Event not found!' });
       }
 
-      console.log(note);
-      const noteBelongsToUser = note.user_id === user_id;
-      if (!noteBelongsToUser) {
+      console.log(event);
+      const eventBelongsToUser = event.host_id === host_id;
+      if (!eventBelongsToUser) {
         return res
           .status(401)
-          .json({ message: 'Note does not belongs to you!' });
+          .json({ message: 'Event does not belongs to you!' });
       }
 
-      return notesQueries.update({ id, content });
+      return eventQueries.update({ id, name, description, agenda });
     })
-    .then((updatedNote) => {
-      res.status(201).json({ message: 'Note updated!', note: updatedNote });
+    .then((updatedEvent) => {
+      res.status(201).json({ event: updatedEvent });
     })
     .catch((err) => {
       res
         .status(500)
-        .json({ message: 'Error updating note', error: err.message });
+        .json({ message: 'Error updating event', error: err.message });
     });
 });
 
 // Delete - POST
 router.post('/:id/delete', (req, res) => {
-  const { user_id } = req.session;
-  if (!user_id) {
+  const { host_id } = req.session;
+  if (!host_id) {
     return res.status(401).json({ message: 'User is not logged in' });
   }
 
   const { id } = req.params;
-  notesQueries
+  eventQueries
     .getById(id)
-    .then((note) => {
-      if (!note) {
-        return res.status(404).json({ message: 'Note not found!' });
+    .then((event) => {
+      if (!event) {
+        return res.status(404).json({ message: 'Event not found!' });
       }
 
-      const noteBelongsToUser = note.user_id === user_id;
-      if (!noteBelongsToUser) {
+      const eventBelongsToUser = event.host_id === host_id;
+      if (!eventBelongsToUser) {
         return res
           .status(401)
-          .json({ message: 'Note does not belongs to you!' });
+          .json({ message: 'Event does not belongs to you!' });
       }
 
-      return notesQueries.remove(id);
+      return eventQueries.remove(id);
     })
     .then(() => {
       res.status(204).json();
@@ -129,7 +129,7 @@ router.post('/:id/delete', (req, res) => {
     .catch((err) => {
       res
         .status(500)
-        .json({ message: 'Error deleting note', error: err.message });
+        .json({ message: 'Error deleting event', error: err.message });
     });
 });
 

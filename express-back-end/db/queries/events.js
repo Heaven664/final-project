@@ -28,11 +28,12 @@ const getByHostId = (host_id) => {
 };
 
 const update = (updatedEvent) => {
-  const { id, name, description } = updatedEvent;
+  const { id, name, description, agenda } = updatedEvent;
   return db
-    .query('UPDATE events SET (name = $1 AND description = $2) WHERE id = $3 RETURNING *;', [
+    .query('UPDATE events SET name = $1, description = $2, agenda = $3 WHERE id = $4 RETURNING *;', [
       name, 
       description,
+      agenda,
       id,
     ])
     .then((data) => data.rows[0]);
