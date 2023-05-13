@@ -1,11 +1,13 @@
 const db = require('../connection');
 
+// Get all users
 const getAll = () => {
   const queryString = `SELECT * FROM users;`;
   return db.query(queryString)
     .then(res => res.rows);
 };
 
+// Get one user
 const getById = (id) => {
   const queryString = `SELECT * FROM users WHERE id = $1;`;
   const values = [id];
@@ -13,6 +15,7 @@ const getById = (id) => {
     .then(res => res.rows[0]);
 };
 
+// Create new user
 const create = (first_name, last_name, email, password, country, city, birthday, photo, about) => {
   const queryString = `
     INSERT INTO 
@@ -25,6 +28,7 @@ const create = (first_name, last_name, email, password, country, city, birthday,
     .then(res => res.rows[0]);
 };
 
+// Update user
 const update = (id, first_name, last_name, email, password, country, city, birthday, photo, about) => {
   const queryString = `
   UPDATE users 
@@ -44,4 +48,13 @@ const update = (id, first_name, last_name, email, password, country, city, birth
   return db.query(queryString, values)
     .then(res => res.rows[0])
 };
-module.exports = { getAll, getById, create, update };
+
+// Delete user
+const remove = (id) => {
+  const queryString = `DELETE FROM users WHERE id = $1;`;
+  const values = [id]
+  return db.query(queryString, values)
+}
+
+
+module.exports = { getAll, getById, create, update, remove };

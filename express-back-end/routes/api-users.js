@@ -37,7 +37,13 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   userQueries
     .getById(req.params.id)
-    .then(user => res.json(user))
+    .then(user => {
+      // If  user not found
+      if (!user) {
+        return res.json("User not found")
+      }
+      return res.json(user)
+    })
     .catch(error => {
       res
         .status(500)
@@ -63,5 +69,26 @@ router.patch('/:id/edit', (req, res) => {
     });
 });
 
+// Delete user
+router.delete('/:id/delete', (req, res) => {
+  const { id } = req.params;
+  // Search for the user
+  userQueries
+    .getById(id)
+    .then(user => {
+      // If users not found
+      if (!user) {
+        return res.status(404).json("User not found");
+      }
+      // Remove user
+      return userQueries.remove(id);
+    })
+    .then(() => res.status(204).json())
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: 'Error deleting user', error: err.message });
+    });
+});
 
 module.exports = router;
