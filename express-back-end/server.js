@@ -10,6 +10,8 @@ app.use(express.static('public'));
 
 const apiRoutes = require('./routes/api');
 app.use('/api', apiRoutes)
+const eventRoutes = require('./routes/api-event');
+app.use('/api', eventRoutes)
 
 // Sample GET route
 app.get('/api/data', (req, res) => res.json({
