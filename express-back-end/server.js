@@ -9,7 +9,10 @@ app.use(express.json());
 app.use(express.static('public'));
 
 const apiRoutes = require('./routes/api-users');
-app.use('/api/users', apiRoutes)
+app.use('/api/users', apiRoutes);
+
+const eventRoutes = require('./routes/api-event');
+app.use('/api/events', eventRoutes);
 
 // Sample GET route
 app.get('/api/data', (req, res) => res.json({
