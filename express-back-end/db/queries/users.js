@@ -22,6 +22,26 @@ const create = (first_name, last_name, email, password, country, city, birthday,
   `;
   const values = [first_name, last_name, email, password, country, city, birthday, photo, about];
   return db.query(queryString, values)
+    .then(res => res.rows[0]);
+};
+
+const update = (id, first_name, last_name, email, password, country, city, birthday, photo, about) => {
+  const queryString = `
+  UPDATE users 
+  SET first_name = $2, 
+      last_name = $3, 
+      email = $4, 
+      password_digest = $5, 
+      country = $6, 
+      city = $7, 
+      birthday = $8 , 
+      photo = $9, 
+      about = $10
+  WHERE id = $1
+  RETURNING *;
+  `;
+  const values = [id, first_name, last_name, email, password, country, city, birthday, photo, about];
+  return db.query(queryString, values)
     .then(res => res.rows[0])
 };
-module.exports = { getAll, getById, create };
+module.exports = { getAll, getById, create, update };
