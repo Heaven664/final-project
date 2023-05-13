@@ -1,12 +1,12 @@
-const Express = require('express');
-const app = Express();
-const BodyParser = require('body-parser');
+require('dotenv').config()
+const express = require('express');
+const app = express();
 const PORT = 8080;
 
 // Express Configuration
-app.use(BodyParser.urlencoded({ extended: false }));
-app.use(BodyParser.json());
-app.use(Express.static('public'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.static('public'));
 
 const apiRoutes = require('./routes/api');
 app.use('/api', apiRoutes)
