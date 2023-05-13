@@ -69,8 +69,8 @@ module.exports = db => {
     //     // updateAppointment(Number(request.params.id), request.body.interview);
     //   }, 1000);
     // })
-    .then(({rows:group_messages}) => {
-      response.json(group_messages);
+    .then(({rows:private_messages}) => {
+      response.json(private_messages);
     })
     .catch(error => console.log(error));
 });
