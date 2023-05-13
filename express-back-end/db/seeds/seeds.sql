@@ -62,14 +62,13 @@ VALUES
   (1, 2),
   (2, 1),
   (1, 3),
+  (3, 1),
+  (2, 3),
+  (3, 2),
+  (1, 4),
+  (4, 1),
   (2, 4),
-  (3, 5),
-  (4, 6),
-  (5, 6),
-  (6, 7),
-  (7, 8),
-  (9, 10),
-  (10, 1);
+  (4, 2);
 
 -- Private_messages table
 INSERT INTO private_messages (sender_id, receiver_id, text, time)
@@ -91,9 +90,6 @@ VALUES
   (5, 6, 'Hey, do you have any recommendations for a good book to read?', '2022-01-04 15:00:00'),
   (6, 5, 'Yes, I just finished reading "The Power of Now" by Eckhart Tolle and I highly recommend it. What kind of book are you in the mood for?', '2022-01-04 15:05:00'),
   (5, 6, 'I am in the mood for something inspiring and thought-provoking. "The Power of Now" sounds great, I will check it out. Thanks for the recommendation!', '2022-01-04 15:10:00');
-
-
-
 
 -- Group_messages table
 INSERT INTO group_messages (sender_id, event_id, text, time)
