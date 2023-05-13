@@ -51,5 +51,5 @@ const remove = (id) => {
     .query('DELETE FROM events WHERE id = $1;', [id])
     .then((data) => data.rows);
 };
-
+//sample
 module.exports = { create, getAll, getById, getByHostId, update, remove };
