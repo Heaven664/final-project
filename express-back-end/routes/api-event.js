@@ -3,7 +3,6 @@ const router = express.Router();
 
 const eventQueries= require('../db/queries/events');
 
-///// CRUD
 //// CREATE
 router.post('/', (req, res) => {
   // const { host_id } = req.session;
@@ -11,7 +10,7 @@ router.post('/', (req, res) => {
   //   return res.status(401).json({ message: 'User is not logged in' });
   // }
 
-  const { name, description, agenda, host_id } = req.body;
+  const { name, description, agenda, host_id } = req.body; 
   console.log("api-event.js Create Values: ", name, description, agenda, host_id);
   if (!name ) {
     return res
@@ -69,7 +68,7 @@ router.get('/:id', (req, res) => {
 });
 
 //// Update - POST
-router.put('/:id/edit', (req, res) => {
+router.post('/:id/edit', (req, res) => {
   // const { host_id } = req.session;
   // if (!host_id) {
   //   return res.status(401).json({ message: 'User is not logged in' });

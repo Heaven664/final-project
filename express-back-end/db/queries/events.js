@@ -10,7 +10,7 @@ const create = (name, description, agenda, host_id) => {
 };
 
 const getAll = () => {
-  return db.query('SELECT * FROM events;').then((data) => data.rows);
+  return db.query('SELECT * FROM events ORDER BY id;').then((data) => data.rows);
 };
 
 const getById = (id) => {
@@ -33,12 +33,7 @@ const update = (id, name, description, agenda) => {
       agenda = $4 
   WHERE id = $1 
   RETURNING *;`;
-  const values = [
-    id,
-    name, 
-    description,
-    agenda    
-  ];
+  const values = [id, name, description, agenda];
   console.log("update: ", values);
   return db.query(queryString, values)
     .then((data) => data.rows[0]);
