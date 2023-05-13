@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.20.0",
+    "classnames": "^2.2.6",
+    "normalize.css": "^8.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.4.4"
@@ -23,5 +25,10 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "devDependencies": {
+    "prop-types": "^15.8.1",
+    "react-test-renderer": "^16.9.0",
+    "sass": "^1.53.0"
+  },
   "proxy": "http://localhost:8080"
 }
