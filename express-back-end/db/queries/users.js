@@ -46,15 +46,15 @@ const update = (id, first_name, last_name, email, password, country, city, birth
   `;
   const values = [id, first_name, last_name, email, password, country, city, birthday, photo, about];
   return db.query(queryString, values)
-    .then(res => res.rows[0])
+    .then(res => res.rows[0]);
 };
 
 // Delete user
 const remove = (id) => {
   const queryString = `DELETE FROM users WHERE id = $1;`;
-  const values = [id]
-  return db.query(queryString, values)
-}
+  const values = [id];
+  return db.query(queryString, values);
+};
 
 
 module.exports = { getAll, getById, create, update, remove };

@@ -8,11 +8,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 
-const apiRoutes = require('./routes/api-users');
-app.use('/api/users', apiRoutes);
-
+const userRoutes = require('./routes/api-users');
 const eventRoutes = require('./routes/api-event');
+const friendListRoutes = require('./routes/api-friendlists');
+
+
+app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
+app.use('/api/friendlists', friendListRoutes);
 
 const db = require("./db/connection.js");
 const fundraisers = require("./routes/api-fundraisers.js");
