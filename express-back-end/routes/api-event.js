@@ -11,7 +11,6 @@ router.post('/', (req, res) => {
   // }
 
   const { name, description, agenda, host_id } = req.body; 
-  console.log("api-event.js Create Values: ", name, description, agenda, host_id);
   if (!name ) {
     return res
       .status(403)
