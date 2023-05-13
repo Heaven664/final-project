@@ -22,6 +22,8 @@ const fundraisers = require("./routes/api-fundraisers.js");
 app.use("/api", fundraisers(db));
 const groupMessages = require("./routes/api-group_messages.js");
 app.use("/api", groupMessages(db));
+const privateMessages = require("./routes/api-private_messages.js");
+app.use("/api", privateMessages(db));
 
 // Sample GET route
 app.get('/api/data', (req, res) => res.json({
