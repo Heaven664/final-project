@@ -10,11 +10,13 @@ app.use(express.static('public'));
 
 const userRoutes = require('./routes/api-users');
 const eventRoutes = require('./routes/api-event');
+const eventUserRoutes = require('./routes/api-event-user');
 const friendListRoutes = require('./routes/api-friendlists');
 
 
 app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
+app.use('/api/eventUser', eventUserRoutes);
 app.use('/api/friendlists', friendListRoutes);
 
 const db = require("./db/connection.js");
