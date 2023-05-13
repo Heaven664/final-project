@@ -5,8 +5,8 @@ module.exports = db => {
   //CRUD CREATE(POST)
   router.post("/fundraisers/:id", (request, response) => {
 
-    const target = request.body.target;
-    console.log(target);
+    const { target } = request.body;
+
     db.query(
       `
       INSERT INTO fundraisers (event_id, target_amount, current_amount)
