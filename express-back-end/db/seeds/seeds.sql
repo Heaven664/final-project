@@ -17,16 +17,16 @@ VALUES
 -- Events table
 INSERT INTO events (name, description, agenda, host_id)
 VALUES
-  ('Charity Auction', 'An auction to raise funds for a local charity', 1),
-  ('Networking Event', 'A networking event for professionals in the tech industry', 2),
-  ('Charity Run', 'Raise money for a good cause and enjoy a scenic run!', 3),
-  ('Hiking Trip', 'Explore the great outdoors and challenge yourself with a hike!', 4),
-  ('Movie Night', 'Watch a classic movie on the big screen with friends!', 1),
-  ('Karaoke Party', 'Sing your heart out and have a blast with friends!', 5),
-  ('Wine Tasting', 'Sample a variety of delicious wines and learn about the production process!', 6),
-  ('Art Exhibition', 'Admire beautiful artworks and meet the talented artists!', 7),
-  ('Book Club Meeting', 'Discuss the latest best-seller with fellow book lovers!', 8),
-  ('Cooking Class', 'Learn how to cook a gourmet meal and impress your friends!', 9);
+  ('Charity Auction', 'An auction to raise funds for a local charity','123', 1),
+  ('Networking Event', 'A networking event for professionals in the tech industry','123', 2),
+  ('Charity Run', 'Raise money for a good cause and enjoy a scenic run!','123', 3),
+  ('Hiking Trip', 'Explore the great outdoors and challenge yourself with a hike!','123', 4),
+  ('Movie Night', 'Watch a classic movie on the big screen with friends!','123', 1),
+  ('Karaoke Party', 'Sing your heart out and have a blast with friends!','123', 5),
+  ('Wine Tasting', 'Sample a variety of delicious wines and learn about the production process!','123', 6),
+  ('Art Exhibition', 'Admire beautiful artworks and meet the talented artists!','123', 7),
+  ('Book Club Meeting', 'Discuss the latest best-seller with fellow book lovers!','123', 8),
+  ('Cooking Class', 'Learn how to cook a gourmet meal and impress your friends!','123', 9);
 -- Fundraisers table
 INSERT INTO fundraisers (event_id, target_amount, current_amount)
 VALUES
