@@ -32,4 +32,29 @@ const create = (user, friend) => {
     .then(res => res.rows[0]);
 };
 
-module.exports = { getAll, getById, create };
+// Delete friendlist
+const remove = (id) => {
+  const queryString = `
+  DELETE FROM 
+  friendlists 
+  WHERE id = $1
+  RETURNING *
+  `;
+  const values = [id];
+  return db.query(queryString, values)
+    .then(res => res.rows[0]);
+};
+
+// Get friendlist id by users
+const findByUsers = (user, friend) => {
+  const queryString = `
+  SELECT id 
+  FROM friendlists 
+  WHERE user_id = $1 AND friend_id = $2
+  `;
+  const values = [user, friend];
+  return db.query(queryString, values)
+    .then(res => res.rows[0].id);
+};
+
+module.exports = { getAll, getById, create, remove, findByUsers };
