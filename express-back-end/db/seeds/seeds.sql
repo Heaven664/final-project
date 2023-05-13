@@ -15,18 +15,18 @@ VALUES
   ('Jack', 'Wang', 'jack@example.com', 'password123', 'China', 'Shanghai', '1988-03-27', 'https://example.com/jack.jpg', 'I''m a businessman and I love exploring new markets.');
 
 -- Events table
-INSERT INTO events (name, description, agenda, host_id)
-VALUES
-  ('Charity Auction', 'An auction to raise funds for a local charity', 1),
-  ('Networking Event', 'A networking event for professionals in the tech industry', 2),
-  ('Charity Run', 'Raise money for a good cause and enjoy a scenic run!', 3),
-  ('Hiking Trip', 'Explore the great outdoors and challenge yourself with a hike!', 4),
-  ('Movie Night', 'Watch a classic movie on the big screen with friends!', 1),
-  ('Karaoke Party', 'Sing your heart out and have a blast with friends!', 5),
-  ('Wine Tasting', 'Sample a variety of delicious wines and learn about the production process!', 6),
-  ('Art Exhibition', 'Admire beautiful artworks and meet the talented artists!', 7),
-  ('Book Club Meeting', 'Discuss the latest best-seller with fellow book lovers!', 8),
-  ('Cooking Class', 'Learn how to cook a gourmet meal and impress your friends!', 9);
+INSERT INTO events (name, description, agenda, host_id) VALUES
+  ('Annual Sales Conference', 'Join us for our annual sales conference to learn about the latest industry trends and techniques.', '1. Keynote presentation by industry experts\n2. Panel discussion with sales leaders\n3. Breakout sessions on sales strategies\n4. Networking opportunities', 1),
+  ('Product Launch Party', 'Celebrate the launch of our latest product with food, drinks, and music!', '1. Product demo and presentation\n2. Live music from local band\n3. Open bar and oeuvres\n4. Networking and mingling', 2),
+  ('Charity Auction', 'Support a good cause and bid on unique items donated by our generous sponsors.', '1. Silent auction with one-of-a-kind items\n2. Live auction with luxury packages\n3. Raffle drawing with prizes\n4. Dinner and drinks', 3),
+  ('Industry Mixer', 'Connect with other professionals in your industry and expand your network.', '1. Introductions and icebreakers\n2. Speed networking sessions\n3. Roundtable discussions on industry topics\n4. Happy hour with drinks and appetizers', 4),
+  ('Company Picnic', 'Bring your family and join us for a day of fun and games in the sun!', '1. BBQ lunch with all the fixings\n2. Games and activities for all ages\n3. Team-building exercises and competitions\n4. Prizes and giveaways', 5),
+  ('Holiday Party', 'Celebrate the end of the year with your colleagues and enjoy a festive evening!', '1. Cocktail hour with holiday-themed drinks\n2. Dinner and dessert buffet\n3. DJ and dancing\n4. Photo booth and props', 1),
+  ('Startup Pitch Night', 'Watch up-and-coming startups pitch their ideas to a panel of expert judges.', '1. Pitch presentations by startup founders\n2. Q&A session with judges\n3. Networking with entrepreneurs and investors\n4. After-party with drinks and snacks', 2),
+  ('Women in Business Luncheon', 'Celebrate and empower women in business with a networking luncheon.', '1. Keynote speech by prominent female business leader\n2. Panel discussion with successful women in various industries\n3. Lunch and dessert buffet\n4. Networking and mentoring', 3),
+  ('Summer Beach Bash', 'Escape the office and head to the beach for a day of fun in the sun!', '1. Bus transportation to the beach\n2. Beach games and activities\n3. Picnic lunch with sandwiches and snacks\n4. Beach volleyball tournament', 4),
+  ('Leadership Retreat', 'Join us for a weekend of reflection, learning, and team-building in a scenic location.', '1. Workshops on leadership and management\n2. Team-building exercises and challenges\n3. Outdoor activities like hiking and kayaking\n4. Campfire and smores', 5);
+
 -- Fundraisers table
 INSERT INTO fundraisers (event_id, target_amount, current_amount)
 VALUES
