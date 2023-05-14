@@ -1,18 +1,18 @@
 -- Users table
 INSERT INTO users (first_name, last_name, email, password_digest, country, city, birthday, photo, about)
 VALUES
-  ('John', 'Doe', 'john.doe@example.com', 'password123', 'United States', 'New York', '1990-01-01', '/path/to/photo.jpg', 'I am a software engineer.'),
-  ('Jane', 'Doe', 'jane.doe2@example.com', 'password456', 'United States', 'Los Angeles', '1992-05-20', '/path/to/another_photo.jpg', 'I am a graphic designer.'),
-  ('Alice', 'Johnson', 'alice@example.com', 'password123', 'United States', 'New York', '1990-05-01', 'https://example.com/alice.jpg', 'I love hiking and trying new restaurants!'),
-  ('Bob', 'Smith', 'bob@example.com', 'password456', 'Canada', 'Toronto', '1985-11-18', 'https://example.com/bob.jpg', 'I''m a software engineer and I enjoy playing basketball.'),
-  ('Charlie', 'Brown', 'charlie@example.com', 'password789', 'United Kingdom', 'London', '1995-02-14', 'https://example.com/charlie.jpg', 'I''m a student and I love traveling.'),
-  ('David', 'Lee', 'david@example.com', 'password123', 'Australia', 'Sydney', '1987-07-10', 'https://example.com/david.jpg', 'I''m a chef and I love experimenting with new recipes.'),
-  ('Emma', 'Davis', 'emma@example.com', 'password456', 'United States', 'San Francisco', '1992-09-03', 'https://example.com/emma.jpg', 'I''m a writer and I love reading books.'),
-  ('Frank', 'Johnson', 'frank@example.com', 'password789', 'Australia', 'Melbourne', '1998-04-22', 'https://example.com/frank.jpg', 'I''m a photographer and I love taking pictures of nature.'),
-  ('Grace', 'Chen', 'grace@example.com', 'password123', 'China', 'Beijing', '1991-01-08', 'https://example.com/grace.jpg', 'I''m a teacher and I love spending time with my students.'),
-  ('Henry', 'Kim', 'henry@example.com', 'password456', 'South Korea', 'Seoul', '1989-06-15', 'https://example.com/henry.jpg', 'I''m a musician and I love playing the piano.'),
-  ('Isabel', 'Garcia', 'isabel@example.com', 'password789', 'Spain', 'Madrid', '1993-12-11', 'https://example.com/isabel.jpg', 'I''m a graphic designer and I love creating visual designs.'),
-  ('Jack', 'Wang', 'jack@example.com', 'password123', 'China', 'Shanghai', '1988-03-27', 'https://example.com/jack.jpg', 'I''m a businessman and I love exploring new markets.');
+  ('John', 'Doe', 'john.doe@example.com', 'password123', 'United States', 'New York', '1990-01-01', 'http://localhost:8080/images/user-image-1.jpg', 'I am a software engineer.'),
+  ('Jane', 'Doe', 'jane.doe2@example.com', 'password456', 'United States', 'Los Angeles', '1992-05-20', 'http://localhost:8080/images/user-image-2.jpg', 'I am a graphic designer.'),
+  ('Alice', 'Johnson', 'alice@example.com', 'password123', 'United States', 'New York', '1990-05-01', 'http://localhost:8080/images/user-image-3.jpg', 'I love hiking and trying new restaurants!'),
+  ('Bob', 'Smith', 'bob@example.com', 'password456', 'Canada', 'Toronto', '1985-11-18', 'http://localhost:8080/images/user-image-4.jpg', 'I''m a software engineer and I enjoy playing basketball.'),
+  ('Charlie', 'Brown', 'charlie@example.com', 'password789', 'United Kingdom', 'London', '1995-02-14', 'http://localhost:8080/images/user-image-5.jpg', 'I''m a student and I love traveling.'),
+  ('David', 'Lee', 'david@example.com', 'password123', 'Australia', 'Sydney', '1987-07-10', 'http://localhost:8080/images/user-image-6.jpg', 'I''m a chef and I love experimenting with new recipes.'),
+  ('Emma', 'Davis', 'emma@example.com', 'password456', 'United States', 'San Francisco', '1992-09-03', 'http://localhost:8080/images/user-image-7.jpg', 'I''m a writer and I love reading books.'),
+  ('Frank', 'Johnson', 'frank@example.com', 'password789', 'Australia', 'Melbourne', '1998-04-22', 'http://localhost:8080/images/user-image-1.jpg', 'I''m a photographer and I love taking pictures of nature.'),
+  ('Grace', 'Chen', 'grace@example.com', 'password123', 'China', 'Beijing', '1991-01-08', 'http://localhost:8080/images/user-image-1.jpg', 'I''m a teacher and I love spending time with my students.'),
+  ('Henry', 'Kim', 'henry@example.com', 'password456', 'South Korea', 'Seoul', '1989-06-15', 'http://localhost:8080/images/user-image-1.jpg', 'I''m a musician and I love playing the piano.'),
+  ('Isabel', 'Garcia', 'isabel@example.com', 'password789', 'Spain', 'Madrid', '1993-12-11', 'http://localhost:8080/images/user-image-1.jpg', 'I''m a graphic designer and I love creating visual designs.'),
+  ('Jack', 'Wang', 'jack@example.com', 'password123', 'China', 'Shanghai', '1988-03-27', 'http://localhost:8080/images/user-image-1.jpg', 'I''m a businessman and I love exploring new markets.');
 
 -- Events table
 INSERT INTO events (name, description, agenda, host_id) VALUES
