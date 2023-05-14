@@ -11,41 +11,55 @@ import './App.scss';
 
 export default function App(props) {
 
+  const [selectedPage, setSelectedPage] = useState("profile");
+  function handlePageClick(page) {
+    setSelectedPage(page);
+  }
+
   return (
     <main className="layout">
       <section className="sidebar">
         <nav className="sidebar__menu">
-          {/* <MenuList
-          menus={state.menus}
-          menu={state.menu}
-          setMenu={setMenu}
-        /> */}
           <ul>
-            <li>
+            <li className={`profile 
+              ${selectedPage === 'profile' ? '--selected' : ''}`} 
+              onClick={() => handlePageClick('profile')}>
               <FontAwesomeIcon icon={faUser} /><br/>
               <span>My Profile</span>
             </li>
-            <li>
+            <li className={`friends 
+              ${selectedPage === 'friends' ? '--selected' : ''}`} 
+              onClick={() => handlePageClick('friends')}>
               <FontAwesomeIcon icon={faUsers} /><br/>
               <span>Friends</span>
             </li>
-            <li>
+            <li className={`chat 
+              ${selectedPage === 'chat' ? '--selected' : ''}`} 
+              onClick={() => handlePageClick('chat')}>
               <FontAwesomeIcon icon={faComment} /><br/>
               <span>Chat</span>
             </li>
-            <li>
+            <li className={`groupChat 
+              ${selectedPage === 'groupChat' ? '--selected' : ''}`} 
+              onClick={() => handlePageClick('groupChat')}>
               <FontAwesomeIcon icon={faComments} /><br/>
               <span>Group Chat</span>
             </li>
-            <li>
+            <li className={`events 
+              ${selectedPage === 'events' ? '--selected' : ''}`} 
+              onClick={() => handlePageClick('events')}> 
               <FontAwesomeIcon icon={faCakeCandles} /><br/>
               <span>Events</span>
             </li>
-            <li>
+            <li className={`myEvent 
+              ${selectedPage === 'myEvent' ? '--selected' : ''}`} 
+              onClick={() => handlePageClick('myEvent')}>
               <FontAwesomeIcon icon={faCalendarPlus} /><br/>
               <span>My Event</span>
             </li>
-            <li>
+            <li className={`setting 
+              ${selectedPage === 'setting' ? '--selected' : ''}`} 
+              onClick={() => handlePageClick('setting')}>
               <FontAwesomeIcon icon={faGear} /><br/>
               <span>Setting</span>
             </li>
