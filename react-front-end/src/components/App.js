@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { useEffect, useState } from "react";
-import axios from 'axios';
+import React, { useState } from "react";
 
 // css, font-awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear } from '@fortawesome/free-solid-svg-icons';
 import './App.scss';
+
+import PrivateChat from 'components/PrivateChat';
 
 // import MenuList from "components/MenuList.js";
 
@@ -22,45 +22,45 @@ export default function App(props) {
         <nav className="sidebar__menu">
           <ul>
             <li className={`profile 
-              ${selectedPage === 'profile' ? '--selected' : ''}`} 
+              ${selectedPage === 'profile' ? '--selected' : ''}`}
               onClick={() => handlePageClick('profile')}>
-              <FontAwesomeIcon icon={faUser} /><br/>
+              <FontAwesomeIcon icon={faUser} /><br />
               <span>My Profile</span>
             </li>
             <li className={`friends 
-              ${selectedPage === 'friends' ? '--selected' : ''}`} 
+              ${selectedPage === 'friends' ? '--selected' : ''}`}
               onClick={() => handlePageClick('friends')}>
-              <FontAwesomeIcon icon={faUsers} /><br/>
+              <FontAwesomeIcon icon={faUsers} /><br />
               <span>Friends</span>
             </li>
             <li className={`chat 
-              ${selectedPage === 'chat' ? '--selected' : ''}`} 
+              ${selectedPage === 'chat' ? '--selected' : ''}`}
               onClick={() => handlePageClick('chat')}>
-              <FontAwesomeIcon icon={faComment} /><br/>
+              <FontAwesomeIcon icon={faComment} /><br />
               <span>Chat</span>
             </li>
             <li className={`groupChat 
-              ${selectedPage === 'groupChat' ? '--selected' : ''}`} 
+              ${selectedPage === 'groupChat' ? '--selected' : ''}`}
               onClick={() => handlePageClick('groupChat')}>
-              <FontAwesomeIcon icon={faComments} /><br/>
+              <FontAwesomeIcon icon={faComments} /><br />
               <span>Group Chat</span>
             </li>
             <li className={`events 
-              ${selectedPage === 'events' ? '--selected' : ''}`} 
-              onClick={() => handlePageClick('events')}> 
-              <FontAwesomeIcon icon={faCakeCandles} /><br/>
+              ${selectedPage === 'events' ? '--selected' : ''}`}
+              onClick={() => handlePageClick('events')}>
+              <FontAwesomeIcon icon={faCakeCandles} /><br />
               <span>Events</span>
             </li>
             <li className={`myEvent 
-              ${selectedPage === 'myEvent' ? '--selected' : ''}`} 
+              ${selectedPage === 'myEvent' ? '--selected' : ''}`}
               onClick={() => handlePageClick('myEvent')}>
-              <FontAwesomeIcon icon={faCalendarPlus} /><br/>
+              <FontAwesomeIcon icon={faCalendarPlus} /><br />
               <span>My Event</span>
             </li>
             <li className={`setting 
-              ${selectedPage === 'setting' ? '--selected' : ''}`} 
+              ${selectedPage === 'setting' ? '--selected' : ''}`}
               onClick={() => handlePageClick('setting')}>
-              <FontAwesomeIcon icon={faGear} /><br/>
+              <FontAwesomeIcon icon={faGear} /><br />
               <span>Setting</span>
             </li>
           </ul>
@@ -83,8 +83,8 @@ export default function App(props) {
         </div>
       </section>
       <section className="contents">
-
+        {selectedPage === 'chat' && <PrivateChat />}
       </section>
     </main>
-  )
+  );
 }
