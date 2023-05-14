@@ -1,0 +1,50 @@
+.event-layout {
+  margin-left: 5rem;
+  margin-top: 5rem;
+  border-radius: 0.5rem;
+  border-color: black;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+
+.event-left-panel {
+  margin: 1rem;
+  border-radius: 1rem;
+  border-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 2;
+}
+
+.event-right-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  
+}
+
+.invitation {
+  margin-left: 5rem;
+  margin-top: 5rem;
+  flex-grow: 2;
+}
+
+.event-info {
+  margin-left: 5rem;
+  margin-top: 5rem;
+  display: flex;
+  flex-grow: 1;
+
+}
+
+.event-guest {
+  margin-left: 5rem;
+  margin-top: 5rem;
+  display: flex;
+  flex-grow: 1;
+
+}
