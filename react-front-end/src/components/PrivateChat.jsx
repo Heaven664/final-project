@@ -41,7 +41,7 @@ export default function PrivateChat(props) {
           </div>
         </div>
         <div className="chatroom-messages-container">
-
+          <MessageList messages={state.messages}></MessageList>
         </div>
         <div className="chatroom-massage-input-container">
           <input type="text" className="chatroom-massage-input" />
