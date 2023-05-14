@@ -32,7 +32,7 @@ export default function App(props) {
               onClick={() => handlePageClick('friends')}>
               <FontAwesomeIcon icon={faUsers} /><br />
               <span>Friends</span>
-            </li>
+            </li> 
             <li className={`chat 
               ${selectedPage === 'chat' ? '--selected' : ''}`}
               onClick={() => handlePageClick('chat')}>
