@@ -4,36 +4,37 @@ import "components/event-guest-list.scss";
 import classNames from "classnames";
 import propTypes from 'prop-types';
 
-export default function InterviewerList(props) {
+export default function eventGuestList(props) {
 
-  const interviewerClass = classNames(
-    "interviewers_item",
-    { "interviewers__item--selected": props.selected }
+  const eventGuestClass = classNames(
+    "eventGuest_item",
+    { "eventGuest__item--selected": props.selected }
   );
 
   const objToArray = (obj) => Object.assign([], Object.values(obj));
 
-  const InterviewersProps = objToArray(props.interviewers).map((interviewer) => {
+  const eventGuestProps = objToArray(props.users).map((user) => {
+
     return (
-      <InterviewerListItem
-        key={interviewer.id}
-        name={interviewer.name}
-        avatar={interviewer.avatar}
-        selected={interviewer.id === props.value}
-        setInterviewer={() => props.onChange(interviewer.id)}
+      <eventGuestListItem
+        key={user.id}
+        name={user.name}
+        avatar={user.avatar}
+        selected={user.id === props.value}
+        setInterviewer={() => props.onChange(user.id)}
       />
     );
   });
 
   return (
-    <section className={interviewerClass}>
-      <h4 className="interviewers__header text--light">Interviewer</h4>
-      <ul className="interviewers__list">{InterviewersProps}</ul>
+    <section className={eventGuestClass}>
+      <h4 className="eventGuest__header text--light">Guests</h4>
+      <ul className="eventGuest__list">{eventGuestProps}</ul>
     </section>
   );
 }
 
 //Validate interviewers as an array
-InterviewerList.propTypes = {
-  interviewers: propTypes.array.isRequired
-};
+// eventGuestList.propTypes = {
+//   eventGuest: propTypes.array.isRequired
+// };
