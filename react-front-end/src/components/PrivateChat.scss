@@ -1,7 +1,74 @@
 @import "styles/variables.scss";
 
 .private-chat-component {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   width: 93vw;
   height: 80vh;
   border: 1px solid $primary-color;
+
+  .private-chats-list-container {
+    width: 20vw;
+    height: 75vh;
+    border: 1px solid $primary-color;
+  }
+
+  .private-chats-chatroom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70vw;
+    height: 75vh;
+    border: 1px solid $primary-color;
+
+    .private-chats-chatroom-title {
+      display: flex;
+      width: 70vw;
+      height: 10vh;
+      border: 1px solid $primary-color;
+
+      .private-chats-chatroom-title-image-container {
+        width: 10%;
+        height: 100%;
+        border: 1px solid $primary-color;
+      }
+
+      .private-chats-chatroom-title-name-container {
+        width: 90%;
+        height: 100%;
+        border: 1px solid $primary-color;
+      }
+    }
+
+    .chatroom-messages-container {
+      width: 70vw;
+      height: 55vh;
+      border: 1px solid $primary-color;
+    }
+
+    .chatroom-massage-input-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 70vw;
+      height: 10vh;
+      border: 1px solid $primary-color;
+
+      .chatroom-massage-input {
+        height: 100%;
+        width: 95%;
+      }
+
+      .chatroom-massage-send-button {
+        width: 5%;
+        font-size: 30px;
+        background: none;
+        color: inherit;
+        border: none;
+        cursor: pointer;
+        outline: inherit;
+      }
+    }
+  }
 }

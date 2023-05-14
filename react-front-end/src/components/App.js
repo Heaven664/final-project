@@ -11,7 +11,7 @@ import PrivateChat from 'components/PrivateChat';
 
 export default function App(props) {
 
-  const [selectedPage, setSelectedPage] = useState("profile");
+  const [selectedPage, setSelectedPage] = useState("chat");
   function handlePageClick(page) {
     setSelectedPage(page);
   }
