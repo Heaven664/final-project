@@ -14,6 +14,7 @@ const eventUserRoutes = require('./routes/api-event-user');
 const friendListRoutes = require('./routes/api-friendlists');
 
 
+app.use(express.static('public'))
 app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/event-users', eventUserRoutes);
