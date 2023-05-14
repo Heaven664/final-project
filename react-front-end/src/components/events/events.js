@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
-import { useEffect, useState } from "react";
-import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear } from '@fortawesome/free-solid-svg-icons'
+import React, { useEffect, useState } from "react";
 import './events.scss';
 import EventsInfo from './events-info';
+import axios from 'axios';
+import useEventsData from "../../hooks/useEventsData";
+import { getEventGuests } from "../../helpers/event_selectors";
 
-// import MenuList from "components/MenuList.js";
 
 export default function Events(props) {
+
+const user_id = 1;
+const event_id = 1;
+
+  const {
+    state
+  } = useEventsData();
+
+  console.log(state);
 
   return (
     <main className="event-layout">

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { response } from "express";
 
 export default function useEventsData() {
 
@@ -8,7 +7,7 @@ export default function useEventsData() {
     day: "Monday",
     events: [],
     fundraisers: {},
-    friendlists: {}
+    event_users: {}
   });
 
   // const setDay = day => setState(prev => ({ ...prev, day }));
@@ -18,10 +17,10 @@ export default function useEventsData() {
     Promise.all([      
       axios.get('/api/events'),
       axios.get('/api/fundraisers'),
-      axios.get('/api/friendlists')
+      axios.get('/api/event-users')
     ]).then((all) => {
       console.log(all)
-      setState(prev => ({ ...prev, events: all[0].data, fundraisers: all[1].data, friendlists: all[2].data }));
+      setState(prev => ({ ...prev, events: all[0].data, fundraisers: all[1].data, event_users: all[2].data }));
     });
   }, []);
 
