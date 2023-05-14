@@ -1,0 +1,83 @@
+$font-stack: 'Nanum Gothic', sans-serif;
+$primary-color: #69cada;
+$box-color: #f4f5f9;
+$fundraiser-color: #f0d097;
+$point-color: #fb9c80;
+$warning-color: #814635;
+$font-color: #777777;
+$title-color: #1a1a1a;
+$font-size: 16px;
+$title-size: 24px;
+
+*{
+  color: $font-color;
+  text-decoration: none;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family:$font-stack;
+}
+.layout{
+  display: flex;
+
+  .sidebar{
+    background-color: $primary-color;
+    border-radius: 20px 0 0 20px;
+    width: 74px;
+    height: 100vh;
+    position: fixed;
+    left: 0px; 
+    top: 0px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+
+    .sidebar__menu{
+      display: flex;
+      flex-direction:column;
+      justify-content: center;
+      
+      ul{
+        text-align: center;
+        
+        li{
+          margin-bottom: 30px;
+          font-size: $title-size;
+          line-height: 20px;
+
+          span{
+            color: #fff;
+            font-size: 12px;
+          }
+
+          svg path{
+            fill: #fff;
+          }
+        }
+      }
+    }
+
+    .topNav{
+      position: fixed;
+      top: 0px;
+      left: 74px;
+      display: flex;
+      justify-content: space-between;
+      width: 95vw;
+      height: 90px;
+      padding: 20px 30px;
+
+      .user-profile-pic, .mainLogo{
+        height: 100%;
+      }
+    }
+  }
+
+  .contents{
+    position: fixed;
+    left: 74px;
+    top: 100px;
+    padding: 30px;
+  }
+}
