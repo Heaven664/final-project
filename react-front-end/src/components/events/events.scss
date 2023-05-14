@@ -28,66 +28,56 @@
   flex-grow: 5;
 }
 
-.invitation {
-  margin-bottom: 1rem;
-  flex-grow: 1;
+
+.__card {
   width: 100%;
-  font-size: 2rem;
-  justify-content: center;
-  align-items: center;
   background: rgb(211, 211, 211);
   border-radius: 10px;
-}
-
-.event-info {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
   display: flex;
-  flex-grow: 5;
-  width: 100%;
-  background: rgb(211, 211, 211);
-  border-radius: 10px;
 
-}
 
-.event-guest {
-  margin-top: 1rem;
-  display: flex;
-  flex-grow: 4;
-  width: 100%;
-  background: rgb(211, 211, 211);
-  border-radius: 10px;
 
-}
+  &.invitation {
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
 
-.maps-api {
-  margin-bottom: 1rem;
-  flex-grow: 5;
-  width: 100%;
-  background: rgb(211, 211, 211);
-  border-radius: 10px;
-  font-size: 2rem;
-  justify-content: center;
-  align-items: center;
-}
+  &.event-info {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    flex-grow: 5;
 
-.fundraisers {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  display: flex;
-  flex-grow: 3;
-  width: 100%;
-  background: rgb(211, 211, 211);
-  border-radius: 10px;
+  }
 
-}
+  &.event-guest {
+    margin-top: 1rem;
+    flex-grow: 4;
 
-.event-wall {
-  margin-top: 1rem;
-  display: flex;
-  flex-grow: 1;
-  width: 100%;
-  background: rgb(211, 211, 211);
-  border-radius: 10px;
+  }
+
+  &.maps-api {
+    margin-bottom: 1rem;
+    flex-grow: 5;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.fundraisers {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-grow: 3;
+
+  }
+
+  &.event-wall {
+    margin-top: 1rem;
+    display: flex;
+    flex-grow: 1;
+  }
 
 }

@@ -15,25 +15,25 @@ export default function Events(props) {
     <main className="event-layout">
 
       <div className='event-left-panel'>
-        <section className="invitation">
+        <section className="invitation __card">
           <span>You are invited to Amanda's birthday Party</span>
         </section>
-        <section className="event-info">
+        <section className="event-info __card">
         <span>events-info</span>
         </section>
-        <section className="event-guest">
+        <section className="event-guest __card">
         <span>events-guest</span>
         </section>
       </div>
 
       <div className='event-right-panel'>
-        <section className="maps-api">
+        <section className="maps-api __card">
         <span>maps-api</span>
         </section>
-        <section className="fundraisers">
+        <section className="fundraisers __card">
         <span>fundraisers</span>
         </section>
-        <section className="event-wall">
+        <section className="event-wall __card">
         <span>events-wall</span>
         </section>
       </div>
