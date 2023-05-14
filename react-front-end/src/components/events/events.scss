@@ -1,50 +1,93 @@
 .event-layout {
   margin-left: 5rem;
-  margin-top: 5rem;
+  margin-top: 20vh;
   border-radius: 0.5rem;
   border-color: black;
   padding: 1.2rem 1.5rem;
   display: flex;
-  justify-content: space-between;
-  flex-flow: row wrap;
+  flex-direction: row;
+  height: 60vh;
 }
 
 .event-left-panel {
   margin: 1rem;
-  border-radius: 1rem;
   border-color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-grow: 2;
+  flex-grow: 1;
 }
 
 .event-right-panel {
+  margin: 1rem;
+  border-color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-grow: 1;
-  
+  justify-content: center;
+  flex-grow: 5;
 }
 
 .invitation {
-  margin-left: 5rem;
-  margin-top: 5rem;
-  flex-grow: 2;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  width: 100%;
+  font-size: 2rem;
+  justify-content: center;
+  align-items: center;
+  background: rgb(211, 211, 211);
+  border-radius: 10px;
 }
 
 .event-info {
-  margin-left: 5rem;
-  margin-top: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
-  flex-grow: 1;
+  flex-grow: 5;
+  width: 100%;
+  background: rgb(211, 211, 211);
+  border-radius: 10px;
 
 }
 
 .event-guest {
-  margin-left: 5rem;
-  margin-top: 5rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-grow: 4;
+  width: 100%;
+  background: rgb(211, 211, 211);
+  border-radius: 10px;
+
+}
+
+.maps-api {
+  margin-bottom: 1rem;
+  flex-grow: 5;
+  width: 100%;
+  background: rgb(211, 211, 211);
+  border-radius: 10px;
+  font-size: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.fundraisers {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-grow: 3;
+  width: 100%;
+  background: rgb(211, 211, 211);
+  border-radius: 10px;
+
+}
+
+.event-wall {
+  margin-top: 1rem;
   display: flex;
   flex-grow: 1;
+  width: 100%;
+  background: rgb(211, 211, 211);
+  border-radius: 10px;
 
 }

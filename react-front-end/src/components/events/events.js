@@ -16,7 +16,7 @@ export default function Events(props) {
 
       <div className='event-left-panel'>
         <section className="invitation">
-          <span>invitation</span>
+          <span>You are invited to Amanda's birthday Party</span>
         </section>
         <section className="event-info">
         <span>events-info</span>
