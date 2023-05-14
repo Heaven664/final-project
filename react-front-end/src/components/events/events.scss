@@ -9,25 +9,21 @@
   height: 60vh;
 }
 
-.event-left-panel {
+.__panel {
+
   margin: 1rem;
-  border-color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-grow: 1;
-}
 
-.event-right-panel {
-  margin: 1rem;
-  border-color: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 5;
-}
+  &.event-left {
+    flex-grow: 1;
+  }
 
+  &.event-right {
+    flex-grow: 5;
+  }
+}
 
 .__card {
   width: 100%;
