@@ -1,9 +1,9 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
 module.exports = db => {
 
   //CRUD CREATE(POST)
-  router.post("/fundraisers/:id", (request, response) => {
+  router.post("/event-guest/:id", (request, response) => {
 
     const { target } = request.body;
 
@@ -13,36 +13,40 @@ module.exports = db => {
       VALUES ($1, $2, $3);
       `,
     [Number(request.params.id), target, "0"])
-    .then(({ rows }) => {
-      response.json(rows);
+    .then(({ rows: fundraisers }) => {
+      response.json(fundraisers);
     })
     .catch(error => console.log(error));
   });
 
   //CRUD READ(GET)
-  router.get("/fundraisers/", (request, response) => {
+  router.get("/event-guest/", (request, response) => {
     db.query(
       `
       SELECT
         *
-      FROM fundraisers
-    `)
-    .then(({ rows: fundraisers }) => {
-      response.json(fundraisers);
+      FROM events
+      LEFT JOIN event_user ON events.id = event_id
+      `
+    )
+    .then(({ rows }) => {
+      response.json(rows);
     });
   });
 
-  router.get("/fundraisers/:id", (request, response) => {
+  router.get("/event-guest/:id", (request, response) => {
     db.query(
       `
       SELECT
         *
-      FROM fundraisers
-      WHERE event_id = $1;
-    `,
+      FROM events
+      INNER JOIN event_user ON events.id = event_id
+      INNER JOIN users ON user_id = users.id
+      WHERE event_id = $1
+      `,
     [Number(request.params.id)])
-    .then(({ rows: fundraisers }) => {
-      response.json(fundraisers);
+    .then(({ rows }) => {
+      response.json(rows);
     });
   });
 
