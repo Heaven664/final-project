@@ -51,9 +51,10 @@ export default function PrivateChat(props) {
       sender_id: state.user_id,
       receiver_id: state.friend_id,
       text: message,
-
     }
-    console.log(data)
+    axios.post('/api/pmsg/', data)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
     setMessage('')
 
   };
