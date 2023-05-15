@@ -3,6 +3,8 @@
 .layout {
   display: flex;
   width: 100vw;
+  align-items: center;
+  padding-left: 74px;
 
   .sidebar {
     background-color: $primary-color;
@@ -93,13 +95,11 @@
   }
 
   .contents {
-    position: fixed;
-    left: 74px;
-    top: 100px;
+    flex: 1;
     padding: 30px;
     overflow: scroll;
     max-width: 1500px;
-    width: 98%;
+    margin: 100px auto 0;
 
     &::-webkit-scrollbar {
       width: 0px;  
