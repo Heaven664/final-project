@@ -17,11 +17,11 @@
   align-items: center;
 
   &.event-left {
-    flex-grow: 1;
+    width:60%;
   }
 
   &.event-right {
-    flex-grow: 5;
+    width:40%;
   }
 }
 
