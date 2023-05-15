@@ -1,6 +1,5 @@
 import React from "react";
 import eventGuestListItem from "./event-guest-list-item";
-import "components/event-guest-list.scss";
 import classNames from "classnames";
 import propTypes from 'prop-types';
 

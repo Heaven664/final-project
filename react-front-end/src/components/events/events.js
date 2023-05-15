@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import './events.scss';
 import EventsInfo from './events-info';
+import eventGuestList from "./event-guest-list";
 import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
-import { getEventGuests } from "../../helpers/event_selectors";
+import { getEventGuests, getEventInfo } from "../../helpers/event_selectors";
 
 
 export default function Events(props) {
 
 const user_id = 1;
-const event_id = 1;
+const event_id = 3;
 
   const {
     state
-  } = useEventsData();
+  } = useEventsData(event_id, user_id);
 
   console.log(state);
-
+  console.log(state.eventsInfo);
   return (
     <main className="event-layout">
 
@@ -25,7 +26,7 @@ const event_id = 1;
           <span>You are invited to Amanda's birthday Party</span>
         </section>
         <section className="event-info __card">
-          <EventsInfo />
+          <EventsInfo eventsInfo={state.eventsInfo} hostInfo={state.usersInfo}/>
 
         </section>
         <section className="event-guest __card">

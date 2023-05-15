@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import "./src/components/events/event-guest-list-item.scss";
 
 
 export default function eventGuestListItem(props) {

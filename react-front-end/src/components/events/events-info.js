@@ -10,28 +10,31 @@ import "./events-info.scss"
 
 export default function EventsInfo(props) {
 
+  console.log(props.props);
   return (
     <main className="info-layout">
 
       <div className='info-host'>
-        <img src="~/react-front-end/public/images/user_ex.png" alt="event_host_avatar" width="500" height="600"/>
+        <img src={props.hostInfo.photo} alt="event_host_avatar" width="500" height="600"/>
       </div>
       <section className='event-title'>
-          <span>Amanda's 25 years old birthday party</span>
+          <span>{props.eventsInfo.name}</span>
         </section>
       <section className='event-description'>
-          <span>Come and celebrate my 25's birthday!</span>
+          <span>{props.eventsInfo.description}</span>
         </section>
       <div className='info-event'>
-
+      <section className='event-agenda'>
+          <p>{props.eventsInfo.agenda}</p>
+        </section>
       </div>
 
       <div className='info-meet'>
         <section className='time'>
-          <span>May 25, 2023 7:00 pm (PST)</span>
+          <span>{props.eventsInfo.event_date}</span>
         </section>
         <section className='location'>
-          <span>Cactus Club Cafe, English Bay, Vancouver</span>
+          <span>{props.eventsInfo.event_location}</span>
         </section>
       </div>
 
