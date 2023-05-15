@@ -1,15 +1,8 @@
-@import "styles/variables.scss";
+@import "../styles/variables.scss";
 
-* {
-  color: $font-color;
-  text-decoration: none;
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-  font-family: $font-stack;
-}
 .layout {
   display: flex;
+  width: 100vw;
 
   .sidebar {
     background-color: $primary-color;
@@ -89,7 +82,7 @@
       width: 95vw;
       height: 90px;
       padding: 20px 30px;
-      border-bottom: 2px solid $primary-color;
+      // border-bottom: 2px solid $primary-color;
 
       .user-profile-pic,
       .mainLogo {
@@ -103,5 +96,11 @@
     left: 74px;
     top: 100px;
     padding: 30px;
+    overflow: scroll;
+    max-width: 1500px;
+
+    &::-webkit-scrollbar {
+      width: 0px;  
+    }
   }
 }

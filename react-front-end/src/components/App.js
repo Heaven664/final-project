@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear } from '@fortawesome/free-solid-svg-icons';
 import './App.scss';
 
-import PrivateChat from 'components/PrivateChat';
+import MyProfile from './MyProfile';
+// import PrivateChat from 'components/PrivateChat';
 
 // import MenuList from "components/MenuList.js";
 
@@ -83,7 +84,8 @@ export default function App(props) {
         </div>
       </section>
       <section className="contents">
-        {selectedPage === 'chat' && <PrivateChat />}
+        {selectedPage === 'profile' && <MyProfile />}
+        {/* {selectedPage === 'chat' && <PrivateChat />} */}
       </section>
     </main>
   );
