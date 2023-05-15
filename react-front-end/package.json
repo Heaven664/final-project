@@ -13,7 +13,6 @@
     "axios": "^1.4.0",
     "babel-plugin-macros": "^3.1.0",
     "classnames": "^2.3.2",
-    "http-proxy-middleware": "^2.0.6",
     "node-sass": "^8.0.0",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
@@ -44,6 +43,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
-
+  },
+  "proxy": "http://localhost:8080"
 }

@@ -8,8 +8,6 @@ import './App.scss';
 import MyProfile from './MyProfile';
 // import PrivateChat from 'components/PrivateChat';
 
-// import MenuList from "components/MenuList.js";
-
 export default function App(props) {
 
   const [selectedPage, setSelectedPage] = useState("profile");
@@ -74,7 +72,7 @@ export default function App(props) {
               alt="Wish Whisper"
             />
           </div>
-          <div>
+          <div onClick={() => handlePageClick('setting')}>
             <img
               className="user-profile-pic"
               src="images/user_ex.png"
@@ -84,7 +82,9 @@ export default function App(props) {
         </div>
       </section>
       <section className="contents">
-        {selectedPage === 'profile' && <MyProfile />}
+        {selectedPage === 'profile' && 
+          <MyProfile handlePageClick={handlePageClick}/>
+        }
         {/* {selectedPage === 'chat' && <PrivateChat />} */}
       </section>
     </main>
