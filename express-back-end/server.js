@@ -1,7 +1,13 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require('socket.io');
+
 const PORT = 8080;
+const io = new Server(server);
+
 
 // Express Configuration
 app.use(express.urlencoded({ extended: false }));
@@ -17,7 +23,7 @@ const groupMessagesRoutes = require('./routes/api-group_messages');
 const fundraisersRoutes = require('./routes/api-fundraisers');
 
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/event-users', eventUserRoutes);
@@ -26,12 +32,10 @@ app.use("/api/pmsg", privateMessagesRoutes);
 app.use("/api/gmsg", groupMessagesRoutes);
 app.use("/api/fundraisers", fundraisersRoutes);
 
-// Sample GET route
-app.get('/api/data', (req, res) => res.json({
-  message: "Seems to work!",
-}));
+io.on('connections', (socket) => {
+  console.log('A user connected')
+})
 
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Express seems to be listening on port ${PORT} so that's pretty good 👍`);
+server.listen(PORT, () => {
+  console.log(`Express seems to be listening on port ${PORT}`);
 });
