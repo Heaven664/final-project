@@ -29,22 +29,19 @@ const create = (first_name, last_name, email, password, country, city, birthday,
 };
 
 // Update user
-const update = (id, first_name, last_name, email, password, country, city, birthday, photo, about) => {
+const update = (id, first_name, last_name, country, city, birthday, about) => {
   const queryString = `
   UPDATE users 
   SET first_name = $2, 
       last_name = $3, 
-      email = $4, 
-      password_digest = $5, 
-      country = $6, 
-      city = $7, 
-      birthday = $8 , 
-      photo = $9, 
-      about = $10
+      country = $4, 
+      city = $5, 
+      birthday = $6 , 
+      about = $7
   WHERE id = $1
   RETURNING *;
   `;
-  const values = [id, first_name, last_name, email, password, country, city, birthday, photo, about];
+  const values = [id, first_name, last_name, country, city, birthday, about];
   return db.query(queryString, values)
     .then(res => res.rows[0]);
 };

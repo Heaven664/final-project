@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear } from '@fortawesome/free-solid-svg-icons';
 import './App.scss';
 
+import MyProfile from './MyProfile';
 import PrivateChat from 'components/PrivateChat';
-
-// import MenuList from "components/MenuList.js";
+import Setting from 'components/Setting';
 
 export default function App(props) {
 
-  const [selectedPage, setSelectedPage] = useState("chat");
+  const [selectedPage, setSelectedPage] = useState("profile");
   function handlePageClick(page) {
     setSelectedPage(page);
   }
@@ -32,7 +32,7 @@ export default function App(props) {
               onClick={() => handlePageClick('friends')}>
               <FontAwesomeIcon icon={faUsers} /><br />
               <span>Friends</span>
-            </li>
+            </li> 
             <li className={`chat 
               ${selectedPage === 'chat' ? '--selected' : ''}`}
               onClick={() => handlePageClick('chat')}>
@@ -73,7 +73,7 @@ export default function App(props) {
               alt="Wish Whisper"
             />
           </div>
-          <div>
+          <div onClick={() => handlePageClick('setting')}>
             <img
               className="user-profile-pic"
               src="images/user_ex.png"
@@ -83,7 +83,13 @@ export default function App(props) {
         </div>
       </section>
       <section className="contents">
+        {selectedPage === 'profile' && 
+          <MyProfile handlePageClick={handlePageClick}/>
+        }
         {selectedPage === 'chat' && <PrivateChat />}
+        {selectedPage === 'setting' && 
+          <Setting handlePageClick={handlePageClick}/>
+        }
       </section>
     </main>
   );

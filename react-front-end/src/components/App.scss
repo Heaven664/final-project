@@ -1,15 +1,10 @@
-@import "styles/variables.scss";
+@import "../styles/variables.scss";
 
-* {
-  color: $font-color;
-  text-decoration: none;
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-  font-family: $font-stack;
-}
 .layout {
   display: flex;
+  width: 100vw;
+  align-items: center;
+  padding-left: 74px;
 
   .sidebar {
     background-color: $primary-color;
@@ -41,6 +36,7 @@
             background-color: #fff;
             border-radius: 15px 0 0 15px;
             position: relative;
+            background-image: url("https://www.transparenttextures.com/patterns/ag-square.png");
 
             &.--selected::before,
             &.--selected::after {
@@ -89,7 +85,7 @@
       width: 95vw;
       height: 90px;
       padding: 20px 30px;
-      border-bottom: 2px solid $primary-color;
+      // border-bottom: 2px solid $primary-color;
 
       .user-profile-pic,
       .mainLogo {
@@ -99,9 +95,14 @@
   }
 
   .contents {
-    position: fixed;
-    left: 74px;
-    top: 100px;
+    flex: 1;
     padding: 30px;
+    overflow: scroll;
+    max-width: 1500px;
+    margin: 100px auto 0;
+
+    &::-webkit-scrollbar {
+      width: 0px;  
+    }
   }
 }

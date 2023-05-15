@@ -54,15 +54,15 @@ router.get('/:id', (req, res) => {
 // Update user
 router.patch('/:id/edit', (req, res) => {
   // Get data from request
-  const { first_name, last_name, email, password, country, city, birthday, photo, about } = req.body;
-  // Hash password
-  const hashed_password = bcrypt.hashSync(password, 10);
+  const { first_name, last_name, country, city, birthday, about } = req.body;
+
   // Update user
   const id = req.params.id;
   userQueries
-    .update(id, first_name, last_name, email, hashed_password, country, city, birthday, photo, about)
+    .update(id, first_name, last_name, country, city, birthday, about)
     .then(user => res.json(user))
     .catch(error => {
+      console.log(error.message);
       res
         .status(500)
         .json({ message: 'Error updating user', error: error.message });
