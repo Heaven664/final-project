@@ -1,0 +1,57 @@
+@import "../styles/variables.scss";
+
+.settingBox{
+  width: 95%;
+  padding: 50px 30px;
+
+  table{
+    width: 100%;
+
+    tr{
+      display: flex;
+      width: 100%;
+      padding-bottom: 20px;
+  
+      th{
+        padding-right: 15px;
+        text-align: right;
+        width: 17%;
+        vertical-align: top;
+      }
+
+      td {
+        width: 83%;
+
+        input{
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 5px;
+            border: 1px solid #e2e2e2;
+        }
+
+        .nameField{
+          width: 49%;
+
+          &:first-child{
+            margin-right: 2%;
+          }
+        }
+
+        .aboutField{
+          height: 150px;
+          width: 100%;
+          padding: 8px 10px;
+          border-radius: 5px;
+          border: 1px solid #e2e2e2;
+          vertical-align: 'top';
+          white-space: pre-line;
+          resize: vertical; 
+        }
+      }
+    }
+  }
+ 
+  .btn button{
+    width: 100%;
+  }
+}

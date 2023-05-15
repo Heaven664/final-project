@@ -34,6 +34,7 @@
             background-color: #fff;
             border-radius: 15px 0 0 15px;
             position: relative;
+            background-image: url("https://www.transparenttextures.com/patterns/ag-square.png");
 
             &.--selected::before,
             &.--selected::after {
@@ -98,6 +99,7 @@
     padding: 30px;
     overflow: scroll;
     max-width: 1500px;
+    width: 98%;
 
     &::-webkit-scrollbar {
       width: 0px;  
