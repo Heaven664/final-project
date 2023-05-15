@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useEffect, useState } from "react";
-import axios from 'axios';
-
-// css, font-awesome
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear } from '@fortawesome/free-solid-svg-icons'
 import "./fundraisers.scss"
@@ -10,24 +9,46 @@ import "./fundraisers.scss"
 
 export default function Fundraisers(props) {
 
+
+  const percentage = props.donation.current / props.donation.target;
+  const getProgress = function (value) {
+    if (value > 0.75) {
+      return "success";
+    }
+    if (value > 0.50) {
+      return "info";
+    }
+    if (value > 0.25) {
+      return "warning";
+    }
+    return "danger";
+  }
+
+
+
+
   console.log(props.props);
   return (
     <main className="fundraisers-layout">
 
       <div className='fundraisers-info'>
-        <img className='-img' src={props.hostInfo.photo} alt="event_host_avatar" width="500" height="600"/>
-        <span className='name'>{props.hostInfo.first_name} {props.hostInfo.last_name}</span>
+        <span className='name'>Wish: {props.donation.name}</span>
+        <span className='name'>Target: ${props.donation.target}</span>
       </div>
 
       <div className='fundraisers-bar'>
-        <img className='-img' src={props.hostInfo.photo} alt="event_host_avatar" width="500" height="600"/>
-        <span className='name'>{props.hostInfo.first_name} {props.hostInfo.last_name}</span>
+      <ProgressBar 
+        animated 
+        variant={getProgress(percentage)}
+        now={percentage} 
+      />;
       </div>
 
       <div className='fundraisers-interact'>
-        <img className='-img' src={props.hostInfo.photo} alt="event_host_avatar" width="500" height="600"/>
-        <span className='name'>{props.hostInfo.first_name} {props.hostInfo.last_name}</span>
+      <Button variant="primary">Support!</Button>{' '}
       </div>
     </main>
   )
 }
+
+
