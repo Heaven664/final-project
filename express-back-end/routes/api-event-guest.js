@@ -67,12 +67,7 @@ module.exports = db => {
     WHERE event_id = $1;
   `,
   [Number(request.params.id), target, current])
-    // .then(() => {
-    //   setTimeout(() => {
-    //     response.status(204).json({});
-    //     // updateAppointment(Number(request.params.id), request.body.interview);
-    //   }, 1000);
-    // })
+
     .then(({ rows: fundraisers }) => {
       response.json(fundraisers);
     })
@@ -92,7 +87,6 @@ module.exports = db => {
             .then(() => {
             setTimeout(() => {
               response.status(204).json({});
-              // updateAppointment(Number(request.params.id), null);
             }, 1000);
           });
   });
