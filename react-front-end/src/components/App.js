@@ -6,7 +6,7 @@ import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, 
 import './App.scss';
 
 import MyProfile from './MyProfile';
-// import PrivateChat from 'components/PrivateChat';
+import PrivateChat from 'components/PrivateChat';
 
 export default function App(props) {
 
@@ -85,7 +85,7 @@ export default function App(props) {
         {selectedPage === 'profile' && 
           <MyProfile handlePageClick={handlePageClick}/>
         }
-        {/* {selectedPage === 'chat' && <PrivateChat />} */}
+        {selectedPage === 'chat' && <PrivateChat />}
       </section>
     </main>
   );
