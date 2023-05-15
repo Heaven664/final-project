@@ -47,7 +47,15 @@ export default function PrivateChat(props) {
 
   const sendMessage = (e) => {
     e.preventDefault()
+    const data = {
+      sender_id: state.user_id,
+      receiver_id: state.friend_id,
+      text: message,
+
+    }
+    console.log(data)
     setMessage('')
+
   };
 
   const changeFriend = (friend_id) => {
