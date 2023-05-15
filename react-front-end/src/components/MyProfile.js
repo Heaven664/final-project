@@ -2,62 +2,37 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import './MyProfile.scss';
 
-const user = {
-  "id": 1,
-  "first_name": "Jane",
-  "last_name": "Doe",
-  "email": "john.doe@example.com",
-  "password_digest": "password123",
-  "country": "United States",
-  "city": "New York",
-  "birthday": "1990-01-01T08:00:00.000Z",
-  "photo": "http://localhost:8080/images/user-image-1.jpg",
-  "about": "Hi, guys. My name is Jane and I am a graphical designer. Outside of work, I enjoy exploring the great outdoors through hiking and biking. "
-}
-// const userId = req.session.id;
-
-// birthday formatter
-const dateString = user.birthday;
-const formattedDate = dateString.split("T")[0];
-
 export default function MyProfile(props) {
   const handleButtonClick = () => {
     props.handlePageClick('friends');
   };
 
   const [state, setState] = useState({
-    id: user.id,
-    first_name: user.first_name,
-    last_name: user.last_name,
-    country: user.country,
-    city: user.city,
-    birthday: formattedDate,
-    photo: user.photo,
-    about: user.about
+    id: 1,
+    first_name: "",
+    last_name: "",
+    country: "",
+    city: "",
+    birthday: "",
+    photo: "",
+    about: ""
   });
 
   // get the user data from api
-  // useEffect(() => {
-  //   Promise.all([
-  //     axios.get(`/api/users`)
-  //   ]).then((all) => {
-  //     console.log("connect");
-  //     console.log(all);
-  //     setState(prev => ({
-  //       ...prev,
-  //       first_name: all[1].data,
-  //       last_name: all[2].data,
-  //       country: all[5].data,
-  //       city: all[6].data,
-  //       birthday: all[7].data,
-  //       photo: all[8].data,
-  //       about: all[9].data
-  //     }));
-  //   })
-  //   .catch(err => {
-  //     console.error("connect error:", err.message);
-  //   })
-  // }, []);
+  useEffect(() => {
+    axios.get(`/api/users/${state.id}`)
+    .then((res) => {
+      const user = res.data;
+      // birthday formatting: leave only YYYY-MM-DD
+      if (user.birthday) {
+        user.birthday = user.birthday.substring(0, 10); 
+      }
+      setState(user);
+    })
+    .catch(err => {
+      console.error("connect error:", err.message);
+    })
+  }, []);
 
   return (
     <div className="my-profile">
@@ -65,7 +40,7 @@ export default function MyProfile(props) {
         <div className="user-photo">
           <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
           <div className="btn">
-            <button onClick={handleButtonClick}  className="background-point-color btn-style">Add Friend</button>
+            <button onClick={handleButtonClick} className="background-point-color btn-style">Add Friend</button>
           </div>
         </div>
         <div className="box-shadow border-radius20 background-box-color user-detail">

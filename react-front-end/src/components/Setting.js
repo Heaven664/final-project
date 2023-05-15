@@ -2,36 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import './Setting.scss';
 
-const user = {
-  "id": 1,
-  "first_name": "Jane",
-  "last_name": "Doe",
-  "email": "john.doe@example.com",
-  "password_digest": "password123",
-  "country": "United States",
-  "city": "New York",
-  "birthday": "1990-01-01T08:00:00.000Z",
-  "photo": "http://localhost:8080/images/user-image-1.jpg",
-  "about": "Hi, guys. My name is Jane and I am a graphical designer. Outside of work, I enjoy exploring the great outdoors through hiking and biking. "
-}
+export default function Setting(props) {
 
-// birthday formatter
-const dateString = user.birthday;
-const formattedDate = dateString.split("T")[0];
-
-export default function MyProfile(props) {
 
   const [state, setState] = useState({
-    id: user.id,
-    first_name: user.first_name,
-    last_name: user.last_name,
-    country: user.country,
-    city: user.city,
-    birthday: formattedDate,
-    photo: user.photo,
-    about: user.about
+    id: 1,
+    first_name: "",
+    last_name: "",
+    country: "",
+    city: "",
+    birthday: "",
+    about: ""
   });
-
 
   const updateProfile = (e) => {
     e.preventDefault()
@@ -44,18 +26,25 @@ export default function MyProfile(props) {
       about: state.about
     }
     console.log("updated: ", data);
-    axios.post(`/api/users/${state.id}/edit`, data)
-      .then(res => console.log(res.data))
+    axios.patch(`/api/users/${state.id}/edit`, data)
+      .then(res => {
+        console.log(res.data);
+        props.handlePageClick('profile');
+      })
       .catch(err => console.log(err))
   };
 
-  // useEffect(() => {
-  //   axios.get(`/api/users/${state.id}`)
-  //   .then((res) => {
-  //     const user1 = res.data;
-  //     setState((prev) => ({ ...prev, user1 }));
-  //   });
-  // }, []);
+  useEffect(() => {
+    axios.get(`/api/users/${state.id}`)
+    .then((res) => {
+      const user = res.data;
+      if (user.birthday) {
+        user.birthday = user.birthday.substring(0, 10);
+      }
+      setState(user);
+    });
+  }, []);
+  
 
   return (
     <div className="settingBox background-box-color border-radius20 box-shadow">
