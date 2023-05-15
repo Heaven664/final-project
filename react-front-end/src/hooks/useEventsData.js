@@ -7,7 +7,7 @@ export default function useEventsData(eventID, userID) {
     day: "Monday",
     events: [],
     fundraisers: {},
-    event_users: {},
+    event_user: {},
     eventsInfo: {},
     usersInfo: {}
   });
@@ -27,7 +27,7 @@ export default function useEventsData(eventID, userID) {
       setState(prev => ({ ...prev, 
         events:       all[0].data, 
         fundraisers:  all[1].data, 
-        event_user:  all[2].data, 
+        event_user:   all[2].data, 
         eventsInfo:   all[3].data, 
         usersInfo:    all[4].data }));
     });

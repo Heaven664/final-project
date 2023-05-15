@@ -2,14 +2,14 @@ import React from "react";
 import classNames from "classnames";
 
 
-export default function eventGuestListItem(props) {
+export default function EventGuestListItem(props) {
 
-  const eventGuestListClass = classNames("eventGuest__item", { 
+  const EventGuestListClass = classNames("eventGuest__item", { 
     " eventGuest__item--selected": props.selected
    });
 
   return (
-    <li className={eventGuestListClass} onClick={props.setEventGuest}>
+    <li className={EventGuestListClass} onClick={props.setEventGuest}>
       <img
         className="eventGuest__item-image"
         src={props.avatar}

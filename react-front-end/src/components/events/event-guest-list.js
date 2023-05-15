@@ -1,5 +1,5 @@
 import React from "react";
-import eventGuestListItem from "./event-guest-list-item";
+import EventGuestListItem from "./event-guest-list-item";
 import classNames from "classnames";
 import propTypes from 'prop-types';
 
@@ -9,17 +9,19 @@ export default function EventGuestList(props) {
     "eventGuest_item",
     { "eventGuest__item--selected": props.selected }
   );
-
+  
   const objToArray = (obj) => Object.assign([], Object.values(obj));
-
+  // const guestsArray = props.guests;
+  
   const eventGuestProps = objToArray(props.guests).map((user) => {
+  // const eventGuestProps = guestsArray.map((user) => {
 
     return (
-      <eventGuestListItem
+      <EventGuestListItem
         key={user.id}
         name={user.first_name + " " + user.last_name}
         avatar={user.photo}
-        selected={user.id === props.value}
+        // selected={user.id === props.value}
       // setInterviewer={() => props.onChange(user.id)}
       />
     );
@@ -34,6 +36,6 @@ export default function EventGuestList(props) {
 }
 
 // Validate interviewers as an array
-eventGuestList.propTypes = {
-  eventGuest: propTypes.array.isRequired
+EventGuestList.propTypes = {
+  guests: propTypes.array.isRequired
 };

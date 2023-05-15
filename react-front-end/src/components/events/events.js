@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './events.scss';
 import EventsInfo from './events-info';
-import eventGuestList from "./event-guest-list";
+import EventGuestList from "./event-guest-list";
 import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
 import { getEventGuests, getEventInfo } from "../../helpers/event_selectors";
@@ -32,7 +32,7 @@ const event_id = 3;
 
         </section>
         <section className="event-guest __card">
-          <eventGuestList guests={state.event_users}/>
+          <EventGuestList guests={state.event_user}/>
         <span>events-guest</span>
         </section>
       </div>
