@@ -1,103 +1,40 @@
-const router = require("express").Router();
+const express = require('express');
+const router = express.Router();
 
-module.exports = db => {
+const gmsgQueries = require('../db/queries/group-messages');
 
-  //CRUD CREATE(POST)
-  router.post("/gmsg/:id", (request, response) => {
+// Create new user
+router.post("/", (req, res) => {
+  console.log(req.body);
+  const { sender_id, event_id, text } = req.body;
+  console.log(sender_id, event_id, text);
 
-    const { sender, text } = request.body;
-
-    db.query(
-      `
-      INSERT INTO group_messages (sender_id, event_id, text)
-      VALUES ($1, $2, $3);
-      `,
-    [sender, Number(request.params.id), text])
-    .then(({rows:group_messages}) => {
-      response.json(group_messages);
-    })
-    .catch(error => console.log(error));
-  });
-
-  //CRUD READ(GET)
-  router.get("/gmsg/", (request, response) => {
-    db.query(
-      `
-      SELECT
-        *
-      FROM group_messages
-    `)
-    .then(({rows:group_messages}) => {
-      response.json(group_messages);
-    });
-  });
-
-  router.get("/gmsg/:id", (request, response) => {
-    db.query(
-      `
-      SELECT
-        *
-      FROM group_messages
-      WHERE event_id = $1;
-    `,
-    [Number(request.params.id)])
-    .then(({rows:group_messages}) => {
-      response.json(group_messages);
-    });
-  });
-
-
-  //CRUD UPDATE(PUT)
-  router.put("/gmsg/:id", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
-
-  const { sender, old_text, new_text } = request.body;
-
-  db.query(
-    `
-    UPDATE group_messages
-    SET sender_id = $2, text = $4
-    WHERE event_id = $1 AND sender_id = $2 AND text = $3;
-  `,
-  [Number(request.params.id), sender, old_text, new_text])
-    // .then(() => {
-    //   setTimeout(() => {
-    //     response.status(204).json({});
-    //     // updateAppointment(Number(request.params.id), request.body.interview);
-    //   }, 1000);
-    // })
-    .then(({rows:group_messages}) => {
-      response.json(group_messages);
+  gmsgQueries.create(sender_id, event_id, text)
+    .then((message) => {
+      res.json(message);
     })
     .catch(error => console.log(error));
 });
 
+// Get all users
+router.get("/", (req, res) => {
+  gmsgQueries.getAll()
+    .then(messages => res.json(messages));
+});
 
-  //CRUD DELETE
-  router.delete("/gmsg/:id", (request, response) => {
+// Get one message
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  gmsgQueries.getById(id)
+    .then(message => res.json(message));
+});
 
-    const { sender, text } = request.body;
+// Delete message
+router.delete("/:id/delete", (req, res) => {
+  const { id } = req.params;
+  gmsgQueries.remove(id)
+    .then((message) => res.json({message: "Message was successfully deleted", deletedMessage: message}))
 
-    if (process.env.TEST_ERROR) {
-      setTimeout(() => response.status(500).json({}), 1000);
-      return;
-    }
+});
 
-    db.query(`
-              DELETE FROM group_messages 
-              WHERE event_id = $1 AND sender_id = $2 AND text = $3;
-              `, 
-            [Number(request.params.id), sender, text])
-            .then(() => {
-            setTimeout(() => {
-              response.status(204).json({});
-              // updateAppointment(Number(request.params.id), null);
-            }, 1000);
-          });
-  });
-
-  return router;
-  };
+module.exports = router;

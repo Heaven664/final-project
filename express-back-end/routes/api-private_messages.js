@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const pmsgQueries = require('../db/queries/pmsg');
+const pmsgQueries = require('../db/queries/private-messages');
 
 // Create new user
 router.post("/", (req, res) => {
