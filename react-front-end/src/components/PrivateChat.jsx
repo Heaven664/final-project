@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { io } from "socket.io-client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,6 +8,8 @@ import PrivateChatList from "components/PrivateChatList";
 import MessageList from "components/MessageList";
 
 import "./PrivateChat.scss";
+
+const socket = io();
 
 // Gets friend's id's of a user with provided id
 const getFriendsIds = (friendlists, id) => {
@@ -45,23 +48,42 @@ export default function PrivateChat(props) {
 
   const [message, setMessage] = useState("");
 
+  const [isConnected, setIsConnected] = useState(socket.connected);
+
   const sendMessage = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const data = {
       sender_id: state.user_id,
       receiver_id: state.friend_id,
       text: message,
-    }
-    axios.post('/api/pmsg/', data)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err))
-    setMessage('')
-
+    };
+    axios
+      .post("/api/pmsg/", data)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+    setMessage("");
   };
 
   const changeFriend = (friend_id) => {
     setState((prev) => ({ ...prev, friend_id }));
   };
+
+  useEffect(() => {
+    socket.on("connect", () => {
+      setIsConnected(true);
+      console.log(`connected to server ${socket.id}`)
+    });
+
+    socket.on("disconnect", () => {
+      setIsConnected(false);
+      console.log('disconnected from server')
+    });
+
+    return () => {
+      socket.off("connect");
+      socket.off("disconnect");
+    };
+  }, []);
 
   useEffect(() => {
     Promise.all([axios.get("/api/users"), axios.get("api/friendlists")]).then(
@@ -119,7 +141,10 @@ export default function PrivateChat(props) {
               </div>
             </div>
             <div className="chatroom-messages-container">
-              <MessageList user_id={state.user_id} messages={state.messages}></MessageList>
+              <MessageList
+                user_id={state.user_id}
+                messages={state.messages}
+              ></MessageList>
             </div>
             <form
               className="chatroom-massage-input-container"
