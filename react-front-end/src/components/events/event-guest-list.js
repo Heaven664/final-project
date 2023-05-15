@@ -3,7 +3,7 @@ import eventGuestListItem from "./event-guest-list-item";
 import classNames from "classnames";
 import propTypes from 'prop-types';
 
-export default function eventGuestList(props) {
+export default function EventGuestList(props) {
 
   const eventGuestClass = classNames(
     "eventGuest_item",
@@ -12,15 +12,15 @@ export default function eventGuestList(props) {
 
   const objToArray = (obj) => Object.assign([], Object.values(obj));
 
-  const eventGuestProps = objToArray(props.users).map((user) => {
+  const eventGuestProps = objToArray(props.guests).map((user) => {
 
     return (
       <eventGuestListItem
         key={user.id}
-        name={user.name}
-        avatar={user.avatar}
+        name={user.first_name + " " + user.last_name}
+        avatar={user.photo}
         selected={user.id === props.value}
-        setInterviewer={() => props.onChange(user.id)}
+      // setInterviewer={() => props.onChange(user.id)}
       />
     );
   });
@@ -33,7 +33,7 @@ export default function eventGuestList(props) {
   );
 }
 
-//Validate interviewers as an array
-// eventGuestList.propTypes = {
-//   eventGuest: propTypes.array.isRequired
-// };
+// Validate interviewers as an array
+eventGuestList.propTypes = {
+  eventGuest: propTypes.array.isRequired
+};

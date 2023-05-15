@@ -17,7 +17,9 @@ const event_id = 3;
   } = useEventsData(event_id, user_id);
 
   console.log(state);
+  console.log(state.event_user);
   console.log(state.eventsInfo);
+
   return (
     <main className="event-layout">
 
@@ -30,13 +32,14 @@ const event_id = 3;
 
         </section>
         <section className="event-guest __card">
+          <eventGuestList guests={state.event_users}/>
         <span>events-guest</span>
         </section>
       </div>
 
       <div className='event-right __panel'>
         <section className="maps-api __card">
-        <span>maps-api</span>
+        <span>description</span>
         </section>
         <section className="fundraisers __card">
         <span>fundraisers</span>
