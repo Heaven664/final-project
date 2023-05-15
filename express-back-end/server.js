@@ -8,7 +8,6 @@ const { Server } = require('socket.io');
 const PORT = 8080;
 const io = new Server(server);
 
-
 // Express Configuration
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -32,9 +31,12 @@ app.use("/api/pmsg", privateMessagesRoutes);
 app.use("/api/gmsg", groupMessagesRoutes);
 app.use("/api/fundraisers", fundraisersRoutes);
 
-io.on('connections', (socket) => {
-  console.log('A user connected')
-})
+io.on('connection', (socket) => {
+  console.log(`A user ${socket.id} connected`);
+  socket.on('disconnect', () => {
+    console.log(`user ${socket.id} disconnected`);
+  });
+});
 
 server.listen(PORT, () => {
   console.log(`Express seems to be listening on port ${PORT}`);
