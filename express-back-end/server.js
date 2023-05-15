@@ -17,7 +17,7 @@ const friendListRoutes = require('./routes/api-friendlists');
 app.use(express.static('public'))
 app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
-app.use('/api/event-users', eventUserRoutes);
+app.use('/api/event-user', eventUserRoutes);
 app.use('/api/friendlists', friendListRoutes);
 
 const db = require("./db/connection.js");
@@ -27,8 +27,7 @@ const groupMessages = require("./routes/api-group_messages.js");
 app.use("/api", groupMessages(db));
 const privateMessages = require("./routes/api-private_messages.js");
 app.use("/api", privateMessages(db));
-const eventGuest = require("./routes/api-event-guest.js");
-app.use("/api", eventGuest(db));
+
 
 // Sample GET route
 app.get('/api/data', (req, res) => res.json({
