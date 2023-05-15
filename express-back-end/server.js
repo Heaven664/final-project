@@ -22,11 +22,11 @@ app.use('/api/event-users', eventUserRoutes);
 app.use('/api/friendlists', friendListRoutes);
 app.use("/api/pmsg", privateMessagesRoutes);
 
-const db = require("./db/connection.js");
+// const db = require("./db/connection.js");
 // const fundraisers = require("./routes/api-fundraisers.js");
-const groupMessages = require("./routes/api-group_messages.js");
-app.use("/api", groupMessages(db));
-const privateMessages = require("./routes/api-private_messages.js");
+// const groupMessages = require("./routes/api-group_messages.js");
+// app.use("/api", groupMessages(db));
+// const privateMessages = require("./routes/api-private_messages.js");
 
 // Sample GET route
 app.get('/api/data', (req, res) => res.json({
