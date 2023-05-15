@@ -39,25 +39,24 @@ export default function PrivateChat(props) {
     user_id: 1,
     chats: [],
     messages: [],
-    friend: 0,
+    friend: {},
   });
 
   const changeFriend = (id) => {
-    setState((prev) => ({ ...prev, friend: id }));
+    setState((prev) => ({ ...prev, friend: { ...state.friend, id } }));
   };
 
   useEffect(() => {
-    Promise.all([
-      axios.get("/api/users"),
-      axios.get("api/friendlists"),
-    ]).then((all) => {
-      const friendIds = getFriendsIds(all[1].data, state.user_id);
-      const chats = getFriendsObjects(all[0].data, friendIds);
-      setState((prev) => ({
-        ...prev,
-        chats,
-      }));
-    });
+    Promise.all([axios.get("/api/users"), axios.get("api/friendlists")]).then(
+      (all) => {
+        const friendIds = getFriendsIds(all[1].data, state.user_id);
+        const chats = getFriendsObjects(all[0].data, friendIds);
+        setState((prev) => ({
+          ...prev,
+          chats,
+        }));
+      }
+    );
   }, [state.user_id]);
 
   useEffect(() => {
@@ -65,7 +64,7 @@ export default function PrivateChat(props) {
       const messages = getFriendsMessages(
         res.data,
         state.user_id,
-        state.friend
+        state.friend.id
       );
       setState((prev) => ({ ...prev, messages }));
     });
@@ -76,25 +75,30 @@ export default function PrivateChat(props) {
       <div className="private-chats-list-container">
         <PrivateChatList friends={state.chats} changeFriend={changeFriend} />
       </div>
+
       <div className="private-chats-chatroom">
-        <div className="private-chats-chatroom-title">
-          <div className="private-chats-chatroom-title-image-container">
-            Image
+        {state.friend.id && (
+          <div>
+            <div className="private-chats-chatroom-title">
+              <div className="private-chats-chatroom-title-image-container">
+                Image
+              </div>
+              <div className="private-chats-chatroom-title-name-container">
+                Full Name
+              </div>
+            </div>
+            <div className="chatroom-messages-container">
+              <MessageList messages={state.messages}></MessageList>
+            </div>
+            <div className="chatroom-massage-input-container">
+              <input type="text" className="chatroom-massage-input" />
+              <button className="chatroom-massage-send-button">
+                <FontAwesomeIcon icon={faPaperPlane} />
+                <br />
+              </button>
+            </div>
           </div>
-          <div className="private-chats-chatroom-title-name-container">
-            Full Name
-          </div>
-        </div>
-        <div className="chatroom-messages-container">
-          <MessageList messages={state.messages}></MessageList>
-        </div>
-        <div className="chatroom-massage-input-container">
-          <input type="text" className="chatroom-massage-input" />
-          <button className="chatroom-massage-send-button">
-            <FontAwesomeIcon icon={faPaperPlane} />
-            <br />
-          </button>
-        </div>
+        )}
       </div>
     </div>
   );
