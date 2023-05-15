@@ -11,7 +11,7 @@ import Setting from 'components/Setting';
 
 export default function App(props) {
 
-  const [selectedPage, setSelectedPage] = useState("chat");
+  const [selectedPage, setSelectedPage] = useState("profile");
   function handlePageClick(page) {
     setSelectedPage(page);
   }
@@ -87,7 +87,9 @@ export default function App(props) {
           <MyProfile handlePageClick={handlePageClick}/>
         }
         {selectedPage === 'chat' && <PrivateChat />}
-        {selectedPage === 'setting' && <Setting />}
+        {selectedPage === 'setting' && 
+          <Setting handlePageClick={handlePageClick}/>
+        }
       </section>
     </main>
   );

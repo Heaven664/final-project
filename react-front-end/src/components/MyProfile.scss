@@ -3,7 +3,7 @@
 .my-profile{
   
   .user-photo {
-    width: 40%;
+    flex: 0 0 40%;
     margin-right: 30px;
     max-width: 500px;
 
@@ -16,7 +16,7 @@
     }
   }
   .user-detail{
-    width: auto;
+    flex: 1;
     padding: 40px;
 
     tr{
