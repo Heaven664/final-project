@@ -7,6 +7,7 @@ import './App.scss';
 
 import MyProfile from './MyProfile';
 import PrivateChat from 'components/PrivateChat';
+import Setting from 'components/Setting';
 
 export default function App(props) {
 
@@ -86,6 +87,7 @@ export default function App(props) {
           <MyProfile handlePageClick={handlePageClick}/>
         }
         {selectedPage === 'chat' && <PrivateChat />}
+        {selectedPage === 'setting' && <Setting />}
       </section>
     </main>
   );
