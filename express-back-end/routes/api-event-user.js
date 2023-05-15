@@ -10,13 +10,14 @@ const db = require('../db/connection');
     db.query(
       `
       INSERT INTO event_user (event_id, user_id)
-      VALUES ($1, $2);
+      VALUES ($1, $2)
+      RETURNING *;
       `,
     [event, user])
     .then(({ rows }) => {
       response.json(rows);
     })
-    .catch(error => console.log(error, "Error adding user to event."));
+    .catch(error => response.json({Error: error, Message:"Error adding user to event."}));
   });
 
   //CRUD READ(GET)
@@ -25,14 +26,16 @@ const db = require('../db/connection');
       `
       SELECT
         *
-      FROM event_user
+      FROM event_user;
       `
     )
     .then(({ rows }) => {
       response.json(rows);
-    });
+    })
+    .catch(error => response.json({Error: error, Message:"Error getting event_user."}));
   });
 
+  //get guest lists with guest info for event
   router.get("/:id", (request, response) => {
     db.query(
       `
@@ -41,48 +44,54 @@ const db = require('../db/connection');
       FROM events
       INNER JOIN event_user ON events.id = event_id
       INNER JOIN users ON user_id = users.id
-      WHERE event_id = $1
+      WHERE event_id = $1;
       `,
     [Number(request.params.id)])
     .then(({ rows }) => {
       response.json(rows);
-    });
+    })
+    .catch(error => response.json({Error: error, Message:"Error getting event_user for this event."}));
   });
 
   //CRUD UPDATE(PUT)
   router.put("/", (request, response) => {
+    const { event, user, id } = request.body;
 
-  const { target, current } = request.body;
-
-  db.query(
-    `
-    UPDATE fundraisers
-    SET target_amount = $2, current_amount = $3
-    WHERE event_id = $1;
-  `,
-  [Number(request.params.id), target, current])
-
-    .then(({ rows: fundraisers }) => {
-      response.json(fundraisers);
+    db.query(
+      `
+      UPDATE event_user
+      SET event_id = $2, 
+          user_id = $3
+      WHERE id = $1;
+      `,
+      [id, event, user]
+    )
+    .then(({ rows }) => {
+      response.json(rows);
     })
-    .catch(error => console.log(error));
-});
+    .catch(error => response.json({Error: error, Message:"Error getting event_user for this event."}));
+  });
 
 
   //CRUD DELETE
-  router.delete("/fundraisers/:id", (request, response) => {
-    if (process.env.TEST_ERROR) {
-      setTimeout(() => response.status(500).json({}), 1000);
-      return;
-    }
+  router.delete("/", (request, response) => {
+    const { id } = request.body;
+    // if (process.env.TEST_ERROR) {
+    //   setTimeout(() => response.status(500).json({}), 1000);
+    //   return;
+    // }
+    db.query(
+      `
+      DELETE FROM event_user
+      WHERE id = $1;
+      `, 
+      [id]
+    )
+    .then(() => {
+      response.status(204).json();
+    })
+    .catch(error => response.json({Error: error, Message:"Error deleting the record."}));
 
-    db.query(`DELETE FROM fundraisers WHERE event_id = $1::integer;`, 
-            [request.params.id])
-            .then(() => {
-            setTimeout(() => {
-              response.status(204).json({});
-            }, 1000);
-          });
   });
 
 
