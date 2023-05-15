@@ -60,39 +60,8 @@ export default function MyProfile(props) {
   // }, []);
 
   return (
-    <div className="my-profile">
-      <div className="display-flex">
-        <div className="user-photo">
-          <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
-          <div className="btn">
-            <button onClick={handleButtonClick}  className="background-point-color btn-style">Add Friend</button>
-          </div>
-        </div>
-        <div className="box-shadow border-radius20 background-box-color user-detail">
-          <table>
-            <tr>
-              <th>Name</th>
-              <td>{state.first_name} {state.last_name}</td>
-            </tr>
-            <tr>
-              <th>Country</th>
-              <td>{state.country}</td>
-            </tr>
-            <tr>
-              <th>City</th>
-              <td>{state.city}</td>
-            </tr>
-            <tr>
-              <th>Birthday</th>
-              <td>{state.birthday}</td>
-            </tr>
-            <tr>
-              <th>About me</th>
-              <td>{state.about}</td>
-            </tr>
-          </table>
-        </div>
-      </div>
+    <div className="setting">
+      
 
     </div>
   );
