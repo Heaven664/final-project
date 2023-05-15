@@ -15,17 +15,26 @@ VALUES
   ('Jack', 'Wang', 'jack@example.com', 'password123', 'China', 'Shanghai', '1988-03-27', 'http://localhost:8080/images/user-image-1.jpg', 'I''m a businessman and I love exploring new markets.');
 
 -- Events table
-INSERT INTO events (name, description, agenda, host_id) VALUES
-  ('Annual Sales Conference', 'Join us for our annual sales conference to learn about the latest industry trends and techniques.', '1. Keynote presentation by industry experts\n2. Panel discussion with sales leaders\n3. Breakout sessions on sales strategies\n4. Networking opportunities', 1),
-  ('Product Launch Party', 'Celebrate the launch of our latest product with food, drinks, and music!', '1. Product demo and presentation\n2. Live music from local band\n3. Open bar and oeuvres\n4. Networking and mingling', 2),
-  ('Charity Auction', 'Support a good cause and bid on unique items donated by our generous sponsors.', '1. Silent auction with one-of-a-kind items\n2. Live auction with luxury packages\n3. Raffle drawing with prizes\n4. Dinner and drinks', 3),
-  ('Industry Mixer', 'Connect with other professionals in your industry and expand your network.', '1. Introductions and icebreakers\n2. Speed networking sessions\n3. Roundtable discussions on industry topics\n4. Happy hour with drinks and appetizers', 4),
-  ('Company Picnic', 'Bring your family and join us for a day of fun and games in the sun!', '1. BBQ lunch with all the fixings\n2. Games and activities for all ages\n3. Team-building exercises and competitions\n4. Prizes and giveaways', 5),
-  ('Holiday Party', 'Celebrate the end of the year with your colleagues and enjoy a festive evening!', '1. Cocktail hour with holiday-themed drinks\n2. Dinner and dessert buffet\n3. DJ and dancing\n4. Photo booth and props', 1),
-  ('Startup Pitch Night', 'Watch up-and-coming startups pitch their ideas to a panel of expert judges.', '1. Pitch presentations by startup founders\n2. Q&A session with judges\n3. Networking with entrepreneurs and investors\n4. After-party with drinks and snacks', 2),
-  ('Women in Business Luncheon', 'Celebrate and empower women in business with a networking luncheon.', '1. Keynote speech by prominent female business leader\n2. Panel discussion with successful women in various industries\n3. Lunch and dessert buffet\n4. Networking and mentoring', 3),
-  ('Summer Beach Bash', 'Escape the office and head to the beach for a day of fun in the sun!', '1. Bus transportation to the beach\n2. Beach games and activities\n3. Picnic lunch with sandwiches and snacks\n4. Beach volleyball tournament', 4),
-  ('Leadership Retreat', 'Join us for a weekend of reflection, learning, and team-building in a scenic location.', '1. Workshops on leadership and management\n2. Team-building exercises and challenges\n3. Outdoor activities like hiking and kayaking\n4. Campfire and smores', 5);
+INSERT INTO events (name, description, agenda, event_date, event_location, host_id) 
+VALUES 
+('Annual Sales Conference', 'Join us for a day of learning and networking with industry experts', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-06-15', 'Grand Hotel', 1),
+('Product Launch Party', 'Come celebrate the launch of our new product line with food, drinks, and giveaways', '6:00pm - Doors Open, 7:00pm - Presentation, 8:00pm - Raffle Drawing, 9:00pm - Live Music', '2023-06-21', 'City Hall Plaza', 2),
+('Charity Fundraiser', 'Join us for an evening of entertainment and giving to benefit the local children hospital', '7:00pm - Cocktail Reception, 8:00pm - Silent Auction, 9:00pm - Live Auction, 10:00pm - Dancing', '2023-06-28', 'Country Club', 3),
+('Employee Appreciation Day', 'We are taking the day to celebrate our hardworking staff with food, games, and prizes', '11:00am - Lunch, 12:00pm - Cornhole Tournament, 2:00pm - Office Trivia, 3:00pm - Raffle Drawing', '2023-07-06', 'Office Park', 1),
+('Industry Conference', 'Join us for three days of learning, networking, and innovation with industry leaders', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-07-11', 'Convention Center', 2),
+('Customer Appreciation Week', 'We are showing our customers some love with daily giveaways, discounts, and events', 'Monday - Free Coffee, Tuesday - Pop-up Shop, Wednesday - Customer Roundtable, Thursday - Free Lunch, Friday - Raffle Drawing', '2023-07-22', 'Multiple Locations', 3),
+('Company Retreat', 'We are taking some time to bond and recharge with a weekend of team building and relaxation', 'Friday - Welcome Reception, Saturday - Hiking and Activities, Sunday - Brunch and Departure', '2023-08-04', 'Mountain Lodge', 1),
+('Sales Training Workshop', 'Join us for a day of hands-on training and best practices for successful sales', '8:00am - Registration and Breakfast, 9:00am - Product Overview, 10:00am - Prospecting Strategies, 12:00pm - Lunch, 1:00pm - Closing Deals, 3:00pm - Role Playing Exercises', '2023-08-15', 'Training Center', 2),
+('Sales Conference', 'Annual Sales Conference for the company', 'Review sales performance, set goals for next year', '2023-06-05', 'New York City', 1),
+('Product Launch', 'Launch of new product line', 'Presentation of new products, Q&A with product experts', '2023-06-10', 'San Francisco', 2),
+('Marketing Workshop', 'Marketing workshop for small business owners', 'Learn how to create effective marketing campaigns', '2023-06-12', 'Chicago', 3),
+('Charity Fundraiser', 'Annual fundraiser for local charity', 'Dinner, auction, and entertainment to raise money for charity', '2023-06-15', 'Los Angeles', 4),
+('Team Building Retreat', 'Team building retreat for company employees', 'Team-building exercises and workshops', '2023-06-20', 'Aspen, Colorado', 1),
+('Tech Conference', 'Conference for technology enthusiasts', 'Keynote speeches and panel discussions on emerging technologies', '2023-06-25', 'Seattle', 2),
+('Startup Pitch Day', 'Pitch day for startup founders', 'Startup founders pitch their ideas to investors', '2023-06-28', 'Austin, Texas', 3),
+('Design Thinking Workshop', 'Workshop on design thinking for product development', 'Learn how to apply design thinking to create better products', '2023-07-01', 'Boston', 4),
+('Leadership Summit', 'Leadership summit for senior executives', 'Keynote speeches and panel discussions on leadership strategies', '2023-07-05', 'New York City', 1),
+('Environmental Conference', 'Conference on environmental sustainability', 'Panel discussions and presentations on sustainability practices', '2023-07-10', 'San Francisco', 2);
 
 -- Fundraisers table
 INSERT INTO fundraisers (event_id, target_amount, current_amount)
