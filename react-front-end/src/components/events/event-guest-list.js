@@ -17,10 +17,11 @@ export default function EventGuestList(props) {
   const eventGuestProps = objToArray(props.guests).map((user) => {
   // const eventGuestProps = guestsArray.map((user) => {
 
+  const name = user.first_name + " " + user.last_name;
     return (
       <EventGuestListItem
         key={user.id}
-        name={user.first_name + " " + user.last_name}
+        name={name}
         avatar={user.photo}
         // selected={user.id === props.value}
       // setInterviewer={() => props.onChange(user.id)}

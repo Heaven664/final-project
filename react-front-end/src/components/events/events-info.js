@@ -15,7 +15,8 @@ export default function EventsInfo(props) {
     <main className="info-layout">
 
       <div className='info-host'>
-        <img src={props.hostInfo.photo} alt="event_host_avatar" width="500" height="600"/>
+        <img className='-img' src={props.hostInfo.photo} alt="event_host_avatar" width="500" height="600"/>
+        <span className='name'>{props.hostInfo.first_name} {props.hostInfo.last_name}</span>
       </div>
       <section className='event-title'>
           <span>{props.eventsInfo.name}</span>

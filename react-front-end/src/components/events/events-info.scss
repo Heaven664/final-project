@@ -1,0 +1,19 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.-img {
+  width: 200px;
+  height: 200px;
+  margin: 1rem;
+  border-radius: 100px;
+
+  &:hover {
+    @include button-active--opacity;
+  }
+}
+
+.info-host {
+  display: flex;
+  flex-direction: column;
+  
+}

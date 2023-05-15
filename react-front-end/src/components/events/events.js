@@ -38,13 +38,13 @@ const event_id = 3;
 
       <div className='event-right __panel'>
         <section className="maps-api __card">
-        <span>description</span>
+        <span>description / maps</span>
         </section>
         <section className="fundraisers __card">
         <span>fundraisers</span>
         </section>
         <section className="event-wall __card">
-        <span>events-wall</span>
+        <span>join chat button / event wall</span>
         </section>
       </div>
 
