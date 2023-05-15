@@ -43,6 +43,13 @@ export default function PrivateChat(props) {
     friend: {},
   });
 
+  const [message, setMessage] = useState("");
+
+  const sendMessage = (e) => {
+    e.preventDefault()
+    setMessage('')
+  };
+
   const changeFriend = (friend_id) => {
     setState((prev) => ({ ...prev, friend_id }));
   };
@@ -105,13 +112,21 @@ export default function PrivateChat(props) {
             <div className="chatroom-messages-container">
               <MessageList messages={state.messages}></MessageList>
             </div>
-            <div className="chatroom-massage-input-container">
-              <input type="text" className="chatroom-massage-input" />
+            <form
+              className="chatroom-massage-input-container"
+              onSubmit={sendMessage}
+            >
+              <input
+                type="text"
+                className="chatroom-massage-input"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
               <button className="chatroom-massage-send-button">
                 <FontAwesomeIcon icon={faPaperPlane} />
                 <br />
               </button>
-            </div>
+            </form>
           </div>
         )}
       </div>
