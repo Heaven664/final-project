@@ -31,7 +31,7 @@ CREATE TABLE fundraisers (
   id SERIAL PRIMARY KEY NOT NULL,
   event_id INTEGER REFERENCES events(id) ON DELETE CASCADE,
   target_amount INTEGER NOT NULL,
-  current_amount INTEGER NOT NULL
+  current_amount INTEGER DEFAULT 0 NOT NULL
 );
 
 CREATE TABLE event_user (

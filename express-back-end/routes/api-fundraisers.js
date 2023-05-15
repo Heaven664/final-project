@@ -1,97 +1,45 @@
-const router = require("express").Router();
-
-module.exports = db => {
-
-  //CRUD CREATE(POST)
-  router.post("/fundraisers/:id", (request, response) => {
-
-    const { target } = request.body;
-
-    db.query(
-      `
-      INSERT INTO fundraisers (event_id, target_amount, current_amount)
-      VALUES ($1, $2, $3);
-      `,
-    [Number(request.params.id), target, "0"])
-    .then(({ rows: fundraisers }) => {
-      response.json(fundraisers);
-    })
-    .catch(error => console.log(error));
-  });
-
-  //CRUD READ(GET)
-  router.get("/fundraisers/", (request, response) => {
-    db.query(
-      `
-      SELECT
-        *
-      FROM fundraisers
-    `)
-    .then(({ rows: fundraisers }) => {
-      response.json(fundraisers);
-    });
-  });
-
-  router.get("/fundraisers/:id", (request, response) => {
-    db.query(
-      `
-      SELECT
-        *
-      FROM fundraisers
-      WHERE event_id = $1;
-    `,
-    [Number(request.params.id)])
-    .then(({ rows: fundraisers }) => {
-      response.json(fundraisers);
-    });
-  });
+const express = require('express');
+const router = express.Router();
+const fundraisersQueries = require('../db/queries/fundraisers');
 
 
-  //CRUD UPDATE(PUT)
-  router.put("/fundraisers/:id", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
+// Create new fundraiser
+router.post("/", (req, res) => {
+  const { event_id, target } = req.body;
 
-  const { target, current } = request.body;
-
-  db.query(
-    `
-    UPDATE fundraisers
-    SET target_amount = $2, current_amount = $3
-    WHERE event_id = $1;
-  `,
-  [Number(request.params.id), target, current])
-    // .then(() => {
-    //   setTimeout(() => {
-    //     response.status(204).json({});
-    //     // updateAppointment(Number(request.params.id), request.body.interview);
-    //   }, 1000);
-    // })
-    .then(({ rows: fundraisers }) => {
-      response.json(fundraisers);
+  fundraisersQueries.create(event_id, target)
+    .then(fundraiser => {
+      res.json(fundraiser);
     })
     .catch(error => console.log(error));
 });
 
+// Get all fundraisers
+router.get("/", (req, res) => {
+  fundraisersQueries.getAll()
+    .then((fundraisers) => res.json(fundraisers));
+});
 
-  //CRUD DELETE
-  router.delete("/fundraisers/:id", (request, response) => {
-    if (process.env.TEST_ERROR) {
-      setTimeout(() => response.status(500).json({}), 1000);
-      return;
-    }
+// Get one fundraiser
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  fundraisersQueries.getById(id)
+    .then(fundraiser => res.json(fundraiser));
+});
 
-    db.query(`DELETE FROM fundraisers WHERE event_id = $1::integer;`, 
-            [request.params.id])
-            .then(() => {
-            setTimeout(() => {
-              response.status(204).json({});
-              // updateAppointment(Number(request.params.id), null);
-            }, 1000);
-          });
-  });
+// Update fundraiser
+router.put("/:id", (req, res) => {
+  const { event_id, target, current } = req.body;
+  fundraisersQueries.update(event_id, target, current)
+    .then(fundraiser => res.json(fundraiser))
+    .catch(error => console.log(error));
+});
 
-  return router;
-  };
+// Delete fundraiser
+router.delete("/:id/delete", (req, res) => {
+  const { id } = req.params;
+  fundraisersQueries.remove(id)
+    .then((message) => res.json({message: "Fundraiser was successfully deleted", deletedMessage: message}))
+});
+
+module.exports = router;
