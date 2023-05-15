@@ -33,7 +33,6 @@ const event_id = 3;
         </section>
         <section className="event-guest __card">
           <EventGuestList guests={state.event_user}/>
-        <span>events-guest</span>
         </section>
       </div>
 

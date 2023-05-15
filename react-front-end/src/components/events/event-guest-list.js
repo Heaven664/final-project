@@ -2,6 +2,7 @@ import React from "react";
 import EventGuestListItem from "./event-guest-list-item";
 import classNames from "classnames";
 import propTypes from 'prop-types';
+import "./event-guest-list.scss";
 
 export default function EventGuestList(props) {
 
@@ -9,7 +10,7 @@ export default function EventGuestList(props) {
     "eventGuest_item",
     { "eventGuest__item--selected": props.selected }
   );
-  
+
   const objToArray = (obj) => Object.assign([], Object.values(obj));
   // const guestsArray = props.guests;
   
