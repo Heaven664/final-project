@@ -39,11 +39,12 @@ export default function PrivateChat(props) {
     user_id: 1,
     chats: [],
     messages: [],
+    friend_id: 0,
     friend: {},
   });
 
-  const changeFriend = (id) => {
-    setState((prev) => ({ ...prev, friend: { ...state.friend, id } }));
+  const changeFriend = (friend_id) => {
+    setState((prev) => ({ ...prev, friend_id }));
   };
 
   useEffect(() => {
@@ -64,11 +65,19 @@ export default function PrivateChat(props) {
       const messages = getFriendsMessages(
         res.data,
         state.user_id,
-        state.friend.id
+        state.friend_id
       );
       setState((prev) => ({ ...prev, messages }));
     });
-  }, [state.friend]);
+  }, [state.friend_id]);
+
+  useEffect(() => {
+    axios.get("/api/users").then((res) => {
+      const users = res.data;
+      const friend = users.find((user) => user.id === state.friend_id);
+      setState((prev) => ({ ...prev, friend }));
+    });
+  }, [state.friend_id]);
 
   return (
     <div className="private-chat-component">
@@ -77,14 +86,20 @@ export default function PrivateChat(props) {
       </div>
 
       <div className="private-chats-chatroom">
-        {state.friend.id && (
+        {state.friend_id !== 0 && (
           <div>
             <div className="private-chats-chatroom-title">
               <div className="private-chats-chatroom-title-image-container">
-                Image
+                <img
+                  src={state.friend && state.friend.photo}
+                  alt={state.friend_id}
+                />
               </div>
               <div className="private-chats-chatroom-title-name-container">
-                Full Name
+                <p>
+                  {state.friend && state.friend.first_name}{" "}
+                  {state.friend && state.friend.last_name}
+                </p>
               </div>
             </div>
             <div className="chatroom-messages-container">

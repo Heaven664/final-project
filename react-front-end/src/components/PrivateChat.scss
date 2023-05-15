@@ -25,20 +25,34 @@
 
     .private-chats-chatroom-title {
       display: flex;
+      align-items: center;
       width: 70vw;
       height: 10vh;
       border: 1px solid $primary-color;
 
       .private-chats-chatroom-title-image-container {
-        width: 10%;
-        height: 100%;
-        border: 1px solid $primary-color;
+        width: 60px;
+        height: 60px;
+
+        img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+          border-radius: 30px;
+        }
       }
 
       .private-chats-chatroom-title-name-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         width: 90%;
         height: 100%;
         border: 1px solid $primary-color;
+
+        p {
+          margin-left: 2rem;
+        }
       }
     }
 

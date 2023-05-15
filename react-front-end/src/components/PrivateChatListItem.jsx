@@ -10,7 +10,7 @@ export default function PrivateChatListItem(props) {
         <div className="chatroom-chats-image-container">
           <img
             className="chatroom-chats-image"
-            // src={props.photo}
+            src={props.photo}
             alt={altName}
           />
         </div>
