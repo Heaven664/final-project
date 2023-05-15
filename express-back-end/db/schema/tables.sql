@@ -24,6 +24,8 @@ CREATE TABLE events (
   name VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   agenda VARCHAR(255) NOT NULL,
+  event_date DATE NOT NULL,
+  event_location VARCHAR(255) NOT NULL,
   host_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 
