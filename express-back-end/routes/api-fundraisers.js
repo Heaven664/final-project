@@ -13,8 +13,8 @@ module.exports = db => {
       VALUES ($1, $2, $3);
       `,
     [Number(request.params.id), target, "0"])
-    .then(({ rows }) => {
-      response.json(rows);
+    .then(res => {
+      response.json(res.rows[0]);
     })
     .catch(error => console.log(error));
   });
@@ -27,8 +27,8 @@ module.exports = db => {
         *
       FROM fundraisers
     `)
-    .then(({ rows: fundraisers }) => {
-      response.json(fundraisers);
+    .then(res => {
+      response.json(res.rows[0]);
     });
   });
 
@@ -41,8 +41,8 @@ module.exports = db => {
       WHERE event_id = $1;
     `,
     [Number(request.params.id)])
-    .then(({ rows: fundraisers }) => {
-      response.json(fundraisers);
+    .then(res => {
+      response.json(res.rows[0]);
     });
   });
 
@@ -69,8 +69,8 @@ module.exports = db => {
     //     // updateAppointment(Number(request.params.id), request.body.interview);
     //   }, 1000);
     // })
-    .then(({ rows: fundraisers }) => {
-      response.json(fundraisers);
+    .then(res => {
+      response.json(res.rows[0]);
     })
     .catch(error => console.log(error));
 });
