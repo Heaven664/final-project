@@ -35,9 +35,9 @@
 
   &.my-message {
     flex-direction: row;
-    
-    .group-chat-user-name {
-      display: none;
+    text-align: end;
+    p {
+
     }
   }
 }

@@ -12,7 +12,7 @@ export default function MessageListItem(props) {
 
   return <li>
     <div className={messageClass}>
-      {props.sender && <p className="group-chat-user-name">{props.sender.first_name} {props.sender.last_name}</p>}
+      {(props.sender && !props.sentByUser) && <p className="group-chat-user-name">{props.sender.first_name} {props.sender.last_name}</p>}
       <p>{props.text}</p>
     </div>
   </li>
