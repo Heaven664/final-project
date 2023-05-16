@@ -5,9 +5,9 @@ const pmsgQueries = require('../db/queries/private-messages');
 
 // Create new user
 router.post("/", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { sender_id, receiver_id, text } = req.body;
-  console.log(sender_id, receiver_id, text);
+  // console.log(sender_id, receiver_id, text);
 
   pmsgQueries.create(sender_id, receiver_id, text)
     .then((message) => {

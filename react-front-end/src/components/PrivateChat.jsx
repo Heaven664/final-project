@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,8 +8,6 @@ import PrivateChatList from "components/PrivateChatList";
 import MessageList from "components/MessageList";
 
 import "./PrivateChat.scss";
-
-const socket = io();
 
 // Gets friend's id's of a user with provided id
 const getFriendsIds = (friendlists, id) => {
@@ -46,9 +44,9 @@ export default function PrivateChat(props) {
     friend: {},
   });
 
-  const [message, setMessage] = useState("");
+  const [socket, setSocket] = useState();
 
-  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [message, setMessage] = useState("");
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -69,14 +67,16 @@ export default function PrivateChat(props) {
   };
 
   useEffect(() => {
+    const socket = io();
+    setSocket(socket)
+    
     socket.on("connect", () => {
-      setIsConnected(true);
-      console.log(`connected to server ${socket.id}`)
+      console.log(`connected to server ${socket.id}`);
+      socket.emit("send_id", state.user_id);
     });
 
     socket.on("disconnect", () => {
-      setIsConnected(false);
-      console.log('disconnected from server')
+      console.log("disconnected from server");
     });
 
     return () => {

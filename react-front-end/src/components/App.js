@@ -8,10 +8,36 @@ import './App.scss';
 import MyProfile from './MyProfile';
 import PrivateChat from 'components/PrivateChat';
 import Setting from 'components/Setting';
+import Login from 'components/Login';
+import axios from 'axios';
 
 export default function App(props) {
 
+  const [user, setUser] = useState(null);
+
+  // Login user on the server
+  const login = function (email, password) {
+    axios.post("api/login", { email, password })
+      .then(res => {
+        console.log(res.data);
+        setUser(res.data);
+      })
+      .catch(err => {
+        console.log("Login:", err.message);
+      });
+  };
+
+  // Logout a user
+  const logout = function () {
+    console.log("logout");
+    axios.post("api/logout", {})
+      .then(() => {
+        setUser(null);
+      });
+  };
+
   const [selectedPage, setSelectedPage] = useState("profile");
+
   function handlePageClick(page) {
     setSelectedPage(page);
   }
@@ -32,7 +58,7 @@ export default function App(props) {
               onClick={() => handlePageClick('friends')}>
               <FontAwesomeIcon icon={faUsers} /><br />
               <span>Friends</span>
-            </li> 
+            </li>
             <li className={`chat 
               ${selectedPage === 'chat' ? '--selected' : ''}`}
               onClick={() => handlePageClick('chat')}>
@@ -83,12 +109,13 @@ export default function App(props) {
         </div>
       </section>
       <section className="contents">
-        {selectedPage === 'profile' && 
-          <MyProfile handlePageClick={handlePageClick}/>
+        {!user && <Login login={login} />}
+        {(user && selectedPage === 'profile') &&
+          <MyProfile handlePageClick={handlePageClick} />
         }
-        {selectedPage === 'chat' && <PrivateChat />}
-        {selectedPage === 'setting' && 
-          <Setting handlePageClick={handlePageClick}/>
+        {(user && selectedPage === 'chat') && <PrivateChat />}
+        {(user && selectedPage === 'setting') &&
+          <Setting handlePageClick={handlePageClick} />
         }
       </section>
     </main>
