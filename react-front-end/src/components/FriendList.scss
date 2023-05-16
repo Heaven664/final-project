@@ -1,0 +1,21 @@
+.friend-list{
+  background-color: #fff;
+  justify-content: space-between;
+  padding: 10px 30px;
+  border: 1px solid #f1f1f1;
+  margin-bottom: 15px;
+
+  .friend-user{
+    align-items: center;
+
+    .thumbnail{
+      margin-right: 15px;      
+    }
+  }
+
+  .btn button{
+    height: auto;
+    padding: 10px 15px;
+    margin-left: 20px;
+  }
+}

@@ -6,12 +6,13 @@ import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, 
 import './App.scss';
 
 import MyProfile from './MyProfile';
+import Friend from './Friend';
 import PrivateChat from 'components/PrivateChat';
 import Setting from 'components/Setting';
 
 export default function App(props) {
 
-  const [selectedPage, setSelectedPage] = useState("profile");
+  const [selectedPage, setSelectedPage] = useState("friends");
   function handlePageClick(page) {
     setSelectedPage(page);
   }
@@ -85,6 +86,9 @@ export default function App(props) {
       <section className="contents">
         {selectedPage === 'profile' && 
           <MyProfile handlePageClick={handlePageClick}/>
+        }
+        {selectedPage === 'friends' && 
+          <Friend handlePageClick={handlePageClick}/>
         }
         {selectedPage === 'chat' && <PrivateChat />}
         {selectedPage === 'setting' && 
