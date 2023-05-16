@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { useEffect, useState } from "react";
-import "./events-info.scss";
+import "./EventsInfo.scss";
 
 export default function EventsInfo(props) {
 

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import './events.scss';
-import EventsInfo from './events-info';
-import EventGuestList from "./event-guest-list";
+import EventsInfo from './EventsInfo';
+import EventGuestList from "./EventGuestList";
 import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
 import { getEventGuests, getEventInfo } from "../../helpers/event_selectors";
-import Fundraisers from "./fundraisers";
+import Fundraisers from "./Fundraisers";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

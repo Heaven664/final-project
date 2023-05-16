@@ -11,6 +11,7 @@ import MyProfile from './MyProfile';
 import PrivateChat from 'components/PrivateChat';
 import Setting from 'components/Setting';
 import Login from 'components/Login'
+import Events from "./Events/Events";
 
 export default function App(props) {
 
@@ -123,6 +124,8 @@ export default function App(props) {
         {(user && selectedPage === 'setting') &&
           <Setting handlePageClick={handlePageClick} />
         }
+        {(user && selectedPage === 'events') && <Events user={user.id} />}
+
       </section>
     </main>
   );
