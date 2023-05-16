@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import io from "socket.io-client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
@@ -36,32 +37,62 @@ const getFriendsMessages = (messages, user_id, friend_id) => {
 
 export default function PrivateChat(props) {
   const [state, setState] = useState({
-    user_id: 1,
+    user_id: props.user || 1,
     chats: [],
     messages: [],
     friend_id: 0,
     friend: {},
+    newMessagesCounter: 0,
   });
 
+  const [socket, setSocket] = useState();
   const [message, setMessage] = useState("");
 
   const sendMessage = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const data = {
       sender_id: state.user_id,
       receiver_id: state.friend_id,
       text: message,
-    }
-    axios.post('/api/pmsg/', data)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err))
-    setMessage('')
-
+    };
+    axios
+      .post("/api/pmsg/", data)
+      .then(() => {
+        socket.emit("message", { text: message, to: state.friend_id });
+        setState((prev) => ({ ...prev, newMessagesCounter: prev.newMessagesCounter + 1 }));
+      })
+      .catch((err) => console.log(err));
+    setMessage("");
   };
 
   const changeFriend = (friend_id) => {
     setState((prev) => ({ ...prev, friend_id }));
   };
+
+  useEffect(() => {
+    const socket = io();
+    setSocket(socket);
+
+    socket.on("connect", () => {
+      console.log(`connected to server ${socket.id}`);
+      socket.emit("send_id", state.user_id);
+    });
+
+    socket.on("private_message", (data) => {
+      console.log(`new message from ${data.from}, text: ${data.text}`);
+      setState(prev => ({...prev, newMessagesCounter: prev.newMessagesCounter + 1}))
+    });
+
+    socket.on("disconnect", () => {
+      console.log("disconnected from server");
+    });
+
+    return () => {
+      socket.off("connect");
+      socket.off("private_message");
+      socket.off("disconnect");
+    };
+  }, []);
 
   useEffect(() => {
     Promise.all([axios.get("/api/users"), axios.get("api/friendlists")]).then(
@@ -78,6 +109,7 @@ export default function PrivateChat(props) {
 
   useEffect(() => {
     axios.get("/api/pmsg").then((res) => {
+      console.log(res.data[res.data.length - 1]);
       const messages = getFriendsMessages(
         res.data,
         state.user_id,
@@ -85,7 +117,7 @@ export default function PrivateChat(props) {
       );
       setState((prev) => ({ ...prev, messages }));
     });
-  }, [state.friend_id]);
+  }, [state.friend_id, state.newMessagesCounter]);
 
   useEffect(() => {
     axios.get("/api/users").then((res) => {
@@ -119,7 +151,10 @@ export default function PrivateChat(props) {
               </div>
             </div>
             <div className="chatroom-messages-container">
-              <MessageList messages={state.messages}></MessageList>
+              <MessageList
+                user_id={state.user_id}
+                messages={state.messages}
+              ></MessageList>
             </div>
             <form
               className="chatroom-massage-input-container"

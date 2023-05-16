@@ -6,13 +6,12 @@ import "components/MessageList.scss"
 export default function MassageList(props) {
 
   const messages = props.messages.map(message => {
-    const user_id = 1;
     return(
       <MessageListItem
       key={message.id}
       sender_id={message.sender_id}
       text={message.text}
-      sentByUser={message.sender_id === user_id}
+      sentByUser={message.sender_id === props.user_id}
       ></MessageListItem>
     )
   })

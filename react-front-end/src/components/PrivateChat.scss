@@ -54,9 +54,15 @@
     }
 
     .chatroom-messages-container {
+      display: flex;
+      flex-direction: column-reverse;
       overflow-y: auto;
       height: 55vh;
       border: 1px solid $primary-color;
+
+      ul {
+        width: 100%;
+      }
     }
 
     .chatroom-massage-input-container {

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
 // css, font-awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,10 +10,40 @@ import MyProfile from './MyProfile';
 import Friend from './Friend';
 import PrivateChat from 'components/PrivateChat';
 import Setting from 'components/Setting';
+import Login from 'components/Login'
 
 export default function App(props) {
 
-  const [selectedPage, setSelectedPage] = useState("friends");
+  const [user, setUser] = useState(null);
+
+  // Login user on the server
+  const login1 = function () {
+    axios.post("api/login")
+      .then(res => {
+        setUser(res.data);
+      })
+      .catch(err => {
+        console.log("Login:", err.message);
+      });
+  };
+
+   // Login user on the server
+   const login2 = function () {
+    axios.post("api/login/1")
+      .then(res => {
+        setUser(res.data);
+      })
+      .catch(err => {
+        console.log("Login:", err.message);
+      });
+  };
+
+  // useEffect(() => {
+  //   login();
+  // }, []);
+
+  const [selectedPage, setSelectedPage] = useState("chat");
+
   function handlePageClick(page) {
     setSelectedPage(page);
   }
@@ -33,7 +64,7 @@ export default function App(props) {
               onClick={() => handlePageClick('friends')}>
               <FontAwesomeIcon icon={faUsers} /><br />
               <span>Friends</span>
-            </li> 
+            </li>
             <li className={`chat 
               ${selectedPage === 'chat' ? '--selected' : ''}`}
               onClick={() => handlePageClick('chat')}>
@@ -84,11 +115,9 @@ export default function App(props) {
         </div>
       </section>
       <section className="contents">
-        {selectedPage === 'profile' && 
-          <MyProfile handlePageClick={handlePageClick}/>
-        }
-        {selectedPage === 'friends' && 
-          <Friend handlePageClick={handlePageClick}/>
+        {(!user) && <Login login1={login1} login2={login2}/>}
+        {(user && selectedPage === 'profile') &&
+          <MyProfile handlePageClick={handlePageClick} />
         }
         {selectedPage === 'chat' && <PrivateChat />}
         {selectedPage === 'setting' && 
