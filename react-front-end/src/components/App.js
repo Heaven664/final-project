@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // css, font-awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,6 @@ import './App.scss';
 import MyProfile from './MyProfile';
 import PrivateChat from 'components/PrivateChat';
 import Setting from 'components/Setting';
-import Login from 'components/Login';
 import axios from 'axios';
 
 export default function App(props) {
@@ -19,7 +18,6 @@ export default function App(props) {
   const login = function (email, password) {
     axios.post("api/login", { email, password })
       .then(res => {
-        console.log(res.data);
         setUser(res.data);
       })
       .catch(err => {
@@ -27,16 +25,11 @@ export default function App(props) {
       });
   };
 
-  // Logout a user
-  const logout = function () {
-    console.log("logout");
-    axios.post("api/logout", {})
-      .then(() => {
-        setUser(null);
-      });
-  };
+  useEffect(() => {
+    login();
+  }, []);
 
-  const [selectedPage, setSelectedPage] = useState("profile");
+  const [selectedPage, setSelectedPage] = useState("chat");
 
   function handlePageClick(page) {
     setSelectedPage(page);
@@ -109,7 +102,6 @@ export default function App(props) {
         </div>
       </section>
       <section className="contents">
-        {!user && <Login login={login} />}
         {(user && selectedPage === 'profile') &&
           <MyProfile handlePageClick={handlePageClick} />
         }
