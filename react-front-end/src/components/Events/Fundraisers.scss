@@ -2,15 +2,18 @@
 
 .fundraisers-layout{
 display: flex;
-flex-direction: column;
+flex-direction: row;
 
 #fundraisers-bar {
   width: 100%;
   background-color: grey;
+  height: 2rem;
+  border-radius: 0.5rem;
 }
 
 #myBar {
-  height: 30px;
+  height: 2rem;
+  border-radius: 0.5rem;
   background-color: #04AA6D;
   text-align: center; /* To center it horizontally (if you want) */
   line-height: 30px; /* To center it vertically */

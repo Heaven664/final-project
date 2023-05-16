@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .event-layout {
   margin-left: 5rem;
   margin-top: 20vh;
@@ -27,16 +29,12 @@
 
 .__card {
   width: 100%;
-  background: rgb(211, 211, 211);
-  border-radius: 10px;
   display: flex;
-
-
 
   &.invitation {
     margin-bottom: 1rem;
+    font-size: 1.5rem;
     flex-grow: 1;
-    font-size: 2rem;
     justify-content: center;
     align-items: center;
   }
