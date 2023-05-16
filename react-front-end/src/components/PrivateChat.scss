@@ -4,29 +4,26 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 93vw;
+  width: 100%;
   height: 80vh;
   border: 1px solid $primary-color;
 
   .private-chats-list-container {
     overflow-y: auto;
-    width: 20vw;
+    width: 250px;
     height: 75vh;
     border: 1px solid $primary-color;
   }
 
   .private-chats-chatroom {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 70vw;
+    flex: 1;
     height: 75vh;
     border: 1px solid $primary-color;
 
     .private-chats-chatroom-title {
       display: flex;
       align-items: center;
-      width: 70vw;
       height: 10vh;
       border: 1px solid $primary-color;
 
@@ -58,7 +55,6 @@
 
     .chatroom-messages-container {
       overflow-y: auto;
-      width: 70vw;
       height: 55vh;
       border: 1px solid $primary-color;
     }
@@ -67,7 +63,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 70vw;
       height: 10vh;
       border: 1px solid $primary-color;
 
