@@ -29,8 +29,8 @@ const db = require('../db/connection');
       FROM event_user;
       `
     )
-    .then(res => {
-      response.json(res.rows[0]);
+    .then(({rows:group_messages}) => {
+      response.json(group_messages);
     })
     .catch(error => response.json({Error: error, Message:"Error getting event_user."}));
   });
@@ -48,7 +48,7 @@ const db = require('../db/connection');
       `,
     [Number(request.params.id)])
     .then(res => {
-      response.json(res.rows[0]);
+      response.json(res.rows);
     })
     .catch(error => response.json({Error: error, Message:"Error getting event_user for this event."}));
   });
@@ -67,7 +67,7 @@ const db = require('../db/connection');
       [id, event, user]
     )
     .then(res => {
-      response.json(res.rows[0]);
+      response.json(res.rows);
     })
     .catch(error => response.json({Error: error, Message:"Error getting event_user for this event."}));
   });
