@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
 // css, font-awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,15 +9,15 @@ import './App.scss';
 import MyProfile from './MyProfile';
 import PrivateChat from 'components/PrivateChat';
 import Setting from 'components/Setting';
-import axios from 'axios';
+import Login from 'components/Login'
 
 export default function App(props) {
 
   const [user, setUser] = useState(null);
 
   // Login user on the server
-  const login = function (email, password) {
-    axios.post("api/login", { email, password })
+  const login1 = function () {
+    axios.post("api/login")
       .then(res => {
         setUser(res.data);
       })
@@ -25,9 +26,20 @@ export default function App(props) {
       });
   };
 
-  useEffect(() => {
-    login();
-  }, []);
+   // Login user on the server
+   const login2 = function () {
+    axios.post("api/login/1")
+      .then(res => {
+        setUser(res.data);
+      })
+      .catch(err => {
+        console.log("Login:", err.message);
+      });
+  };
+
+  // useEffect(() => {
+  //   login();
+  // }, []);
 
   const [selectedPage, setSelectedPage] = useState("chat");
 
@@ -102,10 +114,11 @@ export default function App(props) {
         </div>
       </section>
       <section className="contents">
+        {(!user) && <Login login1={login1} login2={login2}/>}
         {(user && selectedPage === 'profile') &&
           <MyProfile handlePageClick={handlePageClick} />
         }
-        {(user && selectedPage === 'chat') && <PrivateChat />}
+        {(user && selectedPage === 'chat') && <PrivateChat user={user.id} />}
         {(user && selectedPage === 'setting') &&
           <Setting handlePageClick={handlePageClick} />
         }

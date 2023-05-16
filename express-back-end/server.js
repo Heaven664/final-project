@@ -49,6 +49,12 @@ app.post('/api/login', (req, res) => {
   res.json(user);
 });
 
+app.post('/api/login/1', (req, res) => {
+  const user = { id: 2 };
+  req.session.user = user;
+  res.json(user);
+});
+
 io.on('connection', socket => {
   console.log(`A user ${socket.id} connected`);
 
@@ -66,8 +72,8 @@ io.on('connection', socket => {
 
   socket.on('message', (data) => {
     const { to, text} = data
-    console.log(`one message for ${to}: ${clients[to]} text: ${text}`);
-    const friend = clients[id];
+    console.log(`one message for ${to}: ${clients[to]} from: ${id} text: ${text}`);
+    const friend = clients[to];
     socket.to(friend).emit('private_message', {from: id, text})
   });
 
