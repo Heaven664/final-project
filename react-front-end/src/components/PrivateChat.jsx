@@ -109,7 +109,6 @@ export default function PrivateChat(props) {
 
   useEffect(() => {
     axios.get("/api/pmsg").then((res) => {
-      console.log(res.data[res.data.length - 1]);
       const messages = getFriendsMessages(
         res.data,
         state.user_id,

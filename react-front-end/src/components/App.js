@@ -8,12 +8,13 @@ import './App.scss';
 
 import MyProfile from './MyProfile';
 import PrivateChat from 'components/PrivateChat';
+import GroupChat from 'components/GroupChat';
 import Setting from 'components/Setting';
 import Login from 'components/Login'
 
 export default function App(props) {
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({id: 1});
 
   // Login user on the server
   const login1 = function () {
@@ -37,11 +38,7 @@ export default function App(props) {
       });
   };
 
-  // useEffect(() => {
-  //   login();
-  // }, []);
-
-  const [selectedPage, setSelectedPage] = useState("chat");
+  const [selectedPage, setSelectedPage] = useState("groupChat");
 
   function handlePageClick(page) {
     setSelectedPage(page);
@@ -119,6 +116,7 @@ export default function App(props) {
           <MyProfile handlePageClick={handlePageClick} />
         }
         {(user && selectedPage === 'chat') && <PrivateChat user={user.id} />}
+        {(user && selectedPage === 'groupChat') && <GroupChat user={user.id} />}
         {(user && selectedPage === 'setting') &&
           <Setting handlePageClick={handlePageClick} />
         }
