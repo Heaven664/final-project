@@ -37,18 +37,17 @@ VALUES
 ('Environmental Conference', 'Conference on environmental sustainability', 'Panel discussions and presentations on sustainability practices', '2023-07-10', 'San Francisco', 2);
 
 -- Fundraisers table
-INSERT INTO fundraisers (event_id, target_amount, current_amount)
-VALUES
-  (1, 10000, 5000),
-  (2, 5000, 2000),
-  (3, 7500, 3000),
-  (4, 2000, 1000),
-  (5, 15000, 12500),
-  (6, 5000, 1500),
-  (7, 3000, 2000),
-  (8, 8000, 5500),
-  (9, 10000, 8500),
-  (10, 500, 0);
+INSERT INTO fundraisers (title, event_id, target_amount, current_amount) VALUES
+  ('Children''s Education Fundraiser', 1, 5000, 2500),
+  ('Community Food Drive', 2, 10000, 750),
+  ('Medical Research Campaign', 3, 15000, 0),
+  ('Animal Shelter Renovation Project', 4, 8000, 400),
+  ('Environmental Conservation Initiative', 5, 20000, 10000),
+  ('Support for Homeless Veterans', 6, 3000, 500),
+  ('Art Scholarship Program', 7, 6000, 2000),
+  ('Disaster Relief Fund', 8, 25000, 15000),
+  ('Youth Sports Equipment Drive', 9, 4000, 3000),
+  ('Cancer Treatment Support', 10, 20000, 12000);
 
 -- Event_user table
 INSERT INTO event_user (user_id, event_id)
