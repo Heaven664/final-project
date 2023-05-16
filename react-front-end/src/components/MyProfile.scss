@@ -1,0 +1,37 @@
+@import "../styles/variables.scss";
+
+.my-profile{
+  
+  .user-photo {
+    flex: 0 0 40%;
+    margin-right: 30px;
+    max-width: 500px;
+
+    img{
+      width: 100%;
+    }
+
+    .btn button{
+      width: 100%;
+    }
+  }
+  .user-detail{
+    flex: 1;
+    padding: 40px;
+
+    tr{
+      display: block;
+      padding-bottom: 15px;
+
+      th{
+        width: 90px;
+        text-align: right;
+        padding-right: 15px;
+        color: $title-color;
+        vertical-align: top;
+      }
+    }
+  }
+
+ 
+}

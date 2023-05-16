@@ -1,0 +1,94 @@
+$font-stack: 'Nanum Gothic', sans-serif;
+$primary-color: #69cada;
+$box-color: #f4f5f9;
+$fundraiser-color: #f0d097;
+$point-color: #fb9c80;
+$warning-color: #814635;
+$font-color: #777777;
+$title-color: #1a1a1a;
+$font-size: 16px;
+$title-size: 24px;
+
+// normalize
+* {
+  color: $font-color;
+  text-decoration: none;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: $font-stack;
+}
+
+body{
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/ag-square.png");
+}
+
+// display : flex
+.display-flex{
+  display: flex;
+}
+
+// border-radius
+.border-radius15{
+  border-radius: 15px;
+}
+.border-radius20{
+  border-radius: 20px;
+}
+
+// background-color
+.background-primary-color{
+  background-color: $primary-color;
+}
+.background-box-color{
+  background-color: $box-color;
+}
+.background-fundraiser-color{
+  background-color: $fundraiser-color;
+}
+.background-point-color{
+  background-color: $point-color;
+}
+.background-warning-color{
+  background-color: $warning-color;
+}
+
+// font size
+.font16{
+  font-size: $font-size;
+}
+.font24{
+  font-size: $title-size;
+}
+// font color
+.font-contents-color{
+  font-size: $font-color;
+}
+.font-title-color{
+  font-size: $title-color;
+}
+
+// button basic style
+.btn-style{
+  border-radius: 15px;
+  height: 50px;
+  font-size: 18px;
+  border: none;
+  color: #fff;
+  box-shadow: 6px 6px 1px rgba(75,41,143,0.3);
+  transition: all 0.5s;
+
+  &:hover{
+    box-shadow: 4px 5px 2px rgba(75,41,143,0.4);
+  }
+}
+
+// content box shadow
+.box-shadow{
+  transition: all 0.5s;
+
+  &:hover{
+    box-shadow: 7px 7px 5px rgba(38,38,38,0.1);
+  }
+}

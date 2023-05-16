@@ -1,103 +1,38 @@
-const router = require("express").Router();
+const express = require('express');
+const router = express.Router();
 
-module.exports = db => {
+const pmsgQueries = require('../db/queries/private-messages');
 
-  //CRUD CREATE(POST)
-  router.post("/pmsg/:id", (request, response) => {
+// Create new user
+router.post("/", (req, res) => {
+  const { sender_id, receiver_id, text } = req.body;
 
-    const { sender, text } = request.body;
-
-    db.query(
-      `
-      INSERT INTO private_messages (sender_id, receiver_id, text)
-      VALUES ($1, $2, $3);
-      `,
-    [sender, Number(request.params.id), text])
-    .then(({rows:private_messages}) => {
-      response.json(private_messages);
-    })
-    .catch(error => console.log(error));
-  });
-
-  //CRUD READ(GET)
-  router.get("/pmsg/", (request, response) => {
-    db.query(
-      `
-      SELECT
-        *
-      FROM private_messages
-    `)
-    .then(({ rows: fundraisers }) => {
-      response.json(fundraisers);
-    });
-  });
-
-  router.get("/pmsg/:id", (request, response) => {
-    db.query(
-      `
-      SELECT
-        *
-      FROM private_messages
-      WHERE receiver_id = $1;
-    `,
-    [Number(request.params.id)])
-    .then(({rows:private_messages}) => {
-      response.json(private_messages);
-    });
-  });
-
-
-  //CRUD UPDATE(PUT)
-  router.put("/pmsg/:id", (request, response) => {
-  if (process.env.TEST_ERROR) {
-    setTimeout(() => response.status(500).json({}), 1000);
-    return;
-  }
-
-  const { sender, old_text, new_text } = request.body;
-
-  db.query(
-    `
-    UPDATE private_messages
-    SET sender_id = $2, text = $4
-    WHERE receiver_id = $1 AND sender_id = $2 AND text = $3;
-  `,
-  [Number(request.params.id), sender, old_text, new_text])
-    // .then(() => {
-    //   setTimeout(() => {
-    //     response.status(204).json({});
-    //     // updateAppointment(Number(request.params.id), request.body.interview);
-    //   }, 1000);
-    // })
-    .then(({rows:private_messages}) => {
-      response.json(private_messages);
+  pmsgQueries.create(sender_id, receiver_id, text)
+    .then((message) => {
+      res.json(message);
     })
     .catch(error => console.log(error));
 });
 
+// Get all users
+router.get("/", (req, res) => {
+  pmsgQueries.getAll()
+    .then(messages => res.json(messages));
+});
 
-  //CRUD DELETE
-  router.delete("/pmsg/:id", (request, response) => {
+// Get one message
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  pmsgQueries.getById(id)
+    .then(message => res.json(message));
+});
 
-    const { sender, text } = request.body;
+// Delete message
+router.delete("/:id/delete", (req, res) => {
+  const { id } = req.params;
+  pmsgQueries.remove(id)
+    .then((message) => res.json({message: "Message was successfully deleted", deletedMessage: message}))
 
-    if (process.env.TEST_ERROR) {
-      setTimeout(() => response.status(500).json({}), 1000);
-      return;
-    }
+});
 
-    db.query(`
-              DELETE FROM private_messages 
-              WHERE receiver_id = $1 AND sender_id = $2 AND text = $3;
-              `, 
-            [Number(request.params.id), sender, text])
-            .then(() => {
-            setTimeout(() => {
-              response.status(204).json({});
-              // updateAppointment(Number(request.params.id), null);
-            }, 1000);
-          });
-  });
-
-  return router;
-  };
+module.exports = router;
