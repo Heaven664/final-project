@@ -28,12 +28,9 @@ const getEventsObject = (events, userEvents, users) => {
 };
 
 // Gets the conversation between users
-const getFriendsMessages = (messages, user_id, friend_id) => {
+const getEventMessages = (messages, event_id) => {
   const filteredMessages = messages.filter((message) => {
-    return (
-      (message.sender_id === user_id && message.receiver_id === friend_id) ||
-      (message.sender_id === friend_id && message.receiver_id === user_id)
-    );
+    return message.event_id === event_id;
   });
   return filteredMessages;
 };
@@ -107,21 +104,21 @@ export default function GroupChat(props) {
       const users = all[2].data;
       const events = getEventsObject(all[0].data, eventsId, users);
       setState((prev) => ({
-        ...prev, events
+        ...prev,
+        events,
       }));
     });
   }, [state.user_id]);
 
-  // useEffect(() => {
-  //   axios.get("/api/gmsg").then((res) => {
-  //     const messages = getFriendsMessages(
-  //       res.data,
-  //       state.user_id,
-  //       state.friend_id
-  //     );
-  //     setState((prev) => ({ ...prev, messages }));
-  //   });
-  // }, [state.friend_id, state.newMessagesCounter]);
+  useEffect(() => {
+    axios.get("/api/gmsg").then((res) => {
+      const messages = getEventMessages(
+        res.data,
+        state.event_id
+      );
+      setState((prev) => ({ ...prev, messages }));
+    });
+  }, [state.event_id, state.newMessagesCounter]);
 
   useEffect(() => {
     axios.get("/api/events").then((res) => {
@@ -142,9 +139,7 @@ export default function GroupChat(props) {
           <div>
             <div className="private-chats-chatroom-title">
               <div className="private-chats-chatroom-title-name-container">
-                <p>
-                  {state.event && state.event.name}{" "}
-                </p>
+                <p>{state.event && state.event.name} </p>
               </div>
             </div>
             <div className="chatroom-messages-container">
