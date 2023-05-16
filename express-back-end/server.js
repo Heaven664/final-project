@@ -49,23 +49,32 @@ app.post('/api/login', (req, res) => {
   res.json(user);
 });
 
-server.listen(PORT, () => {
-  console.log(`Express seems to be listening on port ${PORT}`);
-});
-
 io.on('connection', socket => {
   console.log(`A user ${socket.id} connected`);
 
+  // Get id from session
   const session = socket.request.session;
   const id = session?.user?.id;
 
-  // Add this client.id to our clients lookup object
+  // Add client_id to clients lookup object
   clients[id] = socket.id;
   console.log(clients);
 
   socket.on('disconnect', () => {
     console.log(`user ${socket.id} disconnected`);
   });
+
+  socket.on('message', (data) => {
+    const { to, text} = data
+    console.log(`one message for ${to}: ${clients[to]} text: ${text}`);
+    const friend = clients[id];
+    socket.to(friend).emit('private_message', {from: id, text})
+  });
+
+
 });
 
 
+server.listen(PORT, () => {
+  console.log(`Express seems to be listening on port ${PORT}`);
+});

@@ -57,7 +57,7 @@ export default function PrivateChat(props) {
     };
     axios
       .post("/api/pmsg/", data)
-      .then((res) => console.log(res.data))
+      .then(() => socket.emit('message', {text: message, to: state.friend_id}))
       .catch((err) => console.log(err));
     setMessage("");
   };
@@ -69,11 +69,15 @@ export default function PrivateChat(props) {
   useEffect(() => {
     const socket = io();
     setSocket(socket)
-    
+
     socket.on("connect", () => {
       console.log(`connected to server ${socket.id}`);
       socket.emit("send_id", state.user_id);
     });
+
+    socket.on('private_message', (data) => {
+      console.log(`new message from ${data.from}, text: ${data.text}`)
+    })
 
     socket.on("disconnect", () => {
       console.log("disconnected from server");
@@ -81,6 +85,7 @@ export default function PrivateChat(props) {
 
     return () => {
       socket.off("connect");
+      socket.off("private_message")
       socket.off("disconnect");
     };
   }, []);
