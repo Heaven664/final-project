@@ -42,20 +42,20 @@ export default function GroupChat(props) {
   const [message, setMessage] = useState("");
 
   const sendMessage = (e) => {
-    // e.preventDefault();
-    // const data = {
-    //   sender_id: state.user_id,
-    //   receiver_id: state.friend_id,
-    //   text: message,
-    // };
-    // axios
-    //   .post("/api/pmsg/", data)
-    //   .then(() => {
-    //     socket.emit("message", { text: message, to: state.friend_id });
-    //     setState((prev) => ({ ...prev, newMessagesCounter: prev.newMessagesCounter + 1 }));
-    //   })
-    //   .catch((err) => console.log(err));
-    // setMessage("");
+    e.preventDefault();
+    const data = {
+      sender_id: state.user_id,
+      event_id: state.event_id,
+      text: message,
+    };
+    axios
+      .post("/api/gmsg/", data)
+      .then(() => {
+        // socket.emit("message", { text: message, to: state.friend_id });
+        setState((prev) => ({ ...prev, newMessagesCounter: prev.newMessagesCounter + 1 }));
+      })
+      .catch((err) => console.log(err));
+    setMessage("");
   };
 
   const changeEvent = (event_id) => {
