@@ -1,7 +1,22 @@
+@import "../../styles/variables.scss";
 
 .fundraisers-layout{
 display: flex;
 flex-direction: column;
+
+#fundraisers-bar {
+  width: 100%;
+  background-color: grey;
+}
+
+#myBar {
+  height: 30px;
+  background-color: #04AA6D;
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 30px; /* To center it vertically */
+  color: white;
+}
+
 }
 
 // .fundraisers-info{

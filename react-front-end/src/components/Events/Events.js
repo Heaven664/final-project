@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './events.scss';
+import './Events.scss';
 import EventsInfo from './EventsInfo';
 import EventGuestList from "./EventGuestList";
 import axios from 'axios';
@@ -7,7 +7,7 @@ import useEventsData from "../../hooks/useEventsData";
 import { getEventGuests, getEventInfo } from "../../helpers/event_selectors";
 import Fundraisers from "./Fundraisers";
 import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default function Events(props) {
@@ -50,7 +50,7 @@ const event_id = 3;
           <Fundraisers donation={state.fundraisers}/>
         </section>
         <section className="event-wall __card">
-      <Button variant="primary">Join Group Chat / Event Wall</Button>{' '}
+            <button onClick={""} className="background-point-color btn-style">Join Group Chat</button>
         </section>
       </div>
 

@@ -1,27 +1,27 @@
 import React from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./fundraisers.scss"
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Fundraisers.scss"
 
 export default function Fundraisers(props) {
 
   const percentage = props.donation.current_amount / props.donation.target_amount;
-  const barPercentage = percentage * 100;
+  const barPercentage = percentage * 100 + "%";
 
   console.log('perc',percentage)
 
   const getProgress = (value) => {
     if (value > 0.75) {
-      return "success";
+      return "#9FE2BF";
     }
     if (value > 0.50) {
-      return "info";
+      return "#40E0D0";
     }
     if (value > 0.25) {
-      return "warning";
+      return "#6495ED";
     }
-    return "danger";
+    return "#FFBF00";
   };
   const barVariant = getProgress(percentage);
   console.log('perc',`${barVariant}`);
@@ -35,13 +35,14 @@ export default function Fundraisers(props) {
         <span className='name'>Target: ${props.donation.target_amount}</span>
       </div>
 
-      <div className='fundraisers-bar'>
-        
-      <ProgressBar animated variant={barVariant} now={barPercentage} />
+      <div id='fundraisers-bar'>
+        <div id="myBar" style={{width : barPercentage, 
+          "background-color": barVariant}}>{barPercentage}</div>
       </div>
 
       <div className='fundraisers-interact'>
-      <Button variant="primary">Support!</Button>{' '}
+        <button onClick={""} 
+        className="background-point-color btn-style">Support!</button>
       </div>
     </main>
   )
