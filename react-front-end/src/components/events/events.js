@@ -5,12 +5,17 @@ import EventGuestList from "./event-guest-list";
 import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
 import { getEventGuests, getEventInfo } from "../../helpers/event_selectors";
+import Fundraisers from "./fundraisers";
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default function Events(props) {
 
 const user_id = 1;
 const event_id = 3;
+
+
 
   const {
     state
@@ -19,6 +24,7 @@ const event_id = 3;
   console.log(state);
   console.log(state.event_user);
   console.log(state.eventsInfo);
+  console.log(state.fundraisers);
 
   return (
     <main className="event-layout">
@@ -41,10 +47,10 @@ const event_id = 3;
         <span>description / maps</span>
         </section>
         <section className="fundraisers __card">
-        <span>fundraisers</span>
+          <Fundraisers donation={state.fundraisers}/>
         </section>
         <section className="event-wall __card">
-        <span>join chat button / event wall</span>
+      <Button variant="primary">Join Group Chat / Event Wall</Button>{' '}
         </section>
       </div>
 

@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import { useEffect, useState } from "react";
-import axios from 'axios';
-
-// css, font-awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear } from '@fortawesome/free-solid-svg-icons'
-import "./events-info.scss"
-// import MenuList from "components/MenuList.js";
+import "./events-info.scss";
 
 export default function EventsInfo(props) {
 

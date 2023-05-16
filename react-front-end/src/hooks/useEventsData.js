@@ -4,7 +4,6 @@ import axios from "axios";
 export default function useEventsData(eventID, userID) {
 
   const [state, setState] = useState({
-    day: "Monday",
     events: [],
     fundraisers: {},
     event_user: {},
@@ -18,7 +17,7 @@ export default function useEventsData(eventID, userID) {
 
     Promise.all([      
       axios.get('/api/events'),
-      axios.get('/api/fundraisers'),
+      axios.get(`/api/fundraisers/${eventID}`),
       axios.get(`/api/event-user/${eventID}`),
       axios.get(`/api/events/${eventID}`),
       axios.get(`/api/users/${userID}`)
