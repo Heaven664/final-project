@@ -27,14 +27,6 @@ const getEventsObject = (events, userEvents, users) => {
   });
 };
 
-// Gets the conversation between users
-const getEventMessages = (messages, event_id) => {
-  const filteredMessages = messages.filter((message) => {
-    return message.event_id === event_id;
-  });
-  return filteredMessages;
-};
-
 export default function GroupChat(props) {
   const [state, setState] = useState({
     user_id: 2,
@@ -43,6 +35,7 @@ export default function GroupChat(props) {
     event_id: 0,
     event: {},
     newMessagesCounter: 0,
+    users: [],
   });
 
   // const [socket, setSocket] = useState();
@@ -67,6 +60,20 @@ export default function GroupChat(props) {
 
   const changeEvent = (event_id) => {
     setState((prev) => ({ ...prev, event_id }));
+  };
+
+  // Gets the conversation between users
+  const getEventMessages = (messages, event_id) => {
+    const filteredMessages = messages.filter((message) => {
+      return message.event_id === event_id;
+    });
+
+    return filteredMessages.map((message) => {
+      const sender = state.users.find((user) => {
+        return user.id === message.sender_id;
+      });
+      return { ...message, sender };
+    });
   };
 
   // useEffect(() => {
@@ -106,16 +113,14 @@ export default function GroupChat(props) {
       setState((prev) => ({
         ...prev,
         events,
+        users,
       }));
     });
   }, [state.user_id]);
 
   useEffect(() => {
     axios.get("/api/gmsg").then((res) => {
-      const messages = getEventMessages(
-        res.data,
-        state.event_id
-      );
+      const messages = getEventMessages(res.data, state.event_id);
       setState((prev) => ({ ...prev, messages }));
     });
   }, [state.event_id, state.newMessagesCounter]);

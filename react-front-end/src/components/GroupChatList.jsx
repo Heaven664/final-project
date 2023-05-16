@@ -9,9 +9,9 @@ export default function GroupChatList(props) {
     return (
       <GroupChatListItem
         key={event[0].id}
+        event_id={event[0].id}
         user_id={event[0].id}
         name={event[0].name}
-        agenda={event[0].agenda}
         photo={event[0].photo}
         changeEvent={props.changeEvent}
       ></GroupChatListItem>

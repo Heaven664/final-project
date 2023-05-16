@@ -18,3 +18,26 @@
   margin-left: auto;
   justify-content: flex-end;
 }
+
+.sender-name {
+  flex-direction: column;
+
+  .group-chat-user-name {
+    font-size: 16px;
+    align-self: flex-start;
+  }
+
+  p{
+    padding: 0;
+    gap:1rem;
+    align-self: self-start;
+  }
+
+  &.my-message {
+    flex-direction: row;
+    
+    .group-chat-user-name {
+      display: none;
+    }
+  }
+}
