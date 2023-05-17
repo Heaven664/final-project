@@ -36,30 +36,39 @@ export default function Events(props) {
 
       <div className='event-left __panel'>
 
-        { 
+        {
           props.user === state.eventsInfo.host_id
-        ?
-          <section className="invitation __card box-shadow border-radius20 background-box-color user-detail">
-            <span>{`You are invited to ${getFullName(state.usersInfo)}'s ${state.eventsInfo.name}!`}
-            </span>
-          </section>
-        :
-          <section className="modification __card box-shadow border-radius20 background-box-color user-detail">
-          <button onClick={""} className="modi background-add-color btn-style">Edit Event</button>
-          <button onClick={""} className="modi background-warning-color btn-style">Cancel Event</button>
-          </section>
+            ?
+            <section className="modification __card box-shadow border-radius20 background-box-color user-detail">
+              <button onClick={""} className="modi background-add-color btn-style">Edit Event</button>
+              <button onClick={""} className="modi background-warning-color btn-style">Cancel Event</button>
+            </section>
+            :
+            <section className="invitation __card box-shadow border-radius20 background-box-color user-detail">
+              <span>{`You are invited to ${getFullName(state.usersInfo)}'s ${state.eventsInfo.name}!`}
+              </span>
+            </section>
         }
 
         <section className="event-info __card box-shadow border-radius20 background-box-color user-detail">
           <EventsInfo eventsInfo={state.eventsInfo} hostInfo={state.usersInfo} />
 
         </section>
+
         <section className="event-guest __card box-shadow border-radius20 background-box-color user-detail">
           <EventGuestList
             guests={state.event_user}
             value={eventGuest}
             onChange={setEventGuest}
           />
+
+          {
+            props.user === state.eventsInfo.host_id
+              ?
+              ""
+              :
+              <button onClick={""} className="modi background-warning-color btn-style">Quit Event</button>
+          }
         </section>
       </div>
 
@@ -68,11 +77,13 @@ export default function Events(props) {
           <span>{state.eventsInfo.description}</span>
         </section>
 
-        {state.fundraisers 
-        ?
-          <section className="fundraisers __card  box-shadow border-radius20 background-box-color user-detail"><Fundraisers donation={state.fundraisers} /></section> 
-        :
-          <section className="no-fundraisers __card  box-shadow border-radius20 background-box-color user-detail"></section>}
+        {
+          state.fundraisers
+            ?
+            <section className="fundraisers __card  box-shadow border-radius20 background-box-color user-detail"><Fundraisers donation={state.fundraisers} /></section>
+            :
+            <section className="no-fundraisers __card  box-shadow border-radius20 background-box-color user-detail"></section>
+        }
 
         <section className="event-wall __card  box-shadow border-radius20 background-box-color user-detail">
           <button onClick={""} className="background-point-color btn-style">Join Group Chat</button>
