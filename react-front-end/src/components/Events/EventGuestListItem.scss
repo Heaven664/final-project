@@ -1,5 +1,5 @@
-@import "./mixins.scss";
-@import "./variables.scss";
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
 
 .eventGuest {
   &__item {
@@ -16,7 +16,8 @@
 
     &--selected {
       color: $dark-background;
-      background-color: $white;
+      background-color: $primary-color;
+      font-size: $title-size;
       border-radius: 16px;
       height: 32px;
       display: flex;

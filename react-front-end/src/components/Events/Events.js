@@ -23,6 +23,11 @@ console.log(state.eventsInfo);
 console.log(state.fundraisers);
 console.log(props.user, state.eventsInfo.host_id);
 
+
+const [eventGuest, setEventGuest] = useState(null);
+
+
+
 const getFullName = function (obj) {
   return obj.first_name + " " + obj.last_name;
 }
@@ -43,7 +48,11 @@ const getFullName = function (obj) {
 
         </section>
         <section className="event-guest __card box-shadow border-radius20 background-box-color user-detail">
-          <EventGuestList guests={state.event_user}/>
+          <EventGuestList 
+            guests={state.event_user} 
+            value={eventGuest}
+            onChange={setEventGuest}
+          />
         </section>
       </div>
 
