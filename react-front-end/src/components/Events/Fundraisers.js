@@ -1,6 +1,4 @@
 import React from 'react';
-import ProgressBar from 'react-bootstrap/ProgressBar';
-import Button from 'react-bootstrap/Button';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Fundraisers.scss"
 

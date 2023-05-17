@@ -8,6 +8,7 @@ import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, 
 import './App.scss';
 
 import MyProfile from './MyProfile';
+import Friend from './Friend';
 import PrivateChat from 'components/PrivateChat';
 import GroupChat from 'components/GroupChat';
 import Setting from 'components/Setting';
@@ -117,6 +118,7 @@ export default function App(props) {
         {(user && selectedPage === 'profile') &&
           <MyProfile handlePageClick={handlePageClick} />
         }
+        {selectedPage === 'friends' && <Friend />}
         {(user && selectedPage === 'chat') && <PrivateChat user={user.id} />}
         {(user && selectedPage === 'groupChat') && <GroupChat user={user.id} />}
         {(user && selectedPage === 'setting') &&
