@@ -76,7 +76,6 @@ export default function Friend(props) {
     });
   }, [state.friend_id]);
 
-  // 탭 형식으로 만들어서 동시에 버튼을 보게 하는게 좋을 듯
   // 친구 카운팅 하기
   // 친구랑 채팅했던 기록이 있는지 확인하고 새 채팅하기 or 메세지 줌 인 이런식으로 만들어보기
   return (
