@@ -38,7 +38,7 @@ export default function App(props) {
       });
   };
 
-  const [selectedPage, setSelectedPage] = useState("groupChat");
+  const [selectedPage, setSelectedPage] = useState("profile");
 
   function handlePageClick(page) {
     setSelectedPage(page);

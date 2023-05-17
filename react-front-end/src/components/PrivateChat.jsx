@@ -58,7 +58,7 @@ export default function PrivateChat(props) {
     axios
       .post("/api/pmsg/", data)
       .then(() => {
-        socket.emit("private message", { text: message, to: state.friend_id });
+        socket.emit("private message", state.friend_id);
         setState((prev) => ({ ...prev, newMessagesCounter: prev.newMessagesCounter + 1 }));
       })
       .catch((err) => console.log(err));
@@ -78,8 +78,7 @@ export default function PrivateChat(props) {
       socket.emit("send_id", state.user_id);
     });
 
-    socket.on("private message", (data) => {
-      // console.log(`new message from ${data.from}`);
+    socket.on("private message", () => {
       setState(prev => ({...prev, newMessagesCounter: prev.newMessagesCounter + 1}))
     });
 
@@ -92,7 +91,7 @@ export default function PrivateChat(props) {
       socket.off("private_message");
       socket.off("disconnect");
     };
-  }, []);
+  }, [state.friend_id]);
 
   useEffect(() => {
     Promise.all([axios.get("/api/users"), axios.get("api/friendlists")]).then(

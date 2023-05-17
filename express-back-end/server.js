@@ -79,9 +79,9 @@ io.on('connection', socket => {
   });
 
   // Listen for private messages
-  socket.on('private message', (data) => {
-    console.log(`one message for ${data.to}: ${clients[data.to]} from: ${id}`);
-    const friend = clients[data.to];
+  socket.on('private message', (to) => {
+    console.log(`one message for ${to}: ${clients[to]} from: ${id}`);
+    const friend = clients[to];
     socket.to(friend).emit('private message');
   });
 
