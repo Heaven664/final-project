@@ -11,7 +11,7 @@ import Fundraisers from "./Fundraisers";
 
 export default function Events(props) {
 
-  const [fundraiser, setFundaraiser] = useState(null);
+  // const [fundraiser, setFundaraiser] = useState(null);
   const [eventGuest, setEventGuest] = useState(null);
 
   const event_id = props.event;
@@ -25,7 +25,7 @@ export default function Events(props) {
   console.log(state.fundraisers);
   console.log(props.user, state.eventsInfo.host_id);
 
-  setFundaraiser(state.fundraisers);
+
 
   const getFullName = function(obj) {
     return obj.first_name + " " + obj.last_name;
@@ -35,13 +35,24 @@ export default function Events(props) {
     <main className="event-layout">
 
       <div className='event-left __panel'>
-        <section className="invitation __card box-shadow border-radius20 background-box-color user-detail">
-          <span>
-            {props.user === state.eventsInfo.host_id ?
-              `Welcome back to your ${state.eventsInfo.name}!` :
-              `You are invited to ${getFullName(state.usersInfo)}'s ${state.eventsInfo.name}!`}
-          </span>
-        </section>
+
+        { 
+          props.user === state.eventsInfo.host_id
+        ?
+          <section className="invitation __card box-shadow border-radius20 background-box-color user-detail">
+            <span>{`You are invited to ${getFullName(state.usersInfo)}'s ${state.eventsInfo.name}!`}
+            </span>
+          </section>
+        :
+          <section className="modification __card box-shadow border-radius20 background-box-color user-detail">
+          <button onClick={""} className="background-point-color btn-style">Edit Event</button>
+          <button onClick={""} className="background-point-color btn-style">Cancel Event</button>
+          </section>
+        }
+
+
+
+
         <section className="event-info __card box-shadow border-radius20 background-box-color user-detail">
           <EventsInfo eventsInfo={state.eventsInfo} hostInfo={state.usersInfo} />
 
@@ -60,8 +71,10 @@ export default function Events(props) {
           <span>{state.eventsInfo.description}</span>
         </section>
 
-        {fundraiser ?
-          <section className="fundraisers __card  box-shadow border-radius20 background-box-color user-detail"><Fundraisers donation={state.fundraisers} /></section> :
+        {state.fundraisers 
+        ?
+          <section className="fundraisers __card  box-shadow border-radius20 background-box-color user-detail"><Fundraisers donation={state.fundraisers} /></section> 
+        :
           <section className="no-fundraisers __card  box-shadow border-radius20 background-box-color user-detail"></section>}
 
         <section className="event-wall __card  box-shadow border-radius20 background-box-color user-detail">

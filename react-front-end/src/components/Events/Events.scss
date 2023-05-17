@@ -40,6 +40,15 @@
     align-items: center;
   }
 
+  &.modification {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+    flex-grow: 1;
+    justify-content: space-around;
+    align-items: center;
+  }
+
   &.event-info {
     margin-top: 1rem;
     margin-bottom: 1rem;
