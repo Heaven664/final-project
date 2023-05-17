@@ -9,6 +9,7 @@ export default function MassageList(props) {
     return(
       <MessageListItem
       key={message.id}
+      sender={message.sender}
       sender_id={message.sender_id}
       text={message.text}
       sentByUser={message.sender_id === props.user_id}
