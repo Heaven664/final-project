@@ -14,6 +14,7 @@ import GroupChat from 'components/GroupChat';
 import Setting from 'components/Setting';
 import Login from 'components/Login'
 import Events from "./Events/Events";
+import NewEvent from "./NewEvents/NewEvent";
 
 export default function App(props) {
 
@@ -86,10 +87,10 @@ export default function App(props) {
               <span>Events</span>
             </li>
             <li className={`myEvent 
-              ${selectedPage === 'myEvent' ? '--selected' : ''}`}
-              onClick={() => handlePageClick('myEvent')}>
+              ${selectedPage === 'newEvent' ? '--selected' : ''}`}
+              onClick={() => handlePageClick('newEvent')}>
               <FontAwesomeIcon icon={faCalendarPlus} /><br />
-              <span>My Event</span>
+              <span>New Event</span>
             </li>
             <li className={`setting 
               ${selectedPage === 'setting' ? '--selected' : ''}`}
@@ -128,6 +129,7 @@ export default function App(props) {
           <Setting handlePageClick={handlePageClick} />
         }
         {(user && selectedPage === 'events') && <Events user={user.id} event={event}/>}
+        {(user && selectedPage === 'newEvent') && <NewEvent user={user.id} event={event}/>}
 
       </section>
     </main>
