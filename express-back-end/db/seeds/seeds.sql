@@ -50,19 +50,12 @@ INSERT INTO fundraisers (title, event_id, target_amount, current_amount) VALUES
   ('Cancer Treatment Support', 10, 20000, 12000);
 
 -- Event_user table
-INSERT INTO event_user (user_id, event_id)
-VALUES
-  (1, 1),
-  (2, 1),
-  (2, 2),
-  (3, 1),
-  (4, 2),
-  (5, 2),
-  (6, 2),
-  (7, 3),
-  (8, 3),
-  (9, 4),
-  (10, 5);
+INSERT INTO event_user (user_id, event_id) VALUES
+  (1, 1),(2, 1),(3, 1),(4, 1),(5, 1),(6, 1),(7, 1),(8, 1),(9, 1),(10, 1),
+  (1, 2),(2, 2),(3, 2),(4, 2),(5, 2),(6, 2),(7, 6),(8, 6),(9, 6),(10, 6),
+  (1, 3),(2, 3),(3, 3),(4, 3),(5, 3),(6, 3),(7, 7),(8, 7),(9, 7),(10, 7),
+  (1, 4),(2, 4),(3, 4),(4, 4),(5, 4),(6, 4),(7, 4),(8, 8),(9, 8),(10, 8),
+  (1, 5),(2, 5),(3, 9),(4, 5),(5, 5),(6, 5),(7, 5),(8, 9),(9, 5),(10, 9);
 
 -- Friendlists table
 INSERT INTO friendlists (user_id, friend_id)

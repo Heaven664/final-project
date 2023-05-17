@@ -41,8 +41,7 @@ const db = require('../db/connection');
       `
       SELECT
         *
-      FROM events
-      INNER JOIN event_user ON events.id = event_id
+      FROM event_user
       INNER JOIN users ON user_id = users.id
       WHERE event_id = $1;
       `,
