@@ -11,11 +11,10 @@ import ListAllUser from './ListAllUser';
 
 // additional feature
 // friends counting
-// 친구랑 채팅했던 기록이 있는지 확인하고 새 채팅하기 or 메세지 줌 인 이런식으로 만들어보기
 
 export default function Friend(props) {
   // change the search list/ myfriend <-> database
-  const [list, setList] = useState("myFriends");
+  const [list, setList] = useState("allUsers");
   function handleListClick(section) {
     setList(section);
   }

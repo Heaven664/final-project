@@ -2,6 +2,7 @@ $font-stack: 'Nanum Gothic', sans-serif;
 $primary-color: #69cada;
 $box-color: #f4f5f9;
 $fundraiser-color: #f0d097;
+$add-color: #aabaf5;
 $point-color: #fb9c80;
 $warning-color: #7c0808;
 $bad-color: #a96363;
@@ -56,6 +57,9 @@ body{
 }
 .background-bad-color{
   background-color: $bad-color;
+}
+.background-add-color{
+  background-color: $add-color;
 }
 
 // font size

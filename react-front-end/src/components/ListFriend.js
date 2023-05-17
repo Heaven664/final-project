@@ -4,13 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import ListFriendItem from './ListFriendItem';
-
+import {getFriendsIds, getTableIds, getFriendsObjects} from 'helpers/getFriendFunc';
 
 export default function ListFriend(props) {
 
   // friends render
   const [friend, setFriend] = useState({
-    user_id: 2,
+    user_id: 1,
     friend_id: [],
   });
 
@@ -19,32 +19,7 @@ export default function ListFriend(props) {
   // const [filteredUsers, setFilteredUsers] = useState([friend]);
   const delayTimerRef = useRef(null);
 
-  // Gets friend's id's of a user with provided id
-  const getFriendsIds = (friendlists, id) => {
-    // Filter friendlists to get needed objects
-    const friendObjects = friendlists.filter(
-      (friendlist) => friendlist.user_id === id
-    );
-
-    // Get ids from the objects
-    return friendObjects.map((friend) => friend.friend_id);
-  };
-
-  // Gets friend's id's of a user with provided id
-  const getTableIds = (friendlists, id) => {
-    // Filter friendlists to get needed objects
-    const friendObjects = friendlists.filter(
-      (friendlist) => friendlist.user_id === id
-    );
-
-    // Get ids from the objects
-    return friendObjects.map((friend) => friend.id);
-  };
-
-  // Gets user objects with ids from friends id array
-  const getFriendsObjects = (users, friends) => {
-    return users.filter((user) => friends.includes(user.id));
-  };
+  
 
   // get the friends list
   const fetchFriends = (friend, setFriend) => {

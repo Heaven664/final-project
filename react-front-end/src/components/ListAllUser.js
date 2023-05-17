@@ -4,15 +4,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import ListAllUserItem from './ListAllUserItem';
+import {getFriendsIds, getTableIds, getFriendsObjects} from 'helpers/getFriendFunc';
 
 export default function ListAllUser(props) {
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("a");
   const [filteredUsers, setFilteredUsers] = useState([]);
   const delayTimerRef = useRef(null);
 
-  useEffect(() => {
+  // friends render
+  const [friend, setFriend] = useState({
+    user_id: 2,
+    friend_id: [],
+  });
 
+  useEffect(() => {
+    if (value === "") return;
     clearTimeout(delayTimerRef.current);
 
     delayTimerRef.current = setTimeout(() => {
@@ -41,6 +48,69 @@ export default function ListAllUser(props) {
       clearTimeout(delayTimerRef.current);
     };
   }, [value]);
+
+  // useEffect(() => {
+  //   Promise.all([
+  //     axios.get("/api/users"),
+  //     axios.get("api/friendlists")
+  //   ]).then(
+  //     (all) => {
+  //       // my friend's id array []
+  //       const friendIds = getFriendsIds(all[1].data, friend.user_id);
+
+  //       // that table's id array []
+  //       const tableIds = getTableIds(all[1].data, friend.user_id);
+
+  //       // my friend's info [{}]
+  //       const friendLists = getFriendsObjects(all[0].data, friendIds);
+
+  //       // add friendlist's table id
+  //       const updatedData = friendLists.map((obj, index) => {
+  //         return {
+  //           ...obj,
+  //           table_id: tableIds[index]
+  //         };
+  //       });
+
+  //       // add name key-value
+  //       const modifiedUsers = updatedData.map((user) => {
+  //         const name = user.first_name + " " + user.last_name;
+  //         return { ...user, name };
+  //       });
+
+  //       setFriend((prev) => ({
+  //         ...prev,
+  //         friend_id: modifiedUsers,
+  //       }));
+  //     }
+  //   );
+  // }, []);
+
+
+  // useEffect(() => {
+  //   if (value === "") return;
+  //   clearTimeout(delayTimerRef.current);
+  //   delayTimerRef.current = setTimeout(() => {
+  //     const users = friend.friend_id;
+
+  //     // case sensitive off
+  //     const filteredResults = users.filter((user) => {
+  //       const fullName = (user.first_name + user.last_name).toLowerCase();
+  //       const searchValue = value.toLowerCase();
+  //       return fullName.includes(searchValue);
+  //     });
+
+  //     setFriend((prev) => ({
+  //       ...prev,
+  //       friend_id: filteredResults,
+  //     }));
+  //   }, 400);
+
+  //   return () => {
+  //     clearTimeout(delayTimerRef.current);
+  //   };
+  // }, [value]);
+
 
   // const unfriend = (e) => {
   //   e.preventDefault()
@@ -72,25 +142,22 @@ export default function ListAllUser(props) {
   //   return users.filter((user) => friends.includes(user.id));
   // };
 
-  // useEffect(() => {
-  //   Promise.all([
-  //     axios.get("/api/users"),
-  //     axios.get("api/friendlists")
-  //   ]).then(
-  //     (all) => {
-  //       // my friend's id array []
-  //       const friendIds = getFriendsIds(all[1].data, state.user_id);
-  //       // my friend's info [{}]
-  //       const friendLists = getFriendsObjects(all[0].data, friendIds);
-  //       console.log("all: ", all, "friendIds: ", friendIds, "friendLists: ", friendLists)
-  //       setState((prev) => ({
-  //         ...prev,
-  //         friend_id: friendLists,
-  //       }));
-  //     }
-  //   );
-  // }, [state.user_id]);
-  // console.log("state: ", state)
+
+  const unfriend = (user) => {
+    const data = {
+      id: user.table_id,
+      user_id: friend.user_id,
+      friend_id: user.id
+    };
+    console.log("delete data: ", data);
+
+    axios.delete(`/api/friendlists/${data.id}/delete`, data)
+      .then(res => {
+        console.log(res.data);
+      })
+      // .then(fetchFriends(friend, setFriend))
+      .catch(err => console.log(err))
+  };
 
   return (
     <>
@@ -106,14 +173,9 @@ export default function ListAllUser(props) {
       </div>
       <ListAllUserItem
         filteredUsers={filteredUsers}
+        onUnfriend={unfriend}
       />
     </>
   );
 }
 
-
-// 1. call friendlists
-// 2. call user with friend_id 
-// 3. modify the data: number -> friend's user info
-// 4. data = {id:1, user_id:1, friend_id: {id:.., name:.. ....}}
-// 5. map with this array
