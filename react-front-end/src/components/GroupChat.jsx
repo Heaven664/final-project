@@ -96,6 +96,7 @@ export default function GroupChat(props) {
 
     return () => {
       socket.off("connect");
+      socket.off("group message")
       socket.off("disconnect");
     };
   }, [state.event_id]);

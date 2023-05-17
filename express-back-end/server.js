@@ -79,11 +79,10 @@ io.on('connection', socket => {
   });
 
   // Listen for private messages
-  socket.on('message', (data) => {
-    const { to, text } = data;
-    console.log(`one message for ${to}: ${clients[to]} from: ${id} text: ${text}`);
-    const friend = clients[to];
-    socket.to(friend).emit('private_message', { from: id, text });
+  socket.on('private message', (data) => {
+    console.log(`one message for ${data.to}: ${clients[data.to]} from: ${id}`);
+    const friend = clients[data.to];
+    socket.to(friend).emit('private message');
   });
 
   // Lister for disconnection
