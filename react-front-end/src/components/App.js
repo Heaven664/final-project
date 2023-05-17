@@ -42,7 +42,7 @@ export default function App(props) {
   //   login();
   // }, []);
 
-  const [selectedPage, setSelectedPage] = useState("chat");
+  const [selectedPage, setSelectedPage] = useState("friends");
 
   function handlePageClick(page) {
     setSelectedPage(page);
@@ -119,6 +119,7 @@ export default function App(props) {
         {(user && selectedPage === 'profile') &&
           <MyProfile handlePageClick={handlePageClick} />
         }
+        {selectedPage === 'friends' && <Friend />}
         {selectedPage === 'chat' && <PrivateChat />}
         {selectedPage === 'setting' && 
           <Setting handlePageClick={handlePageClick}/>
