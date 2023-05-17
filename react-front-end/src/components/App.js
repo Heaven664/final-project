@@ -14,7 +14,7 @@ import Login from 'components/Login'
 
 export default function App(props) {
 
-  const [user, setUser] = useState({id: 1});
+  const [user, setUser] = useState(null);
 
   // Login user on the server
   const login1 = function () {

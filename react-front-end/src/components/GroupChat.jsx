@@ -29,7 +29,7 @@ const getEventsObject = (events, userEvents, users) => {
 
 export default function GroupChat(props) {
   const [state, setState] = useState({
-    user_id: 2,
+    user_id: props.user || 1,
     events: [],
     messages: [],
     event_id: 0,
@@ -38,7 +38,7 @@ export default function GroupChat(props) {
     users: [],
   });
 
-  // const [socket, setSocket] = useState();
+  const [socket, setSocket] = useState();
   const [message, setMessage] = useState("");
 
   const sendMessage = (e) => {
@@ -51,7 +51,7 @@ export default function GroupChat(props) {
     axios
       .post("/api/gmsg/", data)
       .then(() => {
-        // socket.emit("message", { text: message, to: state.friend_id });
+        socket.emit("group message", state.event_id);
         setState((prev) => ({ ...prev, newMessagesCounter: prev.newMessagesCounter + 1 }));
       })
       .catch((err) => console.log(err));
@@ -76,30 +76,29 @@ export default function GroupChat(props) {
     });
   };
 
-  // useEffect(() => {
-  //   const socket = io();
-  //   setSocket(socket);
+  useEffect(() => {
+    const socket = io();
+    setSocket(socket);
 
-  //   socket.on("connect", () => {
-  //     console.log(`connected to server ${socket.id}`);
-  //     socket.emit("send_id", state.user_id);
-  //   });
+    socket.on("connect", () => {
+      console.log(`connected to server ${socket.id}`);
+    });
 
-  //   socket.on("private_message", (data) => {
-  //     console.log(`new message from ${data.from}, text: ${data.text}`);
-  //     setState(prev => ({...prev, newMessagesCounter: prev.newMessagesCounter + 1}))
-  //   });
+    socket.emit('join room', state.event_id);
 
-  //   socket.on("disconnect", () => {
-  //     console.log("disconnected from server");
-  //   });
+    socket.on('group message', () => {
+      setState(prev => ({...prev, newMessagesCounter: prev.newMessagesCounter + 1}))
+    })
 
-  //   return () => {
-  //     socket.off("connect");
-  //     socket.off("private_message");
-  //     socket.off("disconnect");
-  //   };
-  // }, []);
+    socket.on("disconnect", () => {
+      console.log("disconnected from server");
+    });
+
+    return () => {
+      socket.off("connect");
+      socket.off("disconnect");
+    };
+  }, [state.event_id]);
 
   useEffect(() => {
     Promise.all([

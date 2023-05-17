@@ -66,18 +66,30 @@ io.on('connection', socket => {
   clients[id] = socket.id;
   console.log(clients);
 
+  // Listen for new joins
+  socket.on('join room', (roomId) => {
+    console.log(`user with id${id} connected to room${roomId}`);
+    socket.join(`room${roomId}`);
+  });
+
+  // Lister for new group messages
+  socket.on('group message', (roomId) => {
+    console.log(`new message from room${roomId}`);
+    socket.to(`room${roomId}`).emit('group message');
+  });
+
+  // Listen for private messages
+  socket.on('message', (data) => {
+    const { to, text } = data;
+    console.log(`one message for ${to}: ${clients[to]} from: ${id} text: ${text}`);
+    const friend = clients[to];
+    socket.to(friend).emit('private_message', { from: id, text });
+  });
+
+  // Lister for disconnection
   socket.on('disconnect', () => {
     console.log(`user ${socket.id} disconnected`);
   });
-
-  socket.on('message', (data) => {
-    const { to, text} = data
-    console.log(`one message for ${to}: ${clients[to]} from: ${id} text: ${text}`);
-    const friend = clients[to];
-    socket.to(friend).emit('private_message', {from: id, text})
-  });
-
-
 });
 
 
