@@ -45,13 +45,10 @@ export default function Events(props) {
           </section>
         :
           <section className="modification __card box-shadow border-radius20 background-box-color user-detail">
-          <button onClick={""} className="modi background-point-color btn-style">Edit Event</button>
-          <button onClick={""} className="modi background-point-color btn-style">Cancel Event</button>
+          <button onClick={""} className="modi background-add-color btn-style">Edit Event</button>
+          <button onClick={""} className="modi background-warning-color btn-style">Cancel Event</button>
           </section>
         }
-
-
-
 
         <section className="event-info __card box-shadow border-radius20 background-box-color user-detail">
           <EventsInfo eventsInfo={state.eventsInfo} hostInfo={state.usersInfo} />
