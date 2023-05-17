@@ -1,118 +1,94 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import './Events.scss';
+import EventsInfo from './EventsInfo';
+import EventGuestList from "./EventGuestList";
 import axios from 'axios';
-import './NewEvents.scss';
+import useEventsData from "../../hooks/useEventsData";
+import Fundraisers from "./Fundraisers";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Setting(props) {
+
+export default function Events(props) {
+
+  // const [fundraiser, setFundaraiser] = useState(null);
+  const [eventGuest, setEventGuest] = useState(null);
+
+  const event_id = props.event;
+  const {
+    state
+  } = useEventsData(event_id, props.user);
+
+  console.log(state);
+  console.log(state.event_user);
+  console.log(state.eventsInfo);
+  console.log(state.fundraisers);
+  console.log(props.user, state.eventsInfo.host_id);
 
 
-  const [state, setState] = useState({
-    name:"", description:"", agenda:"", event_date:"", event_location:"", host_id:""
-  });
 
-  const updateEvent = (e) => {
-    e.preventDefault()
-    const data = {
-      name:"", description:"", agenda:"", event_date:"", event_location:"", host_id:""
-    }
-    console.log("updated: ", data);
-    axios.patch(`/api/users/${state.id}/edit`, data)
-      .then(res => {
-        console.log(res.data);
-        props.handlePageClick('profile');
-      })
-      .catch(err => console.log(err))
+  const getFullName = function(obj) {
+    return obj.first_name + " " + obj.last_name;
   };
 
-  useEffect(() => {
-    axios.get(`/api/users/${state.id}`)
-      .then((res) => {
-        const user = res.data;
-        if (user.birthday) {
-          user.birthday = user.birthday.substring(0, 10);
-        }
-        setState(user);
-      });
-  }, []);
-
-
   return (
-    <div className="settingBox background-box-color border-radius20 box-shadow">
-      <form onSubmit={updateProfile}>
-        <table>
-          <tbody>
-            <tr>
-              <th className="font-title font24">Name</th>
-              <td>
-                <input
-                  className="nameField"
-                  type="text"
-                  name="first_name"
-                  value={state.first_name}
-                  onChange={(e) => setState({ ...state, first_name: e.target.value })}
-                />
-                <input
-                  className="nameField"
-                  type="text"
-                  name="last_name"
-                  value={state.last_name}
-                  onChange={(e) => setState({ ...state, last_name: e.target.value })}
-                />
-              </td>
-            </tr>
-            <tr>
-              <th className="font-title font24">Birthday</th>
-              <td>
-                <input
-                  type="date"
-                  placeholder="YYYY-MM-DD"
-                  onChange={(e) => setState({ ...state, birthday: e.target.value })}
-                  name="birthday"
-                  value={state.birthday}
-                />
-              </td>
-            </tr>
-            <tr>
-              <th className="font-title font24">Country</th>
-              <td>
-                <input
-                  type="text"
-                  name="country"
-                  value={state.country}
-                  onChange={(e) => setState({ ...state, country: e.target.value })}
-                />
-              </td>
-            </tr>
-            <tr>
-              <th className="font-title font24">City</th>
-              <td>
-                <input
-                  type="text"
-                  name="city"
-                  value={state.city}
-                  onChange={(e) => setState({ ...state, city: e.target.value })}
-                />
-              </td>
-            </tr>
-            <tr className="font-title font24">
-              <th>About me</th>
-              <td>
-                <textarea
-                  className="aboutField"
-                  name="about"
-                  value={state.about}
-                  onChange={(e) => setState({ ...state, about: e.target.value })}
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div className="btn">
-          <button className="background-primary-color btn-style">
-            Save Change
-          </button>
-        </div>
-      </form>
+    <main className="event-layout">
 
-    </div>
+      <div className='event-left __panel'>
+
+        {
+          props.user === state.eventsInfo.host_id
+            ?
+            <section className="modification __card box-shadow border-radius20 background-box-color user-detail">
+              <button onClick={""} className="modi background-add-color btn-style">Edit Event</button>
+              <button onClick={""} className="modi background-warning-color btn-style">Cancel Event</button>
+            </section>
+            :
+            <section className="invitation __card box-shadow border-radius20 background-box-color user-detail">
+              <span>{`You are invited to ${getFullName(state.usersInfo)}'s ${state.eventsInfo.name}!`}
+              </span>
+            </section>
+        }
+
+        <section className="event-info __card box-shadow border-radius20 background-box-color user-detail">
+          <EventsInfo eventsInfo={state.eventsInfo} hostInfo={state.usersInfo} />
+
+        </section>
+
+        <section className="event-guest __card box-shadow border-radius20 background-box-color user-detail">
+          <EventGuestList
+            guests={state.event_user}
+            value={eventGuest}
+            onChange={setEventGuest}
+          />
+
+          {
+            props.user === state.eventsInfo.host_id
+              ?
+              ""
+              :
+              <button onClick={""} className="modi background-warning-color btn-style">Quit Event</button>
+          }
+        </section>
+      </div>
+
+      <div className='event-right __panel'>
+        <section className="maps-api __card box-shadow border-radius20 background-box-color user-detail">
+          <span>{state.eventsInfo.description}</span>
+        </section>
+
+        {
+          state.fundraisers
+            ?
+            <section className="fundraisers __card  box-shadow border-radius20 background-box-color user-detail"><Fundraisers donation={state.fundraisers} /></section>
+            :
+            <section className="no-fundraisers __card  box-shadow border-radius20 background-box-color user-detail"></section>
+        }
+
+        <section className="event-wall __card  box-shadow border-radius20 background-box-color user-detail">
+          <button onClick={""} className="background-point-color btn-style">Join Group Chat</button>
+        </section>
+      </div>
+
+    </main>
   );
 }

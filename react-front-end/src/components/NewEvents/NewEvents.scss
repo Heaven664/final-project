@@ -1,0 +1,104 @@
+@import "../../styles/variables.scss";
+
+.event-layout {
+  margin-top: 15vh;
+  margin-left: 1vw;
+  margin-right: 2vw;
+  border-radius: 0.5rem;
+  border-color: black;
+  display: flex;
+  flex-direction: row;
+  height: 60vh;
+  width: 95%;
+}
+
+.__panel {
+
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &.event-left {
+    width:60%;
+  }
+
+  &.event-right {
+    width:40%;
+  }
+}
+
+.__card {
+  width: 100%;
+  display: flex;
+
+  &.invitation {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.modification {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+    flex-grow: 1;
+    justify-content: space-around;
+    align-items: center;
+
+    .modi {
+      width: 45%;
+      height: 80%;
+    }
+  }
+
+  &.event-info {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    flex-grow: 5;
+
+  }
+
+  &.event-guest {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    margin-top: 1rem;
+    flex-grow: 4;
+
+  }
+
+  &.maps-api {
+    margin-bottom: 1rem;
+    flex-grow: 5;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.fundraisers {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-grow: 3;
+
+  }
+
+  &.no-fundraisers {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-grow: 0;
+
+  }
+
+  &.event-wall {
+    margin-top: 1rem;
+    display: flex;
+    flex-grow: 1;
+  }
+
+}
