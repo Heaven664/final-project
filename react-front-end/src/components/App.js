@@ -23,12 +23,14 @@ export default function App(props) {
   const { page, changePage } = useContext(friendContext);
 
   const [user, setUser] = useState(null);
+  const [event, setEvent] = useState(null);
 
   // Login user on the server
   const login1 = function () {
     axios.post("api/login")
       .then(res => {
         setUser(res.data);
+        setEvent(Math.floor(Math.random() * 10)); 
       })
       .catch(err => {
         console.log("Login:", err.message);
@@ -40,6 +42,7 @@ export default function App(props) {
     axios.post("api/login/1")
       .then(res => {
         setUser(res.data);
+        setEvent(Math.floor(Math.random() * 10)); 
       })
       .catch(err => {
         console.log("Login:", err.message);
@@ -127,7 +130,7 @@ export default function App(props) {
         {(user && page === 'setting') &&
           <Setting handlePageClick={handlePageClick} />
         }
-        {(user && page === 'events') && <Events user={user.id} />}
+        {(user && page === 'events') && <Events user={user.id} event={event}/>}
 
       </section>
     </main>
