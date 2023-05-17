@@ -77,14 +77,16 @@
     }
 
     .topNav {
-      position: fixed;
+      position: absolute;
       top: 0px;
       left: 74px;
       display: flex;
       justify-content: space-between;
       width: 95vw;
       height: 90px;
-      padding: 20px 30px;
+      padding: 20px 30px;  
+      background-color: #ffffff;
+      background-image: url("https://www.transparenttextures.com/patterns/ag-square.png");
       // border-bottom: 2px solid $primary-color;
 
       .user-profile-pic,

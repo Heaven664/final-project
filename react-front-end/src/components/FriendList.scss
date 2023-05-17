@@ -1,0 +1,45 @@
+.search-bar{
+  position: relative;
+  padding: 30px;
+  background-color: rgb(240, 208, 151);
+  margin-bottom: 30px;
+
+  span{
+    position: absolute;
+    top: 46px;
+    right: 60px;
+  }
+  input{
+    width: 100%;
+    height: 50px;
+    border: none;
+    padding: 0 20px;
+  }
+}
+
+.user-list{
+  background-color: #fff;
+  justify-content: space-between;
+  padding: 15px 30px;
+  border: 1px solid #f1f1f1;
+  margin-bottom: 15px;
+
+  .friend-user{
+    align-items: center;
+
+    .thumbnail{
+      margin-right: 15px;      
+    }
+  }
+
+  .btn button{
+    width: 120px;
+    height: auto;
+    padding: 10px 15px;
+    margin-left: 20px;
+
+    svg path {
+      fill: #fff;
+    }
+  }
+}
