@@ -52,7 +52,10 @@ export default function GroupChat(props) {
       .post("/api/gmsg/", data)
       .then(() => {
         socket.emit("group message", state.event_id);
-        setState((prev) => ({ ...prev, newMessagesCounter: prev.newMessagesCounter + 1 }));
+        setState((prev) => ({
+          ...prev,
+          newMessagesCounter: prev.newMessagesCounter + 1,
+        }));
       })
       .catch((err) => console.log(err));
     setMessage("");
@@ -77,27 +80,38 @@ export default function GroupChat(props) {
   };
 
   useEffect(() => {
-    const socket = io();
-    setSocket(socket);
+    if (socket) {
+      socket.disconnect()
+    }
+    if (state.event_id) {
+      console.log(state.event_id)
+      const socket = io();
+      setSocket(socket);
 
-    socket.on("connect", () => {
-      console.log(`connected to server ${socket.id}`);
-    });
+      socket.on("connect", () => {
+        console.log(`connected to server ${socket.id}`);
+      });
 
-    socket.emit('join room', state.event_id);
+      socket.emit("join room", state.event_id);
 
-    socket.on('group message', () => {
-      setState(prev => ({...prev, newMessagesCounter: prev.newMessagesCounter + 1}))
-    })
+      socket.on("group message", () => {
+        setState((prev) => ({
+          ...prev,
+          newMessagesCounter: prev.newMessagesCounter + 1,
+        }));
+      });
 
-    socket.on("disconnect", () => {
-      console.log("disconnected from server");
-    });
+      socket.on("disconnect", () => {
+        console.log("disconnected from server");
+      });
+    }
 
     return () => {
-      socket.off("connect");
-      socket.off("group message")
-      socket.off("disconnect");
+        if(socket) {
+          socket.off("connect");
+          socket.off("group message");
+          socket.off("disconnect");
+        }
     };
   }, [state.event_id]);
 

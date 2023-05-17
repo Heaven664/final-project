@@ -59,7 +59,10 @@ export default function PrivateChat(props) {
       .post("/api/pmsg/", data)
       .then(() => {
         socket.emit("private message", state.friend_id);
-        setState((prev) => ({ ...prev, newMessagesCounter: prev.newMessagesCounter + 1 }));
+        setState((prev) => ({
+          ...prev,
+          newMessagesCounter: prev.newMessagesCounter + 1,
+        }));
       })
       .catch((err) => console.log(err));
     setMessage("");
@@ -70,26 +73,36 @@ export default function PrivateChat(props) {
   };
 
   useEffect(() => {
-    const socket = io();
-    setSocket(socket);
+    if (socket) {
+      socket.disconnect();
+    }
+    if (state.user_id) {
+      const socket = io();
+      setSocket(socket);
 
-    socket.on("connect", () => {
-      console.log(`connected to server ${socket.id}`);
-      socket.emit("send_id", state.user_id);
-    });
+      socket.on("connect", () => {
+        console.log(`connected to server ${socket.id}`);
+        socket.emit("send_id", state.user_id);
+      });
 
-    socket.on("private message", () => {
-      setState(prev => ({...prev, newMessagesCounter: prev.newMessagesCounter + 1}))
-    });
+      socket.on("private message", () => {
+        setState((prev) => ({
+          ...prev,
+          newMessagesCounter: prev.newMessagesCounter + 1,
+        }));
+      });
 
-    socket.on("disconnect", () => {
-      console.log("disconnected from server");
-    });
-
+      socket.on("disconnect", () => {
+        console.log("disconnected from server");
+      });
+    }
     return () => {
-      socket.off("connect");
-      socket.off("private_message");
-      socket.off("disconnect");
+      if (socket) {
+        socket.disconnect()
+        socket.off("connect");
+        socket.off("private_message");
+        socket.off("disconnect");
+      }
     };
   }, [state.friend_id]);
 
