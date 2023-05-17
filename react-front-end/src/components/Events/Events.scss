@@ -47,6 +47,11 @@
     flex-grow: 1;
     justify-content: space-around;
     align-items: center;
+
+    .modi {
+      width: 45%;
+      height: 80%;
+    }
   }
 
   &.event-info {
