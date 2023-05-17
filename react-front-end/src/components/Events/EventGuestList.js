@@ -23,8 +23,8 @@ export default function EventGuestList(props) {
         key={user.id}
         name={name}
         avatar={user.photo}
-        // selected={user.id === props.value}
-      // setInterviewer={() => props.onChange(user.id)}
+        selected={user.id === props.value}
+        setInterviewer={() => props.onChange(user.id)}
       />
     );
   });

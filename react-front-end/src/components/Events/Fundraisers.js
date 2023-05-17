@@ -31,19 +31,16 @@ export default function Fundraisers(props) {
     <main className="fundraisers-layout">
 
       <div className='fundraisers-info'>
-        <span className='name'>Wish: {props.donation.name}</span>
+        <span className='name'>Wish: {props.donation.title}</span>
         <span className='name'>Target: ${props.donation.target_amount}</span>
       </div>
+        <div id='fundraisers-bar'>
+          <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}
+          </div>
+        </div>
+          <button onClick={""} id="supportButton" className="background-point-color btn-style"> Support! </button>
 
-      <div id='fundraisers-bar'>
-        <div id="myBar" style={{width : barPercentage, 
-          "background-color": barVariant}}>{barPercentage}</div>
-      </div>
 
-      <div className='fundraisers-interact'>
-        <button onClick={""} 
-        className="background-point-color btn-style">Support!</button>
-      </div>
     </main>
   )
 }

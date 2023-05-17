@@ -16,7 +16,6 @@ export default function EventGuestListItem(props) {
         src={props.avatar}
         alt={props.name}
       />
-      <span>{props.name}</span>
       {props.selected ? props.name : ""}
     </li>
   );

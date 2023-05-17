@@ -1,38 +1,42 @@
 @import "../../styles/variables.scss";
 
-.fundraisers-layout{
-display: flex;
-flex-direction: row;
+.fundraisers-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: $title-size;
+  
+  .fundraisers-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 
 #fundraisers-bar {
-  width: 100%;
+  display: flex;
+  margin: 1rem;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
   background-color: grey;
   height: 2rem;
   border-radius: 0.5rem;
 }
 
-#myBar {
+#progress {
   height: 2rem;
   border-radius: 0.5rem;
-  background-color: #04AA6D;
-  text-align: center; /* To center it horizontally (if you want) */
-  line-height: 30px; /* To center it vertically */
+  text-align: center;
+  line-height: 30px;
   color: white;
 }
 
+  #suppotButton {
+    width: 70%;
+  }
+
 }
 
-// .fundraisers-info{
-//   display: flex;
-  
-// }
-
-// .fundraisers-bar{
-//   display: flex;
-  
-// }
-
-// .fundraisers-interact{
-//   display: flex;
-  
-// }

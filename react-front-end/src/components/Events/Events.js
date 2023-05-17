@@ -12,7 +12,7 @@ import Button from 'react-bootstrap/Button';
 
 export default function Events(props) {
 
-const event_id = 1;
+const event_id = 2;
 const {
   state
 } = useEventsData(event_id, props.user);
