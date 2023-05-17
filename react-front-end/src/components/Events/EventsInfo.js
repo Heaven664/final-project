@@ -11,7 +11,7 @@ export default function EventsInfo(props) {
 
   const eventTime = dateFormat(props.eventsInfo.event_date, "UTC:h:MM:ss TT Z");
 
-  const eventAgenda = props.eventsInfo.agenda.split(",").join("<br />")
+  // const eventAgenda = props.eventsInfo.agenda.split(",").join("<br />")
 
   console.log(props.props);
   return (
@@ -33,7 +33,7 @@ export default function EventsInfo(props) {
 
       <div className='info-event'>
         <section className='event-agenda'>
-          {eventAgenda}
+          {props.eventsInfo.agenda}
         </section>
       </div>
 
