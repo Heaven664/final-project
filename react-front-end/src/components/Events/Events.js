@@ -11,7 +11,7 @@ import Fundraisers from "./Fundraisers";
 
 export default function Events(props) {
 
-const event_id = 7;
+const event_id = 1;
 const {
   state
 } = useEventsData(event_id, props.user);

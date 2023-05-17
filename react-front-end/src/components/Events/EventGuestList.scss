@@ -10,5 +10,6 @@
   &__list {
     display: flex;
     flex-flow: row wrap;
+    list-style-type: none;
   }
 }
