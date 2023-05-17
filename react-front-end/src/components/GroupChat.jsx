@@ -118,7 +118,7 @@ export default function GroupChat(props) {
   useEffect(() => {
     Promise.all([
       axios.get("/api/events"),
-      axios.get("api/event-users"),
+      axios.get("api/event-user"),
       axios.get("api/users"),
     ]).then((all) => {
       const eventsId = getEventsId(all[1].data, state.user_id);
