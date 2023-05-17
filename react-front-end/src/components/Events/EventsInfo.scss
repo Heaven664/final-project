@@ -1,6 +1,12 @@
 @import "../../styles/mixins.scss";
 @import "../../styles/variables.scss";
 
+
+.info-layout{
+  font-size: $title-size;
+  display: flex;
+  flex-direction: column;
+
 .-img {
   width: 200px;
   height: 200px;
@@ -14,6 +20,19 @@
 
 .info-host {
   display: flex;
+  flex-direction: row;
+
+  .host-name{
+
+  }
+}
+
+.info-meet{
+  display: flex;
   flex-direction: column;
-  
+  text-align: center;
+    
+}
+
+
 }

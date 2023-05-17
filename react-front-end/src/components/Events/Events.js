@@ -57,7 +57,7 @@ const getFullName = function (obj) {
 
       <div className='event-right __panel'>
         <section className="maps-api __card box-shadow border-radius20 background-box-color user-detail">
-        <span>description / maps</span>
+        <span>{state.eventsInfo.description}</span>
         </section>
         <section className="fundraisers __card  box-shadow border-radius20 background-box-color user-detail">
           <Fundraisers donation={state.fundraisers}/>
