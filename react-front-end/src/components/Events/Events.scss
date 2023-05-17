@@ -69,6 +69,14 @@
 
   }
 
+  &.no-fundraisers {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-grow: 0;
+
+  }
+
   &.event-wall {
     margin-top: 1rem;
     display: flex;
