@@ -1,21 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 
 
 // css, font-awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear } from '@fortawesome/free-solid-svg-icons';
-import './App.scss';
 
 import MyProfile from './MyProfile';
 import Friend from './Friend';
 import PrivateChat from 'components/PrivateChat';
 import GroupChat from 'components/GroupChat';
 import Setting from 'components/Setting';
-import Login from 'components/Login'
+import Login from 'components/Login';
 import Events from "./Events/Events";
+import { friendContext } from 'providers/FriendProvider';
+
+import './App.scss';
+
 
 export default function App(props) {
+
+  const { page, changePage } = useContext(friendContext);
 
   const [user, setUser] = useState(null);
 
@@ -30,8 +35,8 @@ export default function App(props) {
       });
   };
 
-   // Login user on the server
-   const login2 = function () {
+  // Login user on the server
+  const login2 = function () {
     axios.post("api/login/1")
       .then(res => {
         setUser(res.data);
@@ -41,10 +46,8 @@ export default function App(props) {
       });
   };
 
-  const [selectedPage, setSelectedPage] = useState("profile");
-
   function handlePageClick(page) {
-    setSelectedPage(page);
+    changePage(page);
   }
 
   return (
@@ -53,43 +56,43 @@ export default function App(props) {
         <nav className="sidebar__menu">
           <ul>
             <li className={`profile 
-              ${selectedPage === 'profile' ? '--selected' : ''}`}
+              ${page === 'profile' ? '--selected' : ''}`}
               onClick={() => handlePageClick('profile')}>
               <FontAwesomeIcon icon={faUser} /><br />
               <span>My Profile</span>
             </li>
             <li className={`friends 
-              ${selectedPage === 'friends' ? '--selected' : ''}`}
+              ${page === 'friends' ? '--selected' : ''}`}
               onClick={() => handlePageClick('friends')}>
               <FontAwesomeIcon icon={faUsers} /><br />
               <span>Friends</span>
             </li>
             <li className={`chat 
-              ${selectedPage === 'chat' ? '--selected' : ''}`}
+              ${page === 'chat' ? '--selected' : ''}`}
               onClick={() => handlePageClick('chat')}>
               <FontAwesomeIcon icon={faComment} /><br />
               <span>Chat</span>
             </li>
             <li className={`groupChat 
-              ${selectedPage === 'groupChat' ? '--selected' : ''}`}
+              ${page === 'groupChat' ? '--selected' : ''}`}
               onClick={() => handlePageClick('groupChat')}>
               <FontAwesomeIcon icon={faComments} /><br />
               <span>Group Chat</span>
             </li>
             <li className={`events 
-              ${selectedPage === 'events' ? '--selected' : ''}`}
+              ${page === 'events' ? '--selected' : ''}`}
               onClick={() => handlePageClick('events')}>
               <FontAwesomeIcon icon={faCakeCandles} /><br />
               <span>Events</span>
             </li>
             <li className={`myEvent 
-              ${selectedPage === 'myEvent' ? '--selected' : ''}`}
+              ${page === 'myEvent' ? '--selected' : ''}`}
               onClick={() => handlePageClick('myEvent')}>
               <FontAwesomeIcon icon={faCalendarPlus} /><br />
               <span>My Event</span>
             </li>
             <li className={`setting 
-              ${selectedPage === 'setting' ? '--selected' : ''}`}
+              ${page === 'setting' ? '--selected' : ''}`}
               onClick={() => handlePageClick('setting')}>
               <FontAwesomeIcon icon={faGear} /><br />
               <span>Setting</span>
@@ -114,17 +117,17 @@ export default function App(props) {
         </div>
       </section>
       <section className="contents">
-        {(!user) && <Login login1={login1} login2={login2}/>}
-        {(user && selectedPage === 'profile') &&
+        {(!user) && <Login login1={login1} login2={login2} />}
+        {(user && page === 'profile') &&
           <MyProfile handlePageClick={handlePageClick} />
         }
-        {selectedPage === 'friends' && <Friend />}
-        {(user && selectedPage === 'chat') && <PrivateChat user={user.id} />}
-        {(user && selectedPage === 'groupChat') && <GroupChat user={user.id} />}
-        {(user && selectedPage === 'setting') &&
+        {(user && page) === 'friends' && <Friend />}
+        {(user && page === 'chat') && <PrivateChat user={user.id} />}
+        {(user && page === 'groupChat') && <GroupChat user={user.id} />}
+        {(user && page === 'setting') &&
           <Setting handlePageClick={handlePageClick} />
         }
-        {(user && selectedPage === 'events') && <Events user={user.id} />}
+        {(user && page === 'events') && <Events user={user.id} />}
 
       </section>
     </main>

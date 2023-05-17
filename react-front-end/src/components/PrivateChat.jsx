@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import io from "socket.io-client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,6 +6,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 import PrivateChatList from "components/PrivateChatList";
 import MessageList from "components/MessageList";
+import { friendContext } from "providers/FriendProvider";
 
 import "./PrivateChat.scss";
 
@@ -36,11 +37,13 @@ const getFriendsMessages = (messages, user_id, friend_id) => {
 };
 
 export default function PrivateChat(props) {
+  const { friendId } = useContext(friendContext);
+
   const [state, setState] = useState({
     user_id: props.user || 1,
     chats: [],
     messages: [],
-    friend_id: 0,
+    friend_id: friendId || 0,
     friend: {},
     newMessagesCounter: 0,
   });
@@ -98,7 +101,7 @@ export default function PrivateChat(props) {
     }
     return () => {
       if (socket) {
-        socket.disconnect()
+        socket.disconnect();
         socket.off("connect");
         socket.off("private_message");
         socket.off("disconnect");
