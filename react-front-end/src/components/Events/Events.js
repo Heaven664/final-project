@@ -6,13 +6,12 @@ import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
 import { getEventGuests, getEventInfo } from "../../helpers/event_selectors";
 import Fundraisers from "./Fundraisers";
-import Button from 'react-bootstrap/Button';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default function Events(props) {
 
-const event_id = 2;
+const event_id = 7;
 const {
   state
 } = useEventsData(event_id, props.user);

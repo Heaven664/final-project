@@ -18,8 +18,8 @@
       color: $dark-background;
       background-color: $primary-color;
       font-size: $title-size;
-      border-radius: 16px;
-      height: 32px;
+      border-radius: 25px;
+      height: 58px;
       display: flex;
       align-items: center;
       padding-left: 2px;
@@ -28,8 +28,8 @@
     }
 
     &--selected &-image {
-      width: 28px;
-      height: 28px;
+      width: 58px;
+      height: 58px;
       margin-right: 0.5rem;
     }
 

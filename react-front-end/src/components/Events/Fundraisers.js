@@ -7,7 +7,7 @@ import "./Fundraisers.scss"
 export default function Fundraisers(props) {
 
   const percentage = props.donation.current_amount / props.donation.target_amount;
-  const barPercentage = percentage * 100 + "%";
+  const barPercentage = Math.round(percentage * 100) + "%";
 
   console.log('perc',percentage)
 
