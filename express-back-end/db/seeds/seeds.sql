@@ -40,9 +40,7 @@ VALUES
 INSERT INTO fundraisers (title, event_id, target_amount, current_amount) VALUES
   ('Children''s Education Fundraiser', 1, 5000, 2500),
   ('Community Food Drive', 2, 10000, 750),
-  ('Medical Research Campaign', 3, 15000, 0),
   ('Animal Shelter Renovation Project', 4, 8000, 400),
-  ('Environmental Conservation Initiative', 5, 20000, 10000),
   ('Support for Homeless Veterans', 6, 3000, 500),
   ('Art Scholarship Program', 7, 6000, 2000),
   ('Disaster Relief Fund', 8, 25000, 15000),
