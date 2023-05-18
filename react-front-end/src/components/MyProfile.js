@@ -46,14 +46,10 @@ export default function MyProfile(props) {
       .then(
         (all) => {
           const friendIds = getFriendsIds(all[1].data, currentUser);
-          console.log(friendIds);
-          console.log(currentUser);
           const isFriend = friendIds.includes(state.id);
-          console.log(isFriend);
           setState(prev => ({ ...prev, isFriend }));
         }
       )
-      .then(() => console.log(state));
   }, []);
 
   return (
@@ -61,7 +57,7 @@ export default function MyProfile(props) {
       <div className="display-flex">
         <div className="user-photo">
           <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
-          {state.id === currentUser && <ProfileButton>Change Photo</ProfileButton>}
+          {state.id === currentUser && <ProfileButton interaction={() => console.log('upload photo')}>Change Photo</ProfileButton>}
           {state.isFriend && <ProfileButton>Message</ProfileButton>}
           {(state.id !== currentUser && !state.isFriend) && <ProfileButton>Add Friend</ProfileButton>}
         </div>
