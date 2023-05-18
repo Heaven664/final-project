@@ -6,6 +6,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
+import NavThumbnail from "./NavThumbnail";
 import MyProfile from './MyProfile';
 import Friend from './Friend';
 import PrivateChat from 'components/PrivateChat';
@@ -17,7 +18,6 @@ import NewEvent from "./NewEvents/NewEvent";
 import { friendContext } from 'providers/FriendProvider';
 
 import './App.scss';
-import NavThumnail from "./NavThumbnail";
 
 export default function App(props) {
 
@@ -28,7 +28,6 @@ export default function App(props) {
 
   const [user, setUser] = useState(currentUser);
   const [event, setEvent] = useState(null);
-  console.log("user:", user);
 
   sessionStorage.setItem('user', JSON.stringify(user));
 
@@ -130,11 +129,10 @@ export default function App(props) {
               alt="Wish Whisper"
             />
           </div>
-          {(!user) && <NavThumnail handlePageClick={handlePageClick} />}
-          {(user && page === 'profile') &&
-            <NavThumnail handlePageClick={handlePageClick} user={user.id} />
+          {!user && <NavThumbnail handlePageClick={handlePageClick} />}
+          {user &&
+            <NavThumbnail handlePageClick={handlePageClick} user={user.id} />
           }
-          
         </div>
       </section>
       <section className="contents">
