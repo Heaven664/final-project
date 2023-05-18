@@ -81,7 +81,7 @@ export default function ManageGuest(props) {
 
   return (
     <>
-      <div className="search-bar border-radius20">
+      <div className="search-input border-radius20">
         <form onSubmit={event => event.preventDefault()}>
           <span className="font20"><FontAwesomeIcon icon={faMagnifyingGlass} /></span>
           <input

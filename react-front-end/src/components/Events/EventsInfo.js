@@ -33,20 +33,20 @@ export default function EventsInfo(props) {
 
       <div className='info-event'>
         <section className='event-agenda'>
-          {props.eventsInfo.agenda}
+          {props.eventsInfo.description}
         </section>
       </div>
 
       <div className='info-meet'>
-        <section className='date'>
+        <section id='date'>
           <FontAwesomeIcon icon={faCalendar} />
           <span>{' '}{eventDate}</span>
         </section>
-        <section className='time'>
+        <section id='time'>
           <FontAwesomeIcon icon={faClock} />
           <span>{' '}{eventTime}</span>
         </section>
-        <section className='location'>
+        <section id='location'>
           <FontAwesomeIcon icon={faLocationDot} />
           <span>{' '}{props.eventsInfo.event_location}</span>
         </section>

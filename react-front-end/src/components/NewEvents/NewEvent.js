@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './NewEvent.scss';
 import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
+import ManageGuest from "./ManageGuests";
 
 
 export default function NewEvent(props) {
@@ -15,7 +16,7 @@ export default function NewEvent(props) {
   });
 
   const event_id = Math.floor(Math.random() * 10);
-  
+
   // const {
   //   state
   // } = useEventsData(event_id, props.user);
@@ -87,6 +88,7 @@ export default function NewEvent(props) {
 
           <section className="manage-guest __card box-shadow border-radius20 background-box-color user-detail">
             <span>Manage Guests</span>
+            <ManageGuest event={event_id}/>
           </section>
           
           <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail">
