@@ -6,13 +6,6 @@ import './FriendList.scss';
 
 
 export default function ListAllUserItem(props) {
-  // new state for exist friend
-  // friends = [1, 2, 3] 
-  // users = [1, 2, 3, 4, 5, 6] 
-  // [4, 5, 6] only render
-  // if currentId is exist friend list 
-  // multiple state. Ready user and friend / compare it 
-  // total user != friend -> 
 
   // 1. In your ListAllUserItem, you need to have both users, and friends array. 
   // 2. You loop through all users, and check if this user also exist in friends array. If yes, then he is a friend, you show "Chat/Unfriend". If not, then he is not my friend, you show "Add" 
@@ -20,7 +13,10 @@ export default function ListAllUserItem(props) {
   // 4. Your "Unfriend" button, will remove this user from "friends" array. So once you click, it is no longer your friends 
 
 
-  const { allUser, onAddFriend, onUnfriend } = props;
+  const { allUser, searchResults, onAddFriend, onUnfriend } = props;
+
+  // searhcing...
+  const usersToDisplay = searchResults.length > 0 ? searchResults : allUser.user_not_friend;
 
   // add friend
   const handleAddfriendClick = (e) => {
@@ -40,10 +36,11 @@ export default function ListAllUserItem(props) {
   const handleMessageClick = (id) => {
     onMessage(id);
   };
+  console.log("allUser", allUser);
 
   return (
     <>
-      {allUser.user_not_friend.map((user) => (
+      {usersToDisplay.map((user) => (
         <div className="user-list border-radius20 display-flex" key={user.id}>
           <div className="friend-user display-flex">
             <div className="thumbnail" style={{ backgroundImage: `url(${user.photo})` }}></div>
