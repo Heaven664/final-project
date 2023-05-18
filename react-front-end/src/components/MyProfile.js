@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import './MyProfile.scss';
 
+import { friendContext } from "providers/FriendProvider";
+
 export default function MyProfile(props) {
-  const handleButtonClick = () => {
-    props.handlePageClick('friends');
-  };
+
+  const { changePage } = useContext(friendContext);
 
   const [state, setState] = useState({
     id: 1,
@@ -31,7 +32,7 @@ export default function MyProfile(props) {
       })
       .catch(err => {
         console.error("connect error:", err.message);
-      })
+      });
   }, []);
 
   return (
@@ -40,7 +41,7 @@ export default function MyProfile(props) {
         <div className="user-photo">
           <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
           <div className="btn">
-            <button onClick={handleButtonClick} className="background-point-color btn-style">Add Friend</button>
+            <button onClick={() => changePage('friends')} className="background-point-color btn-style">Add Friend</button>
           </div>
         </div>
         <div className="box-shadow border-radius20 background-box-color user-detail">

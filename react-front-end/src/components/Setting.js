@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import './Setting.scss';
 
+import { friendContext } from 'providers/FriendProvider';
+
 export default function Setting(props) {
 
+  const { changePage } = useContext(friendContext);
 
   const [state, setState] = useState({
     id: 1,
@@ -16,7 +19,7 @@ export default function Setting(props) {
   });
 
   const updateProfile = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const data = {
       first_name: state.first_name,
       last_name: state.last_name,
@@ -24,14 +27,14 @@ export default function Setting(props) {
       city: state.city,
       birthday: state.birthday,
       about: state.about
-    }
+    };
     console.log("updated: ", data);
     axios.patch(`/api/users/${state.id}/edit`, data)
       .then(res => {
         console.log(res.data);
-        props.handlePageClick('profile');
+        changePage('profile');
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   };
 
   useEffect(() => {

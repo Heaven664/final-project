@@ -59,9 +59,9 @@ export default function App(props) {
       })
   };
 
-  function handlePageClick(page) {
-    changePage(page);
-  }
+  // function handlePageClick(page) {
+  //   changePage(page);
+  // }
 
   return (
     <main className="layout">
@@ -70,43 +70,43 @@ export default function App(props) {
           <ul>
             <li className={`profile 
               ${page === 'profile' ? '--selected' : ''}`}
-              onClick={() => handlePageClick('profile')}>
+              onClick={() => changePage('profile')}>
               <FontAwesomeIcon icon={faUser} /><br />
               <span>My Profile</span>
             </li>
             <li className={`friends 
               ${page === 'friends' ? '--selected' : ''}`}
-              onClick={() => handlePageClick('friends')}>
+              onClick={() => changePage('friends')}>
               <FontAwesomeIcon icon={faUsers} /><br />
               <span>Friends</span>
             </li>
             <li className={`chat 
               ${page === 'chat' ? '--selected' : ''}`}
-              onClick={() => handlePageClick('chat')}>
+              onClick={() => changePage('chat')}>
               <FontAwesomeIcon icon={faComment} /><br />
               <span>Chat</span>
             </li>
             <li className={`groupChat 
               ${page === 'groupChat' ? '--selected' : ''}`}
-              onClick={() => handlePageClick('groupChat')}>
+              onClick={() => changePage('groupChat')}>
               <FontAwesomeIcon icon={faComments} /><br />
               <span>Group Chat</span>
             </li>
             <li className={`events 
               ${page === 'events' ? '--selected' : ''}`}
-              onClick={() => handlePageClick('events')}>
+              onClick={() => changePage('events')}>
               <FontAwesomeIcon icon={faCakeCandles} /><br />
               <span>Events</span>
             </li>
             <li className={`myEvent 
               ${page === 'newEvent' ? '--selected' : ''}`}
-              onClick={() => handlePageClick('newEvent')}>
+              onClick={() => changePage('newEvent')}>
               <FontAwesomeIcon icon={faCalendarPlus} /><br />
               <span>New Event</span>
             </li>
             <li className={`setting 
               ${page === 'setting' ? '--selected' : ''}`}
-              onClick={() => handlePageClick('setting')}>
+              onClick={() => changePage('setting')}>
               <FontAwesomeIcon icon={faGear} /><br />
               <span>Setting</span>
             </li>
@@ -124,7 +124,7 @@ export default function App(props) {
               alt="Wish Whisper"
             />
           </div>
-          <div onClick={() => handlePageClick('setting')}>
+          <div onClick={() => changePage('setting')}>
             <img
               className="user-profile-pic"
               src="images/user_ex.png"
@@ -136,13 +136,13 @@ export default function App(props) {
       <section className="contents">
         {(!user) && <Login login1={login1} login2={login2} />}
         {(user && page === 'profile') &&
-          <MyProfile handlePageClick={handlePageClick} />
+          <MyProfile />
         }
         {(user && page) === 'friends' && <Friend />}
         {(user && page === 'chat') && <PrivateChat user={user.id} />}
         {(user && page === 'groupChat') && <GroupChat user={user.id} />}
         {(user && page === 'setting') &&
-          <Setting handlePageClick={handlePageClick} />
+          <Setting  />
         }
         {(user && page === 'events') && <Events user={user.id}/>}
         {(user && page === 'newEvent') && <NewEvent user={user.id}/>}
