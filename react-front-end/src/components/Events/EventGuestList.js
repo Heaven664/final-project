@@ -25,6 +25,7 @@ export default function EventGuestList(props) {
         avatar={user.photo}
         selected={user.id === props.value}
         setEventGuest={() => props.onChange(user.id)}
+        reset={() => props.onChange("")}
       />
     );
   });
