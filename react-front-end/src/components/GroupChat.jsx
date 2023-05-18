@@ -54,6 +54,7 @@ export default function GroupChat(props) {
       .post("/api/gmsg/", data)
       .then(() => {
         socket.emit("group message", state.event_id);
+        console.log(state.event_id);
         setState((prev) => ({
           ...prev,
           newMessagesCounter: prev.newMessagesCounter + 1,
@@ -89,8 +90,6 @@ export default function GroupChat(props) {
       console.log(`connected to server ${client.id}`);
     });
 
-    client.emit("join room", state.event_id);
-
     client.on("group message", () => {
       setState((prev) => ({
         ...prev,
@@ -106,6 +105,10 @@ export default function GroupChat(props) {
       client.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    socketRef.current.emit("join room", state.event_id);
+  }, [state.event_id]);
 
   useEffect(() => {
     Promise.all([
