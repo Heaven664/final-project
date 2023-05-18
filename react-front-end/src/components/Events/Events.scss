@@ -71,9 +71,10 @@
 
   &.maps-api {
     flex-grow: 5;
-    font-size: 2rem;
+    font-size: $title-size;
     justify-content: center;
     align-items: center;
+    list-style-type: none;
   }
 
   &.fundraisers {

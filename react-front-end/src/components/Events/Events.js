@@ -31,6 +31,13 @@ export default function Events(props) {
     return obj.first_name + " " + obj.last_name;
   };
 
+  const agendaList = (
+    state.eventsInfo.agenda
+      ?
+      state.eventsInfo.agenda.split(',').map((agendaItem) => {
+    return (<li>{agendaItem}</li>)})
+      :
+      "");
 
   return (
     <main className="event-layout">
@@ -75,7 +82,7 @@ export default function Events(props) {
 
       <div className='event-right __panel'>
         <section className="maps-api __card box-shadow border-radius20 background-box-color user-detail">
-          <span>{state.eventsInfo.description}</span>
+          <span>{state.eventsInfo.agenda? agendaList : ""}</span>
         </section>
 
         {
