@@ -89,7 +89,7 @@ export default function App(props) {
               <span>Events</span>
             </li>
             <li className={`myEvent 
-              ${selectedPage === 'newEvent' ? '--selected' : ''}`}
+              ${page === 'newEvent' ? '--selected' : ''}`}
               onClick={() => handlePageClick('newEvent')}>
               <FontAwesomeIcon icon={faCalendarPlus} /><br />
               <span>New Event</span>
@@ -130,8 +130,8 @@ export default function App(props) {
         {(user && page === 'setting') &&
           <Setting handlePageClick={handlePageClick} />
         }
-        {(user && selectedPage === 'events') && <Events user={user.id} event={event}/>}
-        {(user && selectedPage === 'newEvent') && <NewEvent user={user.id} event={event}/>}
+        {(user && page === 'events') && <Events user={user.id} event={event}/>}
+        {(user && page === 'newEvent') && <NewEvent user={user.id} event={event}/>}
 
       </section>
     </main>
