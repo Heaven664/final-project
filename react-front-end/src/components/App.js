@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // css, font-awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 import MyProfile from './MyProfile';
 import Friend from './Friend';
@@ -23,16 +23,21 @@ export default function App(props) {
 
   const { page, changePage } = useContext(friendContext);
 
-  const [user, setUser] = useState(null);
+  const storedUser = sessionStorage.getItem('user');
+  const currentUser = storedUser ? JSON.parse(storedUser) : null;
+
+  const [user, setUser] = useState(currentUser);
   const [event, setEvent] = useState(null);
   console.log("user:", user);
+
+  sessionStorage.setItem('user', JSON.stringify(user));
 
   // Login user on the server
   const login1 = function () {
     axios.post("api/login")
       .then(res => {
         setUser(res.data);
-        setEvent(Math.floor(Math.random() * 10)); 
+        setEvent(Math.floor(Math.random() * 10));
       })
       .catch(err => {
         console.log("Login:", err.message);
@@ -44,10 +49,19 @@ export default function App(props) {
     axios.post("api/login/1")
       .then(res => {
         setUser(res.data);
-        setEvent(Math.floor(Math.random() * 10)); 
+        setEvent(Math.floor(Math.random() * 10));
       })
       .catch(err => {
         console.log("Login:", err.message);
+      });
+  };
+
+  const logout = () => {
+    axios.post('/api/logout')
+      .then((res) => console.log(res.data))
+      .then(() => {
+        // sessionStorage.removeItem('user');
+        setUser(null);
       });
   };
 
@@ -101,6 +115,10 @@ export default function App(props) {
               onClick={() => handlePageClick('setting')}>
               <FontAwesomeIcon icon={faGear} /><br />
               <span>Setting</span>
+            </li>
+            <li className='events'
+              onClick={logout}>
+              <FontAwesomeIcon icon={faRightFromBracket} />
             </li>
           </ul>
         </nav>

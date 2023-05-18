@@ -46,6 +46,7 @@ const clients = {};
 app.post('/api/login', (req, res) => {
   const user = { id: 1 };
   req.session.user = user;
+  console.log(req.session)
   res.json(user);
 });
 
@@ -54,6 +55,11 @@ app.post('/api/login/1', (req, res) => {
   req.session.user = user;
   res.json(user);
 });
+
+app.post('/api/logout', (req, res) => {
+  req.session = null;
+  res.json("Cookie removed")
+})
 
 io.on('connection', socket => {
   console.log(`A user ${socket.id} connected`);
