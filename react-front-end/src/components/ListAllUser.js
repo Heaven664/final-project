@@ -4,62 +4,82 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import ListAllUserItem from './ListAllUserItem';
-import {getFriendsIds, getTableIds, getFriendsObjects} from 'helpers/getFriendFunc';
+import { getFriendsIds, getTableIds, getFriendsObjects } from 'helpers/getFriendFunc';
 
 export default function ListAllUser(props) {
 
   // searching
-  const [value, setValue] = useState("a");
-  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [value, setValue] = useState("");
+  // const [friend, setFriend] = useState(null);
   const delayTimerRef = useRef(null);
 
   // friends render
-  const [friend, setFriend] = useState({
-    user_id: 2,
-    friend_id: [],
+  const [allUser, setAllUser] = useState({
+    user_id: props.user,
+    user_not_friend: []
   });
 
-  // get the friends list
-  const fetchFriends = (friend, setFriend) => {
+  // // added friend
+  // const [addedFriend, setAddedFriend] = useState({
+  //   user_id: props.user,
+  //   friend_id: [],
+  // })
+
+  // get the user list
+  const fetchFriends = (allUser, setAllUser) => {
     Promise.all([
       axios.get("/api/users"),
       axios.get("api/friendlists")
     ]).then(
       (all) => {
+        // all[0].data: user data ,all[1].data: friendlist data
+
         // my friend's id array []
-        const friendIds = getFriendsIds(all[1].data, friend.user_id);
+        const friendIds = getFriendsIds(all[1].data, allUser.user_id);
 
         // that table's id array []
-        const tableIds = getTableIds(all[1].data, friend.user_id);
+        const tableIds = getTableIds(all[1].data, allUser.user_id);
 
         // my friend's info [{}]
         const friendLists = getFriendsObjects(all[0].data, friendIds);
 
+        // add name key-value
+        const modifiedUsers = all[0].data.map((user) => {
+          const name = user.first_name + " " + user.last_name;
+          return { ...user, name};
+        });
+
+        // get the User who are not friend and userself
+        const notFriendUser = modifiedUsers.filter(user => {
+          return !friendIds.includes(user.id) && user.id !== allUser.user_id;
+        });
+
         // add friendlist's table id
-        const updatedData = friendLists.map((obj, index) => {
+        const updatedData = modifiedUsers.map((obj, index) => {
           return {
             ...obj,
-            table_id: tableIds[index]
+            friend_id: tableIds[index]
           };
         });
 
-        // add name key-value
-        const modifiedUsers = updatedData.map((user) => {
-          const name = user.first_name + " " + user.last_name;
-          return { ...user, name };
-        });
+        // console.log("friendIds:", friendIds, "notFriendUser: ", notFriendUser);
 
-        setFriend((prev) => ({
+        setAllUser((prev) => ({
           ...prev,
-          friend_id: modifiedUsers,
+          user_not_friend: notFriendUser,
         }));
+
+        // setAddedFriend((prev) => ({
+        //   ...prev,
+        //   user_not_friend: updatedData,
+        // }));
       }
     );
   };
 
   // Usage in useEffect hook
   useEffect(() => {
-    fetchFriends(friend, setFriend);
+    fetchFriends(allUser, setAllUser);
   }, []);
 
 
@@ -67,7 +87,7 @@ export default function ListAllUser(props) {
     if (value === "") return;
     clearTimeout(delayTimerRef.current);
     delayTimerRef.current = setTimeout(() => {
-      const users = friend.friend_id;
+      const users = allUser.user_not_friend;
 
       // case sensitive off
       const filteredResults = users.filter((user) => {
@@ -76,9 +96,9 @@ export default function ListAllUser(props) {
         return fullName.includes(searchValue);
       });
 
-      setFriend((prev) => ({
+      setAllUser((prev) => ({
         ...prev,
-        friend_id: filteredResults,
+        user_not_friend: filteredResults,
       }));
     }, 400);
 
@@ -87,11 +107,39 @@ export default function ListAllUser(props) {
     };
   }, [value]);
 
+  const addFriend = (user) => {
+    const data = {
+      user_id: allUser.user_id,
+      friend_id: user.id
+    };
+
+    axios.post(`/api/friendlists`, data)
+      .then(res => {
+        console.log("Add Friend data: ", res.data);
+
+        const modifiedUsers = allUser.user_not_friend.map((user) => {
+          if (user.id === data.friend_id) {
+            return {
+              ...user,
+              table_id: res.data[0].id
+            };
+          }
+          return user;
+        });
+        setAllUser((prev) => ({
+          ...prev,
+          user_not_friend: modifiedUsers,
+        }));
+
+      })
+      .catch(err => console.log(err));
+  };
+
 
   const unfriend = (user) => {
     const data = {
       id: user.table_id,
-      user_id: friend.user_id,
+      user_id: allUser.user_id,
       friend_id: user.id
     };
     console.log("delete data: ", data);
@@ -99,8 +147,21 @@ export default function ListAllUser(props) {
     axios.delete(`/api/friendlists/${data.id}/delete`, data)
       .then(res => {
         console.log(res.data);
+
+        const modifiedUsers = allUser.user_not_friend.map((user) => {
+          if (user.id === data.friend_id) {
+            return {
+              ...user,
+              table_id: null
+            };
+          }
+          return user;
+        });
+        setAllUser((prev) => ({
+          ...prev,
+          user_not_friend: modifiedUsers,
+        }));
       })
-      // .then(fetchFriends(friend, setFriend))
       .catch(err => console.log(err))
   };
 
@@ -118,7 +179,8 @@ export default function ListAllUser(props) {
         </form>
       </div>
       <ListAllUserItem
-        filteredUsers={filteredUsers}
+        allUser={allUser}
+        onAddFriend={addFriend}
         onUnfriend={unfriend}
       />
     </>

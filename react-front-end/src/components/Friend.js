@@ -18,7 +18,7 @@ export default function Friend(props) {
   function handleListClick(section) {
     setList(section);
   }
- 
+  
   return (
     <div className="friend-box background-box-color border-radius20 box-shadow">
       <div className="search-section">
@@ -46,11 +46,11 @@ export default function Friend(props) {
         </div>
 
         {list === 'myFriends' &&
-          <ListFriend></ListFriend>
+          <ListFriend user={props.user}></ListFriend>
         }
 
         {list === 'allUsers' &&
-          <ListAllUser></ListAllUser>
+          <ListAllUser user={props.user}></ListAllUser>
         }
       </div>
 
