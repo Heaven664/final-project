@@ -14,6 +14,8 @@ export default function NewEvent(props) {
     event_agenda: ""
   });
 
+  const event_id = Math.floor(Math.random() * 10);
+  
   // const {
   //   state
   // } = useEventsData(event_id, props.user);

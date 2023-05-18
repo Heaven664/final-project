@@ -1,23 +1,23 @@
 import React from "react";
 import classNames from "classnames";
-import "./EventGuestListItem.scss";
+import "./Guest.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faP } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function EventGuestListItem(props) {
+export default function Guest(props) {
 
-  const EventGuestListClass = classNames("eventGuest__item", { 
-    " eventGuest__item--selected": props.selected
+  const GuestListClass = classNames("Guest__item", { 
+    " Guest__item--selected": props.selected
    });
 
   return (
-    <li className={EventGuestListClass} >
+    <li className={GuestListClass} >
       <img
-        className="eventGuest__item-image"
+        className="Guest__item-image"
         src={props.avatar}
         alt={props.name}
-        onClick={props.selected? props.reset: props.setEventGuest}
+        onClick={props.selected? props.reset: props.setGuest}
       />
       <div onClick={"link to profile"}>
       {props.selected
