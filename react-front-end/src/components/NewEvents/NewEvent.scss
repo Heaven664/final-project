@@ -66,6 +66,18 @@
     }
   }
 
+  &.event-location {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-around;
+    align-items: center;
+
+    .event-locationField{
+      margin-left: 1rem;
+    }
+  }
+
   &.event-agenda {
     margin-top: 1rem;
     margin-bottom: 1rem;
