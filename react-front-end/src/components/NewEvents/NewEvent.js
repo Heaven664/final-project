@@ -8,22 +8,21 @@ export default function NewEvent(props) {
 
   // const [fundraiser, setFundaraiser] = useState(null);
   // const [eventGuest, setEventGuest] = useState(null);
-  const [state1, setState] = useState({
+  const [state, setState] = useState({
     event_name: "",
     event_time: "", 
     event_agenda: ""
   });
 
-  const event_id = props.event;
-  const {
-    state
-  } = useEventsData(event_id, props.user);
+  // const {
+  //   state
+  // } = useEventsData(event_id, props.user);
 
-  console.log(state);
-  console.log(state.event_user);
-  console.log(state.eventsInfo);
-  console.log(state.fundraisers);
-  console.log(props.user, state.eventsInfo.host_id);
+  // console.log(state);
+  // console.log(state.event_user);
+  // console.log(state.eventsInfo);
+  // console.log(state.fundraisers);
+  // console.log(props.user, state.eventsInfo.host_id);
 
   return (
       <form className="new-event-layout" onSubmit={""}>
