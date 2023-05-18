@@ -1,6 +1,6 @@
 @import "../../styles/variables.scss";
 
-.event-layout {
+.new-event-layout {
   margin-top: 15vh;
   margin-left: 1vw;
   margin-right: 2vw;
@@ -10,6 +10,15 @@
   flex-direction: row;
   height: 60vh;
   width: 95%;
+  font-size: $title-size;        
+  
+  input{
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid #e2e2e2;
+}
+
 }
 
 .__panel {
@@ -19,12 +28,12 @@
   flex-direction: column;
   align-items: center;
 
-  &.event-left {
-    width:60%;
+  &.-left {
+    width:40%;
   }
 
-  &.event-right {
-    width:40%;
+  &.-right {
+    width:60%;
   }
 }
 
@@ -32,72 +41,81 @@
   width: 100%;
   display: flex;
 
-  &.invitation {
+  &.event-name {
     margin-bottom: 1rem;
-    font-size: 1.5rem;
     flex-grow: 1;
     justify-content: center;
     align-items: center;
+    
+    width: 100%;
+
+    .event-nameField{
+      margin-left: 1rem;
+    }
   }
 
-  &.modification {
+  &.event-time {
     display: flex;
     flex-direction: row;
-    font-size: 1.5rem;
     flex-grow: 1;
     justify-content: space-around;
     align-items: center;
 
-    .modi {
-      width: 45%;
-      height: 80%;
+    .event-timeField{
+      margin-left: 1rem;
     }
   }
 
-  &.event-info {
+  &.event-agenda {
     margin-top: 1rem;
     margin-bottom: 1rem;
-    flex-grow: 5;
+    flex-grow: 4;
+    justify-content: center;
+    align-items: center;
 
+
+    .event-agendaField{
+      margin-left: 1rem;
+    }
+  }
+  
+  &.event_description {
+    margin-bottom: 1rem;
+    flex-grow: 4;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+
+    .event_descriptionField{
+      margin-left: 1rem;
+
+    }
   }
 
-  &.event-guest {
+
+  &.manage-guest {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     
     margin-top: 1rem;
+    flex-grow: 5;
+
+  }
+
+  &.manage-fundraiser {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
     flex-grow: 4;
 
   }
 
-  &.maps-api {
-    margin-bottom: 1rem;
-    flex-grow: 5;
-    font-size: 2rem;
+  &.event-create {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-  }
-
-  &.fundraisers {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-grow: 3;
-
-  }
-
-  &.no-fundraisers {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-grow: 0;
-
-  }
-
-  &.event-wall {
-    margin-top: 1rem;
-    display: flex;
     flex-grow: 1;
   }
 

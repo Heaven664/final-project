@@ -18,7 +18,7 @@ const getAll = () => {
 };
 
 const getById = (id) => {
-  const queryString = `SELECT * FROM fundraisers WHERE id = $1`;
+  const queryString = `SELECT * FROM fundraisers WHERE event_id = $1`;
   const values = [id];
   return db.query(queryString, values)
     .then(res => res.rows[0]);

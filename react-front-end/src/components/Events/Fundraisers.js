@@ -36,7 +36,7 @@ export default function Fundraisers(props) {
           <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}
           </div>
         </div>
-          <button onClick={""} id="supportButton" className="background-point-color btn-style"> Support! </button>
+          <button onClick={""} id="supportButton" className="background-fundraiser-color btn-style"> Support! </button>
 
 
     </main>
