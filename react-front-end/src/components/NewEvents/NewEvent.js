@@ -20,8 +20,8 @@ export default function NewEvent(props) {
 
 
   const createEvent = (event) => {
-    
-    event.preventDefault()
+
+    event.preventDefault();
 
     const data = {
       host: props.user,
@@ -38,115 +38,118 @@ export default function NewEvent(props) {
         console.log(res.data);
         setNewEvent(res.data.id);
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   };
 
   return (
     <form className="new-event-layout" onSubmit={createEvent}>
-      <div className='-left __panel'>
 
-        <section className="event-name __card box-shadow border-radius20 background-box-color user-detail">
-          <label>
-            Name:
-            <input
-              className="event-nameField"
-              type="text"
-              name="event_name"
-              onChange={(e) => setState({ ...state, event_name: e.target.value })}
-            />
-          </label>
-        </section>
-
-
-        <section className="event-time __card box-shadow border-radius20 background-box-color user-detail">
-          <label>
-            Date and Time:
-            <input
-              className="event-timeField"
-              type="datetime-local"
-              name="event_time"
-              defaultValueExpression="currentDate()"
-              onChange={(e) => setState({ ...state, event_time: e.target.value })}
-            />
-          </label>
-        </section>
-
-        <section className="event-location __card box-shadow border-radius20 background-box-color user-detail">
-          <label>
-            Location:
-            <input
-              className="event-locationField"
-              type="text"
-              name="event-location"
-              onChange={(e) => setState({ ...state, event_location: e.target.value })}
-            />
-          </label>
-        </section>
-
-        <section className="event-agenda __card box-shadow border-radius20 background-box-color user-detail">
-          <label>
-            Agenda:
-            <input
-              className="event-agendaField"
-              type="text"
-              name="event_agenda"
-              onChange={(e) => setState({ ...state, event_agenda: e.target.value })}
-            />
-          </label>
-        </section>
-
-        <section className="event_description __card box-shadow border-radius20 background-box-color user-detail">
-          <label>
-            Description:
-            <input
-              className="event_descriptionField"
-              type="text"
-              name="event_description"
-              onChange={(e) => setState({ ...state, event_description: e.target.value })}
-            />
-          </label>
-        </section>
-
-
-      </div>
-
-      <div className=' -right __panel'>
-
-        <section className="manage-guest __card box-shadow border-radius20 background-box-color user-detail">
 
           {
             newEvent
               ?
-              <ManageGuest event={newEvent.event_id} />
+              ""
               :
-              <span>Move on to next step to add guests!</span>
+        <div className='-upperpanel'>
+        <div className='-leftpanel'>
+          <section className="event-name __card box-shadow border-radius20 background-box-color user-detail">
+                <label>
+                  Name:
+                  <input
+                    className="event-nameField"
+                    type="text"
+                    name="event_name"
+                    onChange={(e) => setState({ ...state, event_name: e.target.value })}
+                  />
+                </label>
+              </section>
+              <section className="event_description __card box-shadow border-radius20 background-box-color user-detail">
+                <label>
+                  Description:
+                  <input
+                    className="event_descriptionField"
+                    type="text"
+                    name="event_description"
+                    onChange={(e) => setState({ ...state, event_description: e.target.value })}
+                  />
+                </label>
+              </section>
+         
+        </div>
+        <div className=' -rightpanel'>
+
+              <section className="event-time __card box-shadow border-radius20 background-box-color user-detail">
+                <label>
+                  Date and Time:
+                  <input
+                    className="event-timeField"
+                    type="datetime-local"
+                    name="event_time"
+                    onChange={(e) => setState({ ...state, event_time: e.target.value })}
+                  />
+                </label>
+              </section>
+
+              <section className="event-location __card box-shadow border-radius20 background-box-color user-detail">
+                <label>
+                  Location:
+                  <input
+                    className="event-locationField"
+                    type="text"
+                    name="event-location"
+                    onChange={(e) => setState({ ...state, event_location: e.target.value })}
+                  />
+                </label>
+              </section>
+
+              <section className="event-agenda __card box-shadow border-radius20 background-box-color user-detail">
+                <label>
+                  Agenda:
+                  <input
+                    className="event-agendaField"
+                    type="text"
+                    name="event_agenda"
+                    onChange={(e) => setState({ ...state, event_agenda: e.target.value })}
+                  />
+                </label>
+              </section>
+              </div>
+              </div>
           }
-        </section>
+        
+        
 
-        <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail">
+        {
+                  
+          newEvent
+            ?
+            <section className="manage-guest __card box-shadow border-radius20 background-box-color user-detail"><ManageGuest event={newEvent.event_id} /></section>
+            :
+            ""
+        }
 
-          {
-            newEvent
-              ?
-              <ManageGuest event={newEvent.event_id} />
-              :
-              <span>Move on to next step to add a fundraiser!</span>
-          }
-        </section>
+        {
+          newEvent
+            ?
+            <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail"><ManageGuest event={newEvent.event_id} /></section>
+            :
+            ""
+        }
 
-        <section className="event-create __card  box-shadow border-radius20 background-box-color user-detail">
-          {
-            newEvent
-              ?
-              <button onClick={""} className="background-point-color btn-style"> Create !</button>
-              :
-              <button onClick={createEvent}
-                className="background-point-color btn-style"> Next Step !</button>
-          }
+        <div className='-lowerpanel'>
+          <section className="event-create __card  box-shadow border-radius20 background-box-color user-detail">
+            {
+              newEvent
+                ?
+                <button onClick={""} className="background-point-color btn-style"> Create !</button>
+                :
+                <button onClick={createEvent}
+                  className="background-point-color btn-style"> Next Step !</button>
+            }
 
-        </section>
-
-      </div>
+          </section>
+        </div>
+      
     </form>
   );
 }
