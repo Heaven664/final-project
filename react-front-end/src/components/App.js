@@ -17,6 +17,7 @@ import NewEvent from "./NewEvents/NewEvent";
 import { friendContext } from 'providers/FriendProvider';
 
 import './App.scss';
+import NavThumnail from "./NavThumbnail";
 
 export default function App(props) {
 
@@ -24,6 +25,7 @@ export default function App(props) {
 
   const [user, setUser] = useState(null);
   const [event, setEvent] = useState(null);
+  console.log("user:", user);
 
   // Login user on the server
   const login1 = function () {
@@ -110,28 +112,26 @@ export default function App(props) {
               alt="Wish Whisper"
             />
           </div>
-          <div onClick={() => handlePageClick('setting')}>
-            <img
-              className="user-profile-pic"
-              src="images/user_ex.png"
-              alt="user"
-            />
-          </div>
+          {(!user) && <NavThumnail handlePageClick={handlePageClick} />}
+          {(user && page === 'profile') &&
+            <NavThumnail handlePageClick={handlePageClick} user={user.id} />
+          }
+          
         </div>
       </section>
       <section className="contents">
         {(!user) && <Login login1={login1} login2={login2} />}
         {(user && page === 'profile') &&
-          <MyProfile handlePageClick={handlePageClick} />
+          <MyProfile handlePageClick={handlePageClick} user={user.id}/>
         }
-        {(user && page) === 'friends' && <Friend />}
+        {(user && page) === 'friends' && <Friend user={user.id} />}
         {(user && page === 'chat') && <PrivateChat user={user.id} />}
         {(user && page === 'groupChat') && <GroupChat user={user.id} />}
-        {(user && page === 'setting') &&
-          <Setting handlePageClick={handlePageClick} />
-        }
         {(user && page === 'events') && <Events user={user.id} event={event}/>}
         {(user && page === 'newEvent') && <NewEvent user={user.id} event={event}/>}
+        {(user && page === 'setting') &&
+          <Setting handlePageClick={handlePageClick} user={user.id}/>
+        }
 
       </section>
     </main>
