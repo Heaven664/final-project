@@ -3,7 +3,8 @@ import axios from 'axios';
 import './MyProfile.scss';
 
 import { friendContext } from "providers/FriendProvider";
-import ProfileButton from "components/Buttons/ProfileButton"
+import ProfileButton from "components/Buttons/ProfileButton";
+import { getFriendsIds } from 'helpers/friends-data';
 
 export default function MyProfile(props) {
 
@@ -20,7 +21,8 @@ export default function MyProfile(props) {
     city: "",
     birthday: "",
     photo: "",
-    about: ""
+    about: "",
+    isFriend: false,
   });
 
   // get the user data from api
@@ -32,11 +34,26 @@ export default function MyProfile(props) {
         if (user.birthday) {
           user.birthday = user.birthday.substring(0, 10);
         }
-        setState(user);
+        setState(prev => ({ ...prev, ...user }));
       })
       .catch(err => {
         console.error("connect error:", err.message);
       });
+  }, []);
+
+  useEffect(() => {
+    Promise.all([axios.get("/api/users"), axios.get("api/friendlists")])
+      .then(
+        (all) => {
+          const friendIds = getFriendsIds(all[1].data, currentUser);
+          console.log(friendIds);
+          console.log(currentUser);
+          const isFriend = friendIds.includes(state.id);
+          console.log(isFriend);
+          setState(prev => ({ ...prev, isFriend }));
+        }
+      )
+      .then(() => console.log(state));
   }, []);
 
   return (
@@ -44,7 +61,9 @@ export default function MyProfile(props) {
       <div className="display-flex">
         <div className="user-photo">
           <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
-          <ProfileButton>Add Friend</ProfileButton>
+          {state.id === currentUser && <ProfileButton>Change Photo</ProfileButton>}
+          {state.isFriend && <ProfileButton>Message</ProfileButton>}
+          {(state.id !== currentUser && !state.isFriend) && <ProfileButton>Add Friend</ProfileButton>}
         </div>
         <div className="box-shadow border-radius20 background-box-color user-detail">
           <table>

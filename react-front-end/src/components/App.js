@@ -136,7 +136,7 @@ export default function App(props) {
       <section className="contents">
         {(!user) && <Login login1={login1} login2={login2} />}
         {(user && page === 'profile') &&
-          <MyProfile />
+          <MyProfile userId={1}/>
         }
         {(user && page) === 'friends' && <Friend />}
         {(user && page === 'chat') && <PrivateChat user={user.id} />}

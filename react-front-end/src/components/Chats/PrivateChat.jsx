@@ -3,38 +3,13 @@ import axios from "axios";
 import io from "socket.io-client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import {getFriendsIds, getFriendsObjects, getFriendsMessages} from 'helpers/friends-data'
 
 import PrivateChatList from "components/Chats/PrivateChatList";
 import MessageList from "components/Chats/MessageList";
 import { friendContext } from "providers/FriendProvider";
 
 import "./PrivateChat.scss";
-
-// Gets friend's id's of a user with provided id
-const getFriendsIds = (friendlists, id) => {
-  // Filter friendlists to get needed objects
-  const friendObjects = friendlists.filter(
-    (friendlist) => friendlist.user_id === id
-  );
-  // Get ids from the objects
-  return friendObjects.map((friend) => friend.friend_id);
-};
-
-// Gets user objects with ids from friends id array
-const getFriendsObjects = (users, friends) => {
-  return users.filter((user) => friends.includes(user.id));
-};
-
-// Gets the conversation between users
-const getFriendsMessages = (messages, user_id, friend_id) => {
-  const filteredMessages = messages.filter((message) => {
-    return (
-      (message.sender_id === user_id && message.receiver_id === friend_id) ||
-      (message.sender_id === friend_id && message.receiver_id === user_id)
-    );
-  });
-  return filteredMessages;
-};
 
 export default function PrivateChat(props) {
   const { friendId } = useContext(friendContext);
