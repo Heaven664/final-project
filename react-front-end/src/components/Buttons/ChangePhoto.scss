@@ -1,0 +1,12 @@
+#change-photo-container {
+  display: flex;
+
+   & .change-photo {
+    margin-right: 1rem;
+   }
+
+   & .save-photo {
+    margin-right: 1rem;
+    background-color: rgb(13, 164, 13);
+   }
+}

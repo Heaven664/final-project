@@ -4,6 +4,7 @@ import './MyProfile.scss';
 
 import { friendContext } from "providers/FriendProvider";
 import ProfileButton from "components/Buttons/ProfileButton";
+import ChangePhoto from "components/Buttons/ChangePhoto";
 import { getFriendsIds } from 'helpers/friends-data';
 
 export default function MyProfile(props) {
@@ -57,7 +58,7 @@ export default function MyProfile(props) {
       <div className="display-flex">
         <div className="user-photo">
           <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
-          {state.id === currentUser && <ProfileButton interaction={() => console.log('upload photo')}>Change Photo</ProfileButton>}
+          {state.id === currentUser && <ChangePhoto />}
           {state.isFriend && <ProfileButton>Message</ProfileButton>}
           {(state.id !== currentUser && !state.isFriend) && <ProfileButton>Add Friend</ProfileButton>}
         </div>
