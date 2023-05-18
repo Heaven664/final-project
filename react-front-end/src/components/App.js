@@ -26,7 +26,6 @@ export default function App(props) {
   const currentUser = storedUser ? JSON.parse(storedUser) : null;
 
   const [user, setUser] = useState(currentUser);
-  const [event, setEvent] = useState(null);
 
   sessionStorage.setItem('user', JSON.stringify(user));
 
@@ -35,7 +34,6 @@ export default function App(props) {
     axios.post("api/login")
       .then(res => {
         setUser(res.data);
-        setEvent(Math.floor(Math.random() * 10));
       })
       .catch(err => {
         console.log("Login:", err.message);
@@ -47,7 +45,6 @@ export default function App(props) {
     axios.post("api/login/1")
       .then(res => {
         setUser(res.data);
-        setEvent(Math.floor(Math.random() * 10));
       })
       .catch(err => {
         console.log("Login:", err.message);
@@ -147,8 +144,8 @@ export default function App(props) {
         {(user && page === 'setting') &&
           <Setting handlePageClick={handlePageClick} />
         }
-        {(user && page === 'events') && <Events user={user.id} event={event} />}
-        {(user && page === 'newEvent') && <NewEvent user={user.id} event={event} />}
+        {(user && page === 'events') && <Events user={user.id}/>}
+        {(user && page === 'newEvent') && <NewEvent user={user.id}/>}
 
       </section>
     </main>

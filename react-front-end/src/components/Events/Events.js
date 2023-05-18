@@ -14,7 +14,9 @@ export default function Events(props) {
   // const [fundraiser, setFundaraiser] = useState(null);
   const [eventGuest, setEventGuest] = useState(null);
 
-  const event_id = props.event;
+  
+  const event_id = Math.floor(Math.random() * 10);
+
   const {
     state
   } = useEventsData(event_id, props.user);
@@ -25,11 +27,10 @@ export default function Events(props) {
   console.log(state.fundraisers);
   console.log(props.user, state.eventsInfo.host_id);
 
-
-
   const getFullName = function(obj) {
     return obj.first_name + " " + obj.last_name;
   };
+
 
   return (
     <main className="event-layout">
