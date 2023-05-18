@@ -56,11 +56,10 @@ export default function App(props) {
 
   const logout = () => {
     axios.post('/api/logout')
-      .then((res) => console.log(res.data))
       .then(() => {
-        // sessionStorage.removeItem('user');
-        setUser(null);
-      });
+        sessionStorage.clear();
+        setUser(null)
+      })
   };
 
   function handlePageClick(page) {
