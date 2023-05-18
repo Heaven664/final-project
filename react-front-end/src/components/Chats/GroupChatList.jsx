@@ -1,8 +1,8 @@
 import React from "react";
 
-import GroupChatListItem from "components/GroupChatListItem";
+import GroupChatListItem from "components/Chats/GroupChatListItem";
 
-import "components/PrivateChatList.scss";
+import "./PrivateChatList.scss";
 
 export default function GroupChatList(props) {
   const events = props.events.map((event) => {

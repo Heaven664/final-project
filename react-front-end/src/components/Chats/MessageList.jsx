@@ -1,7 +1,7 @@
 import React from 'react';
-import MessageListItem from 'components/MessageListItem'
+import MessageListItem from 'components/Chats/MessageListItem'
 
-import "components/MessageList.scss"
+import "components/Chats/MessageList.scss"
 
 export default function MassageList(props) {
 

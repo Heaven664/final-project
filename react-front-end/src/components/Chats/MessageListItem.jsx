@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from "classnames";
 
-import 'components/MessageListItem.scss'
+import 'components/Chats/MessageListItem.scss'
 
 export default function MessageListItem(props) {
 

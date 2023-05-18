@@ -1,51 +1,41 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import io from "socket.io-client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
-import PrivateChatList from "components/PrivateChatList";
-import MessageList from "components/MessageList";
-import { friendContext } from "providers/FriendProvider";
+import GroupChatList from "components/Chats/GroupChatList";
+import MessageList from "components/Chats/MessageList";
 
 import "./PrivateChat.scss";
 
 // Gets friend's id's of a user with provided id
-const getFriendsIds = (friendlists, id) => {
+const getEventsId = (eventsList, id) => {
   // Filter friendlists to get needed objects
-  const friendObjects = friendlists.filter(
-    (friendlist) => friendlist.user_id === id
-  );
+  const eventObjectId = eventsList.filter((event) => event.user_id === id);
   // Get ids from the objects
-  return friendObjects.map((friend) => friend.friend_id);
+  return eventObjectId.map((event) => event.event_id);
 };
 
 // Gets user objects with ids from friends id array
-const getFriendsObjects = (users, friends) => {
-  return users.filter((user) => friends.includes(user.id));
-};
-
-// Gets the conversation between users
-const getFriendsMessages = (messages, user_id, friend_id) => {
-  const filteredMessages = messages.filter((message) => {
-    return (
-      (message.sender_id === user_id && message.receiver_id === friend_id) ||
-      (message.sender_id === friend_id && message.receiver_id === user_id)
-    );
+const getEventsObject = (events, userEvents, users) => {
+  const primaryEvents = events.filter((event) => userEvents.includes(event.id));
+  return primaryEvents.map((event) => {
+    return users
+      .filter((user) => user.id === event.host_id)
+      .map((user) => ({ ...event, photo: user.photo }));
   });
-  return filteredMessages;
 };
 
-export default function PrivateChat(props) {
-  const { friendId } = useContext(friendContext);
-
+export default function GroupChat(props) {
   const [state, setState] = useState({
     user_id: props.user || 1,
-    chats: [],
+    events: [],
     messages: [],
-    friend_id: friendId || 0,
-    friend: {},
+    event_id: 0,
+    event: {},
     newMessagesCounter: 0,
+    users: [],
   });
 
   const socketRef = useRef(null);
@@ -57,13 +47,14 @@ export default function PrivateChat(props) {
     e.preventDefault();
     const data = {
       sender_id: state.user_id,
-      receiver_id: state.friend_id,
+      event_id: state.event_id,
       text: message,
     };
     axios
-      .post("/api/pmsg/", data)
+      .post("/api/gmsg/", data)
       .then(() => {
-        socket.emit("private message", state.friend_id);
+        socket.emit("group message", state.event_id);
+        console.log(state.event_id);
         setState((prev) => ({
           ...prev,
           newMessagesCounter: prev.newMessagesCounter + 1,
@@ -73,20 +64,33 @@ export default function PrivateChat(props) {
     setMessage("");
   };
 
-  const changeFriend = (friend_id) => {
-    setState((prev) => ({ ...prev, friend_id }));
+  const changeEvent = (event_id) => {
+    setState((prev) => ({ ...prev, event_id }));
+  };
+
+  // Gets the conversation between users
+  const getEventMessages = (messages, event_id) => {
+    const filteredMessages = messages.filter((message) => {
+      return message.event_id === event_id;
+    });
+
+    return filteredMessages.map((message) => {
+      const sender = state.users.find((user) => {
+        return user.id === message.sender_id;
+      });
+      return { ...message, sender };
+    });
   };
 
   useEffect(() => {
     socketRef.current = io();
-
     const client = socketRef.current;
+
     client.on("connect", () => {
       console.log(`connected to server ${client.id}`);
-      client.emit("send_id", state.user_id);
     });
 
-    client.on("private message", () => {
+    client.on("group message", () => {
       setState((prev) => ({
         ...prev,
         newMessagesCounter: prev.newMessagesCounter + 1,
@@ -96,64 +100,60 @@ export default function PrivateChat(props) {
     client.on("disconnect", () => {
       console.log("disconnected from server");
     });
+
     return () => {
       client.disconnect();
     };
   }, []);
 
   useEffect(() => {
-    Promise.all([axios.get("/api/users"), axios.get("api/friendlists")]).then(
-      (all) => {
-        const friendIds = getFriendsIds(all[1].data, state.user_id);
-        const chats = getFriendsObjects(all[0].data, friendIds);
-        setState((prev) => ({
-          ...prev,
-          chats,
-        }));
-      }
-    );
+    socketRef.current.emit("join room", state.event_id);
+  }, [state.event_id]);
+
+  useEffect(() => {
+    Promise.all([
+      axios.get("/api/events"),
+      axios.get("api/event-user"),
+      axios.get("api/users"),
+    ]).then((all) => {
+      const eventsId = getEventsId(all[1].data, state.user_id);
+      const users = all[2].data;
+      const events = getEventsObject(all[0].data, eventsId, users);
+      setState((prev) => ({
+        ...prev,
+        events,
+        users,
+      }));
+    });
   }, [state.user_id]);
 
   useEffect(() => {
-    axios.get("/api/pmsg").then((res) => {
-      const messages = getFriendsMessages(
-        res.data,
-        state.user_id,
-        state.friend_id
-      );
+    axios.get("/api/gmsg").then((res) => {
+      const messages = getEventMessages(res.data, state.event_id);
       setState((prev) => ({ ...prev, messages }));
     });
-  }, [state.friend_id, state.newMessagesCounter]);
+  }, [state.event_id, state.newMessagesCounter]);
 
   useEffect(() => {
-    axios.get("/api/users").then((res) => {
-      const users = res.data;
-      const friend = users.find((user) => user.id === state.friend_id);
-      setState((prev) => ({ ...prev, friend }));
+    axios.get("/api/events").then((res) => {
+      const events = res.data;
+      const event = events.find((event) => event.id === state.event_id);
+      setState((prev) => ({ ...prev, event }));
     });
-  }, [state.friend_id]);
+  }, [state.event_id]);
 
   return (
     <div className="private-chat-component">
       <div className="private-chats-list-container">
-        <PrivateChatList friends={state.chats} changeFriend={changeFriend} />
+        <GroupChatList events={state.events} changeEvent={changeEvent} />
       </div>
 
       <div className="private-chats-chatroom">
-        {state.friend_id !== 0 && (
+        {state.event_id !== 0 && (
           <div>
             <div className="private-chats-chatroom-title">
-              <div className="private-chats-chatroom-title-image-container">
-                <img
-                  src={state.friend && state.friend.photo}
-                  alt={state.friend_id}
-                />
-              </div>
               <div className="private-chats-chatroom-title-name-container">
-                <p>
-                  {state.friend && state.friend.first_name}{" "}
-                  {state.friend && state.friend.last_name}
-                </p>
+                <p>{state.event && state.event.name} </p>
               </div>
             </div>
             <div className="chatroom-messages-container">

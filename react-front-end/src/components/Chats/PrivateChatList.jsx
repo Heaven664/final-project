@@ -1,8 +1,8 @@
 import React from "react";
 
-import PrivateChatListItem from "components/PrivateChatListItem";
+import PrivateChatListItem from "components/Chats/PrivateChatListItem";
 
-import "components/PrivateChatList.scss";
+import "components/Chats/PrivateChatList.scss";
 
 export default function PrivateChatList(props) {
   const chats = props.friends.map((chat) => {

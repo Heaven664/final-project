@@ -8,8 +8,8 @@ import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, 
 
 import MyProfile from './MyProfile';
 import Friend from './Friend';
-import PrivateChat from 'components/PrivateChat';
-import GroupChat from 'components/GroupChat';
+import PrivateChat from 'components/Chats/PrivateChat';
+import GroupChat from 'components/Chats/GroupChat';
 import Setting from 'components/Setting';
 import Login from 'components/Login';
 import Events from "./Events/Events";
