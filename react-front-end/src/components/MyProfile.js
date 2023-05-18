@@ -4,12 +4,15 @@ import './MyProfile.scss';
 
 import { friendContext } from "providers/FriendProvider";
 
-export default function MyProfile(props) {
+export default function MyProfile() {
 
   const { changePage } = useContext(friendContext);
+  
+  const storedUser = sessionStorage.getItem('user')
+  const currentUser = storedUser ? JSON.parse(storedUser).id : 0;
 
   const [state, setState] = useState({
-    id: 1,
+    id: currentUser,
     first_name: "",
     last_name: "",
     country: "",

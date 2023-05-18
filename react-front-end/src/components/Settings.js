@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
-import './Setting.scss';
+import './Settings.scss';
 
 import { friendContext } from 'providers/FriendProvider';
 
-export default function Setting(props) {
+export default function Settings(props) {
 
   const { changePage } = useContext(friendContext);
 

@@ -10,7 +10,7 @@ import MyProfile from './MyProfile';
 import Friend from './Friend';
 import PrivateChat from 'components/Chats/PrivateChat';
 import GroupChat from 'components/Chats/GroupChat';
-import Setting from 'components/Setting';
+import Settings from 'components/Settings';
 import Login from 'components/Login';
 import Events from "./Events/Events";
 import NewEvent from "./NewEvents/NewEvent";
@@ -108,7 +108,7 @@ export default function App(props) {
               ${page === 'setting' ? '--selected' : ''}`}
               onClick={() => changePage('setting')}>
               <FontAwesomeIcon icon={faGear} /><br />
-              <span>Setting</span>
+              <span>Settings</span>
             </li>
             <li className='events'
               onClick={logout}>
@@ -142,7 +142,7 @@ export default function App(props) {
         {(user && page === 'chat') && <PrivateChat user={user.id} />}
         {(user && page === 'groupChat') && <GroupChat user={user.id} />}
         {(user && page === 'setting') &&
-          <Setting  />
+          <Settings  />
         }
         {(user && page === 'events') && <Events user={user.id}/>}
         {(user && page === 'newEvent') && <NewEvent user={user.id}/>}
