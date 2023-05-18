@@ -75,7 +75,7 @@ export default function Events(props) {
               ?
               ""
               :
-              <button onClick={""} className="modi background-warning-color btn-style">Quit Event</button>
+              <button onClick={""} className="quit background-warning-color btn-style">Quit Event</button>
           }
         </section>
       </div>

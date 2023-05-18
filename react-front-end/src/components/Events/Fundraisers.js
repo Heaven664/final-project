@@ -29,8 +29,8 @@ export default function Fundraisers(props) {
     <main className="fundraisers-layout">
 
       <div className='fundraisers-info'>
-        <span className='name'>Wish: {props.donation.title}</span>
-        <span className='name'>Target: ${props.donation.target_amount}</span>
+        <span className='wish'>Wish: {props.donation.title}</span>
+        <span className='target'>Target: ${props.donation.target_amount}</span>
       </div>
         <div id='fundraisers-bar'>
           <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}

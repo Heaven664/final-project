@@ -1,6 +1,9 @@
 @import "../../styles/variables.scss";
 
 .eventGuest {
+
+  display: flex;
+
   &__header {
     color: $primary-color;
     margin-bottom: 0.5rem;

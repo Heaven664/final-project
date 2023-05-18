@@ -62,11 +62,10 @@
   &.event-guest {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     
     flex-grow: 4;
-
   }
 
   &.maps-api {
