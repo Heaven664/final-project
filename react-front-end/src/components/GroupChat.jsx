@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import io from "socket.io-client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,7 +38,9 @@ export default function GroupChat(props) {
     users: [],
   });
 
-  const [socket, setSocket] = useState();
+  const socketRef = useRef(null);
+  const socket = socketRef.current;
+
   const [message, setMessage] = useState("");
 
   const sendMessage = (e) => {
@@ -80,40 +82,30 @@ export default function GroupChat(props) {
   };
 
   useEffect(() => {
-    if (socket) {
-      socket.disconnect()
-    }
-    if (state.event_id) {
-      console.log(state.event_id)
-      const socket = io();
-      setSocket(socket);
+    socketRef.current = io();
+    const client = socketRef.current;
 
-      socket.on("connect", () => {
-        console.log(`connected to server ${socket.id}`);
-      });
+    client.on("connect", () => {
+      console.log(`connected to server ${client.id}`);
+    });
 
-      socket.emit("join room", state.event_id);
+    client.emit("join room", state.event_id);
 
-      socket.on("group message", () => {
-        setState((prev) => ({
-          ...prev,
-          newMessagesCounter: prev.newMessagesCounter + 1,
-        }));
-      });
+    client.on("group message", () => {
+      setState((prev) => ({
+        ...prev,
+        newMessagesCounter: prev.newMessagesCounter + 1,
+      }));
+    });
 
-      socket.on("disconnect", () => {
-        console.log("disconnected from server");
-      });
-    }
+    client.on("disconnect", () => {
+      console.log("disconnected from server");
+    });
 
     return () => {
-        if(socket) {
-          socket.off("connect");
-          socket.off("group message");
-          socket.off("disconnect");
-        }
+      client.disconnect();
     };
-  }, [state.event_id]);
+  }, []);
 
   useEffect(() => {
     Promise.all([

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import io from "socket.io-client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -48,7 +48,9 @@ export default function PrivateChat(props) {
     newMessagesCounter: 0,
   });
 
-  const [socket, setSocket] = useState();
+  const socketRef = useRef(null);
+  const socket = socketRef.current;
+
   const [message, setMessage] = useState("");
 
   const sendMessage = (e) => {
@@ -76,38 +78,28 @@ export default function PrivateChat(props) {
   };
 
   useEffect(() => {
-    if (socket) {
-      socket.disconnect();
-    }
-    if (state.user_id) {
-      const socket = io();
-      setSocket(socket);
+    socketRef.current = io();
 
-      socket.on("connect", () => {
-        console.log(`connected to server ${socket.id}`);
-        socket.emit("send_id", state.user_id);
-      });
+    const client = socketRef.current;
+    client.on("connect", () => {
+      console.log(`connected to server ${client.id}`);
+      client.emit("send_id", state.user_id);
+    });
 
-      socket.on("private message", () => {
-        setState((prev) => ({
-          ...prev,
-          newMessagesCounter: prev.newMessagesCounter + 1,
-        }));
-      });
+    client.on("private message", () => {
+      setState((prev) => ({
+        ...prev,
+        newMessagesCounter: prev.newMessagesCounter + 1,
+      }));
+    });
 
-      socket.on("disconnect", () => {
-        console.log("disconnected from server");
-      });
-    }
+    client.on("disconnect", () => {
+      console.log("disconnected from server");
+    });
     return () => {
-      if (socket) {
-        socket.disconnect();
-        socket.off("connect");
-        socket.off("private_message");
-        socket.off("disconnect");
-      }
+      client.disconnect();
     };
-  }, [state.friend_id]);
+  }, []);
 
   useEffect(() => {
     Promise.all([axios.get("/api/users"), axios.get("api/friendlists")]).then(
