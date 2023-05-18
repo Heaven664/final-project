@@ -3,16 +3,17 @@ import axios from 'axios';
 import './MyProfile.scss';
 
 import { friendContext } from "providers/FriendProvider";
+import ProfileButton from "components/Buttons/ProfileButton"
 
-export default function MyProfile() {
+export default function MyProfile(props) {
 
   const { changePage } = useContext(friendContext);
-  
-  const storedUser = sessionStorage.getItem('user')
+
+  const storedUser = sessionStorage.getItem('user');
   const currentUser = storedUser ? JSON.parse(storedUser).id : 0;
 
   const [state, setState] = useState({
-    id: currentUser,
+    id: props.userId || currentUser,
     first_name: "",
     last_name: "",
     country: "",
@@ -43,9 +44,7 @@ export default function MyProfile() {
       <div className="display-flex">
         <div className="user-photo">
           <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
-          <div className="btn">
-            <button onClick={() => changePage('friends')} className="background-point-color btn-style">Add Friend</button>
-          </div>
+          <ProfileButton>Add Friend</ProfileButton>
         </div>
         <div className="box-shadow border-radius20 background-box-color user-detail">
           <table>
