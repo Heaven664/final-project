@@ -19,8 +19,6 @@ export default function ListFriend(props) {
   // const [filteredUsers, setFilteredUsers] = useState([friend]);
   const delayTimerRef = useRef(null);
 
-  
-
   // get the friends list
   const fetchFriends = (friend, setFriend) => {
     Promise.all([
@@ -105,8 +103,6 @@ export default function ListFriend(props) {
       .then(fetchFriends(friend, setFriend))
       .catch(err => console.log(err))
   };
-
-// Need to create move to chat function
 
   return (
     <>
