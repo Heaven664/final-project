@@ -14,10 +14,10 @@ export default function ProfileButton(props) {
     const formData = new FormData();
     formData.append("image", selectedImage);
     axios
-      .put(`api/users/${props.userId}/update-photo`, formData)
+      .patch(`api/users/${props.userId}/update-photo`, formData)
       .then((res) => console.log(res.data))
       .then(() => props.reload())
-      .catch(err => console.log(err.message))
+      .catch(res => console.log(res.message))
   };
 
   return (
