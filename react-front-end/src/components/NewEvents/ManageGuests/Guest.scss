@@ -1,0 +1,43 @@
+@import "../../../styles/mixins.scss";
+@import "../../../styles/variables.scss";
+
+.Guest {
+  &__item {
+    @include button-inactive--opacity;
+
+    margin-right: 0.5rem;
+
+    &-image {
+      width: 58px;
+      height: 58px;
+      margin-right: 0.5rem;
+      border-radius: 25px;
+    }
+
+    &--selected {
+      color: $dark-background;
+      background-color: $primary-color;
+      font-size: $title-size;
+      border-radius: 25px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      padding-left: 2px;
+      padding-right: 1rem;
+      user-select: none;
+    }
+
+    &--selected &-image {
+      width: 58px;
+      height: 58px;
+      margin-right: 0.5rem;
+    }
+
+    &--selected,
+    &:hover {
+      @include button-active--opacity;
+    }
+  }
+
+
+}

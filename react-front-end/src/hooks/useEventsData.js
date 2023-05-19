@@ -8,13 +8,14 @@ export default function useEventsData(eventID, userID) {
     fundraisers: {},
     event_user: {},
     eventsInfo: {},
-    usersInfo: {}
+    usersInfo: {},
+    events_id: ""
   });
 
   // const setDay = day => setState(prev => ({ ...prev, day }));
 
   useEffect(() => {
-
+    
     Promise.all([      
       axios.get('/api/events'),
       axios.get(`/api/fundraisers/${eventID}`),
@@ -28,7 +29,8 @@ export default function useEventsData(eventID, userID) {
         fundraisers:  all[1].data, 
         event_user:   all[2].data, 
         eventsInfo:   all[3].data, 
-        usersInfo:    all[4].data }));
+        usersInfo:    all[4].data
+       }));
     });
   }, []);
 

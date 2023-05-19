@@ -1,6 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import "./EventGuestListItem.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function EventGuestListItem(props) {
@@ -10,13 +12,20 @@ export default function EventGuestListItem(props) {
    });
 
   return (
-    <li className={EventGuestListClass} onClick={props.setEventGuest}>
+    <li className={EventGuestListClass} >
       <img
         className="eventGuest__item-image"
         src={props.avatar}
         alt={props.name}
+        onClick={props.selected? props.reset: props.setEventGuest}
       />
-      {props.selected ? props.name : ""}
-    </li>
+      <div onClick={"link to profile"}>
+      {props.selected
+        ?
+        props.name
+        :
+        ""
+      }{"  "}<FontAwesomeIcon icon={props.selected? faEye : ""} />
+    </div></li>
   );
 }

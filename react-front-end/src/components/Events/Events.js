@@ -14,7 +14,9 @@ export default function Events(props) {
   // const [fundraiser, setFundaraiser] = useState(null);
   const [eventGuest, setEventGuest] = useState(null);
 
-  const event_id = props.event;
+  
+  const event_id = Math.floor(Math.random() * 10);
+
   const {
     state
   } = useEventsData(event_id, props.user);
@@ -25,11 +27,17 @@ export default function Events(props) {
   console.log(state.fundraisers);
   console.log(props.user, state.eventsInfo.host_id);
 
-
-
   const getFullName = function(obj) {
     return obj.first_name + " " + obj.last_name;
   };
+
+  const agendaList = (
+    state.eventsInfo.agenda
+      ?
+      state.eventsInfo.agenda.split(',').map((agendaItem) => {
+    return (<li>{agendaItem}</li>)})
+      :
+      "");
 
   return (
     <main className="event-layout">
@@ -67,14 +75,14 @@ export default function Events(props) {
               ?
               ""
               :
-              <button onClick={""} className="modi background-warning-color btn-style">Quit Event</button>
+              <button onClick={""} className="quit background-warning-color btn-style">Quit Event</button>
           }
         </section>
       </div>
 
       <div className='event-right __panel'>
         <section className="maps-api __card box-shadow border-radius20 background-box-color user-detail">
-          <span>{state.eventsInfo.description}</span>
+          <span>{state.eventsInfo.agenda? agendaList : ""}</span>
         </section>
 
         {

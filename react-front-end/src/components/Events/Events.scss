@@ -30,10 +30,10 @@
 
 .__card {
   width: 100%;
+  margin: 0.5rem;
   display: flex;
 
   &.invitation {
-    margin-bottom: 1rem;
     font-size: 1.5rem;
     flex-grow: 1;
     justify-content: center;
@@ -55,8 +55,6 @@
   }
 
   &.event-info {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
     flex-grow: 5;
 
   }
@@ -64,41 +62,39 @@
   &.event-guest {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
     
-    margin-top: 1rem;
     flex-grow: 4;
-
   }
 
   &.maps-api {
-    margin-bottom: 1rem;
     flex-grow: 5;
-    font-size: 2rem;
+    font-size: $title-size;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+  }
+
+  &.fundraisers {
+    display: flex;
+    flex-grow: 3;
+  }
+
+  &.no-fundraisers {
+    display: flex;
+    flex-grow: 0;
+  }
+
+  &.event-wall {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
     justify-content: center;
     align-items: center;
   }
 
-  &.fundraisers {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-grow: 3;
+}  
 
-  }
 
-  &.no-fundraisers {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-grow: 0;
 
-  }
-
-  &.event-wall {
-    margin-top: 1rem;
-    display: flex;
-    flex-grow: 1;
-  }
-
-}
