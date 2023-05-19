@@ -33,9 +33,11 @@ export default function MyProfile(props) {
     isFriend: false,
   });
 
-  // get the user data from api
+  const apiUser = profileID || currentUser;
+
+  // When user presses on "My profile get his profile data"
   useEffect(() => {
-    axios.get(`/api/users/${state.id}`)
+    axios.get(`/api/users/${apiUser}`)
       .then((res) => {
         const user = res.data;
         // birthday formatting: leave only YYYY-MM-DD
@@ -47,23 +49,7 @@ export default function MyProfile(props) {
       .catch(err => {
         console.error("connect error:", err.message);
       });
-  }, [reloadFlag]);
-
-  // When user presses on "My profile get his profile data"
-  useEffect(() => {
-    axios.get(`/api/users/${currentUser}`)
-    .then((res) => {
-      const user = res.data;
-      // birthday formatting: leave only YYYY-MM-DD
-      if (user.birthday) {
-        user.birthday = user.birthday.substring(0, 10);
-      }
-      setState(prev => ({ ...prev, ...user, isFriend: false }));
-    })
-    .catch(err => {
-      console.error("connect error:", err.message);
-    });
-  }, [props.reload]);
+  }, [reloadFlag, props.reload]);
 
   useEffect(() => {
     Promise.all([axios.get("/api/users"), axios.get("api/friendlists")])
@@ -74,7 +60,7 @@ export default function MyProfile(props) {
           setState(prev => ({ ...prev, isFriend }));
         }
       );
-  }, []);
+  }, [props.reload]);
 
   return (
     <div className="my-profile">
@@ -82,7 +68,7 @@ export default function MyProfile(props) {
         <div className="user-photo">
           <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
           {state.id === currentUser && <ChangePhoto userId={currentUser} reload={reload} />}
-          {state.isFriend && <ProfileButton>Message</ProfileButton>}
+          {(state.id !== currentUser) && state.isFriend && <ProfileButton>Message</ProfileButton>}
           {(state.id !== currentUser && !state.isFriend) && <ProfileButton>Add Friend</ProfileButton>}
         </div>
         <div className="box-shadow border-radius20 background-box-color user-detail">

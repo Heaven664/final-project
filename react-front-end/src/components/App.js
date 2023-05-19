@@ -21,7 +21,7 @@ import './App.scss';
 
 export default function App(props) {
 
-  const { page, changePage, profileID } = useContext(friendContext);
+  const { page, changePage, profileID, changeProfileId } = useContext(friendContext);
 
   const storedUser = sessionStorage.getItem('user');
   const currentUser = storedUser ? JSON.parse(storedUser) : null;
@@ -37,6 +37,7 @@ export default function App(props) {
 
   const openMyProfile = () => {
     reload();
+    changeProfileId(currentUser.id)
     changePage('profile');
   };
 

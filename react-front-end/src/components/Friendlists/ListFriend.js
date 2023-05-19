@@ -42,14 +42,14 @@ export default function ListFriend(props) {
             table_id: tableIds[index]
           };
         });
-        console.log("friendIds", friendIds);
-        console.log("tableIds", tableIds);
-        console.log("friendLists", friendLists);
+        // console.log("friendIds", friendIds);
+        // console.log("tableIds", tableIds);
+        // console.log("friendLists", friendLists);
 
         // add name key-value
         const modifiedUsers = updatedData.map((user) => {
           const name = user.first_name + " " + user.last_name;
-          console.log("receving data", user.id, user.table_id);
+          // console.log("receving data", user.id, user.table_id);
 
           return { ...user, name };
         });
