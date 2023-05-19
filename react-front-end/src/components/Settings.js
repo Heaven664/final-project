@@ -9,7 +9,7 @@ export default function Settings(props) {
   const { changePage } = useContext(friendContext);
 
   const [state, setState] = useState({
-    id: 1,
+    id: props.user || 1,
     first_name: "",
     last_name: "",
     country: "",

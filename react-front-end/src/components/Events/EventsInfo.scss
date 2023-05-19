@@ -6,6 +6,12 @@
   font-size: $title-size;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+.event-title{
+  margin: 1rem;
+}
 
 .-img {
   width: 200px;
@@ -21,17 +27,27 @@
 .info-host {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
 
-  .host-name{
-
-  }
+.event-agenda{
+  margin: 2rem;
 }
 
 .info-meet{
   display: flex;
   flex-direction: column;
   text-align: center;
-    
+  margin: 2rem;
+  align-items: space-between;
+
+  #date{
+    margin-bottom: 1rem;
+  }  
+  
+  #location{
+    margin-top: 1rem;
+  }
 }
 
 

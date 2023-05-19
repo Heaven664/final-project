@@ -4,25 +4,27 @@
   display: flex;
   width: 100vw;
   align-items: center;
-  padding-left: 74px;
+  position: relative;
+  padding-left: 74px;  
 
   .sidebar {
     background-color: $primary-color;
     border-radius: 20px 0 0 20px;
     width: 74px;
     height: 100vh;
-    position: fixed;
-    left: 0px;
-    top: 0px;
     display: flex;
     align-content: center;
     justify-content: center;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
 
     .sidebar__menu {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 100%;
+      width: 100%;  
 
       ul {
         text-align: center;
@@ -82,7 +84,7 @@
       left: 74px;
       display: flex;
       justify-content: space-between;
-      width: 95vw;
+      width: calc(100vw - 80px);
       height: 90px;
       padding: 20px 30px;  
       background-color: #ffffff;

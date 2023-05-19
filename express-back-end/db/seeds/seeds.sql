@@ -17,24 +17,34 @@ VALUES
 -- Events table
 INSERT INTO events (name, description, agenda, event_date, event_location, host_id) 
 VALUES 
-('Annual Sales Conference', 'Join us for a day of learning and networking with industry experts', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-06-15', 'Grand Hotel', 1),
-('Product Launch Party', 'Come celebrate the launch of our new product line with food, drinks, and giveaways', '6:00pm - Doors Open, 7:00pm - Presentation, 8:00pm - Raffle Drawing, 9:00pm - Live Music', '2023-06-21', 'City Hall Plaza', 2),
-('Charity Fundraiser', 'Join us for an evening of entertainment and giving to benefit the local children hospital', '7:00pm - Cocktail Reception, 8:00pm - Silent Auction, 9:00pm - Live Auction, 10:00pm - Dancing', '2023-06-28', 'Country Club', 3),
-('Employee Appreciation Day', 'We are taking the day to celebrate our hardworking staff with food, games, and prizes', '11:00am - Lunch, 12:00pm - Cornhole Tournament, 2:00pm - Office Trivia, 3:00pm - Raffle Drawing', '2023-07-06', 'Office Park', 1),
-('Industry Conference', 'Join us for three days of learning, networking, and innovation with industry leaders', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-07-11', 'Convention Center', 2),
-('Customer Appreciation Week', 'We are showing our customers some love with daily giveaways, discounts, and events', 'Monday - Free Coffee, Tuesday - Pop-up Shop, Wednesday - Customer Roundtable, Thursday - Free Lunch, Friday - Raffle Drawing', '2023-07-22', 'Multiple Locations', 3),
-('Company Retreat', 'We are taking some time to bond and recharge with a weekend of team building and relaxation', 'Friday - Welcome Reception, Saturday - Hiking and Activities, Sunday - Brunch and Departure', '2023-08-04', 'Mountain Lodge', 1),
-('Sales Training Workshop', 'Join us for a day of hands-on training and best practices for successful sales', '8:00am - Registration and Breakfast, 9:00am - Product Overview, 10:00am - Prospecting Strategies, 12:00pm - Lunch, 1:00pm - Closing Deals, 3:00pm - Role Playing Exercises', '2023-08-15', 'Training Center', 2),
-('Sales Conference', 'Annual Sales Conference for the company', 'Review sales performance, set goals for next year', '2023-06-05', 'New York City', 1),
-('Product Launch', 'Launch of new product line', 'Presentation of new products, Q&A with product experts', '2023-06-10', 'San Francisco', 2),
-('Marketing Workshop', 'Marketing workshop for small business owners', 'Learn how to create effective marketing campaigns', '2023-06-12', 'Chicago', 3),
-('Charity Fundraiser', 'Annual fundraiser for local charity', 'Dinner, auction, and entertainment to raise money for charity', '2023-06-15', 'Los Angeles', 4),
-('Team Building Retreat', 'Team building retreat for company employees', 'Team-building exercises and workshops', '2023-06-20', 'Aspen, Colorado', 1),
-('Tech Conference', 'Conference for technology enthusiasts', 'Keynote speeches and panel discussions on emerging technologies', '2023-06-25', 'Seattle', 2),
-('Startup Pitch Day', 'Pitch day for startup founders', 'Startup founders pitch their ideas to investors', '2023-06-28', 'Austin, Texas', 3),
-('Design Thinking Workshop', 'Workshop on design thinking for product development', 'Learn how to apply design thinking to create better products', '2023-07-01', 'Boston', 4),
-('Leadership Summit', 'Leadership summit for senior executives', 'Keynote speeches and panel discussions on leadership strategies', '2023-07-05', 'New York City', 1),
-('Environmental Conference', 'Conference on environmental sustainability', 'Panel discussions and presentations on sustainability practices', '2023-07-10', 'San Francisco', 2);
+('Annual Sales Conference', 'Join us for a day of learning and networking with industry experts', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-06-15 09:00:00', 'Grand Hotel', 1),
+('Product Launch Party', 'Come celebrate the launch of our new product line with food, drinks, and giveaways', '6:00pm - Doors Open, 7:00pm - Presentation, 8:00pm - Raffle Drawing, 9:00pm - Live Music', '2023-06-21 16:00:00', 'City Hall Plaza', 2),
+('Charity Fundraiser', 'Join us for an evening of entertainment and giving to benefit the local children hospital', '7:00pm - Cocktail Reception, 8:00pm - Silent Auction, 9:00pm - Live Auction, 10:00pm - Dancing', '2023-06-28 16:00:00', 'Country Club', 3),
+('Employee Appreciation Day', 'We are taking the day to celebrate our hardworking staff with food, games, and prizes', '11:00am - Lunch, 12:00pm - Cornhole Tournament, 2:00pm - Office Trivia, 3:00pm - Raffle Drawing', '2023-07-06 17:30:00', 'Office Park', 1),
+('Industry Conference', 'Join us for three days of learning, networking, and innovation with industry leaders', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-07-11 17:30:00', 'Convention Center', 2),
+('Customer Appreciation Week', 'We are showing our customers some love with daily giveaways, discounts, and events', 'Monday - Free Coffee, Tuesday - Pop-up Shop, Wednesday - Customer Roundtable, Thursday - Free Lunch, Friday - Raffle Drawing', '2023-07-22 18:45:00', 'Multiple Locations', 3),
+('Company Retreat', 'We are taking some time to bond and recharge with a weekend of team building and relaxation', 'Friday - Welcome Reception, Saturday - Hiking and Activities, Sunday - Brunch and Departure', '2023-08-04 18:45:00', 'Mountain Lodge', 1),
+('Sales Training Workshop', 'Join us for a day of hands-on training and best practices for successful sales', '8:00am - Registration and Breakfast, 9:00am - Product Overview, 10:00am - Prospecting Strategies, 12:00pm - Lunch, 1:00pm - Closing Deals, 3:00pm - Role Playing Exercises', '2023-08-15 18:45:00', 'Training Center', 2),
+('Sales Conference', 'Annual Sales Conference for the company', 'Review sales performance, set goals for next year', '2023-06-05 18:45:00', 'New York City', 1),
+('Product Launch', 'Launch of new product line', 'Presentation of new products, Q&A with product experts', '2023-06-10 18:45:00', 'San Francisco', 2),
+('Marketing Workshop', 'Marketing workshop for small business owners', 'Learn how to create effective marketing campaigns', '2023-06-12 18:45:00', 'Chicago', 3),
+('Charity Fundraiser', 'Annual fundraiser for local charity', 'Dinner, auction, and entertainment to raise money for charity', '2023-06-15 18:45:00', 'Los Angeles', 4),
+('Team Building Retreat', 'Team building retreat for company employees', 'Team-building exercises and workshops', '2023-06-20 18:45:00', 'Aspen, Colorado', 1),
+('Tech Conference', 'Conference for technology enthusiasts', 'Keynote speeches and panel discussions on emerging technologies', '2023-06-25 18:45:00', 'Seattle', 2),
+('Startup Pitch Day', 'Pitch day for startup founders', 'Startup founders pitch their ideas to investors', '2023-06-28 18:45:00', 'Austin, Texas', 3),
+('Design Thinking Workshop', 'Workshop on design thinking for product development', 'Learn how to apply design thinking to create better products', '2023-07-01 18:45:00', 'Boston', 4),
+('Leadership Summit', 'Leadership summit for senior executives', 'Keynote speeches and panel discussions on leadership strategies', '2023-07-05 18:45:00', 'New York City', 1),
+('Environmental Conference', 'Conference on environmental sustainability', 'Panel discussions and presentations on sustainability practices', '2023-07-10 18:45:00', 'San Francisco', 2),
+  ('Tech Conference', 'Conference about the latest technology trends', '9:00 AM - Registration, 10:00 AM - Keynote Speech, 11:00 AM - Panel Discussion', '2023-01-01 09:00:00', 'Conference Center', 1),
+  ('Marketing Workshop', 'Workshop on effective marketing strategies', '9:30 AM - Introduction, 10:00 AM - Social Media Marketing, 11:30 AM - Email Marketing', '2023-01-15 09:30:00', 'Marketing Hub', 4),
+  ('Networking Event', 'Opportunity to connect with professionals', '6:00 PM - Welcome Drinks, 6:30 PM - Networking Session, 8:00 PM - Closing Remarks', '2023-02-05 18:00:00', 'Grand Ballroom', 9),
+  ('Product Launch', 'Introduction of new product line', '10:00 AM - Product Presentation, 11:00 AM - Q&A Session, 12:00 PM - Product Demonstration', '2023-03-10 10:00:00', 'Exhibition Hall', 4),
+  ('Training Seminar', 'Training session for professional development', '9:00 AM - Registration, 9:30 AM - Training Session 1, 11:00 AM - Training Session 2', '2023-03-25 09:00:00', 'Training Center', 7),
+  ('Industry Conference', 'Conference for industry professionals', '9:30 AM - Opening Keynote, 11:00 AM - Panel Discussion, 2:00 PM - Breakout Sessions', '2023-04-15 09:30:00', 'Convention Center', 8),
+  ('Charity Fundraiser', 'Fundraising event for a charitable cause', '6:30 PM - Cocktail Reception, 7:00 PM - Silent Auction, 8:30 PM - Dinner', '2023-05-05 18:30:00', 'Luxury Hotel', 5),
+  ('Work-Life Balance Workshop', 'Learn techniques for maintaining work-life balance', '10:00 AM - Introduction, 11:00 AM - Stress Management, 12:30 PM - Time Management', '2023-06-10 10:00:00', 'Community Center', 6),
+  ('Art Exhibition', 'Showcasing local artists and their artwork', '3:00 PM - Opening Ceremony, 3:30 PM - Artist Talks, 5:00 PM - Networking', '2023-06-25 15:00:00', 'Art Gallery', 9),
+  ('Leadership Conference', 'Conference on leadership skills development', '9:00 AM - Registration, 10:00 AM - Keynote Speaker, 11:30 AM - Workshop Sessions', '2023-07-15 09:00:00', 'Conference Center', 3);
 
 -- Fundraisers table
 INSERT INTO fundraisers (title, event_id, target_amount, current_amount) VALUES
@@ -53,7 +63,17 @@ INSERT INTO event_user (user_id, event_id) VALUES
   (1, 2),(2, 2),(3, 2),(4, 2),(5, 2),(6, 2),(7, 6),(8, 6),(9, 6),(10, 6),
   (1, 3),(2, 3),(3, 3),(4, 3),(5, 3),(6, 3),(7, 7),(8, 7),(9, 7),(10, 7),
   (1, 4),(2, 4),(3, 4),(4, 4),(5, 4),(6, 4),(7, 4),(8, 8),(9, 8),(10, 8),
-  (1, 5),(2, 5),(3, 9),(4, 5),(5, 5),(6, 5),(7, 5),(8, 9),(9, 5),(10, 9);
+  (1, 5),(2, 5),(3, 9),(4, 5),(5, 5),(6, 5),(7, 5),(8, 9),(9, 5),(10, 9),
+  (1, 10), (2, 11), (3, 12), (4, 13), (5, 14),
+  (6, 15), (7, 16), (8, 17), (9, 18), (1, 19),
+  (2, 20), (3, 21), (4, 22), (5, 23), (6, 24),
+  (7, 25), (8, 26), (9, 27), (1, 28), (2, 10),
+  (3, 11), (4, 12), (5, 13), (6, 14), (7, 15),
+  (8, 16), (9, 17), (1, 18), (2, 19), (3, 20),
+  (4, 21), (5, 22), (6, 23), (7, 24), (8, 25),
+  (9, 26), (1, 27), (2, 28), (3, 10), (4, 11),
+  (5, 12), (6, 13), (7, 14), (8, 15), (9, 16),
+  (1, 17), (2, 18), (3, 19), (4, 20), (5, 21);
 
 -- Friendlists table
 INSERT INTO friendlists (user_id, friend_id)

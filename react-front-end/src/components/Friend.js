@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faUsers } from "@fortawesome/free-solid-svg-icons";
@@ -14,11 +13,11 @@ import ListAllUser from './ListAllUser';
 
 export default function Friend(props) {
   // change the search list/ myfriend <-> database
-  const [list, setList] = useState("allUsers");
+  const [list, setList] = useState("myFriends");
   function handleListClick(section) {
     setList(section);
   }
- 
+
   return (
     <div className="friend-box background-box-color border-radius20 box-shadow">
       <div className="search-section">
@@ -46,11 +45,11 @@ export default function Friend(props) {
         </div>
 
         {list === 'myFriends' &&
-          <ListFriend></ListFriend>
+          <ListFriend user={props.user}></ListFriend>
         }
 
         {list === 'allUsers' &&
-          <ListAllUser></ListAllUser>
+          <ListAllUser user={props.user}></ListAllUser>
         }
       </div>
 
@@ -58,22 +57,3 @@ export default function Friend(props) {
   );
 }
 
-
-
-{/* <Friend>
-
-  const [list, SetList] = useState('friendList');
-
-  <ListAllUser userList>
-    <input> field and function
-    <ListAllUserItem>
-    </ListAllUserItem>
-  </ListAllUser>
-
-  <ListFriend friendList>
-    <input> field and function
-    <FriendListItem>
-    </FriendListItem>
-  </ListFriend>
-
-</Friend> */}

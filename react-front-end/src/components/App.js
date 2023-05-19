@@ -6,6 +6,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
+import NavThumbnail from "./NavThumbnail";
 import MyProfile from './MyProfile';
 import Friend from './Friend';
 import PrivateChat from 'components/Chats/PrivateChat';
@@ -55,13 +56,9 @@ export default function App(props) {
     axios.post('/api/logout')
       .then(() => {
         sessionStorage.clear();
-        setUser(null)
-      })
+        setUser(null);
+      });
   };
-
-  // function handlePageClick(page) {
-  //   changePage(page);
-  // }
 
   return (
     <main className="layout">
@@ -124,28 +121,26 @@ export default function App(props) {
               alt="Wish Whisper"
             />
           </div>
-          <div onClick={() => changePage('setting')}>
-            <img
-              className="user-profile-pic"
-              src="images/user_ex.png"
-              alt="user"
-            />
-          </div>
+          {!user && <NavThumbnail />}
+          {user &&
+            <NavThumbnail user={user.id} />
+          }
+
         </div>
       </section>
       <section className="contents">
         {(!user) && <Login login1={login1} login2={login2} />}
         {(user && page === 'profile') &&
-          <MyProfile userId={1}/>
+          <MyProfile userId={1} />
         }
-        {(user && page) === 'friends' && <Friend />}
+        {(user && page) === 'friends' && <Friend user={user.id} />}
         {(user && page === 'chat') && <PrivateChat user={user.id} />}
         {(user && page === 'groupChat') && <GroupChat user={user.id} />}
         {(user && page === 'setting') &&
-          <Settings  />
+          <Settings user={user.id} />
         }
-        {(user && page === 'events') && <Events user={user.id}/>}
-        {(user && page === 'newEvent') && <NewEvent user={user.id}/>}
+        {(user && page === 'events') && <Events user={user.id} />}
+        {(user && page === 'newEvent') && <NewEvent user={user.id} />}
 
       </section>
     </main>

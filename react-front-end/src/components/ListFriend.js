@@ -10,7 +10,7 @@ export default function ListFriend(props) {
 
   // friends render
   const [friend, setFriend] = useState({
-    user_id: 1,
+    user_id: props.user,
     friend_id: [],
   });
 
@@ -19,10 +19,8 @@ export default function ListFriend(props) {
   // const [filteredUsers, setFilteredUsers] = useState([friend]);
   const delayTimerRef = useRef(null);
 
-  
-
   // get the friends list
-  const fetchFriends = (friend, setFriend) => {
+  const fetchFriends = () => {
     Promise.all([
       axios.get("/api/users"),
       axios.get("api/friendlists")
@@ -44,10 +42,14 @@ export default function ListFriend(props) {
             table_id: tableIds[index]
           };
         });
+        console.log("friendIds", friendIds);
+        console.log("friendLists", friendLists);
 
         // add name key-value
         const modifiedUsers = updatedData.map((user) => {
           const name = user.first_name + " " + user.last_name;
+        console.log("receving data", user.id, user.table_id);
+
           return { ...user, name };
         });
 
@@ -61,52 +63,65 @@ export default function ListFriend(props) {
 
   // Usage in useEffect hook
   useEffect(() => {
-    fetchFriends(friend, setFriend);
-  }, []);
-
-
-  useEffect(() => {
-    if (value === "") return;
-    clearTimeout(delayTimerRef.current);
-    delayTimerRef.current = setTimeout(() => {
-      const users = friend.friend_id;
-
-      // case sensitive off
-      const filteredResults = users.filter((user) => {
-        const fullName = (user.first_name + user.last_name).toLowerCase();
-        const searchValue = value.toLowerCase();
-        return fullName.includes(searchValue);
-      });
-
-      setFriend((prev) => ({
-        ...prev,
-        friend_id: filteredResults,
-      }));
-    }, 400);
-
-    return () => {
-      clearTimeout(delayTimerRef.current);
-    };
+    fetchFriends();
   }, [value]);
 
+  // searching user
+  const [searchResults, setSearchResults] = useState([]);
 
+  // searching
+  const searchUsers = (searchTerm) => {
+
+    const users = friend.friend_id;
+
+    // case sensitive off
+    const filteredResults = users.filter((user) => {
+      const fullName = user.name.toLowerCase();
+      const searchValue = searchTerm.toLowerCase();
+      return fullName.includes(searchValue);
+    });
+
+    setSearchResults(filteredResults);
+  };
+
+  // when value is changed
+  useEffect(() => {
+    if (value === "") {
+      setSearchResults(friend.friend_id);
+    } else {
+      clearTimeout(delayTimerRef.current);
+      delayTimerRef.current = setTimeout(() => {
+        searchUsers(value);
+      }, 400);
+      return () => {
+        clearTimeout(delayTimerRef.current);
+      };
+    }
+  }, [value]);
+
+  // delete friend
   const unfriend = (user) => {
     const data = {
       id: user.table_id,
       user_id: friend.user_id,
       friend_id: user.id
     };
-    console.log("delete data: ", data);
 
     axios.delete(`/api/friendlists/${data.id}/delete`, data)
       .then(res => {
-        console.log(res.data);
+        // filter out just removed
+        const friendArr = friend.friend_id.filter((element) =>{
+          return element.id !== data.friend_id;
+        })
+        setFriend((prev) => {
+          return {
+            ...prev,
+            friend_id: friendArr
+          }
+        })
       })
-      .then(fetchFriends(friend, setFriend))
       .catch(err => console.log(err))
   };
-
-// Need to create move to chat function
 
   return (
     <>
@@ -123,6 +138,7 @@ export default function ListFriend(props) {
       </div>
       <ListFriendItem
         friend={friend}
+        searchResults={searchResults}
         onUnfriend={unfriend}
       />
     </>

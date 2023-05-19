@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 
 import { friendContext } from 'providers/FriendProvider';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import './FriendList.scss';
 
 
@@ -13,21 +10,25 @@ export default function ListFriendItem(props) {
   const { textFriendWithId } = useContext(friendContext);
 
   // const [friend, setFriend] = useState(false);
-  const { friend, onUnfriend } = props;
+  const { friend, searchResults, onUnfriend } = props;
+
+  // searhcing...
+  const usersToDisplay = searchResults.length > 0 ? searchResults : friend.friend_id;
 
   const onMessage = (id) => {
     textFriendWithId(id);
   };
 
-  const searchResult = friend.friend_id.map(user => {
-    const handleUnfriendClick = (e) => {
-      e.preventDefault();
-      onUnfriend(user);
+  const searchResult = usersToDisplay.map(user => {
+    const handleUnfriendClick = (a) => {
+      console.log("LISTITEM DELETE: ", a);
+      onUnfriend(a);
     };
 
     const handleMessageClick = () => {
       onMessage(user.id);
     };
+    // console.log("friend.friend_id", user.id, user.table_id, user.name);
 
     return (
       <div
@@ -50,7 +51,7 @@ export default function ListFriendItem(props) {
           <div className="btn">
             <button
               className='background-bad-color btn-style'
-              onClick={handleUnfriendClick}
+              onClick={() => handleUnfriendClick(user)}
             >
               Unfriend
             </button>
