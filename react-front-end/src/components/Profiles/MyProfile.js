@@ -9,17 +9,17 @@ import { getFriendsIds } from 'helpers/friends-data';
 
 export default function MyProfile(props) {
 
-  const { changePage, profileID } = useContext(friendContext);
+  const { profileID } = useContext(friendContext);
 
   const [reloadFlag, setReloadFlag] = useState(null);
-  
+
   const reload = () => {
     setReloadFlag(prevFlag => !prevFlag);
   };
-  
+
   const storedUser = sessionStorage.getItem('user');
   const currentUser = storedUser ? JSON.parse(storedUser).id : 0;
-  
+
 
   const [state, setState] = useState({
     id: profileID || currentUser,
@@ -48,6 +48,22 @@ export default function MyProfile(props) {
         console.error("connect error:", err.message);
       });
   }, [reloadFlag]);
+
+  // When user presses on "My profile get his profile data"
+  useEffect(() => {
+    axios.get(`/api/users/${currentUser}`)
+    .then((res) => {
+      const user = res.data;
+      // birthday formatting: leave only YYYY-MM-DD
+      if (user.birthday) {
+        user.birthday = user.birthday.substring(0, 10);
+      }
+      setState(prev => ({ ...prev, ...user, isFriend: false }));
+    })
+    .catch(err => {
+      console.error("connect error:", err.message);
+    });
+  }, [props.reload]);
 
   useEffect(() => {
     Promise.all([axios.get("/api/users"), axios.get("api/friendlists")])

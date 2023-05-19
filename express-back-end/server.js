@@ -4,6 +4,7 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
+const morgan = require('morgan')
 
 const PORT = 8080;
 const io = new Server(server);
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(session);
+app.use(morgan("dev"))
 
 
 const userRoutes = require('./routes/api-users');

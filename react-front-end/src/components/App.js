@@ -21,18 +21,22 @@ import './App.scss';
 
 export default function App(props) {
 
-  const { page, changePage, profileID, changeProfileId } = useContext(friendContext);
+  const { page, changePage, profileID } = useContext(friendContext);
 
   const storedUser = sessionStorage.getItem('user');
   const currentUser = storedUser ? JSON.parse(storedUser) : null;
 
   const [user, setUser] = useState(currentUser);
+  const [updateApp, setUpdateApp] = useState(false);
+
+  const reload = () => {
+    setUpdateApp(prev => !prev);
+  };
 
   sessionStorage.setItem('user', JSON.stringify(user));
 
   const openMyProfile = () => {
-    console.log(user.id)
-    changeProfileId(user.id);
+    reload();
     changePage('profile');
   };
 
@@ -137,7 +141,7 @@ export default function App(props) {
       <section className="contents">
         {(!user) && <Login login1={login1} login2={login2} />}
         {(user && page === 'profile') &&
-          <MyProfile userId={profileID} />
+          <MyProfile userId={profileID} reload={updateApp} />
         }
         {(user && page) === 'friends' && <Friend user={user.id} />}
         {(user && page === 'chat') && <PrivateChat user={user.id} />}
