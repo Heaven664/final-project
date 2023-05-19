@@ -70,7 +70,7 @@ export default function NewEvent(props) {
               <section className="event_description __card box-shadow border-radius20 background-box-color user-detail">
                 <label>
                   Description:
-                  <input
+                  <textarea
                     className="event_descriptionField"
                     type="text"
                     name="event_description"
@@ -108,8 +108,9 @@ export default function NewEvent(props) {
 
               <section className="event-agenda __card box-shadow border-radius20 background-box-color user-detail">
                 <label>
-                  Agenda:
-                  <input
+                  Agenda:<br/>
+                  <span id="agenda-comment">(use Comma to separate things for the best result.)</span>
+                  <textarea
                     className="event-agendaField"
                     type="text"
                     name="event_agenda"
@@ -150,7 +151,7 @@ export default function NewEvent(props) {
         }
 
         <div className='-lowerpanel'>
-          <section className="event-create __card  box-shadow border-radius20 background-box-color user-detail">
+          <section className="event-create">
             {
               newEvent
                 ?
