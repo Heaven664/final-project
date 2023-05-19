@@ -60,6 +60,7 @@ const db = require('../db/connection');
       *, event_user.id as event_user_id
       FROM event_user
       INNER JOIN users ON user_id = users.id
+      INNER JOIN events ON events.id = event_id
       WHERE user_id = $1;
       `,
     [Number(request.params.id)])
