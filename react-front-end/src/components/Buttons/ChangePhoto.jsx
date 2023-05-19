@@ -17,6 +17,7 @@ export default function ProfileButton(props) {
       .put(`api/users/${props.userId}/update-photo`, formData)
       .then((res) => console.log(res.data))
       .then(() => props.reload())
+      .catch(err => console.log(err.message))
   };
 
   return (

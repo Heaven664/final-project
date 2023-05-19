@@ -7,6 +7,15 @@ const router = express.Router();
 
 const userQueries = require('../db/queries/users');
 
+// Error handling middleware for Multer
+router.use((err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    // Multer error occurred (e.g., file size exceeded)
+    return res.status(400).json({ error: err.message });
+  }
+
+  next(err);
+});
 
 // Configure multer storage
 const storage = multer.diskStorage({
@@ -19,8 +28,24 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage });
+// Function to check if a file is an image
+const isImage = (file) => {
+  const acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
+  const fileExt = path.extname(file.originalname).toLowerCase();
+  return acceptedExtensions.includes(fileExt);
+};
 
+// Configure Multer upload with file filter
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    if (isImage(file)) {
+      cb(null, true); // Accept the file
+    } else {
+      cb(new multer.MulterError('Invalid file type. Only image files are allowed.')); // Reject the file with a MulterError
+    }
+  }
+});
 
 // Create user
 router.post('/', (req, res) => {
@@ -109,12 +134,19 @@ router.delete('/:id/delete', (req, res) => {
     });
 });
 
+
 router.put('/:id/update-photo', upload.single('image'), (req, res) => {
   const { id } = req.params;
   const baseURL = 'http://localhost:8080/images/';
 
-  if (!req.file) {
-    return res.json('Could not get image file');
+  // If Multer encountered an error during file upload, handle it
+  if (req.fileValidationError) {
+    return res.status(400).json({ error: req.fileValidationError.message });
+  }
+
+  // Handle other errors related to file upload or processing
+  if (req.file === undefined) {
+    return res.status(400).json({ error: 'No file received' });
   }
 
   const newImagePath = baseURL + req.file.filename;
