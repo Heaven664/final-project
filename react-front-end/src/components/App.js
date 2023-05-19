@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 
-
-// css, font-awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-
 import MyProfile from './MyProfile';
 import Friend from './Friend';
 import PrivateChat from 'components/PrivateChat';
@@ -17,6 +12,12 @@ import NewEvent from "./NewEvents/NewEvent";
 import { friendContext } from 'providers/FriendProvider';
 
 import './App.scss';
+
+
+
+// css, font-awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 export default function App(props) {
 

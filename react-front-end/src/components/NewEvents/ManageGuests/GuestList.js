@@ -14,6 +14,10 @@ export default function GuestList(props) {
   const objToArray = (obj) => Object.assign([], Object.values(obj));
   // const guestsArray = props.guests;
   
+  const invited = objToArray(props.invited).map(user=> user.user_id);
+
+  // console.log('invited', invited);
+
   const GuestProps = objToArray(props.guests).map((user) => {
   // const eventGuestProps = guestsArray.map((user) => {
 
@@ -25,15 +29,18 @@ export default function GuestList(props) {
         name={name}
         avatar={user.photo}
         selected={user.id === props.value}
-        setEventGuest={() => props.onChange(user.id)}
-        reset={() => props.onChange("")}
+        invited={invited.includes(user.id)}
+        onAdd={() => props.onAdd(user.id)}
+        onKick={() => props.onKick(user.id)}
+        setGuest={() => props.onClick(user.id)}
+        reset={() => props.onClick("")}
       />
     );
   });
 
   return (
     <section className={GuestClass}>
-      <h4 className="Guest__header text--light">Guests</h4>
+      <span className="Guest__header">{props.title}</span>
       <ul className="Guest__list">{GuestProps}</ul>
     </section>
   );

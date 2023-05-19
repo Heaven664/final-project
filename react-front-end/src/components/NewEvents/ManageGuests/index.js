@@ -3,20 +3,16 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import './index.scss';
-
+import useEventsData from "hooks/useEventsData";
 import GuestList from "./GuestList";
 
 export default function ManageGuest(props) {
 
-  const [value, setValue] = useState("a");
+  const [value, setValue] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [addedGuests, setAddedGuests] = useState([]);
+  const [resultGuests, setResultGuests] = useState([]);
   const delayTimerRef = useRef(null);
-
-  // friends render
-  const [guests, setGuest] = useState({
-    event_id: props.eventID,
-    user_id: [],
-  });
 
   //Search Users
   useEffect(() => {
@@ -52,32 +48,44 @@ export default function ManageGuest(props) {
 
 
 
+  const {
+    state
+  } = useEventsData(props.event, props.user);
+
+
   const kickGuest = (guest) => {
+
     const data = {
-      id: guest.id
+      id: guest
     };
     console.log("delete data: ", data);
 
-    axios.delete(`/api/event-user/$1`, [data.id])
+    axios.delete(`/api/event-user/`, data)
       .then(res => {
         console.log(res.data);
+        setAddedGuests("");
+        setResultGuests("");
       })
       .catch(err => console.log(err));
   };
 
   const addGuest = (guest) => {
     const data = {
-      user: guest.id,
-      event: props.eventID
+      user: guest,
+      event: props.event
     };
     console.log("add guest: ", data);
 
-    axios.post(`/api/event_user/`, data)
+    axios.post(`/api/event-user/`, data)
       .then(res => {
         console.log(res.data);
+        setAddedGuests(res.data.user_id);
+        setResultGuests("");
       })
       .catch(err => console.log(err));
   };
+
+
 
   return (
     <>
@@ -90,12 +98,32 @@ export default function ManageGuest(props) {
             onChange={e => setValue(e.target.value)}
           />
         </form>
+
+
       </div>
+      <div id="searchResult">
       <GuestList
         guests={filteredUsers}
-        onKick={kickGuest}
+        invited={state.event_user}  
+        value={resultGuests}
+        onClick={setResultGuests}
         onAdd={addGuest}
+        onKick={kickGuest}
+        title={"Search Results"}
       />
+      </div>
+      <div id="addedToEvent">
+        <GuestList
+        guests={state.event_user}
+        invited={state.event_user}  
+        value={addedGuests}
+        onClick={setAddedGuests}
+        onAdd={addGuest}
+        onKick={kickGuest}
+        title={"Event Guests"}
+      />
+      </div>
     </>
   );
 }
+
