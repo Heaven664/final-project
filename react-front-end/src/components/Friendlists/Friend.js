@@ -12,6 +12,7 @@ import ListAllUser from './ListAllUser';
 // friends counting
 
 export default function Friend(props) {
+
   // change the search list/ myfriend <-> database
   const [list, setList] = useState("myFriends");
   function handleListClick(section) {

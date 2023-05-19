@@ -21,7 +21,7 @@ import './App.scss';
 
 export default function App(props) {
 
-  const { page, changePage } = useContext(friendContext);
+  const { page, changePage, profileID, changeProfileId } = useContext(friendContext);
 
   const storedUser = sessionStorage.getItem('user');
   const currentUser = storedUser ? JSON.parse(storedUser) : null;
@@ -29,6 +29,12 @@ export default function App(props) {
   const [user, setUser] = useState(currentUser);
 
   sessionStorage.setItem('user', JSON.stringify(user));
+
+  const openMyProfile = () => {
+    console.log(user.id)
+    changeProfileId(user.id);
+    changePage('profile');
+  };
 
   // Login user on the server
   const login1 = function () {
@@ -67,7 +73,7 @@ export default function App(props) {
           <ul>
             <li className={`profile 
               ${page === 'profile' ? '--selected' : ''}`}
-              onClick={() => changePage('profile')}>
+              onClick={openMyProfile}>
               <FontAwesomeIcon icon={faUser} /><br />
               <span>My Profile</span>
             </li>
@@ -131,7 +137,7 @@ export default function App(props) {
       <section className="contents">
         {(!user) && <Login login1={login1} login2={login2} />}
         {(user && page === 'profile') &&
-          <MyProfile userId={1} />
+          <MyProfile userId={profileID} />
         }
         {(user && page) === 'friends' && <Friend user={user.id} />}
         {(user && page === 'chat') && <PrivateChat user={user.id} />}

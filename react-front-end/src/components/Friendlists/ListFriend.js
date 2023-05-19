@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import ListFriendItem from './ListFriendItem';
-import {getFriendsIds, getTableIds, getFriendsObjects} from 'helpers/getFriendFunc';
+import { getFriendsIds, getTableIds, getFriendsObjects } from 'helpers/getFriendFunc';
 
 export default function ListFriend(props) {
 
@@ -43,12 +43,13 @@ export default function ListFriend(props) {
           };
         });
         console.log("friendIds", friendIds);
+        console.log("tableIds", tableIds);
         console.log("friendLists", friendLists);
 
         // add name key-value
         const modifiedUsers = updatedData.map((user) => {
           const name = user.first_name + " " + user.last_name;
-        console.log("receving data", user.id, user.table_id);
+          console.log("receving data", user.id, user.table_id);
 
           return { ...user, name };
         });
@@ -110,17 +111,17 @@ export default function ListFriend(props) {
     axios.delete(`/api/friendlists/${data.id}/delete`, data)
       .then(res => {
         // filter out just removed
-        const friendArr = friend.friend_id.filter((element) =>{
+        const friendArr = friend.friend_id.filter((element) => {
           return element.id !== data.friend_id;
-        })
+        });
         setFriend((prev) => {
           return {
             ...prev,
             friend_id: friendArr
-          }
-        })
+          };
+        });
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   };
 
   return (

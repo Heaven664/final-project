@@ -9,19 +9,20 @@ import { getFriendsIds } from 'helpers/friends-data';
 
 export default function MyProfile(props) {
 
-  const { changePage } = useContext(friendContext);
+  const { changePage, profileID } = useContext(friendContext);
 
   const [reloadFlag, setReloadFlag] = useState(null);
-
+  
   const reload = () => {
     setReloadFlag(prevFlag => !prevFlag);
   };
-
+  
   const storedUser = sessionStorage.getItem('user');
   const currentUser = storedUser ? JSON.parse(storedUser).id : 0;
+  
 
   const [state, setState] = useState({
-    id: props.userId || currentUser,
+    id: profileID || currentUser,
     first_name: "",
     last_name: "",
     country: "",
