@@ -36,7 +36,7 @@ const db = require('../db/connection');
   });
 
   //get guest lists with guest info for event
-  router.get("/:id", (request, response) => {
+  router.get("/event/:id", (request, response) => {
     db.query(
       `
       SELECT
@@ -51,6 +51,24 @@ const db = require('../db/connection');
     })
     .catch(error => response.json({Error: error, Message:"Error getting event_user for this event."}));
   });
+
+  //get guest lists with guest info for event
+  router.get("/user/:id", (request, response) => {
+    db.query(
+      `
+      SELECT
+        *
+      FROM event_user
+      INNER JOIN users ON user_id = users.id
+      WHERE user_id = $1;
+      `,
+    [Number(request.params.id)])
+    .then(res => {
+      response.json(res.rows);
+    })
+    .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
+  });
+
 
   //CRUD UPDATE(PUT)
   router.put("/", (request, response) => {
