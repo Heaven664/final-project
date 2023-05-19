@@ -3,6 +3,7 @@ import './NewEvent.scss';
 import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
 import ManageGuest from "./ManageGuests";
+import ManageFundraisers from "./ManageFundraisers";
 import GuestList from "./ManageGuests/GuestList";
 
 
@@ -144,7 +145,8 @@ export default function NewEvent(props) {
           newEvent
             ?
             <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail">
-
+              <ManageFundraisers
+              />
               </section>
             :
             ""
