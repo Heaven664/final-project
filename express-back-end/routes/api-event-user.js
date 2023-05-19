@@ -91,18 +91,14 @@ const db = require('../db/connection');
 
 
   //CRUD DELETE
-  router.delete("/", (request, response) => {
-    const { id } = request.body;
-    // if (process.env.TEST_ERROR) {
-    //   setTimeout(() => response.status(500).json({}), 1000);
-    //   return;
-    // }
+  router.delete("/:id", (request, response) => {
+
     db.query(
       `
       DELETE FROM event_user
       WHERE id = $1;
       `, 
-      [id]
+      [Number(request.params.id)]
     )
     .then(() => {
       response.status(204).json();
