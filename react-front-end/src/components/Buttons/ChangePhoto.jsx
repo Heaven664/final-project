@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ChangePhoto.scss";
 import axios from "axios";
 
@@ -13,11 +13,10 @@ export default function ProfileButton(props) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", selectedImage);
-    // console.log(selectedImage)
-    // console.log(formData);
     axios
       .put(`api/users/${props.userId}/update-photo`, formData)
-      .then((res) => console.log(res.data));
+      .then((res) => console.log(res.data))
+      .then(() => props.reload())
   };
 
   return (

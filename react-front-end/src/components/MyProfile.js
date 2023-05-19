@@ -11,6 +11,12 @@ export default function MyProfile(props) {
 
   const { changePage } = useContext(friendContext);
 
+  const [reloadFlag, setReloadFlag] = useState(null);
+
+  const reload = () => {
+    setReloadFlag(prevFlag => !prevFlag);
+  };
+
   const storedUser = sessionStorage.getItem('user');
   const currentUser = storedUser ? JSON.parse(storedUser).id : 0;
 
@@ -40,7 +46,7 @@ export default function MyProfile(props) {
       .catch(err => {
         console.error("connect error:", err.message);
       });
-  }, []);
+  }, [reloadFlag]);
 
   useEffect(() => {
     Promise.all([axios.get("/api/users"), axios.get("api/friendlists")])
@@ -50,7 +56,7 @@ export default function MyProfile(props) {
           const isFriend = friendIds.includes(state.id);
           setState(prev => ({ ...prev, isFriend }));
         }
-      )
+      );
   }, []);
 
   return (
@@ -58,7 +64,7 @@ export default function MyProfile(props) {
       <div className="display-flex">
         <div className="user-photo">
           <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
-          {state.id === currentUser && <ChangePhoto userId={currentUser}/>}
+          {state.id === currentUser && <ChangePhoto userId={currentUser} reload={reload} />}
           {state.isFriend && <ProfileButton>Message</ProfileButton>}
           {(state.id !== currentUser && !state.isFriend) && <ProfileButton>Add Friend</ProfileButton>}
         </div>
