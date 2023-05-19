@@ -1,8 +1,26 @@
 const express = require('express');
-const router = express.Router();
+const multer = require('multer');
 const bcrypt = require("bcryptjs");
+const path = require('path');
+
+const router = express.Router();
 
 const userQueries = require('../db/queries/users');
+
+
+// Configure multer storage
+const storage = multer.diskStorage({
+  destination: 'public/images',
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const originalExt = path.extname(file.originalname);
+    const filename = uniqueSuffix + originalExt;
+    cb(null, filename);
+  }
+});
+
+const upload = multer({ storage });
+
 
 // Create user
 router.post('/', (req, res) => {
@@ -40,9 +58,9 @@ router.get('/:id', (req, res) => {
     .then(user => {
       // If  user not found
       if (!user) {
-        return res.json("User not found")
+        return res.json("User not found");
       }
-      return res.json(user)
+      return res.json(user);
     })
     .catch(error => {
       res
@@ -89,6 +107,16 @@ router.delete('/:id/delete', (req, res) => {
         .status(500)
         .json({ message: 'Error deleting user', error: err.message });
     });
+});
+
+router.put('/:id/update-photo', upload.single('image'), (req, res) => {
+  const { id } = req.params;
+  if (req.file) {
+    console.log('File received:', req.file);
+  } else {
+    console.log('File filed:', req.file);
+  }
+  res.status(200).json({ message: 'Image uploaded successfully' });
 });
 
 module.exports = router;

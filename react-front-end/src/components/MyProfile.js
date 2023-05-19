@@ -58,7 +58,7 @@ export default function MyProfile(props) {
       <div className="display-flex">
         <div className="user-photo">
           <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
-          {state.id === currentUser && <ChangePhoto />}
+          {state.id === currentUser && <ChangePhoto userId={currentUser}/>}
           {state.isFriend && <ProfileButton>Message</ProfileButton>}
           {(state.id !== currentUser && !state.isFriend) && <ProfileButton>Add Friend</ProfileButton>}
         </div>

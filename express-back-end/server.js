@@ -18,6 +18,7 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(session);
 
+
 const userRoutes = require('./routes/api-users');
 const eventRoutes = require('./routes/api-event');
 const eventUserRoutes = require('./routes/api-event-user');
@@ -60,6 +61,7 @@ app.post('/api/logout', (req, res) => {
   req.session = null;
   res.json("Cookie removed")
 })
+
 
 io.on('connection', socket => {
   console.log(`A user ${socket.id} connected`);

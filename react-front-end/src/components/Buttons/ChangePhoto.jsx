@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ChangePhoto.scss";
 import axios from "axios";
 
-export default function ProfileButton() {
+export default function ProfileButton(props) {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const handleFileChange = (e) => {
@@ -15,7 +15,9 @@ export default function ProfileButton() {
     formData.append("image", selectedImage);
     // console.log(selectedImage)
     // console.log(formData);
-    axios.post("api/update-photo").then((res) => console.log(res.data));
+    axios
+      .put(`api/users/${props.userId}/update-photo`, formData)
+      .then((res) => console.log(res.data));
   };
 
   return (
