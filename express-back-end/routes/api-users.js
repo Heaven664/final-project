@@ -111,12 +111,23 @@ router.delete('/:id/delete', (req, res) => {
 
 router.put('/:id/update-photo', upload.single('image'), (req, res) => {
   const { id } = req.params;
-  if (req.file) {
-    console.log('File received:', req.file);
-  } else {
-    console.log('File filed:', req.file);
+  const baseURL = 'http://localhost:8080/images/';
+
+  if (!req.file) {
+    return res.json('Could not get image file');
   }
-  res.status(200).json({ message: 'Image uploaded successfully' });
+
+  const newImagePath = baseURL + req.file.filename;
+  userQueries
+    .updateAvatar(id, newImagePath)
+    .then(() => {
+      res.status(200).json({ message: 'Image uploaded successfully' });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ message: 'Could not update user image', error: err.message });
+    });
 });
 
 module.exports = router;

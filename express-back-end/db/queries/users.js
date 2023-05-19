@@ -46,6 +46,18 @@ const update = (id, first_name, last_name, country, city, birthday, about) => {
     .then(res => res.rows[0]);
 };
 
+const updateAvatar = (id, newImagePath) => {
+  const queryString = `
+  UPDATE users 
+  SET photo = $2
+  WHERE id = $1
+  RETURNING *;
+  `;
+  const values = [id, newImagePath];
+  return db.query(queryString, values)
+    .then(res => res.rows[0]);
+};
+
 // Delete user
 const remove = (id) => {
   const queryString = `DELETE FROM users WHERE id = $1;`;
@@ -54,4 +66,4 @@ const remove = (id) => {
 };
 
 
-module.exports = { getAll, getById, create, update, remove };
+module.exports = { getAll, getById, create, update, updateAvatar, remove };

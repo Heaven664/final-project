@@ -28,7 +28,6 @@ const groupMessagesRoutes = require('./routes/api-group_messages');
 const fundraisersRoutes = require('./routes/api-fundraisers');
 
 
-app.use(express.static('public'));
 app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/event-user', eventUserRoutes);
