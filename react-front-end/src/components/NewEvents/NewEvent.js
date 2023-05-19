@@ -40,7 +40,7 @@ export default function NewEvent(props) {
       .then(res => {
         console.log(res.data);
         // setNewEvent(res.data.id);
-        setNewEvent(1);
+        setNewEvent(29);
       })
       .catch(err => console.log(err));
   };

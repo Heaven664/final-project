@@ -3,7 +3,6 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import './index.scss';
-import useEventsData from "hooks/useEventsData";
 import GuestList from "./GuestList";
 
 export default function ManageGuest(props) {
@@ -12,6 +11,7 @@ export default function ManageGuest(props) {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [addedGuests, setAddedGuests] = useState([]);
   const [resultGuests, setResultGuests] = useState([]);
+  const [guests, setGuests] = useState([]);
   const delayTimerRef = useRef(null);
 
   //Search Users
@@ -47,29 +47,47 @@ export default function ManageGuest(props) {
   }, [value]);
 
 
+  useEffect(() => {
 
-  const {
-    state
-  } = useEventsData(props.event, props.user);
+    axios.get(`/api/event-user/event/${props.event}`)
+      .then((res) => {
+        console.log(res.data);
+        setGuests({event_user:res.data});
 
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   const kickGuest = (guest) => {
 
-    const data = {
-      id: guest
-    };
-    console.log("delete data: ", data);
+    setGuests({ isLoading: true });
 
-    axios.delete(`/api/event-user/`, data)
+    axios.delete(`/api/event-user/${guest}`)
       .then(res => {
-        console.log(res.data);
-        setAddedGuests("");
-        setResultGuests("");
-      })
-      .catch(err => console.log(err));
-  };
+        console.log('Deleted Guest:', res.data);
+
+        axios.get(`/api/event-user/event/${props.event}`)
+          .then((res) => {
+            console.log(res.data);
+            // if (res.data) {
+            setGuests({event_user:res.data});
+            setAddedGuests("");
+            setResultGuests("");
+          })
+          .catch(err => console.log(err));
+      });
+    };
+
+
+
+
+
+
 
   const addGuest = (guest) => {
+
+    setGuests({ isLoading: true });
+
     const data = {
       user: guest,
       event: props.event
@@ -79,11 +97,32 @@ export default function ManageGuest(props) {
     axios.post(`/api/event-user/`, data)
       .then(res => {
         console.log(res.data);
-        setAddedGuests(res.data.user_id);
-        setResultGuests("");
+
+        axios.get(`/api/event-user/event/${props.event}`)
+          .then((res) => {
+            console.log(res.data);
+            // if (res.data) {
+            setGuests({event_user:res.data});
+            setAddedGuests("");
+            setResultGuests("");
+          })
+          .catch(err => console.log(err));
+
       })
       .catch(err => console.log(err));
   };
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -104,7 +143,7 @@ export default function ManageGuest(props) {
       <div id="searchResult">
       <GuestList
         guests={filteredUsers}
-        invited={state.event_user}  
+        invited={guests.event_user}  
         value={resultGuests}
         onClick={setResultGuests}
         onAdd={addGuest}
@@ -114,8 +153,8 @@ export default function ManageGuest(props) {
       </div>
       <div id="addedToEvent">
         <GuestList
-        guests={state.event_user}
-        invited={state.event_user}  
+        guests={guests.event_user}
+        invited={guests.event_user}  
         value={addedGuests}
         onClick={setAddedGuests}
         onAdd={addGuest}
