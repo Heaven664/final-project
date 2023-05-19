@@ -139,8 +139,6 @@ export default function App(props) {
         {(user && page) === 'friends' && <Friend user={user.id} />}
         {(user && page === 'chat') && <PrivateChat user={user.id} />}
         {(user && page === 'groupChat') && <GroupChat user={user.id} />}
-        {(user && page === 'events') && <Events user={user.id} event={event}/>}
-        {(user && page === 'newEvent') && <NewEvent user={user.id} event={event}/>}
         {(user && page === 'setting') &&
           <Setting handlePageClick={handlePageClick} user={user.id}/>
         }
