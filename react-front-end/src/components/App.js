@@ -6,13 +6,13 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
-import NavThumbnail from "./NavThumbnail";
-import MyProfile from './MyProfile';
-import Friend from './Friend';
+import NavThumbnail from "components/Other/NavThumbnail";
+import MyProfile from './Profiles/MyProfile';
+import Friend from './Friendlists/Friend';
 import PrivateChat from 'components/Chats/PrivateChat';
 import GroupChat from 'components/Chats/GroupChat';
-import Settings from 'components/Settings';
-import Login from 'components/Login';
+import Settings from 'components/Settings/Settings';
+import Login from 'components/Other/Login';
 import Events from "./Events/Events";
 import NewEvent from "./NewEvents/NewEvent";
 import { friendContext } from 'providers/FriendProvider';
