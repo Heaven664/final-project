@@ -109,6 +109,7 @@ export default function ListFriend(props) {
 
     axios.delete(`/api/friendlists/${data.id}/delete`, data)
       .then(res => {
+        // filter out just removed
         const friendArr = friend.friend_id.filter((element) =>{
           return element.id !== data.friend_id;
         })
