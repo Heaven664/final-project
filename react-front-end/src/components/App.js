@@ -9,6 +9,7 @@ import Setting from 'components/Setting';
 import Login from 'components/Login';
 import Events from "./Events/Events";
 import NewEvent from "./NewEvents/NewEvent";
+import EventsList from "./Events/EventsList";
 import { friendContext } from 'providers/FriendProvider';
 
 import './App.scss';
@@ -145,7 +146,7 @@ export default function App(props) {
         {(user && page === 'setting') &&
           <Setting handlePageClick={handlePageClick} />
         }
-        {(user && page === 'events') && <Events user={user.id}/>}
+        {(user && page === 'events') && <EventsList user={user.id}/>}
         {(user && page === 'newEvent') && <NewEvent user={user.id}/>}
 
       </section>

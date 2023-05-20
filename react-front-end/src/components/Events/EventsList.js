@@ -14,28 +14,37 @@ export default function EventsList(props) {
     axios.get(`/api/event-user/user/${props.user}`)
       .then((res) => {
         console.log(res.data);
-        setEvents({eventsList:res.data});
+        setEvents(res.data);
 
       })
       .catch(err => console.log(err));
   }, []);
 
+
+  const eventsProps = events.map((event) => {
+
+    const name = event.first_name + " " + event.last_name;
+    return (
+      <EventsListItem
+        key={event.event_id}
+        event_name={event.name}
+        host_name={name}
+        date={event.event_date}
+        photo={event.photo}
+        setDay={props.onChange}
+      />
+    );
+  });
+
+
+
+
+
+
+
   return (
     <>
-      <div className="search-bar border-radius20">
-        <form onSubmit={event => event.preventDefault()}>
-          <span className="font20"><FontAwesomeIcon icon={faMagnifyingGlass} /></span>
-          <input
-            type="text" name="name" className="border-radius15"
-            value={value}
-            onChange={e => setValue(e.target.value)}
-          />
-        </form>
-      </div>
-      <ListAllUserItem
-        filteredUsers={filteredUsers}
-        onUnfriend={unfriend}
-      />
+      <ul>{eventsProps}</ul>
     </>
   );
 }

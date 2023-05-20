@@ -40,8 +40,8 @@ export default function GuestList(props) {
         avatar={user.photo}
         selected={user.id === props.value}
         invited={invited.includes(user.id)}
-        onAdd={() => props.onAdd(user.id)}
-        onKick={() => props.onKick(user.event_user_id)}
+        onAdd={(e) => {e.preventDefault();props.onAdd(user.id)}}
+        onKick={(e) => {e.preventDefault();props.onKick(user.event_user_id)}}
         setGuest={() => props.onClick(user.id)}
         reset={() => props.onClick("")}
       />
