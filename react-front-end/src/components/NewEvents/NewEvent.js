@@ -3,13 +3,16 @@ import './NewEvent.scss';
 import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
 import ManageGuest from "./ManageGuests";
+import GuestList from "./ManageGuests/GuestList";
 
 
 export default function NewEvent(props) {
 
   const [fundraiser, setFundaraiser] = useState(null);
   const [newEvent, setNewEvent] = useState(null);
-  // const [eventGuest, setEventGuest] = useState(null);
+  const [eventGuest, setEventGuest] = useState(null);
+
+
   const [state, setState] = useState({
     event_name: "",
     event_time: "",
@@ -17,7 +20,7 @@ export default function NewEvent(props) {
     event_location: "",
     event_description: ""
   });
-
+  
 
   const createEvent = (event) => {
 
@@ -36,7 +39,8 @@ export default function NewEvent(props) {
     axios.post(`/api/events/`, data)
       .then(res => {
         console.log(res.data);
-        setNewEvent(res.data.id);
+        // setNewEvent(res.data.id);
+        setNewEvent(29);
       })
       .catch(err => console.log(err));
   };
@@ -66,7 +70,7 @@ export default function NewEvent(props) {
               <section className="event_description __card box-shadow border-radius20 background-box-color user-detail">
                 <label>
                   Description:
-                  <input
+                  <textarea
                     className="event_descriptionField"
                     type="text"
                     name="event_description"
@@ -104,8 +108,9 @@ export default function NewEvent(props) {
 
               <section className="event-agenda __card box-shadow border-radius20 background-box-color user-detail">
                 <label>
-                  Agenda:
-                  <input
+                  Agenda:<br/>
+                  <span id="agenda-comment">(use Comma to separate things for the best result.)</span>
+                  <textarea
                     className="event-agendaField"
                     type="text"
                     name="event_agenda"
@@ -123,7 +128,14 @@ export default function NewEvent(props) {
                   
           newEvent
             ?
-            <section className="manage-guest __card box-shadow border-radius20 background-box-color user-detail"><ManageGuest event={newEvent.event_id} /></section>
+            <section className="manage-guest __card box-shadow border-radius20 background-box-color user-detail">
+              <ManageGuest             
+              value={eventGuest}
+              onChange={setEventGuest} 
+              event={newEvent} 
+              user = {props.user}
+              />
+              </section>
             :
             ""
         }
@@ -131,13 +143,15 @@ export default function NewEvent(props) {
         {
           newEvent
             ?
-            <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail"><ManageGuest event={newEvent.event_id} /></section>
+            <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail">
+
+              </section>
             :
             ""
         }
 
         <div className='-lowerpanel'>
-          <section className="event-create __card  box-shadow border-radius20 background-box-color user-detail">
+          <section className="event-create">
             {
               newEvent
                 ?

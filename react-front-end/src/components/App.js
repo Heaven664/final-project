@@ -13,8 +13,8 @@ import PrivateChat from 'components/Chats/PrivateChat';
 import GroupChat from 'components/Chats/GroupChat';
 import Settings from 'components/Settings/Settings';
 import Login from 'components/Other/Login';
-import Events from "./Events/Events";
 import NewEvent from "./NewEvents/NewEvent";
+import EventsList from "./Events/EventsList";
 import { friendContext } from 'providers/FriendProvider';
 
 import './App.scss';
@@ -149,8 +149,8 @@ export default function App(props) {
         {(user && page === 'setting') &&
           <Settings user={user.id} />
         }
-        {(user && page === 'events') && <Events user={user.id} />}
-        {(user && page === 'newEvent') && <NewEvent user={user.id} />}
+        {(user && page === 'events') && <EventsList user={user.id}/>}
+        {(user && page === 'newEvent') && <NewEvent user={user.id}/>}
 
       </section>
     </main>

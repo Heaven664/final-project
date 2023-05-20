@@ -8,28 +8,27 @@
     margin-right: 0.5rem;
 
     &-image {
-      width: 58px;
-      height: 58px;
+      width: 50px;
+      height: 50px;
       margin-right: 0.5rem;
       border-radius: 25px;
     }
 
     &--selected {
-      color: $dark-background;
+      color: $box-color;
       background-color: $primary-color;
       font-size: $title-size;
       border-radius: 25px;
-      height: 58px;
+      height: 50px;
       display: flex;
       align-items: center;
-      padding-left: 2px;
       padding-right: 1rem;
       user-select: none;
     }
 
     &--selected &-image {
-      width: 58px;
-      height: 58px;
+      width: 50px;
+      height: 50px;
       margin-right: 0.5rem;
     }
 
@@ -37,7 +36,12 @@
     &:hover {
       @include button-active--opacity;
     }
+
   }
 
+}  
 
-}
+.-icon {
+      margin: 0.5rem;
+      font-size:  $title-size;
+    }
