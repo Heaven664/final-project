@@ -32,7 +32,7 @@ export default function Settings(props) {
     axios.patch(`/api/users/${state.id}/edit`, data)
       .then(res => {
         console.log(res.data);
-        changePage('profile');
+        changePage('my-profile');
       })
       .catch(err => console.log(err));
   };

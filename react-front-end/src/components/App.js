@@ -38,7 +38,7 @@ export default function App(props) {
   const openMyProfile = () => {
     reload();
     changeProfileId(currentUser?.id)
-    changePage('profile');
+    changePage('my-profile');
   };
 
   // Login user on the server
@@ -77,7 +77,7 @@ export default function App(props) {
         <nav className="sidebar__menu">
           <ul>
             <li className={`profile 
-              ${page === 'profile' ? '--selected' : ''}`}
+              ${page === 'my-profile' ? '--selected' : ''}`}
               onClick={openMyProfile}>
               <FontAwesomeIcon icon={faUser} /><br />
               <span>My Profile</span>
@@ -140,7 +140,7 @@ export default function App(props) {
       </section>
       <section className="contents">
         {(!user) && <Login login1={login1} login2={login2} />}
-        {(user && page === 'profile') &&
+        {((user && page === 'profile') || (user && page === 'my-profile') )&&
           <MyProfile userId={profileID} reload={updateApp} />
         }
         {(user && page) === 'friends' && <Friend user={user.id} />}
