@@ -58,9 +58,16 @@ export default function ManageGuest(props) {
       .catch(err => console.log(err));
   }, []);
 
+
+
+
+
+
+
+
   const kickGuest = (guest) => {
 
-    setGuests({ isLoading: true });
+    // setGuests({ isLoading: true });
 
     axios.delete(`/api/event-user/${guest}`)
       .then(res => {
@@ -80,13 +87,11 @@ export default function ManageGuest(props) {
 
 
 
-
-
-
-
   const addGuest = (guest) => {
 
-    setGuests({ isLoading: true });
+
+    // setGuests({ isLoading: true });
+
 
     const data = {
       user: guest,

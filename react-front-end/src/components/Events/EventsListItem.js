@@ -25,7 +25,7 @@ export default function EventsListItem(props) {
           :
           <span>
             <FontAwesomeIcon icon={faCompactDisc} className="half-margin-right"/>
-            {dateDiffRound}{dateDiffRound > 1 ? "days ago" : "day ago"}
+            {dateDiffRound}{dateDiffRound > 1 ? " days ago " : " day ago "}
           </span>
         }
       </>
@@ -58,23 +58,23 @@ export default function EventsListItem(props) {
                           ?
                           <span className="countDownDays">
                             <FontAwesomeIcon icon={faHourglassStart} className="half-margin-right"/>
-                            {days}{days > 1 ? " Days " : " Day "}</span>
+                            {days}{days > 1 ? " days " : " day "}</span>
                           :
                           <span className="countDownHours">
                             <FontAwesomeIcon icon={faHourglassHalf} className="half-margin-right"/>
-                            {hours}{hours > 1 ? " Hours " : " Hour "}</span>
+                            {hours}{hours > 1 ? " hours " : " hour "}</span>
                       }
                     </>
                     :
                     <span className="countDownMinutes">
                       <FontAwesomeIcon icon={faHourglassEnd} className="half-margin-right"/>
-                      {minutes}{minutes > 1 ? " Minutes " : "Minute "}</span>
+                      {minutes}{minutes > 1 ? " minutes " : "minute "}</span>
                 }
               </>
               :
               <span className="countDownSeconds">
                 <FontAwesomeIcon icon={faHourglass} className="half-margin-right"/>
-                {seconds}{seconds > 1 ? " Seconds " : " Second "}</span>
+                {seconds}{seconds > 1 ? " seconds " : " second "}</span>
           }
         </>
       );
