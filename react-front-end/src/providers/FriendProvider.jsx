@@ -23,6 +23,11 @@ export default function FriendProvider(props) {
     setPage(pageName);
   };
 
+  const openProfile = (id) => {
+    setProfileID(id);
+    changePage("profile");
+  };
+
   const friendData = {
     friendId,
     page,
@@ -30,6 +35,7 @@ export default function FriendProvider(props) {
     changePage,
     profileID,
     changeProfileId,
+    openProfile,
   };
 
   return (

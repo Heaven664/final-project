@@ -3,7 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-import ListAllUserItem from './ListAllUserItem';
+import ListAllUserItem from './ListUsersItem';
 import { getFriendsIds } from 'helpers/getFriendFunc';
 
 export default function ListAllUser(props) {
@@ -146,7 +146,7 @@ export default function ListAllUser(props) {
           user_not_friend: modifiedUsers,
         }));
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   };
 
 

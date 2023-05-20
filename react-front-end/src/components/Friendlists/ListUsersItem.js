@@ -14,21 +14,22 @@ export default function ListAllUserItem(props) {
 
 
   const { allUser, searchResults, onAddFriend, onUnfriend } = props;
+  const { textFriendWithId, openProfile } = useContext(friendContext);
 
   // searhcing...
   const usersToDisplay = searchResults.length > 0 ? searchResults : allUser.user_not_friend;
 
   // add friend
-  const handleAddfriendClick = (e) => {
-    onAddFriend(e);
+  const handleAddfriendClick = (user) => {
+    console.log(user.id);
+    onAddFriend(user);
   };
 
   // delete friend
-  const handleUnfriendClick = (e) => {
-    onUnfriend(e);
+  const handleUnfriendClick = (user) => {
+    onUnfriend(user);
   };
 
-  const { textFriendWithId } = useContext(friendContext);
   const onMessage = (id) => {
     textFriendWithId(id);
   };
@@ -36,14 +37,13 @@ export default function ListAllUserItem(props) {
   const handleMessageClick = (id) => {
     onMessage(id);
   };
-  console.log("allUser", allUser);
 
   return (
     <>
       {usersToDisplay.map((user) => (
         <div className="user-list border-radius20 display-flex" key={user.id}>
           <div className="friend-user display-flex">
-            <div className="thumbnail" style={{ backgroundImage: `url(${user.photo})` }}></div>
+            <div className="thumbnail" style={{ backgroundImage: `url(${user.photo})` }} onClick={() => openProfile(user.id)}></div>
             <p className="font20 font-title-color">{user.name}</p>
           </div>
           <div className="btns display-flex">
@@ -83,5 +83,5 @@ export default function ListAllUserItem(props) {
         </div>
       ))}
     </>
-  )
+  );
 }      

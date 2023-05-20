@@ -5,7 +5,7 @@ import { faUserPlus, faUsers } from "@fortawesome/free-solid-svg-icons";
 import './Friend.scss';
 
 import ListFriend from './ListFriend';
-import ListAllUser from './ListAllUser';
+import ListAllUser from './ListUsers';
 
 
 // additional feature
