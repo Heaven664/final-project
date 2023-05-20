@@ -61,7 +61,8 @@ const db = require('../db/connection');
       FROM event_user
       INNER JOIN users ON user_id = users.id
       INNER JOIN events ON events.id = event_id
-      WHERE user_id = $1;
+      WHERE user_id = $1
+      ORDER BY event_date ASC;
       `,
     [Number(request.params.id)])
     .then(res => {
