@@ -1,16 +1,17 @@
 import React from 'react';
 import "components/Appointment/styles.scss";
-import Header from "./Header";
-import Empty from "./Empty";
-import Show from "./Show";
-import Form from "./Form";
-import Error from "./Error";
-import Confirm from "./Confirm";
-import Status from "./Status";
+
+import ConfirmFundraiser from "./Confirm";
+import EmptyFundraiser from "./Empty";
+import ErrorFundraiser from "./Error";
+import HeaderFundraiser from "./Header";
+import SetupFundraiser from './Setup';
+import ShowFundraiser from "./Show";
+import StatusFundraiser from "./Status";
 import useVisualMode from "hooks/useVisualMode";
 
 
-export default function Appointment(props) {
+export default function ManageFundraisers(props) {
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -24,6 +25,16 @@ export default function Appointment(props) {
 
   const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
 
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? SHOW : EMPTY
+  );
+
+
+
+
+
+
+  
 
   function save(name, interviewer) {
 
@@ -38,10 +49,6 @@ export default function Appointment(props) {
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
   }
-
-  const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY
-  );
 
   function destory() {
     transition(DELETING, true);

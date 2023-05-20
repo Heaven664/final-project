@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 
-export default function Status(props) {
+export default function ShowFundraiser(props) {
 
 
   const percentage = props.current_amount / props.target_amount;

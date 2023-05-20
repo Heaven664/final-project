@@ -3,7 +3,7 @@ import "./styles.scss";
 import { faRectangleXmark, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 
 
-export default function Confirm(props) {
+export default function ConfirmFundraiser(props) {
 
   return (
     <main className="--status">
