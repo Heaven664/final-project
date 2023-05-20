@@ -95,10 +95,10 @@ const db = require('../db/connection');
       db.query(
         `
         SELECT
-        *, event_user.id as event_user_id
-        FROM event_user
+        name, event_date, users.photo, users.first_name, users.last_name, events.id
+        FROM events
+        INNER JOIN event_user ON events.id = event_id
         INNER JOIN users ON user_id = users.id
-        INNER JOIN events ON events.id = event_id
         WHERE user_id = $1 AND host_id != $1
         ORDER BY event_date ASC;
         `,
@@ -109,7 +109,24 @@ const db = require('../db/connection');
       .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
     });
 
-
+    //get events list with user as a guest
+    router.get("/history/:id", (request, response) => {
+      db.query(
+        `
+        SELECT
+        name, event_date, users.photo, users.first_name, users.last_name, events.id
+        FROM events
+        INNER JOIN event_user ON events.id = event_id
+        INNER JOIN users ON user_id = users.id
+        WHERE user_id = $1 AND event_date < NOW()::timestamp
+        ORDER BY event_date ASC;
+        `,
+      [Number(request.params.id)])
+      .then(res => {
+        response.json(res.rows);
+      })
+      .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
+    });
 
 
 
