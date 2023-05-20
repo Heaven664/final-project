@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./styles.scss";
+import axios from 'axios';
 
 import ConfirmFundraiser from "./Confirm";
 import EmptyFundraiser from "./Empty";
@@ -90,7 +91,7 @@ export default function ManageFundraisers(props) {
   function destory() {
     transition(DELETING, true);
 
-    removeFundraiser(fundraiser_id)
+    removeFundraiser(fundraiser.id)
       .then(() => transition(EMPTY))
       .catch(() => transition(ERROR_DELETE, true));
   }

@@ -12,7 +12,7 @@ export default function SetupFundraiser(props) {
   });
 
 
-  const reset = () => { setStudent({title: "",target_amount: ""})};
+  const reset = () => { setState({title: "",target_amount: ""})};
 
   const cancel = () => { reset(); props.onCancel(); };
 

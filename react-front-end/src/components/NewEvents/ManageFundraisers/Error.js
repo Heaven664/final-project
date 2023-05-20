@@ -1,5 +1,5 @@
-import React from "react";
-import "components/Appointment/styles.scss";
+import React, { useState } from 'react';
+import "./styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
