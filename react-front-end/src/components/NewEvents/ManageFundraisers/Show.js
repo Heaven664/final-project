@@ -43,10 +43,10 @@ export default function ShowFundraiser(props) {
         </div>
       </div>
 
-      <button onClick={""} id="supportButton" className="">
+      <button onClick={props.onEdit} id="" className="">
       <FontAwesomeIcon icon={faPenToSquare} /> Edit </button>
 
-      <button onClick={""} id="supportButton" className="">
+      <button onClick={props.onDelete} id="" className="">
       <FontAwesomeIcon icon={faTrashCan} /> Delete </button>
 
     </main>

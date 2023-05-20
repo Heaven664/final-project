@@ -10,7 +10,7 @@ import ManageFundraisers from "./ManageFundraisers";
 export default function NewEvent(props) {
 
 
-  const [newEvent, setNewEvent] = useState(null);
+  const [newEvent, setNewEvent] = useState("");
   const [eventGuest, setEventGuest] = useState(null);
 
 
@@ -41,7 +41,7 @@ export default function NewEvent(props) {
       .then(res => {
         console.log(res.data);
         // setNewEvent(res.data.id);
-        setNewEvent(3);
+        setNewEvent(5);
       })
       .catch(err => console.log(err));
   };
