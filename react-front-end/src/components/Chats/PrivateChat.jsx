@@ -109,9 +109,9 @@ export default function PrivateChat(props) {
   }, [state.friend_id]);
 
   return (
-    <div className="private-chat-component">
+    <div className="private-chat-component background-box-color box-shadow border-radius20">
       <div className="private-chats-list-container">
-        <PrivateChatList friends={state.chats} changeFriend={changeFriend} />
+        <PrivateChatList friends={state.chats} friend={state.friend_id} changeFriend={changeFriend} />
       </div>
 
       <div className="private-chats-chatroom">

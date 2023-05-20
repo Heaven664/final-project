@@ -6,13 +6,12 @@
   align-items: center;
   width: 100%;
   height: 80vh;
-  border: 1px solid $primary-color;
+  padding: 30px;
 
   .private-chats-list-container {
     overflow-y: auto;
     width: 250px;
-    height: 75vh;
-    border: 1px solid $primary-color;
+    height: 100%;
   }
 
   .private-chats-chatroom {

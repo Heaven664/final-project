@@ -13,6 +13,7 @@ export default function PrivateChatList(props) {
         name={chat.first_name}
         photo={chat.photo}
         changeFriend={props.changeFriend}
+        selected={props.friend}
       ></PrivateChatListItem>
     );
   });
