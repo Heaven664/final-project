@@ -1,100 +1,97 @@
 @import "../../styles/variables.scss";
 
 .event-layout {
-  margin-top: 15vh;
-  margin-left: 1vw;
-  margin-right: 2vw;
-  border-radius: 0.5rem;
-  border-color: black;
-  display: flex;
-  flex-direction: row;
-  height: 60vh;
-  width: 95%;
-}
-
-.__panel {
-
-  margin: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  &.event-left {
-    width:60%;
-  }
-
-  &.event-right {
-    width:40%;
-  }
-}
-
-.__card {
-  width: 100%;
-  margin: 0.5rem;
   display: flex;
 
-  &.invitation {
-    font-size: 1.5rem;
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &.modification {
+  .__panel {
     display: flex;
-    flex-direction: row;
-    font-size: 1.5rem;
-    flex-grow: 1;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
 
-    .modi {
-      width: 45%;
-      height: 80%;
+    &.event-left {
+      width:60%;
+    }
+
+    &.event-right {
+      width:40%;
+      margin-left: 20px;
     }
   }
 
-  &.event-info {
-    flex-grow: 5;
-
-  }
-
-  &.event-guest {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    
-    flex-grow: 4;
-  }
-
-  &.maps-api {
-    flex-grow: 5;
-    font-size: $title-size;
-    justify-content: center;
-    align-items: center;
-    list-style-type: none;
-  }
-
-  &.fundraisers {
-    display: flex;
-    flex-grow: 3;
-  }
-
-  &.no-fundraisers {
-    display: flex;
-    flex-grow: 0;
-  }
-
-  &.event-wall {
-    display: flex;
-    flex-grow: 1;
+  .__card {
     width: 100%;
-    justify-content: center;
-    align-items: center;
-  }
+    display: flex;
 
-}  
+    &.invitation {
+      height: 40px;
+      flex-grow: 1;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
 
+      span{
+        color: #fff;
+      }
+    }
+
+    &.modification {
+      height: 40px;
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
+      justify-content: space-around;
+      align-items: center;
+
+      .modi {
+        width: 47%;
+      }
+    }
+
+    &.event-info {
+      flex-grow: 5;
+      padding: 30px;      
+      margin: 20px 0;
+      justify-content: center;
+    }
+
+    &.event-guest {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding: 30px;      
+      flex-grow: 4;
+    }
+
+    &.maps-api {
+      flex-grow: 5;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;      
+      list-style-type: none;
+    }
+
+    &.fundraisers {
+      display: flex;
+      flex-grow: 3;
+      padding: 30px;
+    }
+
+    &.no-fundraisers {
+      display: flex;
+      flex-grow: 0;
+    }
+
+    &.event-wall {
+      display: flex;
+      flex-grow: 1;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+    }
+
+  }  
+}
 
 

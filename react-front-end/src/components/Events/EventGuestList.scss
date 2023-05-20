@@ -5,14 +5,14 @@
   display: flex;
 
   &__header {
-    color: $primary-color;
-    margin-bottom: 0.5rem;
-    font-size: $title-size;
+    margin-bottom: 20px;
+    text-align: center;
   }
 
   &__list {
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
     list-style-type: none;
   }
 }

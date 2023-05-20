@@ -32,7 +32,7 @@ export default function EventGuestList(props) {
 
   return (
     <section className={eventGuestClass}>
-      <h4 className="eventGuest__header text--light">Guests</h4>
+      <h4 className="eventGuest__header font24 font-title-color text--light">Guests</h4>
       <ul className="eventGuest__list">{eventGuestProps}</ul>
     </section>
   );
