@@ -6,17 +6,44 @@
   align-items: center;
   max-width: 45%;
   min-height: 40px;
-  background-color: $primary-color;
+  background-color: #fff;
+  word-break: break-all;
   margin: 5px;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  line-height: 1.5rem;
+  position: relative;
+  box-shadow: 1px 1px 5px 1px rgba(101, 101, 101, 0.3);
 
-  p{
-    padding: 1rem 2rem;
-    line-height: 1.5rem;
-  }
+    &::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      left: -20px;
+      position: absolute;
+    }
+
+    &::after {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M0 10 Q18 18 20 0 L20 20Z" /></svg>');
+      bottom: 10px;
+    }
+
 }
 .my-message {
   margin-left: auto;
+  background-color: $add-color;
   justify-content: flex-end;
+
+  p{
+    color: #fff;
+  }
+
+  &::after {
+    left: auto;
+    right: -20px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><path fill="rgb(170, 186, 245)" d="M0 5 Q10 30 30 18 L0 60Z" /></svg>');
+    bottom: 10px;
+  }
 }
 
 .sender-name {
@@ -36,8 +63,5 @@
   &.my-message {
     flex-direction: row;
     text-align: end;
-    p {
-
-    }
   }
 }

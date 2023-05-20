@@ -3,7 +3,7 @@
 .chatroom-chats-item-container {
   display: flex;
   align-items: center;
-  width: 92%;
+  width: 100%;
   height: 80px;
   margin-bottom: 15px;
   background-color: #f5ecdd;
@@ -13,6 +13,8 @@
   &.--selected{
     color: #fff;
     background-color: $fundraiser-color;
+    box-shadow: 4px 5px 2px rgba(75,41,143,0.2);
+
   }
   .chatroom-chats-image-container {
     margin-right: 15px;

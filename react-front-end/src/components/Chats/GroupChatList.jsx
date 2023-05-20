@@ -14,6 +14,7 @@ export default function GroupChatList(props) {
         name={event[0].name}
         photo={event[0].photo}
         changeEvent={props.changeEvent}
+        selected={props.event}
       ></GroupChatListItem>
     );
   });

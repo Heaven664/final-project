@@ -114,31 +114,29 @@ export default function PrivateChat(props) {
         <PrivateChatList friends={state.chats} friend={state.friend_id} changeFriend={changeFriend} />
       </div>
 
-      <div className="private-chats-chatroom">
+      <div className="private-chats-chatroom border-radius20">
         {state.friend_id !== 0 && (
           <div>
-            <div className="private-chats-chatroom-title">
-              <div className="private-chats-chatroom-title-image-container">
-                <img
-                  src={state.friend && state.friend.photo}
-                  alt={state.friend_id}
-                />
+            <div className="private-chats-chatroom-title background-fundraiser-color">
+              <div className="private-chats-chatroom-title-image-container ">
+                <div
+                  className="thumbnail"
+                  style={{ backgroundImage: `url(${state.friend && state.friend.photo})` }}>
+                </div>
               </div>
-              <div className="private-chats-chatroom-title-name-container">
-                <p>
-                  {state.friend && state.friend.first_name}{" "}
-                  {state.friend && state.friend.last_name}
-                </p>
-              </div>
+              <p className="font20">
+                {state.friend && state.friend.first_name}{" "}
+                {state.friend && state.friend.last_name}
+              </p>
             </div>
             <div className="chatroom-messages-container">
-              <MessageList
-                user_id={state.user_id}
-                messages={state.messages}
-              ></MessageList>
+                <MessageList
+                  user_id={state.user_id}
+                  messages={state.messages}
+                ></MessageList>
             </div>
             <form
-              className="chatroom-massage-input-container"
+              className="chatroom-massage-input-container background-fundraiser-color"
               onSubmit={sendMessage}
             >
               <input
@@ -147,9 +145,8 @@ export default function PrivateChat(props) {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <button className="chatroom-massage-send-button">
+              <button className="chatroom-massage-send-button ">
                 <FontAwesomeIcon icon={faPaperPlane} />
-                <br />
               </button>
             </form>
           </div>

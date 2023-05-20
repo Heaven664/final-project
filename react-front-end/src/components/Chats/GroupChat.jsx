@@ -143,15 +143,15 @@ export default function GroupChat(props) {
   }, [state.event_id]);
 
   return (
-    <div className="private-chat-component">
+    <div className="private-chat-component background-box-color box-shadow border-radius20">
       <div className="private-chats-list-container">
-        <GroupChatList events={state.events} changeEvent={changeEvent} />
+        <GroupChatList events={state.events} event={state.event_id} changeEvent={changeEvent} />
       </div>
 
-      <div className="private-chats-chatroom">
+      <div className="private-chats-chatroom border-radius20">
         {state.event_id !== 0 && (
           <div>
-            <div className="private-chats-chatroom-title">
+            <div className="private-chats-chatroom-title background-fundraiser-color">
               <div className="private-chats-chatroom-title-name-container">
                 <p>{state.event && state.event.name} </p>
               </div>
@@ -163,7 +163,7 @@ export default function GroupChat(props) {
               ></MessageList>
             </div>
             <form
-              className="chatroom-massage-input-container"
+              className="chatroom-massage-input-container background-fundraiser-color"
               onSubmit={sendMessage}
             >
               <input
