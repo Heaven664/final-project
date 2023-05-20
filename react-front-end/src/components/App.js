@@ -37,7 +37,7 @@ export default function App(props) {
 
   const openMyProfile = () => {
     reload();
-    changeProfileId(currentUser.id)
+    changeProfileId(currentUser?.id)
     changePage('profile');
   };
 
