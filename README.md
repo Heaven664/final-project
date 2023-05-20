@@ -1,44 +1,44 @@
-# **Wish Whisper**
+# <span style="color:#61DAFB">**Wish Whisper**</span>
 
-## **Description**
+## <span style="color:#2980B9">**Description**</span>
 
-_Whish Whisper_ is a social networking platform focused on elegant event organization. With features like effortless event creation, integrated fundraising, and group/private live chats, it simplifies event planning and enhances communication. Built with React.js, Express.js, and PostgreSQL, it offers a seamless user experience while providing essential social networking functionalities like friendlist management and profile customization.
+<span style="font-style:italic">Whish Whisper</span> is a social networking platform focused on elegant event organization. With features like effortless event creation, integrated fundraising, and group/private live chats, it simplifies event planning and enhances communication. Built with <span style="color:#FFD700">React.js</span>, <span style="color:#FFD700">Express.js</span>, and <span style="color:#FFD700">PostgreSQL</span>, it offers a seamless user experience while providing essential social networking functionalities like friendlist management and profile customization.
 
 ---
 
-## **Future Development**
+## <span style="color:#2980B9">**Future Development**</span>
 
-_Whish Whisper_ is a newly launched project, and we understand the importance of providing a usable platform as quickly as possible. However, we acknowledge that certain crucial features are currently missing. We want to assure you that we are actively working on delivering these features in the near future. Stay tuned as we continue to enhance _Whish Whisper_ to meet your expectations.
+<span style="font-style:italic">Whish Whisper</span> is a newly launched project, and we understand the importance of providing a usable platform as quickly as possible. However, we acknowledge that certain crucial features are currently missing. We want to assure you that we are actively working on delivering these features in the near future. Stay tuned as we continue to enhance <span style="font-style:italic">Whish Whisper</span> to meet your expectations.
 
-### **_Friend Request_**
+### <span style="color:#3498DB">**Friend Request**</span>
 
 We understand the frustration caused by the current functionality that allows adding people to our platform without their consent. We acknowledge that this is not an ideal experience, and we want to assure you that addressing this issue is our top priority. We are actively working on a solution to fix this and provide a more user-friendly experience. Thank you for your patience as we strive to improve our platform.
 
-### **_Active Now_**
+### <span style="color:#3498DB">**Active Now**</span>
 
-At _Whish Whisper_, we recognize the significance of keeping track of your friends' activity on our platform. We understand that having the ability to see who is currently active is an awesome feature that can greatly enhance your social networking experience. We are thrilled to announce that implementing this feature is one of our top priorities in the upcoming updates.
+At <span style="font-style:italic">Whish Whisper</span>, we recognize the significance of keeping track of your friends' activity on our platform. We understand that having the ability to see who is currently active is an awesome feature that can greatly enhance your social networking experience. We are thrilled to announce that implementing this feature is one of our top priorities in the upcoming updates.
 
-### **_Live Feed_**
+### <span style="color:#3498DB">**Live Feed**</span>
 
-At _Whish Whisper_, our goal is to create a warm and inviting platform for you and your friends, where you can freely share your thoughts, photos, and videos. We strive to provide a cozy space where you can engage with your social circle and express yourself through various forms of media.
+At <span style="font-style:italic">Whish Whisper</span>, our goal is to create a warm and inviting platform for you and your friends, where you can freely share your thoughts, photos, and videos. We strive to provide a cozy space where you can engage with your social circle and express yourself through various forms of media.
 
-### **_More and More_**
+### <span style="color:#3498DB">**More and More**</span>
 
 We are committed to providing our users with the best and most up-to-date features of modern web communication. We continually monitor the latest advancements in social platforms to ensure that our users have access to cutting-edge functionalities. Our aim is to create an innovative and dynamic environment where you can stay connected with the latest trends and enjoy an exceptional user experience.
 
 ---
 
-## Dependencies
+## <span style="color:#2980B9">**Dependencies**</span>
 
-To run the _Wish Whisper_ project locally, you'll need the following dependencies:
+To run the <span style="font-style:italic">Wish Whisper</span> project locally, you'll need the following dependencies:
 
-- Node.js (v14.0.0 or higher)
-- npm (v6.0.0 or higher)
-- PostgreSQL (v10.0 or higher)
+- <span style="color:#FFD700">Node.js</span> (v14.0.0 or higher)
+- <span style="color:#FFD700">npm</span> (v6.0.0 or higher)
+- <span style="color:#FFD700">PostgreSQL</span> (v10.0 or higher)
 
 ---
 
-## Getting Started
+## <span style="color:#2980B9">**Getting Started**</span>
 
 To get started with the repository [final-project](https://github.com/Heaven664/final-project), follow these steps:
 
