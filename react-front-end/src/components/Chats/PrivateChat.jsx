@@ -12,7 +12,7 @@ import { friendContext } from "providers/FriendProvider";
 import "./PrivateChat.scss";
 
 export default function PrivateChat(props) {
-  const { friendId } = useContext(friendContext);
+  const { friendId, openProfile } = useContext(friendContext);
 
   const [state, setState] = useState({
     user_id: props.user || 1,
@@ -121,7 +121,8 @@ export default function PrivateChat(props) {
               <div className="private-chats-chatroom-title-image-container ">
                 <div
                   className="thumbnail"
-                  style={{ backgroundImage: `url(${state.friend && state.friend.photo})` }}>
+                  style={{ backgroundImage: `url(${state.friend && state.friend.photo})` }}
+                  onClick={() => (openProfile(state.friend_id))}>
                 </div>
               </div>
               <p className="font20">
