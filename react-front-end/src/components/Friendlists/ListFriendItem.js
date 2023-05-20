@@ -30,13 +30,15 @@ export default function ListFriendItem(props) {
     };
     // console.log("friend.friend_id", user.id, user.table_id, user.name);
 
+    const pathToProfileThumbnail = `http://localhost:8080/thumbs/${user.photo}`;
+
     return (
       <div
         className="user-list border-radius20 display-flex"
         key={user.table_id}
       >
         <div className="friend-user display-flex">
-          <div className="thumbnail" style={{ backgroundImage: `url(${user.photo})` }} onClick={() => openProfile(user.id)}></div>
+          <div className="thumbnail" style={{ backgroundImage: `url(${pathToProfileThumbnail})` }} onClick={() => openProfile(user.id)}></div>
           <p className="font20 font-title-color">{user.first_name} {user.last_name}</p>
         </div>
         <div className="btns display-flex">

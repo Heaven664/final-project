@@ -26,7 +26,7 @@ export default function NavThumbnail(props) {
         console.error("connect error:", err.message);
       });
   }, []);
-
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.photo}`;
   return (
     <>
       {!props.user &&
@@ -41,7 +41,7 @@ export default function NavThumbnail(props) {
         <div onClick={() => changePage('setting')}>
           <div
             className="thumbnail"
-            style={{ backgroundImage: `url(${state.photo})` }}>
+            style={{ backgroundImage: `url(${pathToProfileThumbnail})` }}>
           </div>
         </div>
       }

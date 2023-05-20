@@ -14,6 +14,8 @@ export default function EventsInfo(props) {
   // const eventAgenda = props.eventsInfo.agenda.split(",").join("<br />")
 
   console.log(props.props);
+
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.photo}`;
   return (
     <main className="info-layout">
 
@@ -25,7 +27,7 @@ export default function EventsInfo(props) {
         <p className='host'>Event Host: <span className='host-name'> {props.hostInfo.first_name} {props.hostInfo.last_name}</span></p>
         <div
           className="-img"
-          style={{ backgroundImage: `url(${props.hostInfo.photo})` }}>
+          style={{ backgroundImage: `url(${pathToProfileThumbnail})` }}>
         </div>
 
       </div>
