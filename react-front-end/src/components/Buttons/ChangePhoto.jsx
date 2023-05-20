@@ -22,7 +22,7 @@ export default function ProfileButton(props) {
 
   return (
     <form id="change-photo-container" className="btn display-flex" onSubmit={handleUpload}>
-      <label for="change-photo" className="change-photo background-fundraiser-color btn-style display-flex">
+      <label htmlFor="change-photo" className="change-photo background-fundraiser-color btn-style display-flex">
         <span>Upload New Photo</span>
         <input
           type="file"
