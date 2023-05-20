@@ -6,8 +6,10 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShowFundraiser(props) {
 
+  const {donation} = props;
 
-  const percentage = props.current_amount / props.target_amount;
+  const percentage = donation.current_amount / donation.target_amount;
+
   const barPercentage = Math.round(percentage * 100) + "%";
 
   console.log('perc',percentage)
@@ -32,8 +34,8 @@ export default function ShowFundraiser(props) {
     <main className="--status">
       <div className='fundraisers-info'>
 
-        <span className='wish'>Wish: {props.title}</span>
-        <span className='target'>Target: ${props.target_amount}</span>
+        <span className='wish'>Wish: {donation.title}</span>
+        <span className='target'>Target: ${donation.target_amount}</span>
 
       </div>
       <div id='fundraisers-bar'>

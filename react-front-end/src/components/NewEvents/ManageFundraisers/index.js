@@ -1,5 +1,5 @@
 import React from 'react';
-import "components/Appointment/styles.scss";
+import "./styles.scss";
 
 import ConfirmFundraiser from "./Confirm";
 import EmptyFundraiser from "./Empty";
@@ -23,51 +23,88 @@ export default function ManageFundraisers(props) {
   const ERROR_DELETE = "ERROR_DELETE";
   const ERROR_SAVE = "ERROR_SAVE";
 
-  const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
+  const { event } = props;
+
+  const [fundraiser, setFundaraiser] = useState([]);
 
   const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY
+    fundraiser ? SHOW : EMPTY
   );
 
+  const addFundraiser = (event_id, title, target) => {
 
-
-
-
-
-  
-
-  function save(name, interviewer) {
-
-    const interview = {
-      student: name,
-      interviewer
+    const data = {
+      event_id: event_id,
+      title: title,
+      target: target
     };
+
+    console.log("add new fundraiser: ", data);
+
+    axios.post(`/api/fundraisers/`, data)
+      .then(res => {
+        console.log(res.data);
+
+        axios.get(`/api/fundraisers/${props.event}`)
+          .then((res) => {
+            console.log(res.data);
+            setFundaraiser(res.data);
+          })
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+  };
+
+
+
+  const removeFundraiser = (id) => {
+
+    console.log('Delete fundraiser:', id);
+
+    axios.delete(`/api/fundraisers/${id}`)
+      .then(res => {
+        console.log(res.data);
+
+        axios.get(`/api/fundraisers/${props.event}`)
+          .then((res) => {
+            console.log(res.data);
+            setFundaraiser(res.data);
+          })
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+  };
+
+
+
+  function save(event_id, title, target) {
 
     transition(SAVING);
 
-    bookInterview(id, interview)
+    addFundraiser(event_id, title, target)
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
   }
 
+
   function destory() {
     transition(DELETING, true);
 
-    cancelInterview(id)
+    removeFundraiser(fundraiser_id)
       .then(() => transition(EMPTY))
       .catch(() => transition(ERROR_DELETE, true));
   }
 
 
+
   return (
-    <article className="appointment" data-testid="appointment">
-      <Header time={time} />
-      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+    <article className="">
+      <HeaderFundraiser />
+      {mode === EMPTY && <EmptyFundraiser onAdd={() => transition(CREATE)} />}
 
       {mode === SHOW && (
-        <Show
-          student={interview.student}
-          interviewer={interview.interviewer}
+        <ShowFundraiser
+          donation={fundraiser}
           onDelete={() => transition(CONFIRM)}
           onEdit={() => transition(EDIT)}
         />
@@ -75,19 +112,17 @@ export default function ManageFundraisers(props) {
       }
 
       {mode === EDIT && (
-        <Form
-          interviewers={interviewers}
-          interviewer={interview.interviewer.id}
+        <SetupFundraiser
+          event={event}
           onSave={save}
           onCancel={back}
-          student={interview.student}
         />
       )
       }
 
       {mode === CREATE && (
-        <Form
-          interviewers={interviewers}
+        <SetupFundraiser
+          event={event}
           onSave={save}
           onCancel={back}
         />
@@ -95,7 +130,7 @@ export default function ManageFundraisers(props) {
       }
 
       {mode === SAVING && (
-        <Status
+        <StatusFundraiser
           message={"Saving"}
         // onComplete={() => transition(SHOW)}
         />
@@ -103,7 +138,7 @@ export default function ManageFundraisers(props) {
       }
 
       {mode === CONFIRM && (
-        <Confirm
+        <ConfirmFundraiser
           message={"Are you sure you want to delete?"}
           onConfirm={destory}
           onCancel={back}
@@ -112,7 +147,7 @@ export default function ManageFundraisers(props) {
       }
 
       {mode === DELETING && (
-        <Status
+        <StatusFundraiser
           message={"Deleting"}
         // onComplete={() => transition(EMPTY)}
         />
@@ -120,16 +155,16 @@ export default function ManageFundraisers(props) {
       }
 
       {mode === ERROR_DELETE && (
-        <Error
-          message={"Could not delete appointment"}
+        <ErrorFundraiser
+          message={"Could not delete fundraiser"}
           onClose={back}
         />
       )
       }
 
       {mode === ERROR_SAVE && (
-        <Error
-          message={"Could not save appointment"}
+        <ErrorFundraiser
+          message={"Could not save fundraiser"}
           onClose={back}
         />
       )

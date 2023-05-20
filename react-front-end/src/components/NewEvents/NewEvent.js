@@ -8,7 +8,7 @@ import GuestList from "./ManageGuests/GuestList";
 
 export default function NewEvent(props) {
 
-  const [fundraiser, setFundaraiser] = useState(null);
+
   const [newEvent, setNewEvent] = useState(null);
   const [eventGuest, setEventGuest] = useState(null);
 

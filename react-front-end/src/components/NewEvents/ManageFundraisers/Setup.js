@@ -3,12 +3,12 @@ import "./styles.scss";
 
 export default function SetupFundraiser(props) {
 
-
   const [error, setError] = useState("");
 
   const [state, setState] = useState({
     title: "",
-    target_amount: ""
+    target_amount: "",
+    event_id:props.event
   });
 
 
