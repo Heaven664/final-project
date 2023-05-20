@@ -13,24 +13,11 @@ import PrivateChat from 'components/Chats/PrivateChat';
 import GroupChat from 'components/Chats/GroupChat';
 import Settings from 'components/Settings/Settings';
 import Login from 'components/Other/Login';
-import MyProfile from './MyProfile';
-import Friend from './Friend';
-import PrivateChat from 'components/PrivateChat';
-import GroupChat from 'components/GroupChat';
-import Setting from 'components/Setting';
-import Login from 'components/Login';
-import Events from "./Events/Events";
 import NewEvent from "./NewEvents/NewEvent";
 import EventsList from "./Events/EventsList";
 import { friendContext } from 'providers/FriendProvider';
 
 import './App.scss';
-
-
-
-// css, font-awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUsers, faComment, faComments, faCakeCandles, faCalendarPlus, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 export default function App(props) {
 
