@@ -26,7 +26,7 @@ export default function ListFriendItem(props) {
 
   const searchResult = usersToDisplay.map(user => {
     const handleUnfriendClick = (a) => {
-      console.log("LIST ITEM DELETE: ", a);
+      // console.log("LIST ITEM DELETE: ", a);
       onUnfriend(a);
     };
 

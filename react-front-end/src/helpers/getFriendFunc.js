@@ -24,3 +24,10 @@ export const getTableIds = (friendlists, id) => {
 export const getFriendsObjects = (users, friends) => {
   return users.filter((user) => friends.includes(user.id));
 };
+
+export const findFriendlist = (friendlists, userId, friendId) => {
+  const friendListObject = friendlists.find(friendlist => {
+    return friendlist.user_id === userId && friendlist.friend_id === friendId;
+  });
+  return friendListObject.id;
+};

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import ListFriendItem from './ListFriendItem';
-import { getFriendsIds, getTableIds, getFriendsObjects } from 'helpers/getFriendFunc';
+import { getFriendsIds, getTableIds, getFriendsObjects, findFriendlist } from 'helpers/getFriendFunc';
 
 export default function ListFriend(props) {
 
@@ -14,8 +14,16 @@ export default function ListFriend(props) {
     friend_id: [],
   });
 
+  const storedUser = sessionStorage.getItem('user');
+  const currentUser = JSON.parse(storedUser)?.id;
+
   // searching
   const [value, setValue] = useState("");
+  const [friendlist, setFriendlist] = useState([]);
+  const [reloadFlag, setReloadFlag] = useState(false);
+
+  const reload = () => setReloadFlag(prev => !prev);
+
   // const [filteredUsers, setFilteredUsers] = useState([friend]);
   const delayTimerRef = useRef(null);
 
@@ -26,6 +34,9 @@ export default function ListFriend(props) {
       axios.get("api/friendlists")
     ]).then(
       (all) => {
+        // Update friendlist 
+        setFriendlist(all[1].data);
+
         // my friend's id array []
         const friendIds = getFriendsIds(all[1].data, friend.user_id);
 
@@ -42,9 +53,6 @@ export default function ListFriend(props) {
             table_id: tableIds[index]
           };
         });
-        // console.log("friendIds", friendIds);
-        // console.log("tableIds", tableIds);
-        // console.log("friendLists", friendLists);
 
         // add name key-value
         const modifiedUsers = updatedData.map((user) => {
@@ -65,7 +73,7 @@ export default function ListFriend(props) {
   // Usage in useEffect hook
   useEffect(() => {
     fetchFriends();
-  }, [value]);
+  }, [value, reloadFlag]);
 
   // searching user
   const [searchResults, setSearchResults] = useState([]);
@@ -100,27 +108,15 @@ export default function ListFriend(props) {
     }
   }, [value]);
 
-  // delete friend
-  const unfriend = (user) => {
-    const data = {
-      id: user.table_id,
-      user_id: friend.user_id,
-      friend_id: user.id
-    };
 
-    axios.delete(`/api/friendlists/${data.id}/delete`, data)
-      .then(res => {
-        // filter out just removed
-        const friendArr = friend.friend_id.filter((element) => {
-          return element.id !== data.friend_id;
-        });
-        setFriend((prev) => {
-          return {
-            ...prev,
-            friend_id: friendArr
-          };
-        });
-      })
+  const unfriend = (user) => {
+    const userId = currentUser;
+    const friendId = user.id;
+
+    const friendListId = findFriendlist(friendlist, userId, friendId);
+    axios.delete(`/api/friendlists/${friendListId}/delete`)
+      .then((res) => console.log(res.data))
+      .then(() => reload())
       .catch(err => console.log(err));
   };
 
