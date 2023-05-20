@@ -142,7 +142,7 @@ const db = require('../db/connection');
     .then(res => {
       response.json(res.rows[0]);
     })
-    .catch(error => response.json({Error: error, Message:"Error adding user to event."}));
+    .catch(error => response.json({Error: error, Message:"Error adding event."}));
   });
 
   // //CRUD READ(GET)
@@ -173,7 +173,7 @@ const db = require('../db/connection');
     .then(res => {
       response.json(res.rows);
     })
-    .catch(error => response.json({Error: error, Message:"Error getting evens for this host."}));
+    .catch(error => response.json({Error: error, Message:"Error getting events for this host."}));
   });
 
 

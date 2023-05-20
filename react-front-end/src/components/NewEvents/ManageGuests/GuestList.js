@@ -13,9 +13,23 @@ export default function GuestList(props) {
 
   const objToArray = (obj) => Object.assign([], Object.values(obj));
   // const guestsArray = props.guests;
-  
-  const GuestProps = objToArray(props.guests).map((user) => {
-  // const eventGuestProps = guestsArray.map((user) => {
+
+  let propsInvited = props.invited;
+
+  if (!props.invited){
+    propsInvited = {};
+  };
+
+  const invited = objToArray(propsInvited).map(user=> user.user_id);
+
+  let propsGusts = props.guests;
+
+  if (!props.guests){
+    propsGusts = {};
+  };
+
+  const GuestProps = objToArray(propsGusts).map((user) => {
+
 
   const name = user.first_name + " " + user.last_name;
 
@@ -25,15 +39,18 @@ export default function GuestList(props) {
         name={name}
         avatar={user.photo}
         selected={user.id === props.value}
-        setEventGuest={() => props.onChange(user.id)}
-        reset={() => props.onChange("")}
+        invited={invited.includes(user.id)}
+        onAdd={(e) => {e.preventDefault();props.onAdd(user.id)}}
+        onKick={(e) => {e.preventDefault();props.onKick(user.event_user_id)}}
+        setGuest={() => props.onClick(user.id)}
+        reset={() => props.onClick("")}
       />
     );
   });
 
   return (
     <section className={GuestClass}>
-      <h4 className="Guest__header text--light">Guests</h4>
+      <span className="Guest__header">{props.title}</span>
       <ul className="Guest__list">{GuestProps}</ul>
     </section>
   );

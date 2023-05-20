@@ -2,6 +2,7 @@
 
 .search-input{
   position: relative;
+  width: 100%;
   padding: 30px;
   background-color: $primary-color;
 
@@ -16,5 +17,17 @@
     height: 50px;
     border: none;
     padding: 0 20px;
+  }
+
+  #searchResult{
+    height: 40%;
+    padding: 30px;
+    background-color: $primary-color;
+  }  
+  
+  #addedToEvent{
+    height: 40%;
+    display: flex;
+    justify-content: center;
   }
 }

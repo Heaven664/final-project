@@ -36,11 +36,11 @@ const db = require('../db/connection');
   });
 
   //get guest lists with guest info for event
-  router.get("/:id", (request, response) => {
+  router.get("/event/:id", (request, response) => {
     db.query(
       `
       SELECT
-        *
+      *, event_user.id as event_user_id
       FROM event_user
       INNER JOIN users ON user_id = users.id
       WHERE event_id = $1;
@@ -51,6 +51,135 @@ const db = require('../db/connection');
     })
     .catch(error => response.json({Error: error, Message:"Error getting event_user for this event."}));
   });
+
+  //get guest lists with guest info for event
+  router.get("/user/:id", (request, response) => {
+    db.query(
+      `
+      SELECT
+      *, event_user.id as event_user_id
+      FROM event_user
+      INNER JOIN users ON user_id = users.id
+      INNER JOIN events ON events.id = event_id
+      WHERE user_id = $1
+      ORDER BY event_date ASC;
+      `,
+    [Number(request.params.id)])
+    .then(res => {
+      response.json(res.rows);
+    })
+    .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
+  });
+
+
+    //get events list with user as the host
+    router.get("/host/:id", (request, response) => {
+      db.query(
+        `
+        SELECT
+        name, event_date, users.photo, users.first_name, users.last_name, events.id
+        FROM events
+        INNER JOIN users ON host_id = users.id
+        WHERE host_id = $1
+        ORDER BY event_date ASC;
+        `,
+      [Number(request.params.id)])
+      .then(res => {
+        response.json(res.rows);
+      })
+      .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
+    });
+
+    //get events list with user as a guest
+    router.get("/attend/:id", (request, response) => {
+      db.query(
+        `
+        SELECT
+        name, event_date, users.photo, users.first_name, users.last_name, events.id
+        FROM events
+        INNER JOIN event_user ON events.id = event_id
+        INNER JOIN users ON user_id = users.id
+        WHERE user_id = $1 AND host_id != $1
+        ORDER BY event_date ASC;
+        `,
+      [Number(request.params.id)])
+      .then(res => {
+        response.json(res.rows);
+      })
+      .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
+    });
+
+    //get passed events list for user
+    router.get("/history/:id", (request, response) => {
+      db.query(
+        `
+        SELECT
+        name, event_date, users.photo, users.first_name, users.last_name, events.id
+        FROM events
+        INNER JOIN event_user ON events.id = event_id
+        INNER JOIN users ON user_id = users.id
+        WHERE user_id = $1 AND event_date < NOW()::timestamp
+        ORDER BY event_date ASC;
+        `,
+      [Number(request.params.id)])
+      .then(res => {
+        response.json(res.rows);
+      })
+      .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
+    });
+
+
+    //get upcoming events list for user
+    router.get("/upcoming/:id", (request, response) => {
+      db.query(
+        `
+        SELECT
+        name, event_date, users.photo, users.first_name, users.last_name, events.id
+        FROM events
+        INNER JOIN event_user ON events.id = event_id
+        INNER JOIN users ON user_id = users.id
+        WHERE user_id = $1 AND 
+        event_date > NOW()::timestamp AND 
+        event_date < (NOW() +INTERVAL '30 DAYS')::TIMESTAMP
+        ORDER BY event_date ASC;
+        `,
+      [Number(request.params.id)])
+      .then(res => {
+        response.json(res.rows);
+      })
+      .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
+    });
+
+
+    //get all events list for user
+    router.get("/all/:id", (request, response) => {
+      db.query(
+        `
+        SELECT
+        name, event_date, users.photo, users.first_name, users.last_name, events.id
+        FROM events
+        INNER JOIN event_user ON events.id = event_id
+        INNER JOIN users ON user_id = users.id
+        WHERE user_id = $1 AND host_id != $1
+        UNION ALL
+        SELECT
+        name, event_date, users.photo, users.first_name, users.last_name, events.id
+        FROM events
+        INNER JOIN users ON host_id = users.id
+        WHERE host_id = $1
+        ORDER BY event_date ASC;
+        `,
+      [Number(request.params.id)])
+      .then(res => {
+        response.json(res.rows);
+      })
+      .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
+    });
+
+
+
+
+
 
   //CRUD UPDATE(PUT)
   router.put("/", (request, response) => {
@@ -73,18 +202,14 @@ const db = require('../db/connection');
 
 
   //CRUD DELETE
-  router.delete("/", (request, response) => {
-    const { id } = request.body;
-    // if (process.env.TEST_ERROR) {
-    //   setTimeout(() => response.status(500).json({}), 1000);
-    //   return;
-    // }
+  router.delete("/:id", (request, response) => {
+
     db.query(
       `
       DELETE FROM event_user
       WHERE id = $1;
       `, 
-      [id]
+      [Number(request.params.id)]
     )
     .then(() => {
       response.status(204).json();

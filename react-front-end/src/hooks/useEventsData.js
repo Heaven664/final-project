@@ -19,7 +19,7 @@ export default function useEventsData(eventID, userID) {
     Promise.all([      
       axios.get('/api/events'),
       axios.get(`/api/fundraisers/${eventID}`),
-      axios.get(`/api/event-user/${eventID}`),
+      axios.get(`/api/event-user/event/${eventID}`),
       axios.get(`/api/events/${eventID}`),
       axios.get(`/api/users/${userID}`)
     ]).then((all) => {
