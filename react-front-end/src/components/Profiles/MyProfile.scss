@@ -1,11 +1,11 @@
 @import "styles/variables.scss";
 
 .my-profile{
-  
+
   .user-photo {
     flex: 0 0 40%;
     margin-right: 30px;
-    max-width: 500px;
+    max-width: 420px;
 
     img{
       width: 100%;
@@ -13,6 +13,10 @@
 
     .btn button{
       width: 100%;
+    }
+
+    .Message{
+      margin-top: 10px;
     }
   }
   .user-detail{

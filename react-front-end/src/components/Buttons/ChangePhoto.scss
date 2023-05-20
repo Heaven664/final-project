@@ -1,15 +1,24 @@
+@import "../../styles/variables.scss";
+
 #change-photo-container {
-  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 
-   & .change-photo {
-    margin-right: 1rem;
-   }
+  .change-photo{
+    color: transparent;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
 
-   & .save-photo {
-    margin-right: 1rem;
-    background-color: rgb(13, 164, 13);
-   }
-}
-input[type='file'] {
-  color: transparent;
+    span{
+      color: #fff;
+    }
+
+    input[type="file"]{
+      display: none;
+    }
+  }
+
 }
