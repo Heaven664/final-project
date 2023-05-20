@@ -1,46 +1,94 @@
-# React + Express No-Fluff Boilerplate
+# **Wish Whisper**
 
-A boilerplate project for anyone interested in making a project that uses React and Express.
+## **Description**
 
-This repository is a bootleg of @NimaBoscarino's [React Rails Boilerplate](https://github.com/NimaBoscarino/react-rails-boilerplate). It uses the same React app, but replaces the Rails server with an Express server.
+_Whish Whisper_ is a social networking platform focused on elegant event organization. With features like effortless event creation, integrated fundraising, and group/private live chats, it simplifies event planning and enhances communication. Built with React.js, Express.js, and PostgreSQL, it offers a seamless user experience while providing essential social networking functionalities like friendlist management and profile customization.
 
-Note! This boilerplate has _no fluff_! That means that there's nothing set up for you to do authentication stuff, there's no Redux stuff, and there's no React Router stuff. On the Express end, there is no session storage or database connection.
+---
 
-The main important bit is that the React project has `proxy` set to `localhost:8080` in the `package.json` file, and that the Express app listens to port 8080 in `server.js`. Take a look!
+## **Future Development**
 
-You can (and perhaps should) rename the directories `express-back-end` and `react-front-end` if you want-- The name doesn't matter.
+_Whish Whisper_ is a newly launched project, and we understand the importance of providing a usable platform as quickly as possible. However, we acknowledge that certain crucial features are currently missing. We want to assure you that we are actively working on delivering these features in the near future. Stay tuned as we continue to enhance _Whish Whisper_ to meet your expectations.
 
-## Running the projects
+### **_Friend Request_**
 
-You need **TWO** terminal windows/tabs for this (or some other plan for running two Node processes).
+We understand the frustration caused by the current functionality that allows adding people to our platform without their consent. We acknowledge that this is not an ideal experience, and we want to assure you that addressing this issue is our top priority. We are actively working on a solution to fix this and provide a more user-friendly experience. Thank you for your patience as we strive to improve our platform.
 
-In one terminal, `cd` into `react-front-end`. Run `npm install` or `yarn` to install the dependencies. Then run `npm start` or `yarn start`, and go to `localhost:3000` in your browser.
+### **_Active Now_**
 
-In the other terminal, `cd` into `express-back-end`. Run `npm install` or `yarn` to install the dependencies, then `npm start` or `yarn start` to launch the server.
+At _Whish Whisper_, we recognize the significance of keeping track of your friends' activity on our platform. We understand that having the ability to see who is currently active is an awesome feature that can greatly enhance your social networking experience. We are thrilled to announce that implementing this feature is one of our top priorities in the upcoming updates.
 
-In the browser, you can click on the button and see the data get loaded.
+### **_Live Feed_**
 
-If this doesn't work, please message me!
+At _Whish Whisper_, our goal is to create a warm and inviting platform for you and your friends, where you can freely share your thoughts, photos, and videos. We strive to provide a cozy space where you can engage with your social circle and express yourself through various forms of media.
 
-## Next steps
+### **_More and More_**
 
-From here, you can start working on your project!
+We are committed to providing our users with the best and most up-to-date features of modern web communication. We continually monitor the latest advancements in social platforms to ensure that our users have access to cutting-edge functionalities. Our aim is to create an innovative and dynamic environment where you can stay connected with the latest trends and enjoy an exceptional user experience.
 
-As soon as the dependencies are installed, your Express server can serve JSON and static assets (like images) in response to API calls from the React app. You can get started on developing your React app, routing plan, etc. right away! Any request that isn't handled by React is passed on to the Express server. That means that you can call a route like `/api/users` from React using `fetch`, `axios`, or something else, and Express will receive it as though they originated from the same app. For routing, best practice is to namespace all of your data routes to `/api`, so that they don't clash with other routing schemes, like React Router.
+---
 
-At some point, you'll likely want to install and configure a database driver for Postgres or MongoDB-- Refer to past projects for hints on how to do this.
+## Dependencies
 
-And don't forget to update the README!
+To run the _Wish Whisper_ project locally, you'll need the following dependencies:
 
-## Example Projects
+- Node.js (v14.0.0 or higher)
+- npm (v6.0.0 or higher)
+- PostgreSQL (v10.0 or higher)
 
-You might want to look at examples of projects that have used this boilerplate for hints on how to extend it. Here are a few:
+---
 
-* [Later Cart](https://github.com/bonitac/later-cart)
-* [Buddi.io](https://github.com/Danny-Tran/buddi.io)
+## Getting Started
 
-If you'd like your project added to the list, please shoot me a message.
+To get started with the repository [final-project](https://github.com/Heaven664/final-project), follow these steps:
 
-## Contact
+1. Clone the repository to your local machine using the command:
+2. Navigate to the project directory:
 
-Please contact me on Slack (@garrettgsb) or Nima at `nima@lighthouselabs.com` if you have any questions, requests, or feedback, or post an issue to this repo. If you are using the boilerplate, I'd love to hear from you as well!
+3. Inside the project directory, you will find two main directories: `express-backend` and `react-frontend`.
+
+4. First, let's set up the Express backend:
+
+- Navigate to the `express-backend` directory:
+
+  ```
+  cd express-backend
+  ```
+
+- Create a `.env` file based on the provided `.env.example` file. Update the configuration settings as needed.
+
+- Install the dependencies by running the following command:
+
+  ```
+  npm install
+  ```
+
+- Once the dependencies are installed, start the backend server:
+  ```
+  npm start
+  ```
+
+5. Now, let's set up the React frontend:
+
+- Open a new terminal or command prompt window.
+
+- Navigate to the `react-frontend` directory:
+
+  ```
+  cd ../react-frontend
+  ```
+
+- Install the dependencies by running the following command:
+
+  ```
+  npm install
+  ```
+
+- Once the dependencies are installed, start the frontend server:
+  ```
+  npm start
+  ```
+
+6. After following these steps, the backend server will be running on one port, and the frontend server will be running on another port. You can access the application by opening your web browser and visiting `http://localhost:3000` (or a different port if specified).
+
+Now you're ready to explore and use the features of the [final-project](https://github.com/Heaven664/final-project) repository. Enjoy!
