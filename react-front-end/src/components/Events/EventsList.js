@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faCompactDisc, faEnvelope, faLayerGroup, faMagnifyingGlass, faMicrophoneLines } from "@fortawesome/free-solid-svg-icons";
 
 import EventsListItem from "./EventsListItem";
 
@@ -44,6 +44,28 @@ export default function EventsList(props) {
 
   return (
     <>
+      <div className="eventListButtons display-flex">
+        <button onClick={""} className="background-primary-color btn-style flex-one">
+        <FontAwesomeIcon icon={faMicrophoneLines} /> <br />
+          Hosting
+        </button>
+        <button onClick={""} className="background-point-color btn-style flex-one">
+        <FontAwesomeIcon icon={faEnvelope} /> <br />
+          Attending
+        </button>
+        <button onClick={""} className="background-fundraiser-color btn-style flex-one">
+        <FontAwesomeIcon icon={faCompactDisc} /> <br />
+          History
+        </button>
+        <button onClick={""} className="background-add-color btn-style flex-one">
+        <FontAwesomeIcon icon={faLayerGroup} /> <br />
+          All
+        </button>        
+        <button onClick={""} className="background-warning-color btn-style flex-one">
+        <FontAwesomeIcon icon={faClock} /> <br />
+          Upcoming
+        </button>
+      </div>
       <ul>{eventsProps}</ul>
     </>
   );
