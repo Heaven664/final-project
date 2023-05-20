@@ -3,7 +3,6 @@ import React from "react";
 import "components/Chats/PrivateChatListItem.scss";
 
 export default function GroupChatListItem(props) {
-  console.log("GROUP ", props);
   const altName = `friend-photo${props.name}`
   return (
     <li>
