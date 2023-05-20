@@ -37,6 +37,14 @@ export default function MyProfile(props) {
     textFriendWithId(id);
   };
 
+  // Add friend
+  const addFriend = (user_id, friend_id) => {
+    axios
+      .post(`api/friendlists`, { user_id, friend_id })
+      .then(() => reload())
+      .catch((err) => console.log(err.message));
+  };
+
   // Get current user profile id for api request
   const apiUser = profileID || currentUser;
 
@@ -65,7 +73,7 @@ export default function MyProfile(props) {
           setState(prev => ({ ...prev, isFriend }));
         }
       );
-  }, [props.reload]);
+  }, [props.reload, reloadFlag]);
 
   return (
     <div className="my-profile">
@@ -74,7 +82,7 @@ export default function MyProfile(props) {
           <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
           {state.id === currentUser && <ChangePhoto userId={currentUser} reload={reload} />}
           {(state.id !== currentUser) && state.isFriend && <ProfileButton interaction={() => messageFriend(profileID)}>Message</ProfileButton>}
-          {(state.id !== currentUser && !state.isFriend) && <ProfileButton>Add Friend</ProfileButton>}
+          {(state.id !== currentUser && !state.isFriend) && <ProfileButton interaction={() => addFriend(currentUser, profileID)}>Add Friend</ProfileButton>}
         </div>
         <div className="box-shadow border-radius20 background-box-color user-detail">
           <table>
