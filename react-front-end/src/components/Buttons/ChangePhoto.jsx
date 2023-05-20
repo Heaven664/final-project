@@ -21,16 +21,17 @@ export default function ProfileButton(props) {
   };
 
   return (
-    <form id="change-photo-container" className="btn" onSubmit={handleUpload}>
-      <input
-        type="file"
-        className={"background-point-color btn-style change-photo"}
-        onChange={handleFileChange}
-      ></input>
+    <form id="change-photo-container" className="btn display-flex" onSubmit={handleUpload}>
+      <label for="change-photo" className="change-photo background-fundraiser-color btn-style display-flex">
+        <span>Upload New Photo</span>
+        <input
+          type="file"
+          id="change-photo"
+          onChange={handleFileChange}
+        ></input>
+      </label>
       <button
-        className={
-          "background-point-color btn-style save-photo background-primary-color"
-        }
+        className="background-point-color btn-style save-photo background-primary-color"
       >
         Save
       </button>
