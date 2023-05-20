@@ -58,7 +58,7 @@ router.delete('/:id/delete', async (req, res) => {
     const { user_id, friend_id } = await friendListQueries.remove(id);
     try {
       // Gets id of the friendlist of the user with friend_id
-      const secondFriendlistId = await friendListQueries.findByUsers(friend_id, user_id)
+      const secondFriendlistId = await friendListQueries.findByUsers(friend_id, user_id);
       // Deletes friendlist for a user with friend_id
       await friendListQueries.remove(secondFriendlistId);
       res.json("Both friendlist were deleted");
