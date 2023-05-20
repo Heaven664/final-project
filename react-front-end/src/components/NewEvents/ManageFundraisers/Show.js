@@ -43,10 +43,10 @@ export default function ShowFundraiser(props) {
         </div>
       </div>
 
-      <button onClick={""} id="supportButton" className="background-fundraiser-color btn-style">
+      <button onClick={""} id="supportButton" className="">
       <FontAwesomeIcon icon={faPenToSquare} /> Edit </button>
 
-      <button onClick={""} id="supportButton" className="background-fundraiser-color btn-style">
+      <button onClick={""} id="supportButton" className="">
       <FontAwesomeIcon icon={faTrashCan} /> Delete </button>
 
     </main>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./styles.scss";
 import axios from 'axios';
 
@@ -9,7 +9,8 @@ import HeaderFundraiser from "./Header";
 import SetupFundraiser from './Setup';
 import ShowFundraiser from "./Show";
 import StatusFundraiser from "./Status";
-import useVisualMode from "hooks/useVisualMode";
+import useVisualMode from 'hooks/useVisualMode';
+import useEventsData from 'hooks/useEventsData';
 
 
 export default function ManageFundraisers(props) {
@@ -26,30 +27,84 @@ export default function ManageFundraisers(props) {
 
   const { event } = props;
 
-  const [fundraiser, setFundaraiser] = useState([]);
+  const {
+    state
+  } = useEventsData(event, props.user);
 
+
+  const state_id = state.fundraisers.id;
+
+  const [fundraiser, setFundraiser] = useState({
+    id:state_id,
+    title:state.fundraisers.title,
+    event_id:state.fundraisers.event_id,
+    target_amount:state.fundraisers.target_amount,
+    current_amount:state.fundraisers.current_amount
+  });
+
+  console.log('state', state.fundraisers)
+  console.log('state 2', fundraiser )
+
+  // useEffect(() => {
+
+  //   console.log('get fundraiser for event', event);
+
+  //   axios.get(`/api/fundraisers/${event}`)
+  //     .then((res) => {
+
+  //       setFundraiser(res.data);
+  //       console.log('res data is', res.data, 'fundraiser is', fundraiser);
+  //     })
+  //     .catch(err => console.log(err));
+  // }, []);
+
+
+
+
+
+
+
+
+
+  // const getFundraiser = () => {
+
+  //   return axios.get(`/api/fundraisers/${event}`)
+  //     .then(res => {
+  //       console.log(res.data);
+  //       setFundraiser(res.data);
+
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
+
+  // getFundraiser();  
+  
   const { mode, transition, back } = useVisualMode(
-    fundraiser ? SHOW : EMPTY
+    fundraiser ? SHOW :  EMPTY 
   );
 
-  const addFundraiser = (event_id, title, target) => {
+
+
+
+  const addFundraiser = (title, target) => {
 
     const data = {
-      event_id: event_id,
+      event_id: event,
       title: title,
       target: target
     };
 
     console.log("add new fundraiser: ", data);
 
-    axios.post(`/api/fundraisers/`, data)
+    return axios.post(`/api/fundraisers/`, data)
       .then(res => {
         console.log(res.data);
 
-        axios.get(`/api/fundraisers/${props.event}`)
+        axios.get(`/api/fundraisers/${event}`)
           .then((res) => {
             console.log(res.data);
-            setFundaraiser(res.data);
+            setFundraiser(res.data);
           })
           .catch(err => console.log(err));
       })
@@ -62,14 +117,14 @@ export default function ManageFundraisers(props) {
 
     console.log('Delete fundraiser:', id);
 
-    axios.delete(`/api/fundraisers/${id}`)
+    return axios.delete(`/api/fundraisers/${id}`)
       .then(res => {
         console.log(res.data);
 
-        axios.get(`/api/fundraisers/${props.event}`)
+        axios.get(`/api/fundraisers/${event}`)
           .then((res) => {
             console.log(res.data);
-            setFundaraiser(res.data);
+            setFundraiser(res.data);
           })
           .catch(err => console.log(err));
       })
@@ -78,11 +133,11 @@ export default function ManageFundraisers(props) {
 
 
 
-  function save(event_id, title, target) {
+  function save(title, target) {
 
     transition(SAVING);
 
-    addFundraiser(event_id, title, target)
+    addFundraiser(title, target)
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
   }
@@ -133,7 +188,7 @@ export default function ManageFundraisers(props) {
       {mode === SAVING && (
         <StatusFundraiser
           message={"Saving"}
-        // onComplete={() => transition(SHOW)}
+          onComplete={() => transition(SHOW)}
         />
       )
       }
@@ -150,7 +205,7 @@ export default function ManageFundraisers(props) {
       {mode === DELETING && (
         <StatusFundraiser
           message={"Deleting"}
-        // onComplete={() => transition(EMPTY)}
+          onComplete={() => transition(EMPTY)}
         />
       )
       }

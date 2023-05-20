@@ -41,7 +41,7 @@ export default function NewEvent(props) {
       .then(res => {
         console.log(res.data);
         // setNewEvent(res.data.id);
-        setNewEvent(29);
+        setNewEvent(3);
       })
       .catch(err => console.log(err));
   };
@@ -147,6 +147,7 @@ export default function NewEvent(props) {
             <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail">
               <ManageFundraisers             
               event={newEvent} 
+              user = {props.user}
               />
               </section>
             :
