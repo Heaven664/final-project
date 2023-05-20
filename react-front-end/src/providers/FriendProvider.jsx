@@ -14,8 +14,8 @@ export default function FriendProvider(props) {
   };
 
   const textFriendWithId = (id) => {
-    setPage("chat");
     setFriendID(id);
+    setPage("chat");
   };
 
   const changePage = (pageName) => {

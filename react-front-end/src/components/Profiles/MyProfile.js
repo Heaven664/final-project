@@ -8,18 +8,11 @@ import ChangePhoto from "components/Buttons/ChangePhoto";
 import { getFriendsIds } from 'helpers/friends-data';
 
 export default function MyProfile(props) {
+  const { profileID, textFriendWithId } = useContext(friendContext);
 
-  const { profileID } = useContext(friendContext);
-
-  const [reloadFlag, setReloadFlag] = useState(null);
-
-  const reload = () => {
-    setReloadFlag(prevFlag => !prevFlag);
-  };
-
+  // Get stored user data
   const storedUser = sessionStorage.getItem('user');
   const currentUser = storedUser ? JSON.parse(storedUser).id : 0;
-
 
   const [state, setState] = useState({
     id: profileID || currentUser,
@@ -33,6 +26,18 @@ export default function MyProfile(props) {
     isFriend: false,
   });
 
+  // Cause page reload
+  const [reloadFlag, setReloadFlag] = useState(null);
+  const reload = () => {
+    setReloadFlag(prevFlag => !prevFlag);
+  };
+
+  // Switch to private message chatroom component
+  const messageFriend = (id) => {
+    textFriendWithId(id);
+  };
+
+  // Get current user profile id for api request
   const apiUser = profileID || currentUser;
 
   // When user presses on "My profile get his profile data"
@@ -68,7 +73,7 @@ export default function MyProfile(props) {
         <div className="user-photo">
           <img src={state.photo} alt="user profile" className="border-radius20 box-shadow"></img>
           {state.id === currentUser && <ChangePhoto userId={currentUser} reload={reload} />}
-          {(state.id !== currentUser) && state.isFriend && <ProfileButton>Message</ProfileButton>}
+          {(state.id !== currentUser) && state.isFriend && <ProfileButton interaction={() => messageFriend(profileID)}>Message</ProfileButton>}
           {(state.id !== currentUser && !state.isFriend) && <ProfileButton>Add Friend</ProfileButton>}
         </div>
         <div className="box-shadow border-radius20 background-box-color user-detail">
