@@ -116,9 +116,8 @@ export default function App(props) {
               ${page === 'setting' ? '--selected' : ''}`}
               onClick={() => changePage('setting')}>
               <FontAwesomeIcon icon={faGear} /><br />
-              <span>Settings</span>
             </li>
-            <li className='events'
+            <li className='logout'
               onClick={logout}>
               <FontAwesomeIcon icon={faRightFromBracket} />
             </li>
