@@ -42,7 +42,7 @@ To run the <span style="font-style:italic">Wish Whisper</span> project locally, 
 
 To get started with the repository [final-project](https://github.com/Heaven664/final-project), follow these steps:
 
-1. Clone the repository to your local machine using the command:
+1. Clone the repository to your local machine.
 2. Navigate to the project directory:
 
 3. Inside the project directory, you will find two main directories: `express-backend` and `react-frontend`.
