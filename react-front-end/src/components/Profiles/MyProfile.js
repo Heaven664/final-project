@@ -81,7 +81,7 @@ export default function MyProfile(props) {
     <div className="my-profile">
       <div className="display-flex">
         <div className="user-photo">
-          <img src={pathToProfileImage} alt="user profile" className="border-radius20 box-shadow"></img>
+          <img src={state.photo && pathToProfileImage} alt="user profile" className="border-radius20 box-shadow"></img>
           {state.id === currentUser && <ChangePhoto userId={currentUser} reload={reload} />}
           {(state.id !== currentUser) && state.isFriend && <ProfileButton interaction={() => messageFriend(profileID)}>Message</ProfileButton>}
           {(state.id !== currentUser && !state.isFriend) && <ProfileButton interaction={() => addFriend(currentUser, profileID)}>Add Friend</ProfileButton>}
