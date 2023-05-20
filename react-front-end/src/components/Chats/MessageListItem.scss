@@ -50,7 +50,8 @@
   flex-direction: column;
 
   .group-chat-user-name {
-    font-size: 16px;
+    font-size: 13px;
+    color: $title-color;
     align-self: flex-start;
   }
 

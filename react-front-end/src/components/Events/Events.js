@@ -47,12 +47,12 @@ export default function Events(props) {
         {
           props.user === state.eventsInfo.host_id
             ?
-            <section className="modification __card box-shadow border-radius20 background-box-color user-detail">
+            <section className="modification __card  user-detail">
               <button onClick={""} className="modi background-add-color btn-style">Edit Event</button>
-              <button onClick={""} className="modi background-warning-color btn-style">Cancel Event</button>
+              <button onClick={""} className="modi background-bad-color btn-style">Cancel Event</button>
             </section>
             :
-            <section className="invitation __card box-shadow border-radius20 background-box-color user-detail">
+            <section className="invitation __card box-shadow border-radius15 background-point-color user-detail">
               <span>{`You are invited to ${getFullName(state.usersInfo)}'s ${state.eventsInfo.name}!`}
               </span>
             </section>
@@ -88,12 +88,12 @@ export default function Events(props) {
         {
           state.fundraisers
             ?
-            <section className="fundraisers __card  box-shadow border-radius20 background-box-color user-detail"><Fundraisers donation={state.fundraisers} /></section>
+            <section className="fundraisers __card box-shadow border-radius20 background-box-color user-detail"><Fundraisers donation={state.fundraisers} /></section>
             :
             <section className="no-fundraisers __card  box-shadow border-radius20 background-box-color user-detail"></section>
         }
 
-        <section className="event-wall __card  box-shadow border-radius20 background-box-color user-detail">
+        <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
           <button onClick={""} className="background-point-color btn-style">Join Group Chat</button>
         </section>
       </div>

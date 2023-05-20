@@ -17,14 +17,17 @@ export default function EventsInfo(props) {
   return (
     <main className="info-layout">
 
-      <section className='event-title'>
+      <section className='event-title font24'>
         <span>{props.eventsInfo.name}</span>
       </section>
 
       <div className='info-host'>
-        <img className='-img' src={props.hostInfo.photo} alt="event_host_avatar" width="500" height="600" />
-        <span className='host-title'>Event Host:&nbsp;&nbsp;</span>
-        <span className='host-name'> {props.hostInfo.first_name} {props.hostInfo.last_name}</span>
+        <p className='host'>Event Host: <span className='host-name'> {props.hostInfo.first_name} {props.hostInfo.last_name}</span></p>
+        <div
+          className="-img"
+          style={{ backgroundImage: `url(${props.hostInfo.photo})` }}>
+        </div>
+
       </div>
 
       {/* <section className='event-description'>
