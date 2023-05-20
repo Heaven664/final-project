@@ -1,12 +1,12 @@
 const db = require('../connection');
 
-const create = (event_id, target_amount) => {
+const create = (event_id, target_amount, title) => {
   const queryString = `
-  INSERT INTO fundraisers (event_id, target_amount)
-  VALUES ($1, $2)
+  INSERT INTO fundraisers (event_id, target_amount, title)
+  VALUES ($1, $2, $3)
   RETURNING *;
   `;
-  const values = [event_id, target_amount];
+  const values = [event_id, target_amount, title];
   return db.query(queryString, values)
     .then(res => res.rows[0]);
 };
