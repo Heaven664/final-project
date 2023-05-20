@@ -26,7 +26,7 @@ export default function NavThumbnail(props) {
         console.error("connect error:", err.message);
       });
   }, []);
-  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.photo}`;
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${state.photo}`;
   return (
     <>
       {!props.user &&
