@@ -15,7 +15,8 @@ export default function EventsInfo(props) {
 
   console.log(props.props);
 
-  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.photo}`;
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.hostInfo.photo}`;
+
   return (
     <main className="info-layout">
 

@@ -26,15 +26,18 @@ export default function App(props) {
 
   const { page, changePage, profileID, changeProfileId } = useContext(friendContext);
 
-  const storedUser = sessionStorage.getItem('user');
-  const currentUser = storedUser ? JSON.parse(storedUser) : null;
+  // const storedUser = sessionStorage.getItem('user');
+  // const currentUser = storedUser ? JSON.parse(storedUser) : null;
 
-  const [user, setUser] = useState(currentUser);
+  // const [user, setUser] = useState(currentUser);
   const [updateApp, setUpdateApp] = useState(false);
 
   const [nav, setNav] = useState("");
 
-
+  const user ={
+    id:1
+  }
+  
 
   const reload = () => {
     setUpdateApp(prev => !prev);
@@ -44,7 +47,7 @@ export default function App(props) {
 
   const openMyProfile = () => {
     reload();
-    changeProfileId(currentUser?.id)
+    // changeProfileId(currentUser?.id)
     changePage('my-profile');
   };
 
@@ -52,7 +55,7 @@ export default function App(props) {
   const login1 = function () {
     axios.post("api/login")
       .then(res => {
-        setUser(res.data);
+        // setUser(res.data);
       })
       .catch(err => {
         console.log("Login:", err.message);
@@ -63,7 +66,7 @@ export default function App(props) {
   const login2 = function () {
     axios.post("api/login/1")
       .then(res => {
-        setUser(res.data);
+        // setUser(res.data);
       })
       .catch(err => {
         console.log("Login:", err.message);
@@ -74,7 +77,7 @@ export default function App(props) {
     axios.post('/api/logout')
       .then(() => {
         sessionStorage.clear();
-        setUser(null);
+        // setUser(null);
       });
   };
 
@@ -85,7 +88,7 @@ export default function App(props) {
           <ul>
             <li className={`profile 
               ${nav === 'my-profile' ? '--selected' : ''}`} 
-              // onClick={setNav("my-profile")}
+              onClick={()=>{setNav("my-profile")}}
               >
                               <Link to="/myprofile">
               <FontAwesomeIcon icon={faUser} /><br />
@@ -145,8 +148,8 @@ export default function App(props) {
             </li>
           </ul>
         </nav>
-        <div className="topNav">
 
+        <div className="topNav">
           <div>
             <img
               className="mainLogo"
@@ -161,29 +164,18 @@ export default function App(props) {
             <NavThumbnail user={user.id} />
           }
 
-
         </div>
       </section>
       <section className="contents">
 
         <Routes>
-        {/* {(!user) && <Login login1={login1} login2={login2} />}
-        {((user && page === 'profile') || (user && page === 'my-profile') )&&
-          <MyProfile userId={profileID} reload={updateApp} />
-        }
-        {(user && page) === 'friends' && <Friend user={user.id} />}
-        {(user && page === 'chat') && <PrivateChat user={user.id} />}
-        {(user && page === 'groupChat') && <GroupChat user={user.id} />}
-        {(user && page === 'setting') &&
-          <Settings user={user.id} />
-        }
-        <Route path="/myprofile" element={<MyProfile userId={profileID} reload={updateApp} />} /> */}
           <Route path="/friends" element={<Friend user={user.id} />} />
           <Route path="/chat" element={<PrivateChat user={user.id} />} />
           <Route path="/groupchat" element={<GroupChat user={user.id} />} />
           <Route path="/setting" element={<Settings user={user.id} />} />
           <Route path="/newevent" element={<NewEvent user={user.id} />} />
 
+          <Route path="/login" element={<Login user={user.id} />} />
           <Route path="/events" element={<EventsList user={user.id} />} />
           <Route path="/events/:id" element={
             <ProtectedRoute user={user.id}>
