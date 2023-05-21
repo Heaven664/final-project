@@ -5,9 +5,13 @@ export default function SetupFundraiser(props) {
 
   const [error, setError] = useState("");
 
+
+  const propsTitle = props.donation ? props.donation.title : "";
+  const propsTarget = props.donation ? props.donation.target_amount : "";
+
   const [state, setState] = useState({
-    title: "",
-    target_amount: ""
+    title: propsTitle,
+    target_amount: propsTarget
   });
 
 
@@ -39,6 +43,7 @@ export default function SetupFundraiser(props) {
               className="fundraiser-wishField"
               type="text"
               name="fundraiser-wish"
+              value={state.title}
               onChange={(e) => setState({ ...state, title: e.target.value })}
             />
           </label>
@@ -50,6 +55,7 @@ export default function SetupFundraiser(props) {
               className="fundraiser-targetField"
               type="number"
               name="fundraiser-target"
+              value={state.target_amount}
               onChange={(e) => setState({ ...state, target_amount: e.target.value })}
             />
           </label>
