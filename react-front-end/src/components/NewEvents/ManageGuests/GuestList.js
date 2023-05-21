@@ -11,6 +11,8 @@ export default function GuestList(props) {
     { "Guest__item--selected": props.selected }
   );
 
+
+
   const objToArray = (obj) => Object.assign([], Object.values(obj));
   // const guestsArray = props.guests;
 
@@ -32,12 +34,13 @@ export default function GuestList(props) {
 
 
   const name = user.first_name + " " + user.last_name;
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${user.photo}`;
 
     return (
       <Guest
         key={user.id}
         name={name}
-        avatar={user.photo}
+        avatar={pathToProfileThumbnail}
         selected={user.id === props.value}
         invited={invited.includes(user.id)}
         onAdd={(e) => {e.preventDefault();props.onAdd(user.id)}}
