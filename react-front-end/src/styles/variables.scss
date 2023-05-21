@@ -9,6 +9,7 @@ $bad-color: #a96363;
 $font-color: #777777;
 $title-color: #1a1a1a;
 $font-size: 16px;
+$middle-size: 20px;
 $title-size: 24px;
 $dark-background: #222f3e;
 // normalize
@@ -67,17 +68,17 @@ body{
   font-size: $font-size;
 }
 .font20{
-  font-size: 20px;
+  font-size: $middle-size;
 }
 .font24{
   font-size: $title-size;
 }
 // font color
 .font-contents-color{
-  font-size: $font-color;
+  color: $font-color;
 }
 .font-title-color{
-  font-size: $title-color;
+  color: $title-color;
 }
 
 // button basic style

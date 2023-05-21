@@ -8,12 +8,12 @@ export default function ConfirmFundraiser(props) {
 
   return (
     <main className="--status">
-    <h1 className="text--semi-bold">{props.message}</h1>
-    <button onClick={props.onCancel} id="supportButton" className="background-fundraiser-color btn-style">
-    <FontAwesomeIcon icon={faRectangleXmark} /> Cancel </button>
+      <h3 className="font16">{props.message}</h3>
+      <button onClick={props.onCancel} id="supportButton" className="background-fundraiser-color btn-style">
+        <FontAwesomeIcon icon={faRectangleXmark} />Cancel </button>
 
-    <button  onClick={props.onConfirm} id="supportButton" className="background-fundraiser-color btn-style">
-    <FontAwesomeIcon icon={faSquareCheck} /> Confirm </button>
+      <button onClick={props.onConfirm} id="supportButton" className="background-bad-color btn-style">
+        <FontAwesomeIcon icon={faSquareCheck} />Confirm </button>
     </main>
   );
 }

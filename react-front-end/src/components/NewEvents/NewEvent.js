@@ -96,7 +96,7 @@ export default function NewEvent(props) {
             <section className="event-agenda __card event_align box-shadow border-radius20 background-box-color user-detail">
               <label id="event_agenda" className="font20">
                 Agenda:<br />
-                <span id="agenda-comment">(use Comma to separate things for the best result.)</span>
+                <span className="agenda-comment font16">(use Comma to separate things for the best result.)</span>
               </label>
               <textarea
                 className="event-agendaField"
@@ -109,12 +109,8 @@ export default function NewEvent(props) {
         </div>
       }
 
-
-
-      {
-
-        newEvent
-          ?
+      {newEvent ?
+        <div className="new-event-guest-fundraiser display-flex">
           <section className="manage-guest __card box-shadow border-radius20 background-box-color user-detail">
             <ManageGuest
               value={eventGuest}
@@ -123,21 +119,16 @@ export default function NewEvent(props) {
               user={props.user}
             />
           </section>
-          :
-          ""
-      }
 
-      {
-        newEvent
-          ?
           <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail">
             <ManageFundraisers
               event={newEvent}
               user={props.user}
             />
           </section>
-          :
-          ""
+        </div>
+        :
+        ""
       }
 
       <div className='-lowerpanel'>
@@ -145,15 +136,15 @@ export default function NewEvent(props) {
           {
             newEvent
               ?
-              <button onClick={""} className="background-point-color btn-style"> Create !</button>
+              <button onClick={""} className="background-point-color btn-style "> Create</button>
               :
               <button onClick={createEvent}
-                className="background-point-color btn-style"> Next Step !</button>
+                className="background-point-color btn-style"> Next Step</button>
           }
 
         </section>
       </div>
 
-    </form>
+    </form >
   );
 }
