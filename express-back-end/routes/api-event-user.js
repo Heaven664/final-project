@@ -118,7 +118,13 @@ const db = require('../db/connection');
         FROM events
         INNER JOIN event_user ON events.id = event_id
         INNER JOIN users ON user_id = users.id
-        WHERE user_id = $1 AND event_date < NOW()::timestamp
+        WHERE user_id = $1 AND host_id != $1 AND event_date < NOW()::timestamp
+        UNION ALL
+        SELECT
+        name, event_date, users.photo, users.first_name, users.last_name, events.id
+        FROM events
+        INNER JOIN users ON host_id = users.id
+        WHERE host_id = $1 AND event_date < NOW()::timestamp
         ORDER BY event_date ASC;
         `,
       [Number(request.params.id)])
@@ -138,7 +144,15 @@ const db = require('../db/connection');
         FROM events
         INNER JOIN event_user ON events.id = event_id
         INNER JOIN users ON user_id = users.id
-        WHERE user_id = $1 AND 
+        WHERE user_id = $1 AND host_id != $1 AND 
+        event_date > NOW()::timestamp AND 
+        event_date < (NOW() +INTERVAL '30 DAYS')::TIMESTAMP
+        UNION ALL
+        SELECT
+        name, event_date, users.photo, users.first_name, users.last_name, events.id
+        FROM events
+        INNER JOIN users ON host_id = users.id
+        WHERE host_id = $1 AND 
         event_date > NOW()::timestamp AND 
         event_date < (NOW() +INTERVAL '30 DAYS')::TIMESTAMP
         ORDER BY event_date ASC;
