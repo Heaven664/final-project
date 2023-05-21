@@ -48,9 +48,9 @@ export default function SetupFundraiser(props) {
             />
           </label>
 
-          <label>
+          <label id="fundraiser-target-comment">
             Target:<br />
-            <span id="fundraiser-target-comment">{""}</span>
+            <span>{""}</span>
             <input
               className="fundraiser-targetField"
               type="number"
@@ -65,15 +65,11 @@ export default function SetupFundraiser(props) {
       </section>
 
       <section className="appointment__card-right">
-
-        <button onClick={cancel}
-          className=""> Cancel
+        <button className="background-fundraiser-color btn-style" onClick={validate}> Save
         </button>
 
-        <button onClick={validate}
-          className=""> Save
+        <button className="background-bad-color btn-style" onClick={cancel}> Cancel
         </button>
-
       </section>
     </main>
   );

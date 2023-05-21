@@ -8,9 +8,9 @@ export default function EmptyFundraiser(props) {
   return (
     <main className="fundraiser__add">
       <button onClick={props.onAdd}
-        className="background-point-color btn-style"> Add a Fundraiser!
+        className="background-fundraiser-color btn-style"> Add a Fundraiser!
         <FontAwesomeIcon className="plusIcon" icon={faPlus}/>
-        </button>
+      </button>
     </main>
   );
 }

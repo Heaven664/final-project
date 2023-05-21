@@ -4,37 +4,27 @@
 .Guest {
   &__item {
     @include button-inactive--opacity;
+    margin-right: 10px;
 
-    margin-right: 0.5rem;
-
-    &-image {
-      width: 50px;
-      height: 50px;
-      margin-right: 0.5rem;
-      border-radius: 25px;
-    }
 
     &--selected {
       color: $box-color;
       background-color: $primary-color;
-      font-size: $title-size;
-      border-radius: 25px;
-      height: 50px;
+      border-radius: 26px;
+      height: 52px;
       display: flex;
       align-items: center;
-      padding-right: 1rem;
+      padding: 0 2px;
       user-select: none;
-    }
-
-    &--selected &-image {
-      width: 50px;
-      height: 50px;
-      margin-right: 0.5rem;
-    }
-
-    &--selected,
-    &:hover {
       @include button-active--opacity;
+
+      :hover {
+        @include button-active--opacity;
+      }
+
+      .thumbnail{
+        margin-right: 10px;
+      }
     }
 
   }
@@ -42,6 +32,10 @@
 }  
 
 .-icon {
-      margin: 0.5rem;
-      font-size:  $title-size;
-    }
+  margin: 0.5rem;
+  font-size:  $middle-size;
+
+  path{
+    fill: #fff;
+  }
+}

@@ -6,7 +6,7 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShowFundraiser(props) {
 
-  const {donation} = props;
+  const { donation } = props;
 
   console.log('donation', donation);
 
@@ -14,7 +14,7 @@ export default function ShowFundraiser(props) {
 
   const barPercentage = Math.round(percentage * 100) + "%";
 
-  console.log('perc',percentage)
+  console.log('perc', percentage)
 
   const getProgress = (value) => {
     if (value > 0.75) {
@@ -30,27 +30,27 @@ export default function ShowFundraiser(props) {
   };
 
   const barVariant = getProgress(percentage);
-  console.log('perc',`${barVariant}`);
+  console.log('perc', `${barVariant}`);
 
   return (
     <main className="--status">
       <div className='fundraisers-info'>
-
-        <span className='wish'>Wish: {donation.title}</span>
-        <span className='target'>Target: ${donation.target_amount}</span>
-
+        <p className='wish'>Wish: <span>{donation.title}</span></p>
+        <p className='target'>Target: <span>${donation.target_amount}</span></p>
       </div>
+
       <div id='fundraisers-bar'>
         <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}
         </div>
       </div>
 
-      <button onClick={props.onEdit} id="" className="">
-      <FontAwesomeIcon icon={faPenToSquare} /> Edit </button>
+      <div id='status-button'>
+        <button onClick={props.onEdit} className="background-add-color btn-style">
+          <FontAwesomeIcon icon={faPenToSquare} />Edit </button>
 
-      <button onClick={props.onDelete} id="" className="">
-      <FontAwesomeIcon icon={faTrashCan} /> Delete </button>
-
+        <button onClick={props.onDelete} className="background-bad-color btn-style">
+          <FontAwesomeIcon icon={faTrashCan} />Delete </button>
+      </div>
     </main>
   );
 }

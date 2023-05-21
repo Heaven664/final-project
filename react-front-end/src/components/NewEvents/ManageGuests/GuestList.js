@@ -50,7 +50,7 @@ export default function GuestList(props) {
 
   return (
     <section className={GuestClass}>
-      <span className="Guest__header">{props.title}</span>
+      <p className="Guest__header font20">{props.title}</p>
       <ul className="Guest__list">{GuestProps}</ul>
     </section>
   );

@@ -6,15 +6,14 @@
 
   &__header {
     color: $primary-color;
-    margin-bottom: 0.5rem;
-    font-size: $title-size;
-    justify-content: center;
+    margin: 20px 0 15px;
+    text-align: center;
   }
 
   &__list {
     display: flex;
     flex-flow: row wrap;
     list-style-type: none;
-
+    justify-content: center;
   }
 }

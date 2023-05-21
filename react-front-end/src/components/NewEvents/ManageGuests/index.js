@@ -60,11 +60,6 @@ export default function ManageGuest(props) {
 
 
 
-
-
-
-
-
   const kickGuest = (guest) => {
 
     // setGuests({ isLoading: true });

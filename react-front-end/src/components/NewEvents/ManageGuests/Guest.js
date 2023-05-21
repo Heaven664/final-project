@@ -6,19 +6,19 @@ import { faUserPlus, faUserXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Guest(props) {
-
+  console.log(props);
   const GuestListClass = classNames("Guest__item", {
     " Guest__item--selected": props.selected
   });
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.avatar}`;
 
   return (
     <li className={GuestListClass} >
-      <img
-        className="Guest__item-image"
-        src={props.avatar}
-        alt={props.name}
-        onClick={props.selected ? props.reset : props.setGuest}
-      />
+      <div
+        className="thumbnail"
+        style={{ backgroundImage: `url(${pathToProfileThumbnail})` }}
+        onClick={props.selected ? props.reset : props.setGuest}>
+      </div>
 
       {props.selected
         ?
@@ -30,8 +30,8 @@ export default function Guest(props) {
         ?
         <>
           <FontAwesomeIcon className="-icon"
-            icon={props.invited ? faUserXmark : faUserPlus} 
-            onClick={props.invited ? props.onKick: props.onAdd}/>
+            icon={props.invited ? faUserXmark : faUserPlus}
+            onClick={props.invited ? props.onKick : props.onAdd} />
         </>
         :
         ""
