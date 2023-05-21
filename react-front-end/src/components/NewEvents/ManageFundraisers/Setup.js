@@ -31,7 +31,7 @@ export default function SetupFundraiser(props) {
   return (
     <main className="">
       <section className="">
-        <form autoComplete="off" onSubmit={(event) => { event.preventDefault(); }}>
+        <form onSubmit={(event) => { event.preventDefault(); }}>
           <label>
             Make a Wish:<br />
             <span id="fundraiser-wish-comment">(It could come true!)</span>

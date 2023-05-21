@@ -10,7 +10,6 @@ import SetupFundraiser from './Setup';
 import ShowFundraiser from './Show';
 import StatusFundraiser from './Status';
 import useVisualMode from 'hooks/useVisualMode';
-import useEventsData from 'hooks/useEventsData';
 
 
 export default function ManageFundraisers(props) {
@@ -27,19 +26,14 @@ export default function ManageFundraisers(props) {
 
   const { event } = props;
 
-  const {
-    state
-  } = useEventsData(event, props.user);
-
-
-  const state_id = state.fundraisers.id;
-
   const [fundraiser, setFundraiser] = useState({
-    isTrue:null
+    title:"",
+    target_amount:"",
+    current_amount:"",
+    id:"",
+    event_id:""
+    // empty:""
   });
-
-  console.log('state', state.fundraisers)
-  console.log('state 2', fundraiser )
 
   useEffect(() => {
 
@@ -47,44 +41,24 @@ export default function ManageFundraisers(props) {
 
     axios.get(`/api/fundraisers/${event}`)
       .then((res) => {
-
+        console.log(res.data);
         setFundraiser(res.data);
-        if (res.data){
-
-          setFundraiser({isTrue:true});
-        }
-
-        console.log('res data is', res.data, 'fundraiser is', fundraiser, 'istrue is', fundraiser.isTrue);
+        // if (Object.keys(res.data).length != 0) {
+        //   setFundraiser({...res.data, empty: "no" });
+        // }
       })
       .catch(err => console.log(err));
+
   }, []);
 
+  console.log(fundraiser.empty==="no", fundraiser);
 
-
-
-
-
-
-
-
-  // const getFundraiser = () => {
-
-  //   return axios.get(`/api/fundraisers/${event}`)
-  //     .then(res => {
-  //       console.log(res.data);
-  //       setFundraiser(res.data);
-
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-
-  // getFundraiser();  
-  
   const { mode, transition, back } = useVisualMode(
-    (fundraiser && !fundraiser.id) ? SHOW :  EMPTY 
+    // ((fundraiser.empty==="no") ? SHOW :  EMPTY )
+    EMPTY
   );
-
+  
+  console.log('mode', mode);
 
   const addFundraiser = (title, target) => {
 
@@ -111,12 +85,36 @@ export default function ManageFundraisers(props) {
   };
 
 
+  const editFundraiser = (new_title, new_target) => {
+
+    const data = {
+      title: new_title,
+      target: new_target
+    };
+
+    console.log("update fundraiser: ", data);
+
+    return axios.put(`/api/fundraisers/${fundraiser.id}`, data)
+      .then(res => {
+        console.log(res.data);
+
+        axios.get(`/api/fundraisers/${event}`)
+          .then((res) => {
+            console.log(res.data);
+            setFundraiser(res.data);
+          })
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+  };
+
+
 
   const removeFundraiser = (id) => {
 
     console.log('Delete fundraiser:', id);
 
-    return axios.delete(`/api/fundraisers/${id}`)
+    return axios.delete(`/api/fundraisers/${id}/delete`)
       .then(res => {
         console.log(res.data);
 
@@ -139,6 +137,17 @@ export default function ManageFundraisers(props) {
     addFundraiser(title, target)
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
+
+  }
+
+  function edit(title, target) {
+
+    transition(SAVING);
+
+    editFundraiser(title, target)
+      .then(() => transition(SHOW))
+      .catch(() => transition(ERROR_SAVE, true));
+
   }
 
 
@@ -169,7 +178,8 @@ export default function ManageFundraisers(props) {
       {mode === EDIT && (
         <SetupFundraiser
           event={event}
-          onSave={save}
+          donation={fundraiser}
+          onSave={edit}
           onCancel={back}
         />
       )
@@ -177,6 +187,7 @@ export default function ManageFundraisers(props) {
 
       {mode === CREATE && (
         <SetupFundraiser
+          donation={fundraiser}
           event={event}
           onSave={save}
           onCancel={back}

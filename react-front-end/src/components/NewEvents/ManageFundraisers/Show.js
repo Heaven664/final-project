@@ -8,6 +8,8 @@ export default function ShowFundraiser(props) {
 
   const {donation} = props;
 
+  console.log('donation', donation);
+
   const percentage = donation.current_amount / donation.target_amount;
 
   const barPercentage = Math.round(percentage * 100) + "%";
