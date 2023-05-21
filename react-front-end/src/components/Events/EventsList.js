@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import {Link, Routes, Route} from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faCompactDisc, faEnvelope, faLayerGroup, faMagnifyingGlass, faMicrophoneLines } from "@fortawesome/free-solid-svg-icons";
+import Events from "./Events";
 
 import EventsListItem from "./EventsListItem";
 
@@ -23,16 +25,18 @@ export default function EventsList(props) {
 
   const eventsProps = events.map((event) => {
 
-    const name = event.first_name + " " + event.last_name;
+    const name = event.host_first_name + " " + event.host_last_name;
 
     return (
+      <Link to={`${event.event_id}`}>
       <EventsListItem
         key={event.event_id}
-        event_name={event.name}
+        user={props.user}
+        event_name={event.event_name}
         host_name={name}
         date={event.event_date}
-        photo={event.photo}
-      />
+        photo={event.host_photo}
+      /></Link>
     );
   });
 
@@ -143,6 +147,8 @@ export default function EventsList(props) {
         </button>
       </div>
       <ul>{eventsProps}</ul>
+
+
     </>
   );
 }

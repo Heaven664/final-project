@@ -6,6 +6,7 @@ import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
 import { getEventGuests, getEventInfo } from "../../helpers/event_selectors";
 import Fundraisers from "./Fundraisers";
+import { useParams } from "react-router";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -13,9 +14,9 @@ export default function Events(props) {
 
   // const [fundraiser, setFundaraiser] = useState(null);
   const [eventGuest, setEventGuest] = useState(null);
-
+  const params = useParams();
   
-  const event_id = Math.floor(Math.random() * 10);
+  const event_id = params.id;
 
   const {
     state

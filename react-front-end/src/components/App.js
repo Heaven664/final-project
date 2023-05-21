@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
+import {Route, BrowserRouter as Router, Routes, Link} from 'react-router-dom';
 
 
 // css, font-awesome
@@ -15,6 +16,7 @@ import Settings from 'components/Settings/Settings';
 import Login from 'components/Other/Login';
 import NewEvent from "./NewEvents/NewEvent";
 import EventsList from "./Events/EventsList";
+import Events from "./Events/Events";
 import { friendContext } from 'providers/FriendProvider';
 
 import './App.scss';
@@ -77,45 +79,46 @@ export default function App(props) {
         <nav className="sidebar__menu">
           <ul>
             <li className={`profile 
-              ${page === 'my-profile' ? '--selected' : ''}`}
-              onClick={openMyProfile}>
+              ${page === 'my-profile' ? '--selected' : ''}`}>
+                              <Link to="/myprofile">
               <FontAwesomeIcon icon={faUser} /><br />
-              <span>My Profile</span>
+              <span>My Profile</span></Link>
             </li>
             <li className={`friends 
-              ${page === 'friends' ? '--selected' : ''}`}
-              onClick={() => changePage('friends')}>
+              ${page === 'friends' ? '--selected' : ''}`}>
+                <Link to="/friends">
               <FontAwesomeIcon icon={faUsers} /><br />
-              <span>Friends</span>
+              <span>Friends</span></Link>
             </li>
             <li className={`chat 
-              ${page === 'chat' ? '--selected' : ''}`}
-              onClick={() => changePage('chat')}>
+              ${page === 'chat' ? '--selected' : ''}`}>
+                 <Link to="/chat">
               <FontAwesomeIcon icon={faComment} /><br />
-              <span>Chat</span>
+              <span>Chat</span></Link>
             </li>
             <li className={`groupChat 
-              ${page === 'groupChat' ? '--selected' : ''}`}
-              onClick={() => changePage('groupChat')}>
+              ${page === 'groupChat' ? '--selected' : ''}`}>
+                <Link to="/groupchat">
               <FontAwesomeIcon icon={faComments} /><br />
-              <span>Group Chat</span>
+              <span>Group Chat</span></Link>
             </li>
             <li className={`events 
-              ${page === 'events' ? '--selected' : ''}`}
-              onClick={() => changePage('events')}>
+              ${page === 'events' ? '--selected' : ''}`}>
+              <Link to="/events">
               <FontAwesomeIcon icon={faCakeCandles} /><br />
               <span>Events</span>
+              </Link>
             </li>
             <li className={`myEvent 
-              ${page === 'newEvent' ? '--selected' : ''}`}
-              onClick={() => changePage('newEvent')}>
+              ${page === 'newEvent' ? '--selected' : ''}`}>
+                <Link to="/newevent">
               <FontAwesomeIcon icon={faCalendarPlus} /><br />
-              <span>New Event</span>
+              <span>New Event</span></Link>
             </li>
             <li className={`setting 
-              ${page === 'setting' ? '--selected' : ''}`}
-              onClick={() => changePage('setting')}>
-              <FontAwesomeIcon icon={faGear} /><br />
+              ${page === 'setting' ? '--selected' : ''}`}>
+                 <Link to="/newevent">
+              <FontAwesomeIcon icon={faGear} /><br /></Link>
             </li>
             <li className='logout'
               onClick={logout}>
@@ -124,6 +127,7 @@ export default function App(props) {
           </ul>
         </nav>
         <div className="topNav">
+
           <div>
             <img
               className="mainLogo"
@@ -131,15 +135,20 @@ export default function App(props) {
               alt="Wish Whisper"
             />
           </div>
+
           {!user && <NavThumbnail />}
+
           {user &&
             <NavThumbnail user={user.id} />
           }
 
+
         </div>
       </section>
       <section className="contents">
-        {(!user) && <Login login1={login1} login2={login2} />}
+
+        <Routes>
+        {/* {(!user) && <Login login1={login1} login2={login2} />}
         {((user && page === 'profile') || (user && page === 'my-profile') )&&
           <MyProfile userId={profileID} reload={updateApp} />
         }
@@ -149,8 +158,16 @@ export default function App(props) {
         {(user && page === 'setting') &&
           <Settings user={user.id} />
         }
-        {(user && page === 'events') && <EventsList user={user.id}/>}
-        {(user && page === 'newEvent') && <NewEvent user={user.id}/>}
+        <Route path="/myprofile" element={<MyProfile userId={profileID} reload={updateApp} />} /> */}
+          <Route path="/friends" element={<Friend user={user.id} />} />
+          <Route path="/chat" element={<PrivateChat user={user.id} />} />
+          <Route path="/groupchat" element={<GroupChat user={user.id} />} />
+          <Route path="/setting" element={<Settings user={user.id} />} />
+          <Route path="/newevent" element={<NewEvent user={user.id} />} />
+
+          <Route path="/events" element={<EventsList user={user.id} />} />
+          <Route path="/events/*" element={<Events user={user.id} />} />
+        </Routes>
 
       </section>
     </main>
