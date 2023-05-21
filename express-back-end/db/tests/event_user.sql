@@ -45,3 +45,31 @@
 --   users AS h ON e.host_id = h.id
 -- WHERE 
 --   e.host_id = 1;
+
+SELECT 
+  e.id AS event_id,
+  e.name AS event_name,
+  e.description,
+  e.agenda,
+  e.event_date,
+  e.event_location,
+  h.id AS host_id,
+  h.first_name AS host_first_name,
+  h.last_name AS host_last_name,
+  h.photo AS host_photo
+FROM 
+  events AS e
+LEFT JOIN 
+  users AS h ON e.host_id = h.id
+WHERE e.id = 1;
+
+
+
+
+
+
+
+
+
+
+

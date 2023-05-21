@@ -261,6 +261,63 @@ const db = require('../db/connection');
       .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
     });
 
+    //get all events list for user
+    router.get("/gethost/:id", (request, response) => {
+      db.query(
+        `
+        SELECT 
+        e.id AS event_id,
+        e.name AS event_name,
+        e.description,
+        e.agenda,
+        e.event_date,
+        e.event_location,
+        h.id AS host_id,
+        h.first_name AS host_first_name,
+        h.last_name AS host_last_name,
+        h.photo AS host_photo
+      FROM 
+        events AS e
+      LEFT JOIN 
+        users AS h ON e.host_id = h.id
+      WHERE e.id = $1;
+        `,
+      [Number(request.params.id)])
+      .then(res => {
+        response.json(res.rows[0]);
+      })
+      .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
