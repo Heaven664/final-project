@@ -18,6 +18,8 @@ export default function Settings(props) {
     about: ""
   });
 
+  const {setUserUpdated} = props;
+
   const updateProfile = (e) => {
     e.preventDefault();
     const data = {
@@ -28,12 +30,12 @@ export default function Settings(props) {
       birthday: state.birthday,
       about: state.about
     };
-    console.log("updated: ", data);
     axios.patch(`/api/users/${state.id}/edit`, data)
       .then(res => {
-        console.log(res.data);
+        setUserUpdated(true);
         changePage('my-profile');
       })
+      .then(setUserUpdated(false))
       .catch(err => console.log(err));
   };
 
