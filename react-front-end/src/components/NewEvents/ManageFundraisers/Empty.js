@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from 'react';
 import "./styles.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-export default function Empty(props) {
+export default function EmptyFundraiser(props) {
 
   return (
-    <main className="appointment__add">
+    <main className="fundraiser__add">
       <button onClick={props.onAdd}
         className="background-point-color btn-style"> Add a Fundraiser!
         <FontAwesomeIcon className="plusIcon" icon={faPlus}/>

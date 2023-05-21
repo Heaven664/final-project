@@ -5,9 +5,9 @@ const fundraisersQueries = require('../db/queries/fundraisers');
 
 // Create new fundraiser
 router.post("/", (req, res) => {
-  const { event_id, target } = req.body;
+  const { event_id, target, title } = req.body;
 
-  fundraisersQueries.create(event_id, target)
+  fundraisersQueries.create(event_id, target, title)
     .then(fundraiser => {
       res.json(fundraiser);
     })
@@ -29,8 +29,9 @@ router.get("/:id", (req, res) => {
 
 // Update fundraiser
 router.put("/:id", (req, res) => {
-  const { event_id, target, current } = req.body;
-  fundraisersQueries.update(event_id, target, current)
+  const { target, title } = req.body;
+  const { id } = req.params;
+  fundraisersQueries.update(id, target, title)
     .then(fundraiser => res.json(fundraiser))
     .catch(error => console.log(error));
 });
