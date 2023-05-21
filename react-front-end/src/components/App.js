@@ -96,7 +96,7 @@ export default function App(props) {
             </li>
             <li className={`friends 
               ${nav === 'friends' ? '--selected' : ''}`} 
-              // onClick={setNav("friends")}
+              onClick={()=>{setNav("friends")}}
               >
                 <Link to="/friends">
               <FontAwesomeIcon icon={faUsers} /><br />
@@ -104,7 +104,7 @@ export default function App(props) {
             </li>
             <li className={`chat 
               ${nav === 'chat' ? '--selected' : ''}`} 
-              // onClick={setNav("chat")}
+              onClick={()=>{setNav("chat")}}
               >
                  <Link to="/chat">
               <FontAwesomeIcon icon={faComment} /><br />
@@ -112,7 +112,7 @@ export default function App(props) {
             </li>
             <li className={`groupChat 
               ${nav === 'groupChat' ? '--selected' : ''}`}
-              // onClick={setNav("groupChat")}
+              onClick={()=>{setNav("groupChat")}}
               >
                 <Link to="/groupchat">
               <FontAwesomeIcon icon={faComments} /><br />
@@ -120,7 +120,7 @@ export default function App(props) {
             </li>
             <li className={`events 
               ${nav === 'events' ? '--selected' : ''}`} 
-              // onClick={setNav("events")}
+              onClick={()=>{setNav("events")}}
               >
               <Link to="/events">
               <FontAwesomeIcon icon={faCakeCandles} /><br />
@@ -129,7 +129,7 @@ export default function App(props) {
             </li>
             <li className={`myEvent 
               ${nav === 'newEvent' ? '--selected' : ''}`} 
-              // onClick={setNav("newEvent")}
+              onClick={()=>{setNav("newEvent")}}
               >
                 <Link to="/newevent">
               <FontAwesomeIcon icon={faCalendarPlus} /><br />
@@ -137,7 +137,7 @@ export default function App(props) {
             </li>
             <li className={`setting 
               ${nav === 'setting' ? '--selected' : ''}`} 
-              // onClick={setNav("setting")}
+              onClick={()=>{setNav("setting")}}
               >
                  <Link to="/setting">
               <FontAwesomeIcon icon={faGear} /><br /></Link>
@@ -158,11 +158,13 @@ export default function App(props) {
             />
           </div>
 
-          {!user && <NavThumbnail />}
+          {/* {!user &&  */}
+          {/* <NavThumbnail /> */}
+          {/* } */}
 
-          {user &&
+          {/* {user && */}
             <NavThumbnail user={user.id} />
-          }
+           {/* } */}
 
         </div>
       </section>
