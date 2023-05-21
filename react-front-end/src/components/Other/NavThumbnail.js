@@ -18,7 +18,8 @@ export default function NavThumbnail(props) {
   });
 
   useEffect(() => {
-    axios.get(`/api/users/${props.user}`)
+    if (props.user) {
+      axios.get(`/api/users/${props.user}`)
       .then((res) => {
         const user = res.data;
         setState(user);
@@ -26,6 +27,7 @@ export default function NavThumbnail(props) {
       .catch(err => {
         console.error("connect error:", err.message);
       });
+    }
   }, []);
   const pathToProfileThumbnail = `http://localhost:8080/thumbs/${state.photo}`;
 
