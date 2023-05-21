@@ -6,6 +6,12 @@
 
 ---
 
+## <span style="color:#2980B9">**Demo**</span>
+### Profile/Friends
+https://github.com/Heaven664/final-project/assets/105215745/68e97f55-6641-4120-8a52-376a5407c2b7
+
+--- 
+
 ## <span style="color:#2980B9">**Future Development**</span>
 
 <span style="font-style:italic">Whish Whisper</span> is a newly launched project, and we understand the importance of providing a usable platform as quickly as possible. However, we acknowledge that certain crucial features are currently missing. We want to assure you that we are actively working on delivering these features in the near future. Stay tuned as we continue to enhance <span style="font-style:italic">Whish Whisper</span> to meet your expectations.
