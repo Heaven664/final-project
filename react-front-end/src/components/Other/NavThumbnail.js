@@ -19,8 +19,7 @@ export default function NavThumbnail(props) {
   const {userUpdated} = props;
 
   useEffect(() => {
-    if (props.user) {
-      axios.get(`/api/users/${props.user}`)
+    axios.get(`/api/users/${props.user}`)
       .then((res) => {
         const user = res.data;
         setState(user);
