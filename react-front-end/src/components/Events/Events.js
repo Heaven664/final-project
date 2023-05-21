@@ -24,18 +24,18 @@ export default function Events(props) {
 
   console.log(state);
   console.log(state.event_user);
-  console.log(state.eventsInfo);
+  console.log(state.events_host_Info);
   console.log(state.fundraisers);
-  console.log(props.user, state.eventsInfo.host_id);
+  console.log(props.user, state.events_host_Info.host_id);
 
   const getFullName = function(obj) {
     return obj.first_name + " " + obj.last_name;
   };
 
   const agendaList = (
-    state.eventsInfo.agenda
+    state.events_host_Info.agenda
       ?
-      state.eventsInfo.agenda.split(',').map((agendaItem) => {
+      state.events_host_Info.agenda.split(',').map((agendaItem) => {
     return (<li>{agendaItem}</li>)})
       :
       "");
@@ -46,7 +46,7 @@ export default function Events(props) {
       <div className='event-left __panel'>
 
         {
-          props.user === state.eventsInfo.host_id
+          props.user === state.events_host_Info.host_id
             ?
             <section className="modification __card  user-detail">
               <button onClick={""} className="modi background-add-color btn-style">Edit Event</button>
@@ -54,13 +54,13 @@ export default function Events(props) {
             </section>
             :
             <section className="invitation __card box-shadow border-radius15 background-point-color user-detail">
-              <span>{`You are invited to ${getFullName(state.usersInfo)}'s ${state.eventsInfo.name}!`}
+              <span>{`You are invited to ${getFullName(state.usersInfo)}'s ${state.events_host_Info.event_name}!`}
               </span>
             </section>
         }
 
         <section className="event-info __card box-shadow border-radius20 background-box-color user-detail">
-          <EventsInfo eventsInfo={state.eventsInfo} hostInfo={state.usersInfo} />
+          <EventsInfo events_host_Info={state.events_host_Info} hostInfo={state.usersInfo} />
 
         </section>
 
@@ -72,7 +72,7 @@ export default function Events(props) {
           />
 
           {
-            props.user === state.eventsInfo.host_id
+            props.user === state.events_host_Info.host_id
               ?
               ""
               :
@@ -83,7 +83,7 @@ export default function Events(props) {
 
       <div className='event-right __panel'>
         <section className="maps-api __card box-shadow border-radius20 background-box-color user-detail">
-          <span>{state.eventsInfo.agenda? agendaList : ""}</span>
+          <span>{state.events_host_Info.agenda? agendaList : ""}</span>
         </section>
 
         {
@@ -91,7 +91,8 @@ export default function Events(props) {
             ?
             <section className="fundraisers __card box-shadow border-radius20 background-box-color user-detail"><Fundraisers donation={state.fundraisers} /></section>
             :
-            <section className="no-fundraisers __card  box-shadow border-radius20 background-box-color user-detail"></section>
+            // <section className="no-fundraisers __card  box-shadow border-radius20 background-box-color user-detail"></section>
+            <section></section>
         }
 
         <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
