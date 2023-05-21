@@ -26,17 +26,17 @@ export default function App(props) {
 
   const { page, changePage, profileID, changeProfileId } = useContext(friendContext);
 
-  // const storedUser = sessionStorage.getItem('user');
-  // const currentUser = storedUser ? JSON.parse(storedUser) : null;
+  const storedUser = sessionStorage.getItem('user');
+  const currentUser = storedUser ? JSON.parse(storedUser) : null;
 
-  // const [user, setUser] = useState(currentUser);
+  const [user, setUser] = useState(currentUser);
   const [updateApp, setUpdateApp] = useState(false);
 
   const [nav, setNav] = useState("");
 
-  const user ={
-    id:1
-  }
+  // const user ={
+  //   id:1
+  // }
   
 
   const reload = () => {
@@ -47,7 +47,7 @@ export default function App(props) {
 
   const openMyProfile = () => {
     reload();
-    // changeProfileId(currentUser?.id)
+    changeProfileId(currentUser?.id)
     changePage('my-profile');
   };
 
@@ -55,7 +55,7 @@ export default function App(props) {
   const login1 = function () {
     axios.post("api/login")
       .then(res => {
-        // setUser(res.data);
+        setUser(res.data);
       })
       .catch(err => {
         console.log("Login:", err.message);
@@ -66,7 +66,7 @@ export default function App(props) {
   const login2 = function () {
     axios.post("api/login/1")
       .then(res => {
-        // setUser(res.data);
+        setUser(res.data);
       })
       .catch(err => {
         console.log("Login:", err.message);
@@ -77,7 +77,7 @@ export default function App(props) {
     axios.post('/api/logout')
       .then(() => {
         sessionStorage.clear();
-        // setUser(null);
+        setUser(null);
       });
   };
 
@@ -87,60 +87,66 @@ export default function App(props) {
         <nav className="sidebar__menu">
           <ul>
             <li className={`profile 
-              ${nav === 'my-profile' ? '--selected' : ''}`} 
-              onClick={()=>{setNav("my-profile")}}
-              >
-                              <Link to="/myprofile">
-              <FontAwesomeIcon icon={faUser} /><br />
-              <span>My Profile</span></Link>
+              ${nav === 'my-profile' ? '--selected' : ''}`}
+              onClick={() => { setNav("my-profile"); }}
+            >
+              <Link to="/myprofile">
+                <FontAwesomeIcon icon={faUser} /><br />
+                <span>My Profile</span>
+                </Link>
             </li>
             <li className={`friends 
-              ${nav === 'friends' ? '--selected' : ''}`} 
-              onClick={()=>{setNav("friends")}}
-              >
-                <Link to="/friends">
-              <FontAwesomeIcon icon={faUsers} /><br />
-              <span>Friends</span></Link>
+              ${nav === 'friends' ? '--selected' : ''}`}
+              onClick={() => { setNav("friends"); }}
+            >
+              <Link to="/friends">
+                <FontAwesomeIcon icon={faUsers} /><br />
+                <span>Friends</span>
+                </Link>
             </li>
             <li className={`chat 
-              ${nav === 'chat' ? '--selected' : ''}`} 
-              onClick={()=>{setNav("chat")}}
-              >
-                 <Link to="/chat">
-              <FontAwesomeIcon icon={faComment} /><br />
-              <span>Chat</span></Link>
+              ${nav === 'chat' ? '--selected' : ''}`}
+              onClick={() => { setNav("chat"); }}
+            >
+              <Link to="/chat">
+                <FontAwesomeIcon icon={faComment} /><br />
+                <span>Chat</span>
+                </Link>
             </li>
             <li className={`groupChat 
               ${nav === 'groupChat' ? '--selected' : ''}`}
-              onClick={()=>{setNav("groupChat")}}
-              >
-                <Link to="/groupchat">
-              <FontAwesomeIcon icon={faComments} /><br />
-              <span>Group Chat</span></Link>
+              onClick={() => { setNav("groupChat"); }}
+            >
+              <Link to="/groupchat">
+                <FontAwesomeIcon icon={faComments} /><br />
+                <span>Group Chat</span>
+                </Link>
             </li>
             <li className={`events 
-              ${nav === 'events' ? '--selected' : ''}`} 
-              onClick={()=>{setNav("events")}}
-              >
+              ${nav === 'events' ? '--selected' : ''}`}
+              onClick={() => { setNav("events"); }}
+            >
               <Link to="/events">
-              <FontAwesomeIcon icon={faCakeCandles} /><br />
-              <span>Events</span>
+                <FontAwesomeIcon icon={faCakeCandles} /><br />
+                <span>Events</span>
               </Link>
             </li>
             <li className={`myEvent 
-              ${nav === 'newEvent' ? '--selected' : ''}`} 
-              onClick={()=>{setNav("newEvent")}}
-              >
-                <Link to="/newevent">
-              <FontAwesomeIcon icon={faCalendarPlus} /><br />
-              <span>New Event</span></Link>
+              ${nav === 'newEvent' ? '--selected' : ''}`}
+              onClick={() => { setNav("newEvent"); }}
+            >
+              <Link to="/newevent">
+                <FontAwesomeIcon icon={faCalendarPlus} /><br />
+                <span>New Event</span>
+                </Link>
             </li>
             <li className={`setting 
-              ${nav === 'setting' ? '--selected' : ''}`} 
-              onClick={()=>{setNav("setting")}}
-              >
-                 <Link to="/setting">
-              <FontAwesomeIcon icon={faGear} /><br /></Link>
+              ${nav === 'setting' ? '--selected' : ''}`}
+              onClick={() => { setNav("setting"); }}
+            >
+              <Link to="/setting">
+                <FontAwesomeIcon icon={faGear} /><br />
+                </Link>
             </li>
             <li className='logout'
               onClick={logout}>
