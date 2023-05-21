@@ -1,7 +1,9 @@
 const express = require('express');
 const bcrypt = require("bcryptjs");
-const multer = require('multer')
-const path = require('path')
+const multer = require('multer');
+const path = require('path');
+const sharp = require('sharp');
+
 const router = express.Router();
 
 const userQueries = require('../db/queries/users');
@@ -128,22 +130,28 @@ router.delete('/:id/delete', (req, res) => {
 
 router.patch('/:id/update-photo', upload.single('image'), (req, res) => {
   const { id } = req.params;
-  const baseURL = 'http://localhost:8080/images/';
 
   if (!req.file) {
-    return res.status(400).json({message: 'Violation of file upload rules'})
+    return res.status(400).json({ message: 'Violation of file upload rules' });
   }
 
-  const newImagePath = baseURL + req.file.filename;
-  userQueries
-    .updateAvatar(id, newImagePath)
+  sharp(req.file.path, { failOnError: false })
+    .resize(200, 200)
+    .withMetadata()
+    .toFile(
+      path.resolve('public/thumbs', req.file.filename)
+    )
     .then(() => {
-      res.status(200).json({ message: 'Image uploaded successfully' });
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .json({ message: 'Could not update user image', error: err.message });
+      userQueries
+        .updateAvatar(id, req.file.filename)
+        .then(() => {
+          res.status(200).json({ message: 'Image uploaded successfully' });
+        })
+        .catch((err) => {
+          res
+            .status(500)
+            .json({ message: 'Could not update user image', error: err.message });
+        });
     });
 });
 

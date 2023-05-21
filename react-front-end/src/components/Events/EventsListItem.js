@@ -11,6 +11,7 @@ export default function EventsListItem(props) {
   const dateDiff = (eventDate.getTime() - Date.now());
   const dateDiffDays = (dateDiff * -1) / (1000 * 60 * 60 * 24);
   const dateDiffRound = Math.round(dateDiffDays);
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.photo}`;
 
   const Completionist = () => {
 
@@ -86,7 +87,7 @@ export default function EventsListItem(props) {
     <li className="box-shadow border-radius20 list-style-none">
       <div className="user-list border-radius20 display-flex" key={props.id}>
         <div className="friend-user display-flex">
-          <div className="thumbnail" style={{ backgroundImage: `url(${props.photo})` }}></div>
+          <div className="thumbnail" style={{ backgroundImage: `url(${pathToProfileThumbnail})` }}></div>
           <p className="font20 font-title-color">{props.event_name}</p>
           {/* <span className="font16 font-contents-color half-margin">{" - "}{props.host_name}</span> */}
         </div>

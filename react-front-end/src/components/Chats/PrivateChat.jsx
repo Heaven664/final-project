@@ -108,6 +108,8 @@ export default function PrivateChat(props) {
     });
   }, [state.friend_id]);
 
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${state.friend?.photo}`;
+
   return (
     <div className="private-chat-component background-box-color box-shadow border-radius20">
       <div className="private-chats-list-container">
@@ -121,7 +123,7 @@ export default function PrivateChat(props) {
               <div className="private-chats-chatroom-title-image-container ">
                 <div
                   className="thumbnail"
-                  style={{ backgroundImage: `url(${state.friend && state.friend.photo})` }}
+                  style={{ backgroundImage: `url(${state.friend_id && pathToProfileThumbnail})` }}
                   onClick={() => (openProfile(state.friend_id))}>
                 </div>
               </div>

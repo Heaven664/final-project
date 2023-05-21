@@ -8,16 +8,17 @@ export default function NavThumbnail(props) {
 
   const { changePage } = useContext(friendContext);
 
-  // const handlePageClick = () => {
-  //   props.handlePageClick('setting');
-  // };
+  const handlePageClick = () => {
+    props.handlePageClick('setting');
+  };
+
   const [state, setState] = useState({
     id: props.user,
     photo: ""
   });
 
   useEffect(() => {
-    axios.get(`/api/users/${state.id}`)
+    axios.get(`/api/users/${props.user}`)
       .then((res) => {
         const user = res.data;
         setState(user);
@@ -26,6 +27,7 @@ export default function NavThumbnail(props) {
         console.error("connect error:", err.message);
       });
   }, []);
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${state.photo}`;
 
   return (
     <>
@@ -41,7 +43,7 @@ export default function NavThumbnail(props) {
         <div onClick={() => changePage('setting')}>
           <div
             className="thumbnail"
-            style={{ backgroundImage: `url(${state.photo})` }}>
+            style={{ backgroundImage: `url(${state.photo && pathToProfileThumbnail})` }}>
           </div>
         </div>
       }

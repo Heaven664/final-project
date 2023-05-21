@@ -43,7 +43,7 @@ export default function ListAllUserItem(props) {
       {usersToDisplay.map((user) => (
         <div className="user-list border-radius20 display-flex" key={user.id}>
           <div className="friend-user display-flex">
-            <div className="thumbnail" style={{ backgroundImage: `url(${user.photo})` }} onClick={() => openProfile(user.id)}></div>
+            <div className="thumbnail" style={{ backgroundImage: `url(${`http://localhost:8080/thumbs/${user.photo}`})` }} onClick={() => openProfile(user.id)}></div>
             <p className="font20 font-title-color">{user.name}</p>
           </div>
           <div className="btns display-flex">
