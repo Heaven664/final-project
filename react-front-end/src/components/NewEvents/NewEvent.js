@@ -4,12 +4,13 @@ import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
 import ManageGuest from "./ManageGuests";
 import GuestList from "./ManageGuests/GuestList";
+import ManageFundraisers from "./ManageFundraisers";
 
 
 export default function NewEvent(props) {
 
-  const [fundraiser, setFundaraiser] = useState(null);
-  const [newEvent, setNewEvent] = useState(null);
+
+  const [newEvent, setNewEvent] = useState("");
   const [eventGuest, setEventGuest] = useState(null);
 
 
@@ -40,7 +41,7 @@ export default function NewEvent(props) {
       .then(res => {
         console.log(res.data);
         // setNewEvent(res.data.id);
-        setNewEvent(29);
+        setNewEvent(3);
       })
       .catch(err => console.log(err));
   };
@@ -144,7 +145,10 @@ export default function NewEvent(props) {
           newEvent
             ?
             <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail">
-
+              <ManageFundraisers             
+              event={newEvent} 
+              user = {props.user}
+              />
               </section>
             :
             ""

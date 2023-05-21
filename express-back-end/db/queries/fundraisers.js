@@ -1,12 +1,12 @@
 const db = require('../connection');
 
-const create = (event_id, target_amount) => {
+const create = (event_id, target_amount, title) => {
   const queryString = `
-  INSERT INTO fundraisers (event_id, target_amount)
-  VALUES ($1, $2)
+  INSERT INTO fundraisers (event_id, target_amount, title)
+  VALUES ($1, $2, $3)
   RETURNING *;
   `;
-  const values = [event_id, target_amount];
+  const values = [event_id, target_amount, title];
   return db.query(queryString, values)
     .then(res => res.rows[0]);
 };
@@ -24,13 +24,13 @@ const getById = (id) => {
     .then(res => res.rows[0]);
 };
 
-const update = (event_id, target_amount, current_amount) => {
+const update = (id, target_amount, title) => {
   const queryString = `
   UPDATE fundraisers
-  SET target_amount = $2, current_amount = $3
-  WHERE event_id = $1
+  SET target_amount = $2, title = $3
+  WHERE id = $1
   RETURNING *;`;
-  const values = [event_id, target_amount, current_amount];
+  const values = [id, target_amount, title];
   return db.query(queryString, values)
     .then(res => res.rows[0]);
 };
