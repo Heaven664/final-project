@@ -18,6 +18,7 @@ import NewEvent from "./NewEvents/NewEvent";
 import EventsList from "./Events/EventsList";
 import Events from "./Events/Events";
 import { friendContext } from 'providers/FriendProvider';
+import ProtectedRoute from "./Other/ProtectedRoute";
 
 import './App.scss';
 
@@ -30,6 +31,10 @@ export default function App(props) {
 
   const [user, setUser] = useState(currentUser);
   const [updateApp, setUpdateApp] = useState(false);
+
+  const [nav, setNav] = useState("");
+
+
 
   const reload = () => {
     setUpdateApp(prev => !prev);
@@ -79,45 +84,59 @@ export default function App(props) {
         <nav className="sidebar__menu">
           <ul>
             <li className={`profile 
-              ${page === 'my-profile' ? '--selected' : ''}`}>
+              ${nav === 'my-profile' ? '--selected' : ''}`} 
+              // onClick={setNav("my-profile")}
+              >
                               <Link to="/myprofile">
               <FontAwesomeIcon icon={faUser} /><br />
               <span>My Profile</span></Link>
             </li>
             <li className={`friends 
-              ${page === 'friends' ? '--selected' : ''}`}>
+              ${nav === 'friends' ? '--selected' : ''}`} 
+              // onClick={setNav("friends")}
+              >
                 <Link to="/friends">
               <FontAwesomeIcon icon={faUsers} /><br />
               <span>Friends</span></Link>
             </li>
             <li className={`chat 
-              ${page === 'chat' ? '--selected' : ''}`}>
+              ${nav === 'chat' ? '--selected' : ''}`} 
+              // onClick={setNav("chat")}
+              >
                  <Link to="/chat">
               <FontAwesomeIcon icon={faComment} /><br />
               <span>Chat</span></Link>
             </li>
             <li className={`groupChat 
-              ${page === 'groupChat' ? '--selected' : ''}`}>
+              ${nav === 'groupChat' ? '--selected' : ''}`}
+              // onClick={setNav("groupChat")}
+              >
                 <Link to="/groupchat">
               <FontAwesomeIcon icon={faComments} /><br />
               <span>Group Chat</span></Link>
             </li>
             <li className={`events 
-              ${page === 'events' ? '--selected' : ''}`}>
+              ${nav === 'events' ? '--selected' : ''}`} 
+              // onClick={setNav("events")}
+              >
               <Link to="/events">
               <FontAwesomeIcon icon={faCakeCandles} /><br />
               <span>Events</span>
               </Link>
             </li>
             <li className={`myEvent 
-              ${page === 'newEvent' ? '--selected' : ''}`}>
+              ${nav === 'newEvent' ? '--selected' : ''}`} 
+              // onClick={setNav("newEvent")}
+              >
                 <Link to="/newevent">
               <FontAwesomeIcon icon={faCalendarPlus} /><br />
               <span>New Event</span></Link>
             </li>
             <li className={`setting 
-              ${page === 'setting' ? '--selected' : ''}`}>
-                 <Link to="/newevent">
+              ${nav === 'setting' ? '--selected' : ''}`} 
+              // onClick={setNav("setting")}
+              >
+                 <Link to="/setting">
               <FontAwesomeIcon icon={faGear} /><br /></Link>
             </li>
             <li className='logout'
@@ -166,7 +185,11 @@ export default function App(props) {
           <Route path="/newevent" element={<NewEvent user={user.id} />} />
 
           <Route path="/events" element={<EventsList user={user.id} />} />
-          <Route path="/events/*" element={<Events user={user.id} />} />
+          <Route path="/events/:id" element={
+            <ProtectedRoute user={user.id}>
+              <Events user={user.id} />
+            </ProtectedRoute>
+          } />
         </Routes>
 
       </section>
