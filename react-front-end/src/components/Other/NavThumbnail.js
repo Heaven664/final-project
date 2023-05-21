@@ -16,6 +16,7 @@ export default function NavThumbnail(props) {
     id: props.user,
     photo: ""
   });
+  const {userUpdated} = props;
 
   useEffect(() => {
     if (props.user) {
@@ -27,14 +28,14 @@ export default function NavThumbnail(props) {
       .catch(err => {
         console.error("connect error:", err.message);
       });
-    }
-  }, []);
+  }, [userUpdated]);
   const pathToProfileThumbnail = `http://localhost:8080/thumbs/${state.photo}`;
 
   return (
     <>
       {!props.user &&
-        <div>
+        <div className="display-flex user-profile-pic">
+          <p>Hi, there!</p>
           <div
             className="thumbnail background-box-color">
             <FontAwesomeIcon icon={faUser} />
@@ -42,7 +43,8 @@ export default function NavThumbnail(props) {
         </div>
       }
       {props.user &&
-        <div onClick={() => changePage('setting')}>
+        <div onClick={() => changePage('setting')} className="display-flex user-profile-pic">
+          <p>Happy day<br /><span>{state.first_name}</span>!</p>
           <div
             className="thumbnail"
             style={{ backgroundImage: `url(${state.photo && pathToProfileThumbnail})` }}>

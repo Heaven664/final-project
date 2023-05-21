@@ -28,11 +28,11 @@ export default function App(props) {
 
   const [user, setUser] = useState(currentUser);
   const [updateApp, setUpdateApp] = useState(false);
-
   const reload = () => {
     setUpdateApp(prev => !prev);
   };
-
+  const [updated, setUpdated] = useState(false);
+  
   sessionStorage.setItem('user', JSON.stringify(user));
 
   const openMyProfile = () => {
@@ -133,7 +133,7 @@ export default function App(props) {
           </div>
           {!user && <NavThumbnail />}
           {user &&
-            <NavThumbnail user={user.id} />
+            <NavThumbnail user={user.id} userUpdated={updated}/>
           }
 
         </div>
@@ -147,7 +147,7 @@ export default function App(props) {
         {(user && page === 'chat') && <PrivateChat user={user.id} />}
         {(user && page === 'groupChat') && <GroupChat user={user.id} />}
         {(user && page === 'setting') &&
-          <Settings user={user.id} />
+          <Settings user={user.id} setUserUpdated={setUpdated}/>
         }
         {(user && page === 'events') && <EventsList user={user.id}/>}
         {(user && page === 'newEvent') && <NewEvent user={user.id}/>}

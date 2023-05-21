@@ -106,9 +106,25 @@
       background-image: url("https://www.transparenttextures.com/patterns/ag-square.png");
       // border-bottom: 2px solid $primary-color;
 
-      .user-profile-pic,
       .mainLogo {
         height: 100%;
+      }
+
+      .user-profile-pic{
+        align-items: center;
+
+        p{
+          text-align: right;
+          margin-right: 10px;
+          font-size: 14px;
+
+          span{
+            font-size: 16px;
+            font-style: italic;
+            font-weight: 700;
+          }
+
+        }
       }
     }
   }
