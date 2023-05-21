@@ -46,11 +46,11 @@ export default function Friend(props) {
         </div>
 
         {list === 'myFriends' &&
-          <ListFriend user={props.user}></ListFriend>
+          <ListFriend user={props.user.id}></ListFriend>
         }
 
         {list === 'allUsers' &&
-          <ListAllUser user={props.user}></ListAllUser>
+          <ListAllUser user={props.user.id}></ListAllUser>
         }
       </div>
 

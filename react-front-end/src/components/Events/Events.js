@@ -20,13 +20,13 @@ export default function Events(props) {
 
   const {
     state
-  } = useEventsData(event_id, props.user);
+  } = useEventsData(event_id, props.user.id);
 
   console.log(state);
   console.log(state.event_user);
   console.log(state.events_host_Info);
   console.log(state.fundraisers);
-  console.log(props.user, state.events_host_Info.host_id);
+  console.log(props.user.id, state.events_host_Info.host_id);
 
   const getFullName = function(obj) {
     return obj.first_name + " " + obj.last_name;
@@ -46,7 +46,7 @@ export default function Events(props) {
       <div className='event-left __panel'>
 
         {
-          props.user === state.events_host_Info.host_id
+          props.user.id === state.events_host_Info.host_id
             ?
             <section className="modification __card  user-detail">
               <button onClick={""} className="modi background-add-color btn-style">Edit Event</button>
@@ -72,7 +72,7 @@ export default function Events(props) {
           />
 
           {
-            props.user === state.events_host_Info.host_id
+            props.user.id === state.events_host_Info.host_id
               ?
               ""
               :

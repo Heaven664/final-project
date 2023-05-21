@@ -28,7 +28,7 @@ export default function NewEvent(props) {
     event.preventDefault();
 
     const data = {
-      host: props.user,
+      host: props.user.id,
       name: state.event_name,
       description: state.event_description,
       agenda: state.event_agenda,
@@ -134,7 +134,7 @@ export default function NewEvent(props) {
               value={eventGuest}
               onChange={setEventGuest} 
               event={newEvent} 
-              user = {props.user}
+              user = {props.user.id}
               />
               </section>
             :
@@ -147,7 +147,7 @@ export default function NewEvent(props) {
             <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail">
               <ManageFundraisers             
               event={newEvent} 
-              user = {props.user}
+              user = {props.user.id}
               />
               </section>
             :

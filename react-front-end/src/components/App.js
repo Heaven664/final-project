@@ -164,32 +164,33 @@ export default function App(props) {
             />
           </div>
 
-          {/* {!user &&  */}
-          {/* <NavThumbnail /> */}
-          {/* } */}
+          {!user &&  
+          <NavThumbnail />
+          }
 
-          {/* {user && */}
-            <NavThumbnail user={user.id} />
-           {/* } */}
+          {user &&
+            <NavThumbnail user={user} />
+          }
 
         </div>
       </section>
       <section className="contents">
 
         <Routes>
-          <Route path="/friends" element={<Friend user={user.id} />} />
-          <Route path="/chat" element={<PrivateChat user={user.id} />} />
-          <Route path="/groupchat" element={<GroupChat user={user.id} />} />
-          <Route path="/setting" element={<Settings user={user.id} />} />
-          <Route path="/newevent" element={<NewEvent user={user.id} />} />
-
-          <Route path="/login" element={<Login user={user.id} />} />
-          <Route path="/events" element={<EventsList user={user.id} />} />
-          <Route path="/events/:id" element={
-            <ProtectedRoute user={user.id}>
-              <Events user={user.id} />
-            </ProtectedRoute>
-          } />
+          <Route path="/login" 
+                 element={<Login login1={login1} login2={login2} />}/>
+          <Route element={<ProtectedRoute user={user} />}>
+            <Route path="*" element={() => "404 Page Not Found"} />
+            <Route path="/friends" element={<Friend user={user} />}/>
+            {/* <Route path="/events" element={<EventsList user={user} />}/> */}
+            <Route path="/chat" element={<PrivateChat user={user} />}/>
+            <Route path="/groupchat" element={<GroupChat user={user} />}/>
+            <Route path="/setting" element={<Settings user={user} />}/>
+            <Route path="/newevent" element={<NewEvent user={user} />}/>
+            <Route path="/myprofile" element={<MyProfile user={user} />}/>
+            <Route path="/events" element={<EventsList user={user} />}/>
+            <Route path="/events/:id" element={<Events user={user} />}/>
+          </Route>
         </Routes>
 
       </section>

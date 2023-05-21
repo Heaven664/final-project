@@ -13,7 +13,7 @@ export default function EventsList(props) {
 
   useEffect(() => {
 
-    axios.get(`/api/event-user/all/${props.user}`)
+    axios.get(`/api/event-user/all/${props.user.id}`)
       .then((res) => {
         console.log(res.data);
         setEvents(res.data);

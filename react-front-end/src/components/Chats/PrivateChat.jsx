@@ -15,7 +15,7 @@ export default function PrivateChat(props) {
   const { friendId, openProfile } = useContext(friendContext);
 
   const [state, setState] = useState({
-    user_id: props.user || 1,
+    user_id: props.user.id || 1,
     chats: [],
     messages: [],
     friend_id: friendId || 0,

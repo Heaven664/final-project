@@ -29,7 +29,7 @@ const getEventsObject = (events, userEvents, users) => {
 
 export default function GroupChat(props) {
   const [state, setState] = useState({
-    user_id: props.user || 1,
+    user_id: props.user.id || 1,
     events: [],
     messages: [],
     event_id: 0,

@@ -12,15 +12,13 @@ export default function NavThumbnail(props) {
     props.handlePageClick('setting');
   };
 
-  // const propsUser = (props.user? props.user:"");
-
   const [state, setState] = useState({
-    id: props.user,
+    id: props.user?.id,
     photo: ""
   });
 
   useEffect(() => {
-    axios.get(`/api/users/${props.user}`)
+    axios.get(`/api/users/${props.user?.id}`)
       .then((res) => {
         const user = res.data;
         setState(user);
@@ -33,7 +31,7 @@ export default function NavThumbnail(props) {
 
   return (
     <>
-      {!props.user &&
+      {!props.user?.id &&
         <div>
           <div
             className="thumbnail background-box-color">
@@ -41,7 +39,7 @@ export default function NavThumbnail(props) {
           </div>
         </div>
       }
-      {props.user &&
+      {props.user?.id &&
         <div onClick={() => changePage('setting')}>
           <div
             className="thumbnail"
