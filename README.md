@@ -2,8 +2,7 @@
 
 ## <span style="color:#2980B9">**Description**</span>
 
-<span style="font-style:italic">Wish
- Whisper</span> is a social networking platform focused on elegant event organization. With features like effortless event creation, integrated fundraising, and group/private live chats, it simplifies event planning and enhances communication. Built with <span style="color:#FFD700">React.js</span>, <span style="color:#FFD700">Express.js</span>, and <span style="color:#FFD700">PostgreSQL</span>, it offers a seamless user experience while providing essential social networking functionalities like friendlist management and profile customization.
+<span style="font-style:italic">Whish Whisper</span> is a social networking platform focused on elegant event organization. With features like effortless event creation, integrated fundraising, and group/private live chats, it simplifies event planning and enhances communication. Built with <span style="color:#FFD700">React.js</span>, <span style="color:#FFD700">Express.js</span>, and <span style="color:#FFD700">PostgreSQL</span>, it offers a seamless user experience while providing essential social networking functionalities like friendlist management and profile customization.
 
 ---
 
@@ -15,9 +14,7 @@ https://github.com/Heaven664/final-project/assets/105215745/68e97f55-6641-4120-8
 
 ## <span style="color:#2980B9">**Future Development**</span>
 
-<span style="font-style:italic">Wish
- Whisper</span> is a newly launched project, and we understand the importance of providing a usable platform as quickly as possible. However, we acknowledge that certain crucial features are currently missing. We want to assure you that we are actively working on delivering these features in the near future. Stay tuned as we continue to enhance <span style="font-style:italic">Wish
- Whisper</span> to meet your expectations.
+<span style="font-style:italic">Whish Whisper</span> is a newly launched project, and we understand the importance of providing a usable platform as quickly as possible. However, we acknowledge that certain crucial features are currently missing. We want to assure you that we are actively working on delivering these features in the near future. Stay tuned as we continue to enhance <span style="font-style:italic">Whish Whisper</span> to meet your expectations.
 
 ### <span style="color:#3498DB">**Friend Request**</span>
 
@@ -25,13 +22,11 @@ We understand the frustration caused by the current functionality that allows ad
 
 ### <span style="color:#3498DB">**Active Now**</span>
 
-At <span style="font-style:italic">Wish
- Whisper</span>, we recognize the significance of keeping track of your friends' activity on our platform. We understand that having the ability to see who is currently active is an awesome feature that can greatly enhance your social networking experience. We are thrilled to announce that implementing this feature is one of our top priorities in the upcoming updates.
+At <span style="font-style:italic">Whish Whisper</span>, we recognize the significance of keeping track of your friends' activity on our platform. We understand that having the ability to see who is currently active is an awesome feature that can greatly enhance your social networking experience. We are thrilled to announce that implementing this feature is one of our top priorities in the upcoming updates.
 
 ### <span style="color:#3498DB">**Live Feed**</span>
 
-At <span style="font-style:italic">Wish
- Whisper</span>, our goal is to create a warm and inviting platform for you and your friends, where you can freely share your thoughts, photos, and videos. We strive to provide a cozy space where you can engage with your social circle and express yourself through various forms of media.
+At <span style="font-style:italic">Whish Whisper</span>, our goal is to create a warm and inviting platform for you and your friends, where you can freely share your thoughts, photos, and videos. We strive to provide a cozy space where you can engage with your social circle and express yourself through various forms of media.
 
 ### <span style="color:#3498DB">**More and More**</span>
 
