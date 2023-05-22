@@ -22,6 +22,7 @@ export default function EventGuestList(props) {
     return (
       <EventGuestListItem
         key={user.id}
+        user={user.user_id}
         name={name}
         avatar={pathToProfileThumbnail}
         selected={user.id === props.value}

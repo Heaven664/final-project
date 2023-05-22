@@ -27,7 +27,7 @@ export default function FriendProvider(props) {
 
   const openProfile = (id) => {
     setProfileID(id);
-    changePage("friends");
+    // changePage("friends");
   };
 
   const friendData = {

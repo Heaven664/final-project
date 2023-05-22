@@ -198,6 +198,7 @@ export default function App(props) {
         <Routes>
 
           <Route path="/login" element={<Login login1={login1} login2={login2}/>} />
+          <Route path="/*" element={<h1>404 not found ;( </h1>} />
           <Route element={<ProtectedRoute user={user?.id}/>}>
           
             <Route path="/friends" element={<Friend user={user?.id} />} />
@@ -205,7 +206,7 @@ export default function App(props) {
             <Route path="/groupchat" element={<GroupChat user={user?.id} />} />
             <Route path="/setting" element={<Settings user={user?.id} />} />
             <Route path="/newevent" element={<NewEvent user={user?.id} />} />
-            <Route path="/profile" element={<MyProfile />} />
+            <Route path="/profile" element={<MyProfile user={user?.id} />} />
             <Route path="/myprofile" element={<MyProfile user={user?.id} />} />
 
             <Route path="/login" element={<Login user={user?.id} />} />
