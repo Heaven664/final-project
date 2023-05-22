@@ -181,23 +181,23 @@ const db = require('../db/connection');
 
 
   // //CRUD UPDATE(PUT)
-  // router.put("/", (request, response) => {
-  //   const { event, user, id } = request.body;
+  router.put("/new", (request, response) => {
+    const { eventID, host } = request.body;
 
-  //   db.query(
-  //     `
-  //     UPDATE event_user
-  //     SET event_id = $2, 
-  //         user_id = $3
-  //     WHERE id = $1;
-  //     `,
-  //     [id, event, user]
-  //   )
-  //   .then(res => {
-  //     response.json(res.rows);
-  //   })
-  //   .catch(error => response.json({Error: error, Message:"Error getting event_user for this event."}));
-  // });
+    db.query(
+      `
+      UPDATE events
+      SET host_id = $2
+      WHERE id = $1
+      RETURNING *;
+      `,
+      [eventID, host]
+    )
+    .then(res => {
+      response.json(res.rows[0]);
+    })
+    .catch(error => response.json({Error: error, Message:"Error getting event_user for this event."}));
+  });
 
 
   // //CRUD DELETE

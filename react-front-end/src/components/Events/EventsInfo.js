@@ -7,24 +7,25 @@ import dateFormat from 'dateformat';
 
 export default function EventsInfo(props) {
 
-  const eventDate = dateFormat(props.eventsInfo.event_date, "dddd, mmmm dS, yyyy");
+  const eventDate = dateFormat(props.events_host_Info.event_date, "dddd, mmmm dS, yyyy");
 
-  const eventTime = dateFormat(props.eventsInfo.event_date, "UTC:h:MM:ss TT Z");
+  const eventTime = dateFormat(props.events_host_Info.event_date, "UTC:h:MM:ss TT Z");
 
-  // const eventAgenda = props.eventsInfo.agenda.split(",").join("<br />")
+  // const eventAgenda = props.events_host_Info.agenda.split(",").join("<br />")
 
-  console.log(props.props);
+  // console.log(props.props);
 
-  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.photo}`;
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.events_host_Info.host_photo}`;
+
   return (
     <main className="info-layout">
 
       <section className='event-title font24'>
-        <span>{props.eventsInfo.name}</span>
+        <span>{props.events_host_Info.event_name}</span>
       </section>
 
       <div className='info-host'>
-        <p className='host'>Event Host: <span className='host-name'> {props.hostInfo.first_name} {props.hostInfo.last_name}</span></p>
+        <p className='host'>Event Host: <span className='host-name'> {props.events_host_Info.host_first_name} {props.events_host_Info.host_last_name}</span></p>
         <div
           className="-img"
           style={{ backgroundImage: `url(${pathToProfileThumbnail})` }}>
@@ -33,12 +34,12 @@ export default function EventsInfo(props) {
       </div>
 
       {/* <section className='event-description'>
-          <span>{props.eventsInfo.description}</span>
+          <span>{props.events_host_Info.description}</span>
         </section> */}
 
       <div className='info-event'>
         <section className='event-agenda'>
-          {props.eventsInfo.description}
+          {props.events_host_Info.description}
         </section>
       </div>
 
@@ -53,7 +54,7 @@ export default function EventsInfo(props) {
         </section>
         <section id='location'>
           <FontAwesomeIcon icon={faLocationDot} />
-          <span>{' '}{props.eventsInfo.event_location}</span>
+          <span>{' '}{props.events_host_Info.event_location}</span>
         </section>
       </div>
 

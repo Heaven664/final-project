@@ -36,6 +36,15 @@ router.put("/:id", (req, res) => {
     .catch(error => console.log(error));
 });
 
+// Update fundraiser current amount
+router.put("/current/:id", (req, res) => {
+  const { id } = req.params;
+  fundraisersQueries.updateCurr(id)
+    .then(fundraiser => res.json(fundraiser))
+    .catch(error => console.log(error));
+});
+
+
 // Delete fundraiser
 router.delete("/:id/delete", (req, res) => {
   const { id } = req.params;

@@ -76,12 +76,21 @@ const db = require('../db/connection');
     router.get("/host/:id", (request, response) => {
       db.query(
         `
-        SELECT
-        name, event_date, users.photo, users.first_name, users.last_name, events.id
-        FROM events
-        INNER JOIN users ON host_id = users.id
-        WHERE host_id = $1
-        ORDER BY event_date ASC;
+      SELECT 
+        e.id AS event_id,
+        e.name AS event_name,
+        e.event_date AS event_date,
+        e.event_location AS event_location,
+        h.first_name AS host_first_name,
+        h.last_name AS host_last_name,
+        h.photo AS host_photo
+      FROM 
+        events AS e
+      LEFT JOIN 
+        users AS h ON e.host_id = h.id
+      WHERE 
+        e.host_id = $1
+        ORDER BY e.event_date ASC;
         `,
       [Number(request.params.id)])
       .then(res => {
@@ -94,13 +103,31 @@ const db = require('../db/connection');
     router.get("/attend/:id", (request, response) => {
       db.query(
         `
-        SELECT
-        name, event_date, users.photo, users.first_name, users.last_name, events.id
-        FROM events
-        INNER JOIN event_user ON events.id = event_id
-        INNER JOIN users ON user_id = users.id
-        WHERE user_id = $1 AND host_id != $1
-        ORDER BY event_date ASC;
+      SELECT 
+        e.id AS event_id,
+        e.name AS event_name,
+        e.event_date AS event_date,
+        e.event_location AS event_location,
+        h.first_name AS host_first_name,
+        h.last_name AS host_last_name,
+        h.photo AS host_photo
+      FROM 
+        events AS e
+      LEFT JOIN 
+        users AS h ON e.host_id = h.id
+      INNER JOIN (
+        SELECT 
+          eu.event_id
+        FROM 
+          event_user AS eu
+        WHERE 
+          eu.user_id = $1
+      ) AS subquery ON e.id = subquery.event_id
+      LEFT JOIN 
+        users AS u ON u.id = $1
+      WHERE 
+        e.host_id <> $1
+      ORDER BY e.event_date ASC;
         `,
       [Number(request.params.id)])
       .then(res => {
@@ -113,13 +140,35 @@ const db = require('../db/connection');
     router.get("/history/:id", (request, response) => {
       db.query(
         `
-        SELECT
-        name, event_date, users.photo, users.first_name, users.last_name, events.id
-        FROM events
-        INNER JOIN event_user ON events.id = event_id
-        INNER JOIN users ON user_id = users.id
-        WHERE user_id = $1 AND event_date < NOW()::timestamp
-        ORDER BY event_date ASC;
+      SELECT 
+        e.id AS event_id,
+        e.name AS event_name,
+        e.event_date AS event_date,
+        e.event_location AS event_location,
+        h.first_name AS host_first_name,
+        h.last_name AS host_last_name,
+        h.photo AS host_photo
+      FROM 
+        events AS e
+      LEFT JOIN 
+        users AS h ON e.host_id = h.id
+      LEFT JOIN (
+        SELECT 
+          eu.event_id,
+          u.first_name,
+          u.last_name,
+          u.photo
+        FROM 
+          event_user AS eu
+        INNER JOIN 
+          users AS u ON eu.user_id = u.id
+        WHERE 
+          eu.user_id = $1
+      ) AS u ON e.id = u.event_id
+      WHERE 
+        e.host_id = $1 AND 
+        e.event_date < NOW()::timestamp
+        ORDER BY e.event_date ASC;
         `,
       [Number(request.params.id)])
       .then(res => {
@@ -133,15 +182,36 @@ const db = require('../db/connection');
     router.get("/upcoming/:id", (request, response) => {
       db.query(
         `
-        SELECT
-        name, event_date, users.photo, users.first_name, users.last_name, events.id
-        FROM events
-        INNER JOIN event_user ON events.id = event_id
-        INNER JOIN users ON user_id = users.id
-        WHERE user_id = $1 AND 
-        event_date > NOW()::timestamp AND 
-        event_date < (NOW() +INTERVAL '30 DAYS')::TIMESTAMP
-        ORDER BY event_date ASC;
+      SELECT 
+        e.id AS event_id,
+        e.name AS event_name,
+        e.event_date AS event_date,
+        e.event_location AS event_location,
+        h.first_name AS host_first_name,
+        h.last_name AS host_last_name,
+        h.photo AS host_photo
+      FROM 
+        events AS e
+      LEFT JOIN 
+        users AS h ON e.host_id = h.id
+      LEFT JOIN (
+        SELECT 
+          eu.event_id,
+          u.first_name,
+          u.last_name,
+          u.photo
+        FROM 
+          event_user AS eu
+        INNER JOIN 
+          users AS u ON eu.user_id = u.id
+        WHERE 
+          eu.user_id = $1
+      ) AS u ON e.id = u.event_id
+      WHERE 
+        e.host_id = $1 AND 
+        e.event_date > NOW()::timestamp AND 
+        e.event_date < (NOW() +INTERVAL '30 DAYS')::TIMESTAMP
+        ORDER BY e.event_date ASC;
         `,
       [Number(request.params.id)])
       .then(res => {
@@ -155,19 +225,34 @@ const db = require('../db/connection');
     router.get("/all/:id", (request, response) => {
       db.query(
         `
-        SELECT
-        name, event_date, users.photo, users.first_name, users.last_name, events.id
-        FROM events
-        INNER JOIN event_user ON events.id = event_id
-        INNER JOIN users ON user_id = users.id
-        WHERE user_id = $1 AND host_id != $1
-        UNION ALL
-        SELECT
-        name, event_date, users.photo, users.first_name, users.last_name, events.id
-        FROM events
-        INNER JOIN users ON host_id = users.id
-        WHERE host_id = $1
-        ORDER BY event_date ASC;
+      SELECT 
+        e.id AS event_id,
+        e.name AS event_name,
+        e.event_date AS event_date,
+        e.event_location AS event_location,
+        h.first_name AS host_first_name,
+        h.last_name AS host_last_name,
+        h.photo AS host_photo
+      FROM 
+        events AS e
+      LEFT JOIN 
+        users AS h ON e.host_id = h.id
+      LEFT JOIN (
+        SELECT 
+          eu.event_id,
+          u.first_name,
+          u.last_name,
+          u.photo
+        FROM 
+          event_user AS eu
+        INNER JOIN 
+          users AS u ON eu.user_id = u.id
+        WHERE 
+          eu.user_id = $1
+      ) AS u ON e.id = u.event_id
+      WHERE 
+        e.host_id = $1 OR u.event_id IS NOT NULL
+        ORDER BY e.event_date ASC;
         `,
       [Number(request.params.id)])
       .then(res => {
@@ -175,6 +260,61 @@ const db = require('../db/connection');
       })
       .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
     });
+
+    //get all events list for user
+    router.get("/gethost/:id", (request, response) => {
+      db.query(
+        `
+        SELECT 
+        e.id AS event_id,
+        e.name AS event_name,
+        e.description,
+        e.agenda,
+        e.event_date,
+        e.event_location,
+        h.id AS host_id,
+        h.first_name AS host_first_name,
+        h.last_name AS host_last_name,
+        h.photo AS host_photo
+      FROM 
+        events AS e
+      LEFT JOIN 
+        users AS h ON e.host_id = h.id
+      WHERE e.id = $1;
+        `,
+      [Number(request.params.id)])
+      .then(res => {
+        response.json(res.rows[0]);
+      })
+      .catch(error => response.json({Error: error, Message:"Error getting event_user for this user."}));
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

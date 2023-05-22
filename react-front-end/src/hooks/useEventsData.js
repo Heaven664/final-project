@@ -7,9 +7,17 @@ export default function useEventsData(eventID, userID) {
     events: [],
     fundraisers: {},
     event_user: {},
-    eventsInfo: {},
+    events_host_Info: {},
     usersInfo: {},
     events_id: ""
+  });
+
+  const [fundraiser, setFundraiser] = useState({
+    title:"",
+    target_amount:"",
+    current_amount:"",
+    id:"",
+    event_id:""
   });
 
   // const setDay = day => setState(prev => ({ ...prev, day }));
@@ -20,19 +28,27 @@ export default function useEventsData(eventID, userID) {
       axios.get('/api/events'),
       axios.get(`/api/fundraisers/${eventID}`),
       axios.get(`/api/event-user/event/${eventID}`),
-      axios.get(`/api/events/${eventID}`),
+      axios.get(`/api/event-user/gethost/${eventID}`),
       axios.get(`/api/users/${userID}`)
     ]).then((all) => {
       console.log(all)
       setState(prev => ({ ...prev, 
-        events:       all[0].data, 
-        fundraisers:  all[1].data, 
-        event_user:   all[2].data, 
-        eventsInfo:   all[3].data, 
-        usersInfo:    all[4].data
+        events:             all[0].data, 
+        fundraisers:        all[1].data, 
+        event_user:         all[2].data, 
+        events_host_Info:   all[3].data, 
+        usersInfo:          all[4].data
        }));
+       setFundraiser(prev => ({ ...prev, 
+        title:          all[1].data.title,
+        target_amount:  all[1].data.target_amount,
+        current_amount: all[1].data.current_amount,
+        id:             all[1].data.id,
+        event_id:       all[1].data.event_id
+       }));
+
     });
   }, []);
 
-  return { state };
+  return { state, fundraiser, setFundraiser };
 };

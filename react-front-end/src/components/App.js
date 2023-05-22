@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
+import { Route, BrowserRouter as Router, Routes, Link } from 'react-router-dom';
 
 
 // css, font-awesome
@@ -15,7 +16,10 @@ import Settings from 'components/Settings/Settings';
 import Login from 'components/Other/Login';
 import NewEvent from "./NewEvents/NewEvent";
 import EventsList from "./Events/EventsList";
+import Events from "./Events/Events";
 import { friendContext } from 'providers/FriendProvider';
+import ProtectedRoute from "./Other/ProtectedRoute";
+import Profile from "./Profiles/Profile";
 
 import './App.scss';
 
@@ -36,13 +40,14 @@ export default function App(props) {
   sessionStorage.setItem('user', JSON.stringify(user));
 
   const openMyProfile = () => {
-    reload();
-    changeProfileId(currentUser?.id)
+    // reload();
+    changeProfileId(currentUser?.id);
+    console.log('myprofile',currentUser?.id)
     changePage('my-profile');
   };
 
   // Login user on the server
-  const login1 = function () {
+  const login1 = function() {
     axios.post("api/login")
       .then(res => {
         setUser(res.data);
@@ -53,7 +58,7 @@ export default function App(props) {
   };
 
   // Login user on the server
-  const login2 = function () {
+  const login2 = function() {
     axios.post("api/login/1")
       .then(res => {
         setUser(res.data);
@@ -76,53 +81,93 @@ export default function App(props) {
       <section className="sidebar">
         <nav className="sidebar__menu">
           <ul>
+            <Link  to="/myprofile">
             <li className={`profile 
               ${page === 'my-profile' ? '--selected' : ''}`}
-              onClick={openMyProfile}>
-              <FontAwesomeIcon icon={faUser} /><br />
-              <span>My Profile</span>
+              onClick={(e) => {openMyProfile()}}
+            >
+                <FontAwesomeIcon icon={faUser} /><br />
+                <span>My Profile</span>
             </li>
+            </Link>
+            <Link to="/friends">
             <li className={`friends 
               ${page === 'friends' ? '--selected' : ''}`}
-              onClick={() => changePage('friends')}>
-              <FontAwesomeIcon icon={faUsers} /><br />
-              <span>Friends</span>
+              onClick={() => { changePage("friends"); }}
+            >
+              
+                <FontAwesomeIcon icon={faUsers} /><br />
+                <span>Friends</span>
+              
             </li>
+            </Link>
+
+            <Link to="/chat">
             <li className={`chat 
               ${page === 'chat' ? '--selected' : ''}`}
-              onClick={() => changePage('chat')}>
-              <FontAwesomeIcon icon={faComment} /><br />
-              <span>Chat</span>
+              onClick={() => { changePage("chat"); }}
+            >
+              
+                <FontAwesomeIcon icon={faComment} /><br />
+                <span>Chat</span>
+              
             </li>
+            </Link>
+
+            <Link to="/groupchat">
             <li className={`groupChat 
               ${page === 'groupChat' ? '--selected' : ''}`}
-              onClick={() => changePage('groupChat')}>
-              <FontAwesomeIcon icon={faComments} /><br />
-              <span>Group Chat</span>
+              onClick={() => { changePage("groupChat"); }}
+            >
+              
+                <FontAwesomeIcon icon={faComments} /><br />
+                <span>Group Chat</span>
+              
             </li>
+            </Link>
+
+            <Link to="/events">
             <li className={`events 
               ${page === 'events' ? '--selected' : ''}`}
-              onClick={() => changePage('events')}>
-              <FontAwesomeIcon icon={faCakeCandles} /><br />
-              <span>Events</span>
+              onClick={() => { changePage("events"); }}
+            >
+              
+                <FontAwesomeIcon icon={faCakeCandles} /><br />
+                <span>Events</span>
+              
             </li>
+            </Link>
+
+            <Link to="/newevent">
             <li className={`myEvent 
               ${page === 'newEvent' ? '--selected' : ''}`}
-              onClick={() => changePage('newEvent')}>
-              <FontAwesomeIcon icon={faCalendarPlus} /><br />
-              <span>New Event</span>
+              onClick={() => { changePage("newEvent"); }}
+            >
+              
+                <FontAwesomeIcon icon={faCalendarPlus} /><br />
+                <span>New Event</span>
+              
             </li>
+            </Link>
+
+            <Link to="/setting">
             <li className={`setting 
               ${page === 'setting' ? '--selected' : ''}`}
-              onClick={() => changePage('setting')}>
-              <FontAwesomeIcon icon={faGear} /><br />
+              onClick={() => { changePage("setting"); }}
+            >
+              
+                <FontAwesomeIcon icon={faGear} /><br />
+              
             </li>
-            <li className='logout'
+            </Link>
+
+            <li className='logout button-active'
               onClick={logout}>
               <FontAwesomeIcon icon={faRightFromBracket} />
             </li>
           </ul>
         </nav>
+
         <div className="topNav">
           <div>
             <img
@@ -131,7 +176,11 @@ export default function App(props) {
               alt="Wish Whisper"
             />
           </div>
-          {!user && <NavThumbnail />}
+
+          {!user &&
+            <NavThumbnail />
+          }
+
           {user &&
             <NavThumbnail user={user.id} userUpdated={updated}/>
           }
@@ -139,7 +188,7 @@ export default function App(props) {
         </div>
       </section>
       <section className="contents">
-        {(!user) && <Login login1={login1} login2={login2} />}
+        {/* {(!user) && <Login login1={login1} login2={login2} />}
         {((user && page === 'profile') || (user && page === 'my-profile') )&&
           <MyProfile userId={profileID} reload={updateApp} />
         }
@@ -150,7 +199,27 @@ export default function App(props) {
           <Settings user={user.id} setUserUpdated={setUpdated}/>
         }
         {(user && page === 'events') && <EventsList user={user.id}/>}
-        {(user && page === 'newEvent') && <NewEvent user={user.id}/>}
+        {(user && page === 'newEvent') && <NewEvent user={user.id}/>} */}
+
+        <Routes>
+
+          <Route path="/login" element={<Login login1={login1} login2={login2}/>} />
+          <Route path="/*" element={<h1>404 not found ;( </h1>} />
+          <Route element={<ProtectedRoute user={user?.id}/>}>
+          
+            <Route path="/friends" element={<Friend user={user?.id} />} />
+            <Route path="/chat" element={<PrivateChat user={user?.id} />} />
+            <Route path="/groupchat" element={<GroupChat user={user?.id} />} />
+            <Route path="/setting" element={<Settings user={user?.id} />} />
+            <Route path="/newevent" element={<NewEvent user={user?.id} />} />
+            <Route path="/profile" element={<Profile user={user?.id} />} />
+            <Route path="/myprofile" element={<MyProfile user={user?.id} />} />
+
+            <Route path="/login" element={<Login user={user?.id} />} />
+            <Route path="/events" element={<EventsList user={user?.id} />} />
+            <Route path="/events/:id" element={<Events user={user?.id} />} />
+          </Route>
+        </Routes>
 
       </section>
     </main>

@@ -7,7 +7,7 @@ export default function SetupFundraiser(props) {
 
 
   const propsTitle = props.donation ? props.donation.title : "";
-  const propsTarget = props.donation ? props.donation.target_amount : 1;
+  const propsTarget = props.donation ? props.donation.target_amount : "";
 
   const [state, setState] = useState({
     title: propsTitle,
@@ -24,7 +24,7 @@ export default function SetupFundraiser(props) {
       setError("Pleae give your wish a name!");
       return;
     }
-    if (state.target_amount === "" || state.target_amount < 1) {
+    if (state.target_amount === "") {
       setError("Please set a target!");
       return;
     }
@@ -48,9 +48,9 @@ export default function SetupFundraiser(props) {
             />
           </label>
 
-          <label id="fundraiser-target-comment">
+          <label>
             Target:<br />
-            <span>{""}</span>
+            <span id="fundraiser-target-comment">{""}</span>
             <input
               className="fundraiser-targetField"
               type="number"
@@ -65,11 +65,15 @@ export default function SetupFundraiser(props) {
       </section>
 
       <section className="appointment__card-right">
-        <button className="background-fundraiser-color btn-style" onClick={validate}> Save
+
+        <button onClick={cancel}
+          className=""> Cancel
         </button>
 
-        <button className="background-bad-color btn-style" onClick={cancel}> Cancel
+        <button onClick={validate}
+          className=""> Save
         </button>
+
       </section>
     </main>
   );

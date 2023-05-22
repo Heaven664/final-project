@@ -143,7 +143,7 @@ export default function ManageGuest(props) {
       <div id="searchResult">
       <GuestList
         guests={filteredUsers}
-        invited={guests.event_user}  
+        invited={guests?.event_user}  
         value={resultGuests}
         onClick={setResultGuests}
         onAdd={addGuest}
@@ -153,8 +153,8 @@ export default function ManageGuest(props) {
       </div>
       <div id="addedToEvent">
         <GuestList
-        guests={guests.event_user}
-        invited={guests.event_user}  
+        guests={guests?.event_user}
+        invited={guests?.event_user}  
         value={addedGuests}
         onClick={setAddedGuests}
         onAdd={addGuest}

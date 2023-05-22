@@ -12,6 +12,7 @@ import {
 import PrivateChatList from "components/Chats/PrivateChatList";
 import MessageList from "components/Chats/MessageList";
 import { friendContext } from "providers/FriendProvider";
+import { Link } from "react-router-dom";
 
 import "./PrivateChat.scss";
 
@@ -130,13 +131,14 @@ export default function PrivateChat(props) {
             <div className="private-chats-chatroom-title background-fundraiser-color">
               <div className="private-chats-chatroom-title-image-container ">
                 {state.friend?.photo && (
+                  <Link to='/profile'>
                   <div
                     className="thumbnail"
                     style={{
                       backgroundImage: `url(${pathToProfileThumbnail})`,
                     }}
                     onClick={() => openProfile(state.friend_id)}
-                  ></div>
+                  ></div></Link>
                 )}
               </div>
               <p className="font20">
