@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleDollarToSlot, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 
-export default function ShowFundraiser(props) {
+export default function ShowGuestFundraiser(props) {
 
   const {donation} = props;
 

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './styles.scss';
 import axios from 'axios';
 
-import ConfirmFundraiser from './Confirm';
-import EmptyFundraiser from './Empty';
-import ErrorFundraiser from './Error';
-import HeaderFundraiser from './Header';
-import SetupFundraiser from './Setup';
-import ShowFundraiser from './Show';
-import StatusFundraiser from './Status';
+import ConfirmGuestFundraiser from './Confirm';
+import EmptyGuestFundraiser from './Empty';
+import ErrorGuestFundraiser from './Error';
+import HeaderGuestFundraiser from './Header';
+import SetupGuestFundraiser from './Setup';
+import ShowGuestFundraiser from './Show';
+import StatusGuestFundraiser from './Status';
 import useVisualMode from 'hooks/useVisualMode';
 
 
@@ -51,7 +51,7 @@ export default function GuestFundraiser(props) {
   
   console.log('mode', mode);
 
-  const addFundraiser = (title, target) => {
+  const addGuestFundraiser = (title, target) => {
 
     const data = {
       event_id: fundraiser.event_id,
@@ -154,11 +154,9 @@ export default function GuestFundraiser(props) {
 
   return (
     <article className="">
-      <HeaderFundraiser />
-      {mode === EMPTY && <EmptyFundraiser onAdd={() => transition(CREATE)} />}
-
+      <HeaderGuestFundraiser />
       {mode === SHOW && (
-        <ShowFundraiser
+        <ShowGuestFundraiser
           donation={fundraiser}
           onDelete={() => transition(CONFIRM)}
           onEdit={() => transition(EDIT)}
@@ -167,7 +165,7 @@ export default function GuestFundraiser(props) {
       }
 
       {mode === EDIT && (
-        <SetupFundraiser
+        <SetupGuestFundraiser
           event={event}
           donation={fundraiser}
           onSave={edit}
@@ -177,7 +175,7 @@ export default function GuestFundraiser(props) {
       }
 
       {mode === CREATE && (
-        <SetupFundraiser
+        <SetupGuestFundraiser
           donation={fundraiser}
           event={event}
           onSave={save}
@@ -187,7 +185,7 @@ export default function GuestFundraiser(props) {
       }
 
       {mode === SAVING && (
-        <StatusFundraiser
+        <StatusGuestFundraiser
           message={"Saving"}
           onComplete={() => transition(SHOW)}
         />
@@ -195,7 +193,7 @@ export default function GuestFundraiser(props) {
       }
 
       {mode === CONFIRM && (
-        <ConfirmFundraiser
+        <ConfirmGuestFundraiser
           message={"Are you sure you want to delete?"}
           onConfirm={destory}
           onCancel={back}
@@ -204,7 +202,7 @@ export default function GuestFundraiser(props) {
       }
 
       {mode === DELETING && (
-        <StatusFundraiser
+        <StatusGuestFundraiser
           message={"Deleting"}
           onComplete={() => transition(EMPTY)}
         />
@@ -212,7 +210,7 @@ export default function GuestFundraiser(props) {
       }
 
       {mode === ERROR_DELETE && (
-        <ErrorFundraiser
+        <ErrorGuestFundraiser
           message={"Could not delete fundraiser"}
           onClose={back}
         />
@@ -220,7 +218,7 @@ export default function GuestFundraiser(props) {
       }
 
       {mode === ERROR_SAVE && (
-        <ErrorFundraiser
+        <ErrorGuestFundraiser
           message={"Could not save fundraiser"}
           onClose={back}
         />

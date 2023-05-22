@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 
-export default function ErrorFundraiser(props) {
+export default function ErrorGuestFundraiser(props) {
 
   return (
     <main className="--error">
