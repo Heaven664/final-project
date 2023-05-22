@@ -12,7 +12,7 @@ import StatusFundraiser from './Status';
 import useVisualMode from 'hooks/useVisualMode';
 
 
-export default function Fundraiser(props) {
+export default function HostFundraiser(props) {
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";

@@ -5,11 +5,11 @@ import EventGuestList from "./EventGuestList";
 import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
 import { getEventGuests, getEventInfo } from "../../helpers/event_selectors";
-import Fundraisers from "./Fundraisers";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { friendContext } from 'providers/FriendProvider';
-import Fundraiser from "./GuestFundraiser";
+import GuestFundraiser from "./GuestFundraiser";
+import HostFundraiser from "./HostFundraiser";
 
 
 export default function Events(props) {
@@ -120,16 +120,27 @@ export default function Events(props) {
         </section>
 
         {
-          state.fundraisers
+          fundraiser
             ?
-            <section className="fundraisers __card box-shadow border-radius20 background-box-color user-detail">
-              {/* <Fundraisers donation={state.fundraisers} /> */}
-              <Fundraiser  
-              fundraiser={fundraiser} 
-              setFundraiser={setFundraiser}
-              />
-
-            </section>
+            <>
+              {
+                props.user === state.events_host_Info.host_id
+                  ?
+                  <section className="fundraisers __card box-shadow border-radius20 background-box-color user-detail">
+                    <HostFundraiser
+                      fundraiser={fundraiser}
+                      setFundraiser={setFundraiser}
+                    />
+                  </section>
+                  :
+                  <section className="fundraisers __card box-shadow border-radius20 background-box-color user-detail">
+                    <GuestFundraiser
+                      fundraiser={fundraiser}
+                      setFundraiser={setFundraiser}
+                    />
+                  </section>
+              }
+            </>
             :
             <section></section>
         }
