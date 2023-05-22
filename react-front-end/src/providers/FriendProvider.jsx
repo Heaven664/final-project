@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 export const friendContext = createContext();
 
@@ -16,6 +17,7 @@ export default function FriendProvider(props) {
   const textFriendWithId = (id) => {
     setFriendID(id);
     setPage("chat");
+    
   };
 
   const changePage = (pageName) => {
@@ -25,7 +27,7 @@ export default function FriendProvider(props) {
 
   const openProfile = (id) => {
     setProfileID(id);
-    changePage("profile");
+    changePage("friends");
   };
 
   const friendData = {

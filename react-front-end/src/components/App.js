@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
-import {Route, BrowserRouter as Router, Routes, Link} from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes, Link } from 'react-router-dom';
 
 
 // css, font-awesome
@@ -32,12 +32,12 @@ export default function App(props) {
   const [user, setUser] = useState(currentUser);
   const [updateApp, setUpdateApp] = useState(false);
 
-  const [nav, setNav] = useState("");
+  // const [nav, setNav] = useState("");
 
   // const user ={
   //   id:1
   // }
-  
+
 
   const reload = () => {
     setUpdateApp(prev => !prev);
@@ -47,12 +47,12 @@ export default function App(props) {
 
   const openMyProfile = () => {
     reload();
-    changeProfileId(currentUser?.id)
+    changeProfileId(currentUser?.id);
     changePage('my-profile');
   };
 
   // Login user on the server
-  const login1 = function () {
+  const login1 = function() {
     axios.post("api/login")
       .then(res => {
         setUser(res.data);
@@ -63,7 +63,7 @@ export default function App(props) {
   };
 
   // Login user on the server
-  const login2 = function () {
+  const login2 = function() {
     axios.post("api/login/1")
       .then(res => {
         setUser(res.data);
@@ -86,69 +86,87 @@ export default function App(props) {
       <section className="sidebar">
         <nav className="sidebar__menu">
           <ul>
+            <Link to="/myprofile">
             <li className={`profile 
-              ${nav === 'my-profile' ? '--selected' : ''}`}
-              onClick={() => { setNav("my-profile"); }}
+              ${page === 'my-profile' ? '--selected' : ''}`}
+              onClick={() => { changePage("my-profile"); openMyProfile()}}
             >
-              <Link to="/myprofile">
                 <FontAwesomeIcon icon={faUser} /><br />
                 <span>My Profile</span>
-                </Link>
             </li>
+            </Link>
+            <Link to="/friends">
             <li className={`friends 
-              ${nav === 'friends' ? '--selected' : ''}`}
-              onClick={() => { setNav("friends"); }}
+              ${page === 'friends' ? '--selected' : ''}`}
+              onClick={() => { changePage("friends"); }}
             >
-              <Link to="/friends">
+              
                 <FontAwesomeIcon icon={faUsers} /><br />
                 <span>Friends</span>
-                </Link>
+              
             </li>
+            </Link>
+
+            <Link to="/chat">
             <li className={`chat 
-              ${nav === 'chat' ? '--selected' : ''}`}
-              onClick={() => { setNav("chat"); }}
+              ${page === 'chat' ? '--selected' : ''}`}
+              onClick={() => { changePage("chat"); }}
             >
-              <Link to="/chat">
+              
                 <FontAwesomeIcon icon={faComment} /><br />
                 <span>Chat</span>
-                </Link>
+              
             </li>
+            </Link>
+
+            <Link to="/groupchat">
             <li className={`groupChat 
-              ${nav === 'groupChat' ? '--selected' : ''}`}
-              onClick={() => { setNav("groupChat"); }}
+              ${page === 'groupChat' ? '--selected' : ''}`}
+              onClick={() => { changePage("groupChat"); }}
             >
-              <Link to="/groupchat">
+              
                 <FontAwesomeIcon icon={faComments} /><br />
                 <span>Group Chat</span>
-                </Link>
+              
             </li>
+            </Link>
+
+            <Link to="/events">
             <li className={`events 
-              ${nav === 'events' ? '--selected' : ''}`}
-              onClick={() => { setNav("events"); }}
+              ${page === 'events' ? '--selected' : ''}`}
+              onClick={() => { changePage("events"); }}
             >
-              <Link to="/events">
+              
                 <FontAwesomeIcon icon={faCakeCandles} /><br />
                 <span>Events</span>
-              </Link>
+              
             </li>
+            </Link>
+
+            <Link to="/newevent">
             <li className={`myEvent 
-              ${nav === 'newEvent' ? '--selected' : ''}`}
-              onClick={() => { setNav("newEvent"); }}
+              ${page === 'newEvent' ? '--selected' : ''}`}
+              onClick={() => { changePage("newEvent"); }}
             >
-              <Link to="/newevent">
+              
                 <FontAwesomeIcon icon={faCalendarPlus} /><br />
                 <span>New Event</span>
-                </Link>
+              
             </li>
+            </Link>
+
+            <Link to="/setting">
             <li className={`setting 
-              ${nav === 'setting' ? '--selected' : ''}`}
-              onClick={() => { setNav("setting"); }}
+              ${page === 'setting' ? '--selected' : ''}`}
+              onClick={() => { changePage("setting"); }}
             >
-              <Link to="/setting">
+              
                 <FontAwesomeIcon icon={faGear} /><br />
-                </Link>
+              
             </li>
-            <li className='logout'
+            </Link>
+
+            <li className='logout button-active'
               onClick={logout}>
               <FontAwesomeIcon icon={faRightFromBracket} />
             </li>
@@ -164,32 +182,35 @@ export default function App(props) {
             />
           </div>
 
-          {/* {!user &&  */}
-          {/* <NavThumbnail /> */}
-          {/* } */}
+          {!user &&
+            <NavThumbnail />
+          }
 
-          {/* {user && */}
-            <NavThumbnail user={user.id} />
-           {/* } */}
+          {user &&
+            <NavThumbnail user={user?.id} />
+          }
 
         </div>
       </section>
       <section className="contents">
 
         <Routes>
-          <Route path="/friends" element={<Friend user={user.id} />} />
-          <Route path="/chat" element={<PrivateChat user={user.id} />} />
-          <Route path="/groupchat" element={<GroupChat user={user.id} />} />
-          <Route path="/setting" element={<Settings user={user.id} />} />
-          <Route path="/newevent" element={<NewEvent user={user.id} />} />
 
-          <Route path="/login" element={<Login user={user.id} />} />
-          <Route path="/events" element={<EventsList user={user.id} />} />
-          <Route path="/events/:id" element={
-            <ProtectedRoute user={user.id}>
-              <Events user={user.id} />
-            </ProtectedRoute>
-          } />
+          <Route path="/login" element={<Login login1={login1} login2={login2}/>} />
+          <Route element={<ProtectedRoute user={user?.id}/>}>
+          
+            <Route path="/friends" element={<Friend user={user?.id} />} />
+            <Route path="/chat" element={<PrivateChat user={user?.id} />} />
+            <Route path="/groupchat" element={<GroupChat user={user?.id} />} />
+            <Route path="/setting" element={<Settings user={user?.id} />} />
+            <Route path="/newevent" element={<NewEvent user={user?.id} />} />
+            <Route path="/profile" element={<MyProfile user={user?.id} />} />
+            <Route path="/myprofile" element={<MyProfile user={user?.id} />} />
+
+            <Route path="/login" element={<Login user={user?.id} />} />
+            <Route path="/events" element={<EventsList user={user?.id} />} />
+            <Route path="/events/:id" element={<Events user={user?.id} />} />
+          </Route>
         </Routes>
 
       </section>

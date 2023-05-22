@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { friendContext } from 'providers/FriendProvider';
 
@@ -38,17 +39,20 @@ export default function ListFriendItem(props) {
         key={user.table_id}
       >
         <div className="friend-user display-flex">
-          <div className="thumbnail" style={{ backgroundImage: `url(${pathToProfileThumbnail})` }} onClick={() => openProfile(user.id)}></div>
+
+          <Link to='/profile'>
+            <div className="thumbnail" style={{ backgroundImage: `url(${pathToProfileThumbnail})` }} onClick={() => openProfile(user.id)}></div>
+          </Link>
           <p className="font20 font-title-color">{user.first_name} {user.last_name}</p>
         </div>
         <div className="btns display-flex">
           <div className="btn">
-            <button
-              className='background-primary-color btn-style'
-              onClick={handleMessageClick}
-            >
-              Chat
-            </button>
+            <Link to='/chat'>
+              <button className='background-primary-color btn-style'
+                onClick={handleMessageClick}>
+                Chat
+              </button>
+            </Link>
           </div>
           <div className="btn">
             <button
