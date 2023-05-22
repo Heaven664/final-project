@@ -10,13 +10,15 @@ export default function SetupGuestFundraiser(props) {
   const { donation } = props;
 
   const [state, setState] = useState({
-    amount: donation?.amount || "",
-    pay_method: donation?.payment_method || "",
-    pay_anonymous: donation?.payment_anonymous || false
+    amount: 1,
+    pay_method: "",
+    pay_anonymous: false
   });
 
+  const maxAmount = donation?.target_amount - donation?.current_amount;
 
-  const reset = () => { setState({ amount: "", pay_method: "" }); };
+
+  const reset = () => { setState({ amount: "", pay_method: "", pay_anonymous: false }); };
 
   const cancel = () => { reset(); props.onCancel(); };
 
@@ -25,11 +27,19 @@ export default function SetupGuestFundraiser(props) {
       setError("Pleae specify an amount!");
       return;
     }
-    if (state.target_amount === "") {
-      setError("Please set a target!");
+    if (state.amount < 1 ) {
+      setError("Pleae check the amount entered!");
+      return;
+    }    
+    if (state.amount > maxAmount ) {
+      setError("That's more than needed!");
       return;
     }
-    props.onSave(state.title, state.target_amount);
+    if (state.pay_method === "") {
+      setError("Please choose a payment method!");
+      return;
+    }
+    props.onSave(state);
     setError("");
   }
 
@@ -46,13 +56,15 @@ export default function SetupGuestFundraiser(props) {
                 type="number"
                 name="guest-fundraiser-amount"
                 value={state.amount}
+                step={1}
                 onChange={(e) => setState({ ...state, amount: e.target.value })}
               />
             </label>
 
             <label>
               Payment Method:<br />
-              <select name="guest-fundraiser-pay-method" className="guest-fundraiser-pay-method">
+              <select name="guest-fundraiser-pay-method" className="guest-fundraiser-pay-method"
+                onChange={(e) => setState({ ...state, pay_method: e.target.value })}>
                 <option value="" selected disabled hidden>--Please Choose--</option>
                 <option value="VISA">VISA</option>
                 <option value="MASTERCARD">MASTERCARD</option>
@@ -89,7 +101,7 @@ export default function SetupGuestFundraiser(props) {
         </button>
 
         <button onClick={validate}
-          className=""> Pay
+          className=""> Process
         </button>
 
       </section>

@@ -120,7 +120,7 @@ export default function Events(props) {
         </section>
 
         {
-          fundraiser
+          state.fundraisers
             ?
             <>
               {
@@ -129,6 +129,7 @@ export default function Events(props) {
                   <section className="fundraisers __card box-shadow border-radius20 background-box-color user-detail">
                     <HostFundraiser
                       fundraiser={fundraiser}
+                      user={props.user}
                       setFundraiser={setFundraiser}
                     />
                   </section>
@@ -136,6 +137,7 @@ export default function Events(props) {
                   <section className="fundraisers __card box-shadow border-radius20 background-box-color user-detail">
                     <GuestFundraiser
                       fundraiser={fundraiser}
+                      user={props.user}
                       setFundraiser={setFundraiser}
                     />
                   </section>

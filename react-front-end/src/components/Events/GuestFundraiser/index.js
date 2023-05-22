@@ -3,7 +3,7 @@ import './styles.scss';
 import axios from 'axios';
 
 import ConfirmGuestFundraiser from './Confirm';
-import EmptyGuestFundraiser from './Empty';
+// import EmptyGuestFundraiser from './Empty';
 import ErrorGuestFundraiser from './Error';
 import HeaderGuestFundraiser from './Header';
 import SetupGuestFundraiser from './Setup';
@@ -46,24 +46,27 @@ export default function GuestFundraiser(props) {
     // ((fundraiser.empty==="no") ? SHOW :  EMPTY )
     SHOW
   );
-  
+
   console.log('mode', mode);
 
-  const addGuestFundraiser = (title, target) => {
+  const addGuestFundraiser = (value) => {
 
     const data = {
-      event_id: fundraiser.event_id,
-      title: title,
-      target: target
+      amount: value?.amount,
+      user:props?.user,
+      fundraiser:fundraiser?.id,
+      pay_method: value?.pay_method,
+      pay_status: 'Completed',
+      pay_anonymous: value?.pay_anonymous
     };
 
-    console.log("add new fundraiser: ", data);
+    console.log("add new fundraiser transaction: ", data);
 
-    return axios.post(`/api/fundraisers/`, data)
+    return axios.post(`/api/fundraiser-user/`, data)
       .then(res => {
         console.log(res.data);
 
-        axios.get(`/api/fundraisers/${event}`)
+        axios.put(`/api/fundraisers/current/${data?.fundraiser}`)
           .then((res) => {
             console.log(res.data);
             setFundraiser(res.data);
@@ -74,79 +77,79 @@ export default function GuestFundraiser(props) {
   };
 
 
-  const editFundraiser = (new_title, new_target) => {
+  // const editGuestFundraiser = (new_title, new_target) => {
 
-    const data = {
-      title: new_title,
-      target: new_target
-    };
+  //   const data = {
+  //     title: new_title,
+  //     target: new_target
+  //   };
 
-    console.log("update fundraiser: ", data);
+  //   console.log("update fundraiser: ", data);
 
-    return axios.put(`/api/fundraisers/${fundraiser.id}`, data)
-      .then(res => {
-        console.log(res.data);
+  //   return axios.put(`/api/fundraisers/${fundraiser.id}`, data)
+  //     .then(res => {
+  //       console.log(res.data);
 
-        axios.get(`/api/fundraisers/${event}`)
-          .then((res) => {
-            console.log(res.data);
-            setFundraiser(res.data);
-          })
-          .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err));
-  };
-
-
-
-  const removeFundraiser = (id) => {
-
-    console.log('Delete fundraiser:', id);
-
-    return axios.delete(`/api/fundraisers/${id}/delete`)
-      .then(res => {
-        console.log(res.data);
-
-        axios.get(`/api/fundraisers/${event}`)
-          .then((res) => {
-            console.log(res.data);
-            setFundraiser(res.data);
-          })
-          .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err));
-  };
+  //       axios.get(`/api/fundraisers/${event}`)
+  //         .then((res) => {
+  //           console.log(res.data);
+  //           setFundraiser(res.data);
+  //         })
+  //         .catch(err => console.log(err));
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
 
 
-  function save(title, target) {
+  // const removeGuestFundraiser = (id) => {
+
+  //   console.log('Delete fundraiser:', id);
+
+  //   return axios.delete(`/api/fundraisers/${id}/delete`)
+  //     .then(res => {
+  //       console.log(res.data);
+
+  //       axios.get(`/api/fundraisers/${event}`)
+  //         .then((res) => {
+  //           console.log(res.data);
+  //           setFundraiser(res.data);
+  //         })
+  //         .catch(err => console.log(err));
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
+
+
+  function save(value) {
 
     transition(SAVING);
 
-    addFundraiser(title, target)
+    addGuestFundraiser(value)
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
 
   }
 
-  function edit(title, target) {
+  // function edit(title, target) {
 
-    transition(SAVING);
+  //   transition(SAVING);
 
-    editFundraiser(title, target)
-      .then(() => transition(SHOW))
-      .catch(() => transition(ERROR_SAVE, true));
+  //   editFundraiser(title, target)
+  //     .then(() => transition(SHOW))
+  //     .catch(() => transition(ERROR_SAVE, true));
 
-  }
+  // }
 
 
-  function destory() {
-    transition(DELETING, true);
+  // function destory() {
+  //   transition(DELETING, true);
 
-    removeFundraiser(fundraiser.id)
-      .then(() => transition(EMPTY))
-      .catch(() => transition(ERROR_DELETE, true));
-  }
+  //   removeGuestFundraiser(fundraiser.id)
+  //     .then(() => transition(EMPTY))
+  //     .catch(() => transition(ERROR_DELETE, true));
+  // }
 
 
 
@@ -164,7 +167,7 @@ export default function GuestFundraiser(props) {
       {mode === SUPPORT && (
         <SetupGuestFundraiser
           donation={fundraiser}
-          onSave={edit}
+          onSave={save}
           onCancel={back}
         />
       )
@@ -181,7 +184,7 @@ export default function GuestFundraiser(props) {
       {mode === CONFIRM && (
         <ConfirmGuestFundraiser
           message={"Are you sure you want to cancel?"}
-          onConfirm={destory}
+          // onConfirm={destory}
           onCancel={back}
         />
       )
@@ -190,7 +193,7 @@ export default function GuestFundraiser(props) {
       {mode === DELETING && (
         <StatusGuestFundraiser
           message={"canceling"}
-          onComplete={() => transition(EMPTY)}
+          // onComplete={() => transition(EMPTY)}
         />
       )
       }
