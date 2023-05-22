@@ -4,14 +4,14 @@ const db = require('../db/connection');
 
   //CRUD CREATE(POST)
   router.post("/", (request, response) => {
-    const { amount, user, fundraiser, pay_method, pay_status } = request.body;
+    const { amount, user, fundraiser, pay_method, pay_status, pay_anonymous } = request.body;
 
     db.query(
       `
-      INSERT INTO fundraiser_user (user_id, fundraiser_id, amount, payment_method, payment_status) VALUES
-      ($1, $2, $3, $4, $5);
+      INSERT INTO fundraiser_user (user_id, fundraiser_id, amount, payment_method, payment_status, payment_anonymous ) VALUES
+      ($1, $2, $3, $4, $5, $6);
       `,
-      [user, fundraiser, amount, pay_method, pay_status ]
+      [user, fundraiser, amount, pay_method, pay_status, pay_anonymous]
     )
     .then(res => {
       response.json(res.rows[0]);
@@ -73,18 +73,18 @@ const db = require('../db/connection');
 
   //CRUD UPDATE(PUT)
   router.put("/", (request, response) => {
-    const { amount, user, id, pay_method, pay_status } = request.body;
+    const { amount, id, pay_method, pay_status, pay_anonymous  } = request.body;
 
     db.query(
       `
       UPDATE fundraiser_user
       SET amount = $2, 
-          user_id = $3,
           payment_method = $4,
-          payment_status = $5
+          payment_status = $5,
+          payment_anonymous = $6
       WHERE id = $1;
       `,
-      [id, amount, user, pay_method, pay_status]
+      [id, amount, user, pay_method, pay_status, pay_anonymous]
     )
     .then(res => {
       response.json(res.rows);
