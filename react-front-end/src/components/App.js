@@ -19,6 +19,7 @@ import EventsList from "./Events/EventsList";
 import Events from "./Events/Events";
 import { friendContext } from 'providers/FriendProvider';
 import ProtectedRoute from "./Other/ProtectedRoute";
+import Profile from "./Profiles/Profile";
 
 import './App.scss';
 
@@ -87,10 +88,10 @@ export default function App(props) {
       <section className="sidebar">
         <nav className="sidebar__menu">
           <ul>
-            <Link reloadDocument to="/myprofile">
+            <Link  to="/myprofile">
             <li className={`profile 
               ${page === 'my-profile' ? '--selected' : ''}`}
-              onClick={() => {openMyProfile()}}
+              onClick={(e) => {openMyProfile()}}
             >
                 <FontAwesomeIcon icon={faUser} /><br />
                 <span>My Profile</span>
@@ -206,7 +207,7 @@ export default function App(props) {
             <Route path="/groupchat" element={<GroupChat user={user?.id} />} />
             <Route path="/setting" element={<Settings user={user?.id} />} />
             <Route path="/newevent" element={<NewEvent user={user?.id} />} />
-            <Route path="/profile" element={<MyProfile user={user?.id} />} />
+            <Route path="/profile" element={<Profile user={user?.id} />} />
             <Route path="/myprofile" element={<MyProfile user={user?.id} />} />
 
             <Route path="/login" element={<Login user={user?.id} />} />
