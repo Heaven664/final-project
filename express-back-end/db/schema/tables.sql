@@ -73,7 +73,7 @@ CREATE TABLE fundraiser_user (
   fundraiser_id INTEGER REFERENCES fundraisers(id) ON DELETE CASCADE,
   time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   amount INTEGER NOT NULL,
-  payment_anonymous VARCHAR(255) NOT NULL,
+  payment_anonymous BOOLEAN NOT NULL,
   payment_method VARCHAR(255) NOT NULL,
   payment_status VARCHAR(255) NOT NULL
 );
