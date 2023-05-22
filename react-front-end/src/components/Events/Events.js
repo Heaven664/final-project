@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import './Events.scss';
 import EventsInfo from './EventsInfo';
 import EventGuestList from "./EventGuestList";
@@ -6,7 +6,9 @@ import axios from 'axios';
 import useEventsData from "../../hooks/useEventsData";
 import { getEventGuests, getEventInfo } from "../../helpers/event_selectors";
 import Fundraisers from "./Fundraisers";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router";
+import { friendContext } from 'providers/FriendProvider';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -15,7 +17,8 @@ export default function Events(props) {
   // const [fundraiser, setFundaraiser] = useState(null);
   const [eventGuest, setEventGuest] = useState(null);
   const params = useParams();
-  
+  const { textGroupWithId } = useContext(friendContext);
+
   const event_id = params.id;
 
   const {
@@ -36,9 +39,18 @@ export default function Events(props) {
     state.events_host_Info.agenda
       ?
       state.events_host_Info.agenda.split(',').map((agendaItem) => {
-    return (<li>{agendaItem}</li>)})
+        return (<li>{agendaItem}</li>);
+      })
       :
       "");
+
+  const onMessage = (id) => {
+    textGroupWithId(id);
+  };
+
+  const handleMessageClick = () => {
+    onMessage(event_id);
+  };
 
   return (
     <main className="event-layout">
@@ -83,7 +95,7 @@ export default function Events(props) {
 
       <div className='event-right __panel'>
         <section className="maps-api __card box-shadow border-radius20 background-box-color user-detail">
-          <span>{state.events_host_Info.agenda? agendaList : ""}</span>
+          <span>{state.events_host_Info.agenda ? agendaList : ""}</span>
         </section>
 
         {
@@ -96,7 +108,9 @@ export default function Events(props) {
         }
 
         <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
-          <button onClick={""} className="background-point-color btn-style">Join Group Chat</button>
+          <Link to='/groupchat'>
+            <button onClick={handleMessageClick} className="background-point-color btn-style">Join Group Chat</button>
+          </Link>
         </section>
       </div>
 

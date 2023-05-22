@@ -8,7 +8,6 @@ import "./PrivateChatList.scss";
 export default function GroupChatList(props) {
   const events = props.events.map((event) => {
     return (
-      // <Link to={`${event[0].id}`}>
       <GroupChatListItem
         key={event[0].id}
         event_id={event[0].id}
@@ -18,7 +17,6 @@ export default function GroupChatList(props) {
         changeEvent={props.changeEvent}
         selected={props.event}
       ></GroupChatListItem>
-      // </Link>
     );
   });
 

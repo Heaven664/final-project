@@ -8,6 +8,7 @@ export default function FriendProvider(props) {
   const currentPage = previousPage ? JSON.parse(previousPage) : "profile";
   const [profileID, setProfileID] = useState(0);
   const [friendId, setFriendID] = useState(0);
+  const [groupId, setGroupID] = useState(0);
   const [page, setPage] = useState(currentPage);
 
   const changeProfileId = (id) => {
@@ -17,6 +18,12 @@ export default function FriendProvider(props) {
   const textFriendWithId = (id) => {
     setFriendID(id);
     setPage("chat");
+    
+  };
+
+  const textGroupWithId = (id) => {
+    setGroupID(id);
+    setPage("groupChat");
     
   };
 
@@ -32,8 +39,10 @@ export default function FriendProvider(props) {
 
   const friendData = {
     friendId,
+    groupId,
     page,
     textFriendWithId,
+    textGroupWithId,
     changePage,
     profileID,
     changeProfileId,

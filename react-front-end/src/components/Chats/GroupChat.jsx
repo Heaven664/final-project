@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import axios from "axios";
 import io from "socket.io-client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,6 +6,8 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 import GroupChatList from "components/Chats/GroupChatList";
 import MessageList from "components/Chats/MessageList";
+import { friendContext } from "providers/FriendProvider";
+import { Link } from "react-router-dom";
 
 import "./PrivateChat.scss";
 
@@ -28,11 +30,16 @@ const getEventsObject = (events, userEvents, users) => {
 };
 
 export default function GroupChat(props) {
+
+  const { groupId, openProfile } = useContext(friendContext);
+
+  // console.log("inG CHAT",groupId);
+  
   const [state, setState] = useState({
     user_id: props.user || 1,
     events: [],
     messages: [],
-    event_id: 0,
+    event_id: groupId || 0,
     event: {},
     newMessagesCounter: 0,
     users: [],
@@ -150,12 +157,14 @@ export default function GroupChat(props) {
 
       <div className="private-chats-chatroom border-radius20">
         {state.event_id !== 0 && (
-          <div>
+          <div>                
+            <Link to={`/events/${state.event_id}`}>
             <div className="private-chats-chatroom-title background-fundraiser-color">
               <div className="private-chats-chatroom-title-name-container">
                 <p>{state.event && state.event.name} </p>
               </div>
             </div>
+            </Link>
             <div className="chatroom-messages-container">
               <MessageList
                 user_id={state.user_id}
