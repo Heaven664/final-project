@@ -9,20 +9,21 @@ import Fundraisers from "./Fundraisers";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { friendContext } from 'providers/FriendProvider';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import Fundraiser from "./GuestFundraiser";
 
 
 export default function Events(props) {
 
   // const [fundraiser, setFundaraiser] = useState(null);
   const [eventGuest, setEventGuest] = useState(null);
+
   const params = useParams();
   const { textGroupWithId } = useContext(friendContext);
 
   const event_id = params.id;
 
   const {
-    state
+    state, fundraiser, setFundraiser
   } = useEventsData(event_id, props.user);
 
   console.log(state);
@@ -55,7 +56,7 @@ export default function Events(props) {
 
   const objToArray = (obj) => Object.assign([], Object.values(obj));
 
-  const getEventUserID = objToArray(state.event_user).find(e => 
+  const getEventUserID = objToArray(state.event_user).find(e =>
     e.user_id === props.user);
 
   const handleQuitEvent = () => {
@@ -121,9 +122,15 @@ export default function Events(props) {
         {
           state.fundraisers
             ?
-            <section className="fundraisers __card box-shadow border-radius20 background-box-color user-detail"><Fundraisers donation={state.fundraisers} /></section>
+            <section className="fundraisers __card box-shadow border-radius20 background-box-color user-detail">
+              {/* <Fundraisers donation={state.fundraisers} /> */}
+              <Fundraiser  
+              fundraiser={fundraiser} 
+              setFundraiser={setFundraiser}
+              />
+
+            </section>
             :
-            // <section className="no-fundraisers __card  box-shadow border-radius20 background-box-color user-detail"></section>
             <section></section>
         }
 

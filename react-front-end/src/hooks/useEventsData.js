@@ -12,6 +12,14 @@ export default function useEventsData(eventID, userID) {
     events_id: ""
   });
 
+  const [fundraiser, setFundraiser] = useState({
+    title:"",
+    target_amount:"",
+    current_amount:"",
+    id:"",
+    event_id:""
+  });
+
   // const setDay = day => setState(prev => ({ ...prev, day }));
 
   useEffect(() => {
@@ -30,10 +38,17 @@ export default function useEventsData(eventID, userID) {
         event_user:         all[2].data, 
         events_host_Info:   all[3].data, 
         usersInfo:          all[4].data
-        
        }));
+       setFundraiser(prev => ({ ...prev, 
+        title:          all[1].data.title,
+        target_amount:  all[1].data.target_amount,
+        current_amount: all[1].data.current_amount,
+        id:             all[1].data.id,
+        event_id:       all[1].data.event_id
+       }));
+
     });
   }, []);
 
-  return { state };
+  return { state, fundraiser, setFundraiser };
 };

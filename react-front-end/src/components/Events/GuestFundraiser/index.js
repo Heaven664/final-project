@@ -12,7 +12,7 @@ import StatusFundraiser from './Status';
 import useVisualMode from 'hooks/useVisualMode';
 
 
-export default function ManageFundraisers(props) {
+export default function Fundraiser(props) {
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -24,38 +24,29 @@ export default function ManageFundraisers(props) {
   const ERROR_DELETE = "ERROR_DELETE";
   const ERROR_SAVE = "ERROR_SAVE";
 
-  const { event } = props;
+  const { fundraiser, setFundraiser } = props;
 
-  const [fundraiser, setFundraiser] = useState({
-    title:"",
-    target_amount:"",
-    current_amount:"",
-    id:"",
-    event_id:""
-    // empty:""
-  });
 
-  useEffect(() => {
 
-    console.log('get fundraiser for event', event);
+  // useEffect(() => {
 
-    axios.get(`/api/fundraisers/${event}`)
-      .then((res) => {
-        console.log(res.data);
-        setFundraiser(res.data);
-        // if (Object.keys(res.data).length != 0) {
-        //   setFundraiser({...res.data, empty: "no" });
-        // }
-      })
-      .catch(err => console.log(err));
+  //   console.log('get fundraiser for event', event);
 
-  }, []);
+  //   axios.get(`/api/fundraisers/${event}`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setFundraiser(res.data);
+  //       // if (Object.keys(res.data).length != 0) {
+  //       //   setFundraiser({...res.data, empty: "no" });
+  //       // }
+  //     })
+  //     .catch(err => console.log(err));
 
-  console.log(fundraiser.empty==="no", fundraiser);
+  // }, []);
 
   const { mode, transition, back } = useVisualMode(
     // ((fundraiser.empty==="no") ? SHOW :  EMPTY )
-    EMPTY
+    SHOW
   );
   
   console.log('mode', mode);
@@ -63,7 +54,7 @@ export default function ManageFundraisers(props) {
   const addFundraiser = (title, target) => {
 
     const data = {
-      event_id: event,
+      event_id: fundraiser.event_id,
       title: title,
       target: target
     };
