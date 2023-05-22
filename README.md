@@ -44,7 +44,7 @@ To run the <span style="font-style:italic">Wish Whisper</span> project locally, 
 
 ---
 
-## <span style="color:#2980B9">**Getting Started**</span>
+## **Getting Started**
 
 To get started with the repository [final-project](https://github.com/Heaven664/final-project), follow these steps:
 
