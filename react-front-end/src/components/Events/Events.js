@@ -107,7 +107,7 @@ export default function Events(props) {
               ?
               ""
               :
-              <Link reloadDocument to='/events'>
+              <Link to='/events'>
                 <button onClick={handleQuitEvent} className="quit background-warning-color btn-style">Quit Event</button>
               </Link>
           }

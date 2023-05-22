@@ -16,6 +16,7 @@ import Settings from 'components/Settings/Settings';
 import Login from 'components/Other/Login';
 import NewEvent from "./NewEvents/NewEvent";
 import EventsList from "./Events/EventsList";
+import MyEventsList from "./Events/MyEventsList";
 import Events from "./Events/Events";
 import { friendContext } from 'providers/FriendProvider';
 import ProtectedRoute from "./Other/ProtectedRoute";
@@ -126,7 +127,7 @@ export default function App(props) {
             </li>
             </Link>
 
-            <Link to="/events">
+            <Link to="/myevents">
             <li className={`events 
               ${page === 'events' ? '--selected' : ''}`}
               onClick={() => { changePage("events"); }}
@@ -217,7 +218,9 @@ export default function App(props) {
 
             <Route path="/login" element={<Login user={user?.id} />} />
             <Route path="/events" element={<EventsList user={user?.id} />} />
+            <Route path="/myevents" element={<MyEventsList user={user?.id} />} />
             <Route path="/events/:id" element={<Events user={user?.id} />} />
+            <Route path="/myevents/:id" element={<Events user={user?.id} />} />
           </Route>
         </Routes>
 
