@@ -5,11 +5,12 @@ import useEventsData from "../../hooks/useEventsData";
 import ManageGuest from "./ManageGuests";
 import GuestList from "./ManageGuests/GuestList";
 import ManageFundraisers from "./ManageFundraisers";
+import { Link } from "react-router-dom";
 
 
 export default function NewEvent(props) {
 
-
+  const [error, setError] = useState("");
   const [newEvent, setNewEvent] = useState("");
   const [eventGuest, setEventGuest] = useState(null);
 
@@ -23,31 +24,75 @@ export default function NewEvent(props) {
   });
   
 
-  const createEvent = (event) => {
+  const initializeEvent = () => {
 
-    event.preventDefault();
+
 
     const data = {
-      host: props.user,
-      name: state.event_name,
-      description: state.event_description,
-      agenda: state.event_agenda,
-      location: state.event_location,
-      date: state.event_time
+      host: 10,
+      name: state?.event_name,
+      description: state?.event_description,
+      agenda: state?.event_agenda,
+      location: state?.event_location,
+      date: state?.event_time
     };
-    console.log("create new event: ", data);
+    console.log("initialize a new event: ", data);
 
     axios.post(`/api/events/`, data)
       .then(res => {
         console.log(res.data);
-        // setNewEvent(res.data.id);
-        setNewEvent(3);
+        setNewEvent(res.data?.id);
+        // setNewEvent(3);
       })
       .catch(err => console.log(err));
   };
 
+  const finalizeEvent = () => {
+
+    const data = {
+      host: props.user,
+      eventID:newEvent
+    };
+
+    console.log("finalize a new new event: ", data);
+
+    axios.put(`/api/events/new`, data)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+
+  function validate() {
+
+    if (state.event_name === "") {
+      setError("Pleae enter a name for your new event!");
+      return;
+    }
+    if (state.event_time === "") {
+      setError("Pleae choose a time for your new event!");
+      return;
+    }    
+    if (state.event_location === "") {
+      setError("Please enter a location for your new event!");
+      return;
+    }
+    if (state.event_agenda === "") {
+      setError("Pleae enter the agenda for your new event!");
+      return;
+    }
+    if (state.event_description === "") {
+      setError("Pleae describe your new event!");
+      return;
+    }
+    initializeEvent();
+    setError("");
+  };
+
+
   return (
-    <form className="new-event-layout" onSubmit={createEvent}>
+    <form className="new-event-layout" onSubmit={(event) => { event.preventDefault(); }}>
 
 
           {
@@ -119,6 +164,8 @@ export default function NewEvent(props) {
                   />
                 </label>
               </section>
+
+              <section className="guest-fundraiser__validation">{error}</section>
               </div>
               </div>
           }
@@ -159,9 +206,10 @@ export default function NewEvent(props) {
             {
               newEvent
                 ?
-                <button onClick={""} className="background-point-color btn-style"> Create !</button>
+                <Link to={`/events/${newEvent}`}>
+                <button onClick={finalizeEvent} className="background-point-color btn-style"> Create !</button></Link>
                 :
-                <button onClick={createEvent}
+                <button onClick={validate}
                   className="background-point-color btn-style"> Next Step !</button>
             }
 
