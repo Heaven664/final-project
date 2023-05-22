@@ -22,7 +22,7 @@ export default function FriendProvider(props) {
   };
 
   const textGroupWithId = (id) => {
-    setGroupID(id);
+    setGroupID(Number(id));
     setPage("groupChat");
     
   };
