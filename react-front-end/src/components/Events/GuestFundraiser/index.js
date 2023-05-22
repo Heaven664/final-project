@@ -14,12 +14,10 @@ import useVisualMode from 'hooks/useVisualMode';
 
 export default function GuestFundraiser(props) {
 
-  const EMPTY = "EMPTY";
   const SHOW = "SHOW";
-  const CREATE = "CREATE";
   const SAVING = "SAVING";
   const CONFIRM = "CONFIRM";
-  const EDIT = "EDIT";
+  const SUPPORT = "SUPPORT";
   const DELETING = "DELETING";
   const ERROR_DELETE = "ERROR_DELETE";
   const ERROR_SAVE = "ERROR_SAVE";
@@ -158,15 +156,13 @@ export default function GuestFundraiser(props) {
       {mode === SHOW && (
         <ShowGuestFundraiser
           donation={fundraiser}
-          onDelete={() => transition(CONFIRM)}
-          onEdit={() => transition(EDIT)}
+          onSupport={() => transition(SUPPORT)}
         />
       )
       }
 
-      {mode === EDIT && (
+      {mode === SUPPORT && (
         <SetupGuestFundraiser
-          event={event}
           donation={fundraiser}
           onSave={edit}
           onCancel={back}
@@ -174,19 +170,9 @@ export default function GuestFundraiser(props) {
       )
       }
 
-      {mode === CREATE && (
-        <SetupGuestFundraiser
-          donation={fundraiser}
-          event={event}
-          onSave={save}
-          onCancel={back}
-        />
-      )
-      }
-
       {mode === SAVING && (
         <StatusGuestFundraiser
-          message={"Saving"}
+          message={"Processing"}
           onComplete={() => transition(SHOW)}
         />
       )
@@ -194,7 +180,7 @@ export default function GuestFundraiser(props) {
 
       {mode === CONFIRM && (
         <ConfirmGuestFundraiser
-          message={"Are you sure you want to delete?"}
+          message={"Are you sure you want to cancel?"}
           onConfirm={destory}
           onCancel={back}
         />
@@ -203,7 +189,7 @@ export default function GuestFundraiser(props) {
 
       {mode === DELETING && (
         <StatusGuestFundraiser
-          message={"Deleting"}
+          message={"canceling"}
           onComplete={() => transition(EMPTY)}
         />
       )
