@@ -6,6 +6,7 @@ import { friendContext } from "providers/FriendProvider";
 import ProfileButton from "components/Buttons/ProfileButton";
 import ChangePhoto from "components/Buttons/ChangePhoto";
 import { getFriendsIds } from 'helpers/friends-data';
+import { Link } from "react-router-dom";
 
 export default function MyProfile(props) {
   const { profileID, textFriendWithId } = useContext(friendContext);
@@ -26,6 +27,7 @@ export default function MyProfile(props) {
     isFriend: false,
   });
 
+  console.log('profileID',profileID);
   // Cause page reload
   const [reloadFlag, setReloadFlag] = useState(null);
   const reload = () => {
@@ -83,7 +85,9 @@ export default function MyProfile(props) {
         <div className="user-photo">
           <img src={state.photo && pathToProfileImage} alt="user profile" className="border-radius20 box-shadow"></img>
           {state.id === currentUser && <ChangePhoto userId={currentUser} reload={reload} />}
-          {(state.id !== currentUser) && state.isFriend && <ProfileButton interaction={() => messageFriend(profileID)}>Message</ProfileButton>}
+
+          {(state.id !== currentUser) && state.isFriend && <Link to='/chat'><ProfileButton interaction={() => messageFriend(profileID)}>Message</ProfileButton></Link>}
+
           {(state.id !== currentUser && !state.isFriend) && <ProfileButton interaction={() => addFriend(currentUser, profileID)}>Add Friend</ProfileButton>}
         </div>
         <div className="box-shadow border-radius20 background-box-color user-detail">

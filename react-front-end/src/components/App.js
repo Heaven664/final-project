@@ -46,8 +46,9 @@ export default function App(props) {
   sessionStorage.setItem('user', JSON.stringify(user));
 
   const openMyProfile = () => {
-    reload();
+    // reload();
     changeProfileId(currentUser?.id);
+    console.log('myprofile',currentUser?.id)
     changePage('my-profile');
   };
 
@@ -86,10 +87,10 @@ export default function App(props) {
       <section className="sidebar">
         <nav className="sidebar__menu">
           <ul>
-            <Link to="/myprofile">
+            <Link reloadDocument to="/myprofile">
             <li className={`profile 
               ${page === 'my-profile' ? '--selected' : ''}`}
-              onClick={() => { changePage("my-profile"); openMyProfile()}}
+              onClick={() => {openMyProfile()}}
             >
                 <FontAwesomeIcon icon={faUser} /><br />
                 <span>My Profile</span>
@@ -204,7 +205,7 @@ export default function App(props) {
             <Route path="/groupchat" element={<GroupChat user={user?.id} />} />
             <Route path="/setting" element={<Settings user={user?.id} />} />
             <Route path="/newevent" element={<NewEvent user={user?.id} />} />
-            <Route path="/profile" element={<MyProfile user={user?.id} />} />
+            <Route path="/profile" element={<MyProfile />} />
             <Route path="/myprofile" element={<MyProfile user={user?.id} />} />
 
             <Route path="/login" element={<Login user={user?.id} />} />
