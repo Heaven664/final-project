@@ -70,6 +70,21 @@ const db = require('../db/connection');
       .catch(error => response.json({Error: error, Message:"Error getting event_user."}));
     });
 
+      //CRUD READ(GET)
+  router.get("/:id", (request, response) => {
+    db.query(
+      `
+      SELECT
+        *
+      FROM fundraiser_user
+      WHERE id = $1;
+      `, [Number(request.params.id)]
+    )
+    .then(res => {
+      response.json(res.rows[0]);
+    })
+    .catch(error => response.json({Error: error, Message:"Error getting event_user."}));
+  });
 
   //CRUD UPDATE(PUT)
   router.put("/", (request, response) => {
@@ -79,12 +94,12 @@ const db = require('../db/connection');
       `
       UPDATE fundraiser_user
       SET amount = $2, 
-          payment_method = $4,
-          payment_status = $5,
-          payment_anonymous = $6
+          payment_method = $3,
+          payment_status = $4,
+          payment_anonymous = $5
       WHERE id = $1;
       `,
-      [id, amount, user, pay_method, pay_status, pay_anonymous]
+      [id, amount, pay_method, pay_status, pay_anonymous]
     )
     .then(res => {
       response.json(res.rows);
