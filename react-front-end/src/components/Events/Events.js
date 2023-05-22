@@ -52,6 +52,24 @@ export default function Events(props) {
     onMessage(event_id);
   };
 
+
+  const objToArray = (obj) => Object.assign([], Object.values(obj));
+
+  const getEventUserID = objToArray(state.event_user).find(e => 
+    e.user_id === props.user);
+
+  const handleQuitEvent = () => {
+
+    console.log(`Remove ${props.user} from event ${event_id}`);
+
+    return axios.delete(`/api/event-user/${getEventUserID?.event_user_id}`)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+
   return (
     <main className="event-layout">
 
@@ -88,7 +106,9 @@ export default function Events(props) {
               ?
               ""
               :
-              <button onClick={""} className="quit background-warning-color btn-style">Quit Event</button>
+              <Link reloadDocument to='/events'>
+                <button onClick={handleQuitEvent} className="quit background-warning-color btn-style">Quit Event</button>
+              </Link>
           }
         </section>
       </div>
