@@ -20,11 +20,6 @@ VALUES
 ('Annual Sales Conference', 'Join us for a day of learning and networking with industry experts', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-05-15 09:00:00', 'Grand Hotel', 1),
 ('Light House Web Development Demo Day', 'Join us for an exciting web development demo day!', '10:00 AM - Registration and Networking, 11:00 AM - Keynote Speech, 12:00 PM - Lunch Break, 1:00 PM - Project Presentations, 3:00 PM - Q&A Session', '2023-05-25 12:00:00-07:00', 'Vancouver, BC', 1),
 ('Light House Web Development Demo Day', 'Join us for an exciting web development demo day!', '10:00 AM - Registration and Networking, 11:00 AM - Keynote Speech, 12:00 PM - Lunch Break, 1:00 PM - Project Presentations, 3:00 PM - Q&A Session', '2023-05-25 12:00:00-07:00', 'Calgary, AB', 2),
-('Product Launch Party', 'Come celebrate the launch of our new product line with food, drinks, and giveaways', '6:00pm - Doors Open, 7:00pm - Presentation, 8:00pm - Raffle Drawing, 9:00pm - Live Music', '2023-05-17 16:00:00', 'City Hall Plaza', 1),
-('Charity Fundraiser', 'Join us for an evening of entertainment and giving to benefit the local children hospital', '7:00pm - Cocktail Reception, 8:00pm - Silent Auction, 9:00pm - Live Auction, 10:00pm - Dancing', '2023-05-20 16:00:00', 'Country Club', 1),
-('Employee Appreciation Day', 'We are taking the day to celebrate our hardworking staff with food, games, and prizes', '11:00am - Lunch, 12:00pm - Cornhole Tournament, 2:00pm - Office Trivia, 3:00pm - Raffle Drawing', '2023-05-21 17:30:00', 'Office Park', 1),
-('Industry Conference', 'Join us for three days of learning, networking, and innovation with industry leaders', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-05-24 17:30:00', 'Convention Center', 1),
-('Customer Appreciation Week', 'We are showing our customers some love with daily giveaways, discounts, and events', 'Monday - Free Coffee, Tuesday - Pop-up Shop, Wednesday - Customer Roundtable, Thursday - Free Lunch, Friday - Raffle Drawing', '2023-05-25 18:45:00', 'Multiple Locations', 1),
 ('Company Retreat', 'We are taking some time to bond and recharge with a weekend of team building and relaxation', 'Friday - Welcome Reception, Saturday - Hiking and Activities, Sunday - Brunch and Departure', '2023-05-25 21:45:00', 'Mountain Lodge', 1),
 ('Sales Training Workshop', 'Join us for a day of hands-on training and best practices for successful sales', '8:00am - Registration and Breakfast, 9:00am - Product Overview, 10:00am - Prospecting Strategies, 12:00pm - Lunch, 1:00pm - Closing Deals, 3:00pm - Role Playing Exercises', '2023-05-26 18:45:00', 'Training Center', 1),
 ('Sales Conference', 'Annual Sales Conference for the company', 'Review sales performance, set goals for next year', '2023-05-27 15:45:00', 'New York City', 1),
@@ -41,6 +36,11 @@ VALUES
 ('Lighthouse Labs Coding Competition', 'Participate in a coding competition and win exciting prizes.', '9:00 AM - Contest Begins, 12:00 PM - Lunch Break, 3:00 PM - Final Round', '2023-05-26 09:00:00-07:00', 'Anywhere in Canada', 2),
 ('Lighthouse Labs Tech Talk', 'Join us for a tech talk on emerging technologies.', '6:00 PM - Registration, 7:00 PM - Speaker Session, 8:00 PM - Q&A', '2023-05-28 18:00:00-07:00', 'Anywhere in Canada', 2),
 ('Lighthouse Labs Workshop', 'Learn advanced coding techniques in this hands-on workshop.', '10:00 AM - Git and Version Control, 11:30 AM - Advanced JavaScript, 1:00 PM - Backend Development', '2023-05-30 10:00:00-07:00', 'Anywhere in Canada', 2),
+('Product Launch Party', 'Come celebrate the launch of our new product line with food, drinks, and giveaways', '6:00pm - Doors Open, 7:00pm - Presentation, 8:00pm - Raffle Drawing, 9:00pm - Live Music', '2023-05-17 16:00:00', 'City Hall Plaza', 1),
+('Charity Fundraiser', 'Join us for an evening of entertainment and giving to benefit the local children hospital', '7:00pm - Cocktail Reception, 8:00pm - Silent Auction, 9:00pm - Live Auction, 10:00pm - Dancing', '2023-05-20 16:00:00', 'Country Club', 1),
+('Employee Appreciation Day', 'We are taking the day to celebrate our hardworking staff with food, games, and prizes', '11:00am - Lunch, 12:00pm - Cornhole Tournament, 2:00pm - Office Trivia, 3:00pm - Raffle Drawing', '2023-05-21 17:30:00', 'Office Park', 1),
+('Industry Conference', 'Join us for three days of learning, networking, and innovation with industry leaders', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-05-24 17:30:00', 'Convention Center', 1),
+('Customer Appreciation Week', 'We are showing our customers some love with daily giveaways, discounts, and events', 'Monday - Free Coffee, Tuesday - Pop-up Shop, Wednesday - Customer Roundtable, Thursday - Free Lunch, Friday - Raffle Drawing', '2023-05-25 18:45:00', 'Multiple Locations', 1),
 ('Lighthouse Labs Demo Day', 'Showcase your web development projects in this interactive event.', '9:00 AM - Registration, 10:00 AM - Project Presentations, 12:00 PM - Lunch Break, 2:00 PM - Awards Ceremony', '2023-05-31 09:00:00-07:00', 'Anywhere in Canada', 2),
 ('Startup Pitch Day', 'Pitch day for startup founders', 'Startup founders pitch their ideas to investors', '2023-06-28 18:45:00', 'Austin, Texas', 2),
 ('Design Thinking Workshop', 'Workshop on design thinking for product development', 'Learn how to apply design thinking to create better products', '2023-07-01 18:45:00', 'Boston', 2),
@@ -59,14 +59,41 @@ VALUES
 
 -- Fundraisers table
 INSERT INTO fundraisers (title, event_id, target_amount, current_amount) VALUES
-  ('Children''s Education Fundraiser', 1, 5000, 2500),
-  ('Community Food Drive', 2, 10000, 750),
-  ('Animal Shelter Renovation Project', 4, 8000, 400),
-  ('Support for Homeless Veterans', 6, 3000, 500),
-  ('Art Scholarship Program', 7, 6000, 2000),
-  ('Disaster Relief Fund', 8, 25000, 15000),
-  ('Youth Sports Equipment Drive', 9, 4000, 3000),
-  ('Cancer Treatment Support', 10, 20000, 12000);
+  ('Children''s Education Fundraiser', 1, 500, 250),
+  ('Community Food Drive', 2, 1000, 750),
+  ('Animal Shelter Renovation Project', 4, 800, 400),
+  ('Support for Homeless Veterans', 6, 300, 50),
+  ('Art Scholarship Program', 7, 600, 200),
+  ('Disaster Relief Fund', 8, 2500, 1500),
+  ('Youth Sports Equipment Drive', 9, 400, 300),
+  ('Cancer Treatment Support', 10, 2000, 1200),
+  ('New Camera', 11, 800, 500),
+  ('New Bike', 12, 600, 300),
+  ('New LV Bag', 13, 900, 700),
+  ('Gourmet Dinner', 14, 500, 200),
+  ('Weekend Getaway', 15, 700, 400),
+  ('Spa Retreat', 26, 800, 600),
+  ('Concert Tickets', 27, 400, 150),
+  ('Fitness Equipment', 28, 600, 450),
+  ('Kitchen Appliances', 29, 900, 700),
+  ('Fashion Accessories', 30, 500, 300),
+  ('Book Collection', 39, 600, 400),
+  ('Home Decor', 17, 800, 600),
+  ('Gaming Console', 18, 500, 200),
+  ('Artwork', 18, 700, 500),
+  ('Music Lessons', 19, 400, 150),
+  ('Hiking Gear', 20, 800, 700),
+  ('Culinary Classes', 22, 600, 400),
+  ('Pet Adoption', 21, 900, 800),
+  ('Photography Workshop', 26, 500, 300),
+  ('Outdoor Adventure', 24, 700, 600),
+  ('Home Theater System', 31, 800, 700),
+  ('Wine Tasting Experience', 33, 400, 200),
+  ('Luxury Spa Day', 35, 600, 500),
+  ('Fashion Makeover', 36, 900, 800),
+  ('Charity Donation', 37, 500, 300);
+
+
 
 -- Event_user table
 INSERT INTO event_user (user_id, event_id) VALUES
@@ -168,3 +195,13 @@ INSERT INTO fundraiser_user (user_id, fundraiser_id, amount, payment_anonymous, 
 (9, 3, 125, false, 'MASTERCARD', 'Completed'),
 (9, 4, 100, true, 'BITCOIN', 'Completed'),
 (9, 1, 50, true, 'AMEX', 'Completed');
+
+UPDATE fundraisers
+SET current_amount = subquery.sumamount
+FROM (
+  SELECT fundraiser_id, SUM(amount) as sumamount
+  FROM fundraiser_user
+  WHERE payment_status = 'Completed'
+  GROUP BY fundraiser_id
+) as subquery
+WHERE fundraisers.id = subquery.fundraiser_id;

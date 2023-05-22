@@ -63,18 +63,25 @@
 --   users AS h ON e.host_id = h.id
 -- WHERE e.id = 1;
 
+-- UPDATE fundraisers
+-- SET current_amount = (
+--   SELECT SUM(amount)
+--   FROM fundraiser_user
+--   WHERE fundraiser_id = 1 
+--   AND payment_status = 'Completed'
+-- ) 
+-- WHERE id = 1;
+
+
+
+
 UPDATE fundraisers
-SET current_amount = (
-  SELECT SUM(amount)
+SET current_amount = subquery.sumamount
+FROM (
+  SELECT fundraiser_id, SUM(amount) as sumamount
   FROM fundraiser_user
-  WHERE fundraiser_id = 1 
-  AND payment_status = 'Completed'
-) 
-WHERE id = 1;
-
-
-
-
-
-
+  WHERE payment_status = 'Completed'
+  GROUP BY fundraiser_id
+) as subquery
+WHERE fundraisers.id = subquery.fundraiser_id;
 
