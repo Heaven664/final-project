@@ -18,7 +18,6 @@ export default function NavThumbnail(props) {
     id: props.user,
     photo: ""
   });
-  const {userUpdated} = props;
 
   const {userUpdated} = props;
 
