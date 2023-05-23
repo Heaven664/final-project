@@ -18,11 +18,12 @@ import NewEvent from "./NewEvents/NewEvent";
 import EventsList from "./Events/EventsList";
 import MyEventsList from "./Events/MyEventsList";
 import Events from "./Events/Events";
+import MyEvents from "./Events/MyEvents";
 import { friendContext } from 'providers/FriendProvider';
 import ProtectedRoute from "./Other/ProtectedRoute";
 import Profile from "./Profiles/Profile";
 import Memories from "./Events/Memories";
-import EditEvent from "./Events/EditEvent/EditEvent";
+import EditEvent from "./Events/EditEvent/EditEventInfo";
 
 import './App.scss';
 
@@ -39,13 +40,13 @@ export default function App(props) {
     setUpdateApp(prev => !prev);
   };
   const [updated, setUpdated] = useState(false);
-  
+
   sessionStorage.setItem('user', JSON.stringify(user));
 
   const openMyProfile = () => {
     // reload();
     changeProfileId(currentUser?.id);
-    console.log('myprofile',currentUser?.id)
+    console.log('myprofile', currentUser?.id);
     changePage('my-profile');
   };
 
@@ -84,84 +85,84 @@ export default function App(props) {
       <section className="sidebar">
         <nav className="sidebar__menu">
           <ul>
-            <Link  to="/myprofile">
-            <li className={`profile 
+            <Link to="/myprofile">
+              <li className={`profile 
               ${page === 'my-profile' ? '--selected' : ''}`}
-              onClick={(e) => {openMyProfile()}}
-            >
+                onClick={(e) => { openMyProfile(); }}
+              >
                 <FontAwesomeIcon icon={faUser} /><br />
                 <span>My Profile</span>
-            </li>
+              </li>
             </Link>
             <Link to="/friends">
-            <li className={`friends 
+              <li className={`friends 
               ${page === 'friends' ? '--selected' : ''}`}
-              onClick={() => { changePage("friends"); }}
-            >
-              
+                onClick={() => { changePage("friends"); }}
+              >
+
                 <FontAwesomeIcon icon={faUsers} /><br />
                 <span>Friends</span>
-              
-            </li>
+
+              </li>
             </Link>
 
             <Link to="/chat">
-            <li className={`chat 
+              <li className={`chat 
               ${page === 'chat' ? '--selected' : ''}`}
-              onClick={() => { changePage("chat"); }}
-            >
-              
+                onClick={() => { changePage("chat"); }}
+              >
+
                 <FontAwesomeIcon icon={faComment} /><br />
                 <span>Chat</span>
-              
-            </li>
+
+              </li>
             </Link>
 
             <Link to="/groupchat">
-            <li className={`groupChat 
+              <li className={`groupChat 
               ${page === 'groupChat' ? '--selected' : ''}`}
-              onClick={() => { changePage("groupChat"); }}
-            >
-              
+                onClick={() => { changePage("groupChat"); }}
+              >
+
                 <FontAwesomeIcon icon={faComments} /><br />
                 <span>Group Chat</span>
-              
-            </li>
+
+              </li>
             </Link>
 
             <Link to="/myevents">
-            <li className={`events 
+              <li className={`events 
               ${page === 'events' ? '--selected' : ''}`}
-              onClick={() => { changePage("events"); }}
-            >
-              
+                onClick={() => { changePage("events"); }}
+              >
+
                 <FontAwesomeIcon icon={faCakeCandles} /><br />
                 <span>Events</span>
-              
-            </li>
+
+              </li>
             </Link>
 
             <Link to="/newevent">
-            <li className={`myEvent 
+              <li className={`myEvent 
               ${page === 'newEvent' ? '--selected' : ''}`}
-              onClick={() => { changePage("newEvent"); }}
-            >
-              
+                onClick={() => { changePage("newEvent"); }}
+              >
+
                 <FontAwesomeIcon icon={faCalendarPlus} /><br />
                 <span>New Event</span>
-              
-            </li>
+
+              </li>
             </Link>
 
             <Link to="/setting">
-            <li className={`setting 
+              <li className={`setting 
               ${page === 'setting' ? '--selected' : ''}`}
-              onClick={() => { changePage("setting"); }}
-            >
-              
+                onClick={() => { changePage("setting"); }}
+              >
+
                 <FontAwesomeIcon icon={faGear} /><br />
-              
-            </li>
+
+              </li>
             </Link>
 
             <li className='logout button-active'
@@ -185,7 +186,7 @@ export default function App(props) {
           }
 
           {user &&
-            <NavThumbnail user={user.id} userUpdated={updated}/>
+            <NavThumbnail user={user.id} userUpdated={updated} />
           }
 
         </div>
@@ -206,10 +207,10 @@ export default function App(props) {
 
         <Routes>
 
-          <Route path="/login" element={<Login login1={login1} login2={login2}/>} />
-          <Route path="/*" element={<h1>ERROR 404: NOT FOUND. How did you end up here? 😄</h1>} />
-          <Route element={<ProtectedRoute user={user?.id}/>}>
-          
+          <Route path="/login" element={<Login login1={login1} login2={login2} />} />
+
+          <Route element={<ProtectedRoute user={user?.id} />}>
+            <Route path="/*" element={<h1>ERROR 404: NOT FOUND. How did you end up here? 😄</h1>} />
             <Route path="/friends" element={<Friend user={user?.id} />} />
             <Route path="/chat" element={<PrivateChat user={user?.id} />} />
             <Route path="/groupchat" element={<GroupChat user={user?.id} />} />
@@ -223,7 +224,7 @@ export default function App(props) {
             <Route path="/myevents" element={<MyEventsList user={user?.id} />} />
             <Route path="/events/:id" element={<Events user={user?.id} />} />
             <Route path="/editevent/:id" element={<EditEvent user={user?.id} />} />
-            <Route path="/myevents/:id" element={<Events user={user?.id} />} />
+            <Route path="/myevents/:id" element={<MyEvents user={user?.id} />} />
             <Route path="/memories/:id" element={<Memories user={user?.id} />} />
           </Route>
         </Routes>

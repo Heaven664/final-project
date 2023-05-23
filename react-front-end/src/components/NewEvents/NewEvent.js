@@ -191,6 +191,7 @@ export default function NewEvent(props) {
             <ManageFundraisers
               event={newEvent}
               user={props.user}
+              newEvent={true}
             />
           </section>
         </div>

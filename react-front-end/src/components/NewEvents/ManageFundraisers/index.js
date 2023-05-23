@@ -24,14 +24,14 @@ export default function ManageFundraisers(props) {
   const ERROR_DELETE = "ERROR_DELETE";
   const ERROR_SAVE = "ERROR_SAVE";
 
-  const { event } = props;
+  const { event} = props;
 
   const [fundraiser, setFundraiser] = useState({
-    title:"",
-    target_amount:"",
-    current_amount:"",
-    id:"",
-    event_id:""
+    title: "",
+    target_amount: "",
+    current_amount: "",
+    id: "",
+    event_id: ""
     // empty:""
   });
 
@@ -51,13 +51,13 @@ export default function ManageFundraisers(props) {
 
   }, []);
 
-  console.log(fundraiser.empty==="no", fundraiser);
+  console.log(fundraiser.empty === "no", fundraiser);
 
   const { mode, transition, back } = useVisualMode(
     // ((fundraiser.empty==="no") ? SHOW :  EMPTY )
     EMPTY
   );
-  
+
   console.log('mode', mode);
 
   const addFundraiser = (title, target) => {
@@ -198,7 +198,7 @@ export default function ManageFundraisers(props) {
       {mode === SAVING && (
         <StatusFundraiser
           message={"Saving"}
-          onComplete={() => transition(SHOW)}
+          onComplete={() => {transition(SHOW)}}
         />
       )
       }

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router";  
 
 
-export default function EditEvent(props) {
+export default function EditGuest(props) {
 
   const [error, setError] = useState({
     name: "",
@@ -23,38 +23,51 @@ export default function EditEvent(props) {
   const params = useParams();
   const event_id = params.id;
 
-  
-  const [state, setState] = useState({
+  const [eventState, setEventState] = useState({
     event_name: "",
     event_time: "",
     event_agenda: "",
     event_location: "",
-    event_description: ""
+    event_description: "",
+    host_id:""
   });
 
+  useEffect(() => {
+    axios.get(`/api/events/${event_id}`)
+      .then((res) => {
+        console.log(res.data);
+        setEventState({
+          event_name: res.data?.name,
+          event_time: res.data?.event_date,
+          event_agenda: res.data?.agenda,
+          event_location: res.data?.event_location,
+          event_description: res.data?.description,
+          host_id:res.data?.host_id
+        });
+      })
+      .catch(err => console.log(err));
+  }, []);
 
-  const initializeEvent = () => {
-
-
+  const editEvent = () => {
 
     const data = {
-      host: 10,
-      name: state?.event_name,
-      description: state?.event_description,
-      agenda: state?.event_agenda,
-      location: state?.event_location,
-      date: state?.event_time
+      name: eventState?.event_name,
+      description: eventState?.event_description,
+      agenda: eventState?.event_agenda,
+      location: eventState?.event_location,
+      date: eventState?.event_time
     };
-    console.log("initialize a new event: ", data);
+    console.log("edit event: ", data);
 
-    axios.post(`/api/events/`, data)
+    axios.post(`/api/events/${event_id}/edit`, data)
       .then(res => {
         console.log(res.data);
         setNewEvent(res.data?.id);
-        // setNewEvent(3);
       })
       .catch(err => console.log(err));
   };
+
+
 
   const finalizeEvent = () => {
 
@@ -75,37 +88,37 @@ export default function EditEvent(props) {
 
   function validate() {
 
-    if (state.event_name === "") {
-      setError({ name: "Pleae enter a name for your new event!" });
+    if (eventState.event_name === "") {
+      setError({ name: "Pleae enter a name for your event!" });
       return;
     }
     setError({ name: "" });
 
-    if (state.event_time === "") {
-      setError({ time: "Pleae choose a time for your new event!" });
+    if (eventState.event_time === "") {
+      setError({ time: "Pleae choose a time for your event!" });
       return;
     }
     setError({time: ""});
 
-    if (state.event_location === "") {
-      setError({ location: "Please enter a location for your new event!" });
+    if (eventState.event_location === "") {
+      setError({ location: "Please enter a location for your event!" });
       return;
     }
     setError({location: ""});
 
-    if (state.event_description === "") {
-      setError({ description: "Pleae describe your new event!" });
+    if (eventState.event_description === "") {
+      setError({ description: "Pleae describe your event!" });
       return;
     }    
     setError({description: ""});
 
-    if (state.event_agenda === "") {
-      setError({ agenda: "Pleae enter the agenda for your new event!" });
+    if (eventState.event_agenda === "") {
+      setError({ agenda: "Pleae enter the agenda for your event!" });
       return;
     }
     setError({agenda: ""});
 
-    initializeEvent();
+    editEvent();
   };
 
 
@@ -123,7 +136,8 @@ export default function EditEvent(props) {
                 className="event-nameField"
                 type="text"
                 name="event_name"
-                onChange={(e) => setState({ ...state, event_name: e.target.value })}
+                value={eventState.event_name}
+                onChange={(e) => setEventState({ ...eventState, event_name: e.target.value })}
               />
             </section>
             <section className="event_description __card event_align box-shadow border-radius20 background-box-color user-detail">
@@ -133,7 +147,8 @@ export default function EditEvent(props) {
                 className="event_descriptionField"
                 type="text"
                 name="event_description"
-                onChange={(e) => setState({ ...state, event_description: e.target.value })}
+                value={eventState.event_description}
+                onChange={(e) => setEventState({ ...eventState, event_description: e.target.value })}
               />
             </section>
 
@@ -146,7 +161,8 @@ export default function EditEvent(props) {
                 className="event-timeField"
                 type="datetime-local"
                 name="event_time"
-                onChange={(e) => setState({ ...state, event_time: e.target.value })}
+                value={eventState.event_time}
+                onChange={(e) => setEventState({ ...eventState, event_time: e.target.value })}
               />
             </section>
 
@@ -157,7 +173,8 @@ export default function EditEvent(props) {
                 className="event-locationField"
                 type="text"
                 name="event_location"
-                onChange={(e) => setState({ ...state, event_location: e.target.value })}
+                value={eventState.event_location}
+                onChange={(e) => setEventState({ ...eventState, event_location: e.target.value })}
               />
             </section>
 
@@ -171,7 +188,8 @@ export default function EditEvent(props) {
                 className="event-agendaField"
                 type="text"
                 name="event_agenda"
-                onChange={(e) => setState({ ...state, event_agenda: e.target.value })}
+                value={eventState.event_agenda}
+                onChange={(e) => setEventState({ ...eventState, event_agenda: e.target.value })}
               />
             </section>
           </div>
@@ -206,12 +224,14 @@ export default function EditEvent(props) {
           {
             newEvent
               ?
-              <Link to={`/events/${newEvent}`}>
+              <Link to={`/events/${event_id}`}>
                 <button onClick={finalizeEvent} className="background-point-color btn-style "> Create</button>
               </Link>
               :
+              <Link to={`/events/${event_id}`}>
               <button onClick={validate}
-                className="background-point-color btn-style"> Next Step</button>
+                className="background-point-color btn-style"> Save</button>
+              </Link>
           }
 
         </section>
