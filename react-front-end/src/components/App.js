@@ -24,6 +24,7 @@ import ProtectedRoute from "./Other/ProtectedRoute";
 import Profile from "./Profiles/Profile";
 import Memories from "./Events/Memories";
 import EditEvent from "./Events/EditEvent/EditEventInfo";
+import EditGuest from "./Events/EditEvent/EditEventGuest";
 
 import './App.scss';
 
@@ -212,7 +213,7 @@ export default function App(props) {
           <Route path="/login" element={<Login login1={login1} login2={login2} />} />
 
           <Route element={<ProtectedRoute user={user?.id} />}>
-            <Route path="/*" element={<h1>ERROR 404: NOT FOUND. How did you end up here? 😄</h1>} />
+            <Route path="/*" element={<h1>ERROR 404: NOT FOUND. < br/>< br/>How did you end up here? 😄</h1>} />
             <Route path="/friends" element={<Friend user={user?.id} />} />
             <Route path="/chat" element={<PrivateChat user={user?.id} />} />
             <Route path="/groupchat" element={<GroupChat user={user?.id} />} />
@@ -226,6 +227,7 @@ export default function App(props) {
             <Route path="/myevents" element={<MyEventsList user={user?.id} />} />
             <Route path="/events/:id" element={<Events user={user?.id} />} />
             <Route path="/editevent/:id" element={<EditEvent user={user?.id} />} />
+            <Route path="/manageguests/:id" element={<EditGuest user={user?.id} />} />
             <Route path="/myevents/:id" element={<MyEvents user={user?.id} />} />
             <Route path="/memories/:id" element={<Memories user={user?.id} />} />
           </Route>
