@@ -12,6 +12,7 @@ export default function SetupGuestFundraiser(props) {
   const [state, setState] = useState({
     amount: 1,
     pay_method: "",
+    message:"",
     pay_anonymous: false
   });
 
@@ -39,6 +40,10 @@ export default function SetupGuestFundraiser(props) {
       setError("Please choose a payment method!");
       return;
     }
+    if (state.message === "") {
+      setError("Please enter a message for your support!");
+      return;
+    }
     props.onSave(state);
     setError("");
   }
@@ -47,7 +52,7 @@ export default function SetupGuestFundraiser(props) {
     <main className="">
       <section className="">
         <form onSubmit={(event) => { event.preventDefault(); }}>
-          <fieldset>
+     
             <label>
               Amount:<br />
               <span id="fundraiser-target-comment">{""}</span>
@@ -76,6 +81,17 @@ export default function SetupGuestFundraiser(props) {
             </label>
 
             <label>
+            Leave a message:<br />
+            <input
+              className="guest-fundraiser-messageField"
+              type="text"
+              name="guest-fundraiser-message"
+              value={state.message}
+              onChange={(e) => setState({ ...state, message: e.target.value })}
+            />
+          </label>
+
+            <label>
             <FontAwesomeIcon icon={faEyeSlash} />
               Anonymous?<br />
               <input
@@ -88,7 +104,6 @@ export default function SetupGuestFundraiser(props) {
               />
             </label>
 
-          </fieldset>
 
         </form >
         <section className="guest-fundraiser__validation">{error}</section>

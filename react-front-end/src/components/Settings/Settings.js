@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import './Settings.scss';
+import { Link } from 'react-router-dom';
 
 import { friendContext } from 'providers/FriendProvider';
 
@@ -18,7 +19,7 @@ export default function Settings(props) {
     about: ""
   });
 
-  const {setUserUpdated} = props;
+  const { setUserUpdated } = props;
 
   const updateProfile = (e) => {
     e.preventDefault();
@@ -123,9 +124,11 @@ export default function Settings(props) {
           </tbody>
         </table>
         <div className="btn">
-          <button className="background-primary-color btn-style">
-            Save Change
-          </button>
+          <Link to='/myprofile'>
+            <button className="background-primary-color btn-style">
+              Save Change
+            </button>
+          </Link>
         </div>
       </form>
 

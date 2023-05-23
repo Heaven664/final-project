@@ -36,7 +36,9 @@ CREATE TABLE fundraisers (
   title VARCHAR(255) NOT NULL,
   event_id INTEGER REFERENCES events(id) ON DELETE CASCADE,
   target_amount INTEGER NOT NULL,
-  current_amount INTEGER DEFAULT 0 NOT NULL
+  current_amount INTEGER DEFAULT 0 NOT NULL,
+  collected BOOLEAN DEFAULT false NOT NULL,
+  collected_date TIMESTAMP
 );
 
 CREATE TABLE event_user (
@@ -75,5 +77,6 @@ CREATE TABLE fundraiser_user (
   amount INTEGER NOT NULL,
   payment_anonymous BOOLEAN NOT NULL,
   payment_method VARCHAR(255) NOT NULL,
-  payment_status VARCHAR(255) NOT NULL
+  payment_status VARCHAR(255) NOT NULL,
+  message VARCHAR(255) NOT NULL
 );

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import "./styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleDollarToSlot, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faSackDollar, faPenToSquare, faIcons } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
+import Fundraisers from '../Fundraisers';
+import dateFormat from 'dateformat';
 
 
-export default function ShowFundraiser(props) {
+export default function ShowHostFundraiser(props) {
 
-  const {donation} = props;
+  const { donation, onCollect, onModify, mature, collected, collected_date } = props;
 
   console.log('donation', donation);
 
@@ -14,7 +17,7 @@ export default function ShowFundraiser(props) {
 
   const barPercentage = Math.round(percentage * 100) + "%";
 
-  console.log('perc',percentage)
+  console.log('perc', percentage);
 
   const getProgress = (value) => {
     if (value > 0.75) {
@@ -30,24 +33,54 @@ export default function ShowFundraiser(props) {
   };
 
   const barVariant = getProgress(percentage);
-  console.log('perc',`${barVariant}`);
+  console.log('perc', `${barVariant}`);
+
+  const eventDate = dateFormat(collected_date, "dddd, mmmm dS, yyyy hh:mm:ss");
 
   return (
 
-      <main className="fundraisers-layout">
+    <main className="fundraisers-layout">
 
-<div className='fundraisers-info'>
-  <span className='wish'>Wish: {props.donation.title}</span>
-  <span className='target'>Target: ${props.donation.target_amount}</span>
-</div>
-  <div id='fundraisers-bar'>
-    <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}
-    </div>
-  </div>
-    <button onClick={""} id="supportButton" className="background-fundraiser-color btn-style">
-    <FontAwesomeIcon icon={faCircleDollarToSlot} />
-       Support! </button>
+      <div className='fundraisers-info'>
+        <span className='wish'>Wish: {donation.title}</span>
+        <span className='target'>Target: ${donation.target_amount}</span>
+      </div>
+      <div id='fundraisers-bar'>
+        <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}
+        </div>
+      </div>
 
+      {
+        mature
+          ?
+          <>
+            {
+              collected
+                ?
+                <>
+                  <span className='font16'>Collected on {eventDate}!</span>
+                  <Link to={`/memories/${donation.id}`}>
+                    <button onClick={onCollect} id="supportButton" className="background-fundraiser-color btn-style">
+                  <FontAwesomeIcon icon={faIcons} /> <br />
+                  Memories </button>
+                  </Link>
+
+                </>
+                :
+                <button onClick={onCollect} id="supportButton" className="background-fundraiser-color btn-style">
+                  <FontAwesomeIcon icon={faSackDollar} /> <br />
+                  Collect </button>
+
+            }
+          </>
+          :
+          <>
+            <button onClick={onModify} id="supportButton" className="background-fundraiser-color btn-style">
+              <FontAwesomeIcon icon={faPenToSquare} /> <br />
+              Modify</button>
+            <span className='font16'>Wait until event date to collect!</span>
+          </>
+      }
     </main>
   );
 }

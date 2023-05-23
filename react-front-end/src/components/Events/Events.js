@@ -107,7 +107,7 @@ export default function Events(props) {
               ?
               ""
               :
-              <Link reloadDocument to='/events'>
+              <Link to='/events'>
                 <button onClick={handleQuitEvent} className="quit background-warning-color btn-style">Quit Event</button>
               </Link>
           }
@@ -131,6 +131,7 @@ export default function Events(props) {
                       fundraiser={fundraiser}
                       user={props.user}
                       setFundraiser={setFundraiser}
+                      event={state?.events_host_Info}
                     />
                   </section>
                   :

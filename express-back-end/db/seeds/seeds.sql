@@ -20,11 +20,6 @@ VALUES
 ('Annual Sales Conference', 'Join us for a day of learning and networking with industry experts', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-05-15 09:00:00', 'Grand Hotel', 1),
 ('Light House Web Development Demo Day', 'Join us for an exciting web development demo day!', '10:00 AM - Registration and Networking, 11:00 AM - Keynote Speech, 12:00 PM - Lunch Break, 1:00 PM - Project Presentations, 3:00 PM - Q&A Session', '2023-05-25 12:00:00-07:00', 'Vancouver, BC', 1),
 ('Light House Web Development Demo Day', 'Join us for an exciting web development demo day!', '10:00 AM - Registration and Networking, 11:00 AM - Keynote Speech, 12:00 PM - Lunch Break, 1:00 PM - Project Presentations, 3:00 PM - Q&A Session', '2023-05-25 12:00:00-07:00', 'Calgary, AB', 2),
-('Product Launch Party', 'Come celebrate the launch of our new product line with food, drinks, and giveaways', '6:00pm - Doors Open, 7:00pm - Presentation, 8:00pm - Raffle Drawing, 9:00pm - Live Music', '2023-05-17 16:00:00', 'City Hall Plaza', 1),
-('Charity Fundraiser', 'Join us for an evening of entertainment and giving to benefit the local children hospital', '7:00pm - Cocktail Reception, 8:00pm - Silent Auction, 9:00pm - Live Auction, 10:00pm - Dancing', '2023-05-20 16:00:00', 'Country Club', 1),
-('Employee Appreciation Day', 'We are taking the day to celebrate our hardworking staff with food, games, and prizes', '11:00am - Lunch, 12:00pm - Cornhole Tournament, 2:00pm - Office Trivia, 3:00pm - Raffle Drawing', '2023-05-21 17:30:00', 'Office Park', 1),
-('Industry Conference', 'Join us for three days of learning, networking, and innovation with industry leaders', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-05-24 17:30:00', 'Convention Center', 1),
-('Customer Appreciation Week', 'We are showing our customers some love with daily giveaways, discounts, and events', 'Monday - Free Coffee, Tuesday - Pop-up Shop, Wednesday - Customer Roundtable, Thursday - Free Lunch, Friday - Raffle Drawing', '2023-05-25 18:45:00', 'Multiple Locations', 1),
 ('Company Retreat', 'We are taking some time to bond and recharge with a weekend of team building and relaxation', 'Friday - Welcome Reception, Saturday - Hiking and Activities, Sunday - Brunch and Departure', '2023-05-25 21:45:00', 'Mountain Lodge', 1),
 ('Sales Training Workshop', 'Join us for a day of hands-on training and best practices for successful sales', '8:00am - Registration and Breakfast, 9:00am - Product Overview, 10:00am - Prospecting Strategies, 12:00pm - Lunch, 1:00pm - Closing Deals, 3:00pm - Role Playing Exercises', '2023-05-26 18:45:00', 'Training Center', 1),
 ('Sales Conference', 'Annual Sales Conference for the company', 'Review sales performance, set goals for next year', '2023-05-27 15:45:00', 'New York City', 1),
@@ -41,6 +36,11 @@ VALUES
 ('Lighthouse Labs Coding Competition', 'Participate in a coding competition and win exciting prizes.', '9:00 AM - Contest Begins, 12:00 PM - Lunch Break, 3:00 PM - Final Round', '2023-05-26 09:00:00-07:00', 'Anywhere in Canada', 2),
 ('Lighthouse Labs Tech Talk', 'Join us for a tech talk on emerging technologies.', '6:00 PM - Registration, 7:00 PM - Speaker Session, 8:00 PM - Q&A', '2023-05-28 18:00:00-07:00', 'Anywhere in Canada', 2),
 ('Lighthouse Labs Workshop', 'Learn advanced coding techniques in this hands-on workshop.', '10:00 AM - Git and Version Control, 11:30 AM - Advanced JavaScript, 1:00 PM - Backend Development', '2023-05-30 10:00:00-07:00', 'Anywhere in Canada', 2),
+('Product Launch Party', 'Come celebrate the launch of our new product line with food, drinks, and giveaways', '6:00pm - Doors Open, 7:00pm - Presentation, 8:00pm - Raffle Drawing, 9:00pm - Live Music', '2023-05-17 16:00:00', 'City Hall Plaza', 1),
+('Charity Fundraiser', 'Join us for an evening of entertainment and giving to benefit the local children hospital', '7:00pm - Cocktail Reception, 8:00pm - Silent Auction, 9:00pm - Live Auction, 10:00pm - Dancing', '2023-05-20 16:00:00', 'Country Club', 1),
+('Employee Appreciation Day', 'We are taking the day to celebrate our hardworking staff with food, games, and prizes', '11:00am - Lunch, 12:00pm - Cornhole Tournament, 2:00pm - Office Trivia, 3:00pm - Raffle Drawing', '2023-05-21 17:30:00', 'Office Park', 1),
+('Industry Conference', 'Join us for three days of learning, networking, and innovation with industry leaders', '8:00am - Registration and Breakfast, 9:00am - Keynote Speaker, 10:00am - Breakout Sessions, 12:00pm - Lunch, 1:00pm - Roundtable Discussions, 3:00pm - Closing Remarks', '2023-05-24 17:30:00', 'Convention Center', 1),
+('Customer Appreciation Week', 'We are showing our customers some love with daily giveaways, discounts, and events', 'Monday - Free Coffee, Tuesday - Pop-up Shop, Wednesday - Customer Roundtable, Thursday - Free Lunch, Friday - Raffle Drawing', '2023-05-25 18:45:00', 'Multiple Locations', 1),
 ('Lighthouse Labs Demo Day', 'Showcase your web development projects in this interactive event.', '9:00 AM - Registration, 10:00 AM - Project Presentations, 12:00 PM - Lunch Break, 2:00 PM - Awards Ceremony', '2023-05-31 09:00:00-07:00', 'Anywhere in Canada', 2),
 ('Startup Pitch Day', 'Pitch day for startup founders', 'Startup founders pitch their ideas to investors', '2023-06-28 18:45:00', 'Austin, Texas', 2),
 ('Design Thinking Workshop', 'Workshop on design thinking for product development', 'Learn how to apply design thinking to create better products', '2023-07-01 18:45:00', 'Boston', 2),
@@ -58,15 +58,43 @@ VALUES
   ('Leadership Conference', 'Conference on leadership skills development', '9:00 AM - Registration, 10:00 AM - Keynote Speaker, 11:30 AM - Workshop Sessions', '2023-07-15 09:00:00', 'Conference Center', 3);
 
 -- Fundraisers table
-INSERT INTO fundraisers (title, event_id, target_amount, current_amount) VALUES
-  ('Children''s Education Fundraiser', 1, 5000, 2500),
-  ('Community Food Drive', 2, 10000, 750),
-  ('Animal Shelter Renovation Project', 4, 8000, 400),
-  ('Support for Homeless Veterans', 6, 3000, 500),
-  ('Art Scholarship Program', 7, 6000, 2000),
-  ('Disaster Relief Fund', 8, 25000, 15000),
-  ('Youth Sports Equipment Drive', 9, 4000, 3000),
-  ('Cancer Treatment Support', 10, 20000, 12000);
+INSERT INTO fundraisers (title, event_id, target_amount)
+VALUES
+  ('Children''s Education Fundraiser', 1, 1500),
+  ('Community Food Drive', 2, 2000),
+  ('Animal Shelter Renovation Project', 4, 1800),
+  ('Support for Homeless Veterans', 6, 1300),
+  ('Art Scholarship Program', 7, 600),
+  ('Disaster Relief Fund', 8, 2500),
+  ('Youth Sports Equipment Drive', 9, 400),
+  ('Cancer Treatment Support', 10, 2000),
+  ('New Camera', 11, 800),
+  ('New Bike', 12, 600),
+  ('New LV Bag', 13, 900),
+  ('Gourmet Dinner', 14, 500),
+  ('Weekend Getaway', 15, 700),
+  ('Spa Retreat', 26, 800),
+  ('Concert Tickets', 27, 400),
+  ('Fitness Equipment', 28, 600),
+  ('Kitchen Appliances', 29, 900),
+  ('Fashion Accessories', 30, 500),
+  ('Book Collection', 39, 600),
+  ('Home Decor', 17, 800),
+  ('Gaming Console', 18, 500),
+  ('Artwork', 18, 700),
+  ('Music Lessons', 19, 400),
+  ('Hiking Gear', 20, 800),
+  ('Culinary Classes', 22, 600),
+  ('Pet Adoption', 21, 900),
+  ('Photography Workshop', 26, 500),
+  ('Outdoor Adventure', 24, 700),
+  ('Home Theater System', 31, 800),
+  ('Wine Tasting Experience', 33, 400),
+  ('Luxury Spa Day', 35, 600),
+  ('Fashion Makeover', 36, 900),
+  ('Charity Donation', 37, 500);
+
+
 
 -- Event_user table
 INSERT INTO event_user (user_id, event_id) VALUES
@@ -147,24 +175,70 @@ VALUES
   (9, 5, 'See you all there!', '2023-05-13 10:02:00'),
   (10, 5, 'I might be a few minutes late, but I''ll try to be there on time.', '2023-05-13 10:03:00');
 
-INSERT INTO fundraiser_user (user_id, fundraiser_id, amount, payment_anonymous, payment_method, payment_status) VALUES
-(1, 1, 50, false, 'VISA', 'Completed'),
-(1, 2, 100, true, 'MASTERCARD', 'Pending'),
-(2, 3, 75, true, 'BITCOIN', 'Completed'),
-(3, 1, 25, false, 'AMEX', 'Completed'),
-(4, 4, 200, true, 'VISA', 'Completed'),
-(4, 2, 150, false, 'MASTERCARD', 'Completed'),
-(5, 1, 100, true, 'BITCOIN', 'Pending'),
-(5, 3, 50, false, 'AMEX', 'Completed'),
-(5, 4, 75, true, 'VISA', 'Completed'),
-(6, 2, 125, false, 'MASTERCARD', 'Completed'),
-(6, 3, 100, true, 'BITCOIN', 'Pending'),
-(7, 4, 50, true, 'VISA', 'Completed'),
-(7, 1, 75, false, 'AMEX', 'Completed'),
-(7, 2, 100, true, 'MASTERCARD', 'Completed'),
-(7, 3, 150, false, 'BITCOIN', 'Completed'),
-(8, 1, 100, true, 'AMEX', 'Pending'),
-(8, 2, 75, false, 'VISA', 'Completed'),
-(9, 3, 125, false, 'MASTERCARD', 'Completed'),
-(9, 4, 100, true, 'BITCOIN', 'Completed'),
-(9, 1, 50, true, 'AMEX', 'Completed');
+
+INSERT INTO fundraiser_user (user_id, fundraiser_id, amount, payment_anonymous, payment_method, payment_status, message)
+VALUES
+  (1, 1, 100, true, 'VISA', 'Pending', 'Thank you for your support!'),
+  (2, 2, 50, false, 'AMEX', 'Completed', 'Keep up the good work!'),
+  (3, 3, 200, true, 'MASTERCARD', 'Pending', 'Happy to contribute!'),
+  (4, 4, 75, false, 'VISA', 'Completed', 'Wishing you success with the fundraiser.'),
+  (5, 5, 150, false, 'AMEX', 'Pending', 'Proud to be part of this cause.'),
+  (6, 6, 80, true, 'VISA', 'Completed', 'You are doing an amazing job!'),
+  (7, 7, 250, true, 'MASTERCARD', 'Pending', 'Supporting your cause wholeheartedly.'),
+  (8, 8, 120, false, 'AMEX', 'Completed', 'Best wishes for the fundraiser.'),
+  (9, 9, 300, true, 'VISA', 'Pending', 'Your work inspires us!'),
+  (1, 10, 90, false, 'MASTERCARD', 'Completed', 'Keep making a difference.'),
+  (2, 1, 175, true, 'AMEX', 'Pending', 'Contributing to a great cause.'),
+  (3, 2, 60, false, 'VISA', 'Completed', 'Happy to support your mission.'),
+  (4, 3, 180, true, 'MASTERCARD', 'Pending', 'You have our full support!'),
+  (5, 4, 110, false, 'AMEX', 'Completed', 'Good luck with the fundraiser.'),
+  (6, 5, 225, true, 'VISA', 'Pending', 'We believe in your cause.'),
+  (7, 6, 95, true, 'MASTERCARD', 'Completed', 'Supporting you all the way.'),
+  (8, 7, 210, false, 'VISA', 'Pending', 'Thank you for making a difference.'),
+  (9, 8, 130, true, 'AMEX', 'Completed', 'Your work is truly inspiring.'),
+  (10, 9, 250, false, 'VISA', 'Pending', 'We are with you in this journey.'),
+    (1, 10, 100, true, 'VISA', 'Pending', 'Thank you for your support!'),
+  (2, 11, 50, false, 'AMEX', 'Completed', 'Keep up the good work!'),
+  (3, 12, 200, true, 'MASTERCARD', 'Pending', 'Happy to contribute!'),
+  (4, 13, 75, false, 'VISA', 'Completed', 'Wishing you success with the fundraiser.'),
+  (5, 14, 150, false, 'AMEX', 'Pending', 'Proud to be part of this cause.'),
+  (6, 15, 80, true, 'VISA', 'Completed', 'You are doing an amazing job!'),
+  (7, 16, 250, true, 'MASTERCARD', 'Pending', 'Supporting your cause wholeheartedly.'),
+  (8, 17, 120, false, 'AMEX', 'Completed', 'Best wishes for the fundraiser.'),
+  (9, 18, 300, true, 'VISA', 'Pending', 'Your work inspires us!'),
+  (1, 19, 90, false, 'MASTERCARD', 'Completed', 'Keep making a difference.'),
+  (2, 20, 175, true, 'AMEX', 'Pending', 'Contributing to a great cause.'),
+  (3, 21, 60, false, 'VISA', 'Completed', 'Happy to support your mission.'),
+  (4, 22, 180, true, 'MASTERCARD', 'Pending', 'You have our full support!'),
+  (5, 23, 110, false, 'AMEX', 'Completed', 'Good luck with the fundraiser.'),
+  (6, 24, 225, true, 'VISA', 'Pending', 'We believe in your cause.'),
+  (7, 25, 95, true, 'MASTERCARD', 'Completed', 'Supporting you all the way.'),
+  (8, 10, 210, false, 'VISA', 'Pending', 'Thank you for making a difference.'),
+  (9, 11, 130, true, 'AMEX', 'Completed', 'Your work is truly inspiring.'),
+  (10, 12, 250, false, 'VISA', 'Pending', 'We are with you in this journey.'),
+  (1, 13, 70, true, 'VISA', 'Completed', 'Supporting a worthy cause.'),
+  (2, 14, 120, false, 'AMEX', 'Pending', 'You make a difference.'),
+  (3, 15, 190, true, 'MASTERCARD', 'Completed', 'Proud to contribute.'),
+  (4, 16, 85, false, 'VISA', 'Pending', 'Best of luck with the fundraiser!'),
+  (5, 17, 140, false, 'AMEX', 'Completed', 'Your cause is important.'),
+  (6, 18, 220, true, 'VISA', 'Pending', 'Keep up the great work!'),
+  (7, 19, 105, true, 'MASTERCARD', 'Completed', 'You are making a positive impact.'),
+  (8, 20, 230, false, 'VISA', 'Pending', 'Thank you for your dedication.'),
+  (9, 21, 160, true, 'AMEX', 'Completed', 'Supporting your mission.'),
+  (10, 22, 270, false, 'VISA', 'Pending', 'Happy to be part of this cause.');
+
+UPDATE fundraiser_user
+SET payment_status = 'Completed'
+WHERE payment_status = 'Pending';
+
+UPDATE fundraisers
+SET current_amount = subquery.sumamount
+FROM (
+  SELECT fundraiser_id, SUM(amount) as sumamount
+  FROM fundraiser_user
+  WHERE payment_status = 'Completed'
+  GROUP BY fundraiser_id
+) as subquery
+WHERE fundraisers.id = subquery.fundraiser_id;
+
+

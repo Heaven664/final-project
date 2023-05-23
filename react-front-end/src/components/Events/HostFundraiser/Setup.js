@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import "./styles.scss";
 
-export default function SetupFundraiser(props) {
+export default function SetupHostFundraiser(props) {
 
   const [error, setError] = useState("");
 
 
   const propsTitle = props.donation ? props.donation.title : "";
-  const propsTarget = props.donation ? props.donation.target_amount : "";
+  const propsTarget = props.donation ? props.donation.target_amount : 1;
+  const propsCurrent = props.donation ? props.donation.current_amount : 0;
 
   const [state, setState] = useState({
     title: propsTitle,
-    target_amount: propsTarget
+    target: propsTarget
   });
 
 
-  const reset = () => { setState({ title: "", target_amount: "" }); };
+  const reset = () => { setState({ title: "", target: "" }); };
 
   const cancel = () => { reset(); props.onCancel(); };
 
@@ -24,11 +25,15 @@ export default function SetupFundraiser(props) {
       setError("Pleae give your wish a name!");
       return;
     }
-    if (state.target_amount === "") {
+    if (state.target === "") {
       setError("Please set a target!");
       return;
     }
-    props.onSave(state.title, state.target_amount);
+    if (state.target < propsCurrent) {
+      setError("Please set a target higher than current!");
+      return;
+    }
+    props.onSave(state);
     setError("");
   }
 
@@ -48,15 +53,15 @@ export default function SetupFundraiser(props) {
             />
           </label>
 
-          <label>
+          <label id="fundraiser-target-comment">
             Target:<br />
-            <span id="fundraiser-target-comment">{""}</span>
+            <span>{""}</span>
             <input
               className="fundraiser-targetField"
               type="number"
               name="fundraiser-target"
-              value={state.target_amount}
-              onChange={(e) => setState({ ...state, target_amount: e.target.value })}
+              value={state.target}
+              onChange={(e) => setState({ ...state, target: e.target.value })}
             />
           </label>
 
@@ -65,15 +70,11 @@ export default function SetupFundraiser(props) {
       </section>
 
       <section className="appointment__card-right">
-
-        <button onClick={cancel}
-          className=""> Cancel
+        <button className="background-fundraiser-color btn-style" onClick={validate}> Save
         </button>
 
-        <button onClick={validate}
-          className=""> Save
+        <button className="background-bad-color btn-style" onClick={cancel}> Cancel
         </button>
-
       </section>
     </main>
   );

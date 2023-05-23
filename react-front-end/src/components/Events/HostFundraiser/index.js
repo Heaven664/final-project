@@ -2,226 +2,150 @@ import React, { useState, useEffect } from 'react';
 import './styles.scss';
 import axios from 'axios';
 
-import ConfirmFundraiser from './Confirm';
-import EmptyFundraiser from './Empty';
-import ErrorFundraiser from './Error';
-import HeaderFundraiser from './Header';
-import SetupFundraiser from './Setup';
-import ShowFundraiser from './Show';
-import StatusFundraiser from './Status';
+import ConfirmHostFundraiser from './Confirm';
+// import EmptyHostFundraiser from './Empty';
+import ErrorHostFundraiser from './Error';
+import HeaderHostFundraiser from './Header';
+import SetupHostFundraiser from './Setup';
+import ShowHostFundraiser from './Show';
+import StatusHostFundraiser from './Status';
+import CollectHostFundraiser from './Collect';
 import useVisualMode from 'hooks/useVisualMode';
 
 
 export default function HostFundraiser(props) {
 
-  const EMPTY = "EMPTY";
   const SHOW = "SHOW";
-  const CREATE = "CREATE";
   const SAVING = "SAVING";
+  const PROCESSING = "PROCESSING";
   const CONFIRM = "CONFIRM";
-  const EDIT = "EDIT";
+  const MODIFY = "MODIFY";
+  const COLLECT = "COLLECT";
   const DELETING = "DELETING";
   const ERROR_DELETE = "ERROR_DELETE";
   const ERROR_SAVE = "ERROR_SAVE";
 
-  const { fundraiser, setFundraiser } = props;
-
-
-
-  // useEffect(() => {
-
-  //   console.log('get fundraiser for event', event);
-
-  //   axios.get(`/api/fundraisers/${event}`)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setFundraiser(res.data);
-  //       // if (Object.keys(res.data).length != 0) {
-  //       //   setFundraiser({...res.data, empty: "no" });
-  //       // }
-  //     })
-  //     .catch(err => console.log(err));
-
-  // }, []);
+  const { fundraiser, setFundraiser, event } = props;
 
   const { mode, transition, back } = useVisualMode(
     // ((fundraiser.empty==="no") ? SHOW :  EMPTY )
     SHOW
   );
-  
+
+  const eventDate = new Date(event.event_date);
+  const dateDiff = (eventDate.getTime() - Date.now());
+  const mature = (dateDiff <= 0 ? true : false);
+
+  console.log(event.event_date, mature, dateDiff);
+
   console.log('mode', mode);
 
-  const addFundraiser = (title, target) => {
+  const editHostFundraiser = (value) => {
 
-    const data = {
-      event_id: fundraiser.event_id,
-      title: title,
-      target: target
-    };
+    console.log("edit fundraiser: ", value);
 
-    console.log("add new fundraiser: ", data);
-
-    return axios.post(`/api/fundraisers/`, data)
+    return axios.put(`/api/fundraisers/${fundraiser.id}`, value)
       .then(res => {
         console.log(res.data);
-
-        axios.get(`/api/fundraisers/${event}`)
-          .then((res) => {
-            console.log(res.data);
-            setFundraiser(res.data);
-          })
-          .catch(err => console.log(err));
+        setFundraiser(res.data);
       })
       .catch(err => console.log(err));
   };
 
 
-  const editFundraiser = (new_title, new_target) => {
+  const collectHostFundraiser = () => {
 
-    const data = {
-      title: new_title,
-      target: new_target
-    };
+    console.log("collect fundraiser: ", fundraiser?.id);
 
-    console.log("update fundraiser: ", data);
-
-    return axios.put(`/api/fundraisers/${fundraiser.id}`, data)
+    return axios.put(`/api/fundraisers/collect/${fundraiser?.id}`)
       .then(res => {
         console.log(res.data);
-
-        axios.get(`/api/fundraisers/${event}`)
-          .then((res) => {
-            console.log(res.data);
-            setFundraiser(res.data);
-          })
-          .catch(err => console.log(err));
+        setFundraiser(res.data);
       })
       .catch(err => console.log(err));
   };
 
-
-
-  const removeFundraiser = (id) => {
-
-    console.log('Delete fundraiser:', id);
-
-    return axios.delete(`/api/fundraisers/${id}/delete`)
-      .then(res => {
-        console.log(res.data);
-
-        axios.get(`/api/fundraisers/${event}`)
-          .then((res) => {
-            console.log(res.data);
-            setFundraiser(res.data);
-          })
-          .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err));
-  };
-
-
-
-  function save(title, target) {
+  function save(value) {
 
     transition(SAVING);
 
-    addFundraiser(title, target)
+    editHostFundraiser(value)
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
 
-  }
+  };
 
-  function edit(title, target) {
+  function collect() {
 
-    transition(SAVING);
+    transition(PROCESSING);
 
-    editFundraiser(title, target)
+    collectHostFundraiser()
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
 
-  }
-
-
-  function destory() {
-    transition(DELETING, true);
-
-    removeFundraiser(fundraiser.id)
-      .then(() => transition(EMPTY))
-      .catch(() => transition(ERROR_DELETE, true));
-  }
-
-
+  };
 
   return (
     <article className="">
-      <HeaderFundraiser />
-      {mode === EMPTY && <EmptyFundraiser onAdd={() => transition(CREATE)} />}
+      <HeaderHostFundraiser />
 
       {mode === SHOW && (
-        <ShowFundraiser
+        <ShowHostFundraiser
           donation={fundraiser}
-          onDelete={() => transition(CONFIRM)}
-          onEdit={() => transition(EDIT)}
+          onModify={() => transition(MODIFY)}
+          onCollect={() => transition(COLLECT)}
+          mature={mature}
+          collected={fundraiser?.collected}
+          collected_date={fundraiser?.collected_date}
         />
       )
       }
 
-      {mode === EDIT && (
-        <SetupFundraiser
-          event={event}
+      {mode === MODIFY && (
+        <SetupHostFundraiser
           donation={fundraiser}
-          onSave={edit}
-          onCancel={back}
-        />
-      )
-      }
-
-      {mode === CREATE && (
-        <SetupFundraiser
-          donation={fundraiser}
-          event={event}
           onSave={save}
           onCancel={back}
         />
       )
       }
 
+      {mode === COLLECT && (
+        <CollectHostFundraiser
+          donation={fundraiser}
+          onCollect={collect}
+          onCancel={back}
+        />
+      )
+      }
+
       {mode === SAVING && (
-        <StatusFundraiser
+        <StatusHostFundraiser
           message={"Saving"}
           onComplete={() => transition(SHOW)}
         />
       )
       }
 
-      {mode === CONFIRM && (
-        <ConfirmFundraiser
-          message={"Are you sure you want to delete?"}
-          onConfirm={destory}
-          onCancel={back}
-        />
-      )
-      }
-
-      {mode === DELETING && (
-        <StatusFundraiser
-          message={"Deleting"}
-          onComplete={() => transition(EMPTY)}
+      {mode === PROCESSING && (
+        <StatusHostFundraiser
+          message={"Processing"}
+          onComplete={() => transition(SHOW)}
         />
       )
       }
 
       {mode === ERROR_DELETE && (
-        <ErrorFundraiser
-          message={"Could not delete fundraiser"}
+        <ErrorHostFundraiser
+          message={"Could not delete"}
           onClose={back}
         />
       )
       }
 
       {mode === ERROR_SAVE && (
-        <ErrorFundraiser
-          message={"Could not save fundraiser"}
+        <ErrorHostFundraiser
+          message={"Could not save"}
           onClose={back}
         />
       )

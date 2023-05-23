@@ -17,7 +17,9 @@ export default function useEventsData(eventID, userID) {
     target_amount:"",
     current_amount:"",
     id:"",
-    event_id:""
+    event_id:"",
+    collected:false,
+    collected_date:null
   });
 
   // const setDay = day => setState(prev => ({ ...prev, day }));
@@ -44,7 +46,8 @@ export default function useEventsData(eventID, userID) {
         target_amount:  all[1].data.target_amount,
         current_amount: all[1].data.current_amount,
         id:             all[1].data.id,
-        event_id:       all[1].data.event_id
+        event_id:       all[1].data.event_id,
+        collected:      all[1].data.collected
        }));
 
     });

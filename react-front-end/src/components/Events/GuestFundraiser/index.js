@@ -24,24 +24,6 @@ export default function GuestFundraiser(props) {
 
   const { fundraiser, setFundraiser } = props;
 
-
-
-  // useEffect(() => {
-
-  //   console.log('get fundraiser for event', event);
-
-  //   axios.get(`/api/fundraisers/${event}`)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setFundraiser(res.data);
-  //       // if (Object.keys(res.data).length != 0) {
-  //       //   setFundraiser({...res.data, empty: "no" });
-  //       // }
-  //     })
-  //     .catch(err => console.log(err));
-
-  // }, []);
-
   const { mode, transition, back } = useVisualMode(
     // ((fundraiser.empty==="no") ? SHOW :  EMPTY )
     SHOW
@@ -57,7 +39,8 @@ export default function GuestFundraiser(props) {
       fundraiser:fundraiser?.id,
       pay_method: value?.pay_method,
       pay_status: 'Completed',
-      pay_anonymous: value?.pay_anonymous
+      pay_anonymous: value?.pay_anonymous,
+      message:value?.message
     };
 
     console.log("add new fundraiser transaction: ", data);
@@ -76,52 +59,6 @@ export default function GuestFundraiser(props) {
       .catch(err => console.log(err));
   };
 
-
-  // const editGuestFundraiser = (new_title, new_target) => {
-
-  //   const data = {
-  //     title: new_title,
-  //     target: new_target
-  //   };
-
-  //   console.log("update fundraiser: ", data);
-
-  //   return axios.put(`/api/fundraisers/${fundraiser.id}`, data)
-  //     .then(res => {
-  //       console.log(res.data);
-
-  //       axios.get(`/api/fundraisers/${event}`)
-  //         .then((res) => {
-  //           console.log(res.data);
-  //           setFundraiser(res.data);
-  //         })
-  //         .catch(err => console.log(err));
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-
-
-  // const removeGuestFundraiser = (id) => {
-
-  //   console.log('Delete fundraiser:', id);
-
-  //   return axios.delete(`/api/fundraisers/${id}/delete`)
-  //     .then(res => {
-  //       console.log(res.data);
-
-  //       axios.get(`/api/fundraisers/${event}`)
-  //         .then((res) => {
-  //           console.log(res.data);
-  //           setFundraiser(res.data);
-  //         })
-  //         .catch(err => console.log(err));
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-
-
   function save(value) {
 
     transition(SAVING);
@@ -130,32 +67,12 @@ export default function GuestFundraiser(props) {
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
 
-  }
-
-  // function edit(title, target) {
-
-  //   transition(SAVING);
-
-  //   editFundraiser(title, target)
-  //     .then(() => transition(SHOW))
-  //     .catch(() => transition(ERROR_SAVE, true));
-
-  // }
-
-
-  // function destory() {
-  //   transition(DELETING, true);
-
-  //   removeGuestFundraiser(fundraiser.id)
-  //     .then(() => transition(EMPTY))
-  //     .catch(() => transition(ERROR_DELETE, true));
-  // }
-
-
+  };
 
   return (
     <article className="">
       <HeaderGuestFundraiser />
+
       {mode === SHOW && (
         <ShowGuestFundraiser
           donation={fundraiser}
