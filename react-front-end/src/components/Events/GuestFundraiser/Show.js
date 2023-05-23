@@ -37,14 +37,14 @@ export default function ShowGuestFundraiser(props) {
     <main className="fundraisers-layout">
 
       <div className='fundraisers-info'>
-        <span className='wish'>Wish: {donation.title}</span>
+        <span className='wish font20'>Wish: {donation.title}</span>
         <span className='target'>Target: ${donation.target_amount}</span>
       </div>
       <div id='fundraisers-bar'>
         <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}
         </div>
       </div>
-      <button onClick={onSupport} id="supportButton" className="background-fundraiser-color btn-style">
+      <button onClick={onSupport} className="supportButton background-fundraiser-color btn-style">
         <FontAwesomeIcon icon={faCircleDollarToSlot} /> <br />
         Support! </button>
 

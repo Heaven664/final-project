@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHourglass, faHourglassEnd, faHourglassHalf, faHourglassStart, faBoltLightning, faCompactDisc, faCircleDollarToSlot } from "@fortawesome/free-solid-svg-icons";
 
 import Countdown from 'react-countdown';
+import './Events.scss';
 
 export default function EventsListItem(props) {
 
@@ -107,9 +108,8 @@ export default function EventsListItem(props) {
 
           <div className="friend-user display-flex">
             <div className="thumbnail" style={{ backgroundImage: `url(${pathToProfileThumbnail})` }}></div>
-            <p className="font20 font-content-color">{props.event_name}</p>
+            <p className="font20 font-content-color event-list-name">{props.event_name}</p>
             {/* <span className="font16 font-contents-color half-margin">{" - "}{props.host_name}</span> */}
-          </div>
 
             {
               fundraiserStatus
@@ -120,6 +120,9 @@ export default function EventsListItem(props) {
               :
               <></>
             }
+            
+          </div>
+
             
           <div className="btns display-flex flex-row">
             <Countdown

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./styles.scss";
+import "../HostFundraiser/styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSackDollar, faPenToSquare, faIcons } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
@@ -58,16 +58,16 @@ export default function ShowHostFundraiser(props) {
               collected
                 ?
                 <>
-                  <span className='font16'>Collected on {eventDate}!</span>
-                  <Link to={`/memories/${donation.id}`}>
-                    <button onClick={onCollect} id="supportButton" className="background-fundraiser-color btn-style">
+                  <span className='collect-alert'>Collected on {eventDate}!</span>
+                  <Link to={`/memories/${donation.id}`} className="supportButton">
+                    <button onClick={onCollect}  className="background-fundraiser-color btn-style ">
                   <FontAwesomeIcon icon={faIcons} /> <br />
                   Memories </button>
                   </Link>
 
                 </>
                 :
-                <button onClick={onCollect} id="supportButton" className="background-fundraiser-color btn-style">
+                <button onClick={onCollect}  className="background-fundraiser-color btn-style supportButton">
                   <FontAwesomeIcon icon={faSackDollar} /> <br />
                   Collect </button>
 
@@ -75,10 +75,10 @@ export default function ShowHostFundraiser(props) {
           </>
           :
           <>
-            <button onClick={onModify} id="supportButton" className="background-fundraiser-color btn-style">
+            <span className='collect-alert'>Wait until event date to collect!</span>
+            <button onClick={onModify} className="background-fundraiser-color btn-style supportButton">
               <FontAwesomeIcon icon={faPenToSquare} /> <br />
               Modify</button>
-            <span className='font16'>Wait until event date to collect!</span>
           </>
       }
     </main>

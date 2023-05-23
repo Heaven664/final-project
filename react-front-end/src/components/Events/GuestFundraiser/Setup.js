@@ -12,7 +12,7 @@ export default function SetupGuestFundraiser(props) {
   const [state, setState] = useState({
     amount: 1,
     pay_method: "",
-    message:"",
+    message: "",
     pay_anonymous: false
   });
 
@@ -28,11 +28,11 @@ export default function SetupGuestFundraiser(props) {
       setError("Pleae specify an amount!");
       return;
     }
-    if (state.amount < 1 ) {
+    if (state.amount < 1) {
       setError("Pleae check the amount entered!");
       return;
-    }    
-    if (state.amount > maxAmount ) {
+    }
+    if (state.amount > maxAmount) {
       setError("That's more than needed!");
       return;
     }
@@ -49,38 +49,38 @@ export default function SetupGuestFundraiser(props) {
   }
 
   return (
-    <main className="">
-      <section className="">
+    <main className="fundraiser-payment">
+      <section>
         <form onSubmit={(event) => { event.preventDefault(); }}>
-     
-            <label>
-              Amount:<br />
-              <span id="fundraiser-target-comment">{""}</span>
-              <input
-                className="fundraiser-targetField"
-                type="number"
-                name="guest-fundraiser-amount"
-                value={state.amount}
-                step={1}
-                onChange={(e) => setState({ ...state, amount: e.target.value })}
-              />
-            </label>
 
-            <label>
-              Payment Method:<br />
-              <select name="guest-fundraiser-pay-method" className="guest-fundraiser-pay-method"
-                onChange={(e) => setState({ ...state, pay_method: e.target.value })}>
-                <option value="" selected disabled hidden>--Please Choose--</option>
-                <option value="VISA">VISA</option>
-                <option value="MASTERCARD">MASTERCARD</option>
-                <option value="AMEX">AMEX</option>
-                <option value="PayPal" disabled>PayPal</option>
-                <option value="CASH" disabled>CASH</option>
-                <option value="Bitcoin" disabled>Bitcoin</option>
-              </select>
-            </label>
+          <label>
+            Amount:<br />
+            <span id="fundraiser-target-comment">{""}</span>
+            <input
+              className="fundraiser-targetField"
+              type="number"
+              name="guest-fundraiser-amount"
+              value={state.amount}
+              step={1}
+              onChange={(e) => setState({ ...state, amount: e.target.value })}
+            />
+          </label><br /><br />
 
-            <label>
+          <label>
+            Payment Method:<br />
+            <select name="guest-fundraiser-pay-method" className="guest-fundraiser-pay-method"
+              onChange={(e) => setState({ ...state, pay_method: e.target.value })}>
+              <option value="" selected disabled hidden>--Please Choose--</option>
+              <option value="VISA">VISA</option>
+              <option value="MASTERCARD">MASTERCARD</option>
+              <option value="AMEX">AMEX</option>
+              <option value="PayPal" disabled>PayPal</option>
+              <option value="CASH" disabled>CASH</option>
+              <option value="Bitcoin" disabled>Bitcoin</option>
+            </select>
+          </label><br /><br />
+
+          <label>
             Leave a message:<br />
             <input
               className="guest-fundraiser-messageField"
@@ -89,20 +89,19 @@ export default function SetupGuestFundraiser(props) {
               value={state.message}
               onChange={(e) => setState({ ...state, message: e.target.value })}
             />
-          </label>
+          </label><br /><br />
 
-            <label>
+          <label className="guest-fundraiser-anonymous">
             <FontAwesomeIcon icon={faEyeSlash} />
-              Anonymous?<br />
-              <input
-                className="guest-fundraiser-anonymous"
-                type="checkbox"
-                name="guest-fundraiser-anonymous"
-                value="anonymous"
-                checked={state.pay_anonymous}
-                onChange={(e) => setState({ ...state, pay_anonymous: e.target.checked })}
-              />
-            </label>
+            Anonymous? 
+            <input
+              type="checkbox"
+              name="guest-fundraiser-anonymous"
+              value="anonymous"
+              checked={state.pay_anonymous}
+              onChange={(e) => setState({ ...state, pay_anonymous: e.target.checked })}
+            />
+          </label><br />
 
 
         </form >
@@ -112,11 +111,11 @@ export default function SetupGuestFundraiser(props) {
       <section className="guest-fundraiser__card-right">
 
         <button onClick={cancel}
-          className=""> Cancel
+          className="btn-style background-bad-color"> Cancel
         </button>
 
         <button onClick={validate}
-          className=""> Process
+          className="btn-style background-fundraiser-color"> Process
         </button>
 
       </section>

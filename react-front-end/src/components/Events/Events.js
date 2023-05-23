@@ -47,11 +47,11 @@ export default function Events(props) {
 
 
 
-  console.log(state);
-  console.log(state.event_user);
-  console.log(state.events_host_Info);
-  console.log(state.fundraisers);
-  console.log(props.user, state.events_host_Info.host_id);
+  // console.log(state);
+  // console.log(state.event_user);
+  // console.log(state.events_host_Info);
+  // console.log(state.fundraisers);
+  // console.log(props.user, state.events_host_Info.host_id);
 
   const getFullName = function(obj) {
     return obj.first_name + " " + obj.last_name;
@@ -128,13 +128,13 @@ export default function Events(props) {
                         </section>
                         :
                         <section className="modification __card  user-detail">
-                          <Link to={`/myevents/${event_id}`}>
+                          <Link to={`/myevents/${event_id}`}  className="modi-link">
                             <button
-                              onClick={() => { setStatus('SHOW'); }} className="modi background-warning-color btn-style">Save Changes</button>
+                              onClick={() => { setStatus('SHOW'); }} className="background-warning-color btn-style">Save Changes</button>
                           </Link>
-                          <Link to={`/editevent/${event_id}`}>
+                          <Link to={`/editevent/${event_id}`}  className="modi-link">
                             <div>
-                              <button className="modi background-primary-color btn-style">Edit Info</button>
+                              <button className="background-primary-color btn-style">Edit Info</button>
                             </div>
                           </Link>
                         </section>
@@ -143,8 +143,8 @@ export default function Events(props) {
                   :
                   <section className="modification __card  user-detail">
 
-                    <Link to={`/myevents/`}>
-                      <button onClick={handleCancelEvent} className="modi background-warning-color btn-style">Confirm</button>
+                    <Link to={`/myevents/`} className="modi-link">
+                      <button onClick={handleCancelEvent} className=" background-warning-color btn-style">Confirm</button>
                     </Link>
                     <button onClick={() => setStatus('SHOW')} className="modi background-primary-color btn-style">Cancel</button>
 

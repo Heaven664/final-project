@@ -68,17 +68,17 @@ export default function Memories(props) {
 
   return (
     <>
-      <div className="eventListButtons display-flex">
+      <div className="eventListButtons event-memories display-flex">
 
-        <button className={`background-primary-color flex-one upcoming ${list === 'upcoming' ? '--selected' : ''}`}>
+        <button className="background-point-color flex-one">
           Memories for {event.name} on {eventDate}.
         </button>
       </div>
-      <ul>{MessageProps}</ul>
+      <ul className="event-list-items event-memories-items">{MessageProps}</ul>
 
-      <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
+      <section className="event-memories event-wall __card border-radius20 user-detail">
         <Link to={`/events/${event.id}`}>
-          <button className="background-point-color btn-style">Go Back to Event Page</button>
+          <button className="background-add-color btn-style">Go Back to Event Page</button>
         </Link>
       </section>
     </>

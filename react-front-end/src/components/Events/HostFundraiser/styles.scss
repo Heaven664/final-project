@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    width: 100%;
 
     .wish{
     color: $primary-color;
@@ -32,7 +33,7 @@
   width: 100%;
   background-color: grey;
   height: 2rem;
-  border-radius: 0.5rem;
+  border-radius: 15px;
 
   #progress {
     height: 30px;
@@ -43,17 +44,22 @@
   }
 }
 
-
-
-  #supportButton {
+  .supportButton{
     margin-top: 30px;
-    width: 70%;
+    width: 100%;
 
+    button{
+      width: 100%;
+    }
     svg path{
       fill: #fff;
     }
   }
 
+  .collect-alert{
+    font-size: 14px;
+    text-align: center;
+  }
 }
 
 // collect.js
@@ -75,5 +81,38 @@
     button{
       width: 48%;
     }
+  }
+}
+
+// GuestFundraiser/Setup.js
+.fundraiser-payment{
+  margin-top: 20px;
+  
+  input, .guest-fundraiser-pay-method{
+    width: 100%;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #e2e2e2;
+    padding: 5px 10px;
+  }
+
+  .guest-fundraiser-anonymous{
+    display: flex;
+    align-items: center;
+
+    input{
+      width: 20px;
+      height: 20px;
+      margin-left: 20px;
+    }
+  }
+}
+.guest-fundraiser__card-right{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  button{
+    width: 48%;
   }
 }

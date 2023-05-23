@@ -161,7 +161,7 @@ export default function EventsList(props) {
           Upcoming
         </button>
       </div>
-      <ul>{eventsProps}</ul>
+      <ul className="event-list-items">{eventsProps}</ul>
 
 
     </>

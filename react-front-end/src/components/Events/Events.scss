@@ -23,11 +23,10 @@
     display: flex;
 
     &.invitation {
-      height: 40px;
+      height: 60px;
       flex-grow: 1;
       justify-content: center;
       align-items: center;
-      margin-bottom: 20px;
 
       span{
         color: #fff;
@@ -39,11 +38,18 @@
       display: flex;
       flex-direction: row;
       flex-grow: 1;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
 
       .modi {
         width: 47%;
+      }
+      a{
+        width: 47%;
+  
+        button{
+          width: 100% !important;
+        }
       }
     }
 
@@ -61,6 +67,11 @@
       align-items: center;
       padding: 30px;      
       flex-grow: 4;
+
+      .quit{
+        padding: 0 20px;
+        margin-top: 20px;
+      }
     }
 
     &.maps-api {
@@ -79,6 +90,10 @@
       padding: 30px;
       width: 100%;    
       align-items: center;
+
+      article{
+        width: 100%;
+      }
     }
 
     &.no-fundraisers {
@@ -236,3 +251,28 @@
 
   }
 }
+
+// EventListItem.js
+.user-list{
+  align-items: center;
+
+  .event-list-name{
+    margin-right: 15px;
+  }
+}
+
+
+// Memories
+.event-memories{
+  .flex-one{
+    color: #fff;
+  }
+
+  &.event-wall{
+    button{
+      margin-top: 50px;
+      padding: 0 20px;
+    }
+  }
+}
+

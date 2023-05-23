@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faHourglass, faHourglassEnd, faHourglassHalf, faHourglassStart, faBoltLightning, faCompactDisc, faCircleDollarToSlot } from "@fortawesome/free-solid-svg-icons";
@@ -25,7 +25,8 @@ export default function MemoriesListItem(props) {
 
   return (
     <>
-      <li className="box-shadow border-radius20 list-style-none">              <div className="user-list border-radius20 display-flex" key={props.id}>
+    <li className="box-shadow border-radius20 list-style-none">                 
+      <div className="user-list border-radius20 display-flex" key={props.id}>
         {
           anonymous
             ?
@@ -34,7 +35,7 @@ export default function MemoriesListItem(props) {
                 className="thumbnail background-box-color">
                 <FontAwesomeIcon icon={faUser} />
                 <p className="font20 font-content-color">Anonymous User</p>
-              </div>;
+              </div>
             </>
             :
             <>
@@ -48,13 +49,13 @@ export default function MemoriesListItem(props) {
             </>
         }
 
-        <p className="font16 font-content-color">Support you with ${amount} on {donationDate}</p>
+        <p className="font16 font-content-color">Support you with ${amount}<br />on {donationDate}</p>
         <FontAwesomeIcon icon={faCircleDollarToSlot} />
         <br />
         <p className="font20 font-content-color">"{message}"</p>
 
       </div>
-      </li>
+    </li>
     </>
   );
 }      
