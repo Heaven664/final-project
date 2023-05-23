@@ -46,26 +46,26 @@ export default function EventsInfo(props) {
 
 
 
-      <div className='info-meet'>
+      <div className='info-meet display-flex'>
         <div
-          id="qrcode"
+          id="qrcode" className='border-radius15'
           style={{ backgroundImage: `url(${pathToQrCode})` }}>
         </div>
-
-        <section id='date'>
-          <FontAwesomeIcon icon={faCalendar} />
-          <span>{' '}{eventDate}</span>
-        </section>
-        <section id='time'>
-          <FontAwesomeIcon icon={faClock} />
-          <span>{' '}{eventTime}</span>
-        </section>
-        <section id='location'>
-          <FontAwesomeIcon icon={faLocationDot} />
-          <span>{' '}{props.events_host_Info.event_location}</span>
-        </section>
+        <div>
+          <section id='date'>
+            <FontAwesomeIcon icon={faCalendar} />
+            <span>{' '}{eventDate}</span>
+          </section>
+          <section id='time'>
+            <FontAwesomeIcon icon={faClock} />
+            <span>{' '}{eventTime}</span>
+          </section>
+          <section id='location'>
+            <FontAwesomeIcon icon={faLocationDot} />
+            <span>{' '}{props.events_host_Info.event_location}</span>
+          </section>
+        </div>
       </div>
-
     </main>
   );
 }
