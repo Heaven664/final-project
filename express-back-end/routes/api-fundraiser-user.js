@@ -4,14 +4,14 @@ const db = require('../db/connection');
 
   //CRUD CREATE(POST)
   router.post("/", (request, response) => {
-    const { amount, user, fundraiser, pay_method, pay_status, pay_anonymous } = request.body;
+    const { amount, user, fundraiser, pay_method, pay_status, pay_anonymous, message } = request.body;
 
     db.query(
       `
-      INSERT INTO fundraiser_user (user_id, fundraiser_id, amount, payment_method, payment_status, payment_anonymous ) VALUES
-      ($1, $2, $3, $4, $5, $6);
+      INSERT INTO fundraiser_user (user_id, fundraiser_id, amount, payment_method, payment_status, payment_anonymous, message ) VALUES
+      ($1, $2, $3, $4, $5, $6, $7);
       `,
-      [user, fundraiser, amount, pay_method, pay_status, pay_anonymous]
+      [user, fundraiser, amount, pay_method, pay_status, pay_anonymous, message]
     )
     .then(res => {
       response.json(res.rows[0]);
