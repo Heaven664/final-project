@@ -37,7 +37,8 @@ CREATE TABLE fundraisers (
   event_id INTEGER REFERENCES events(id) ON DELETE CASCADE,
   target_amount INTEGER NOT NULL,
   current_amount INTEGER DEFAULT 0 NOT NULL,
-  collected BOOLEAN DEFAULT false NOT NULL 
+  collected BOOLEAN DEFAULT false NOT NULL,
+  collected_date TIMESTAMP
 );
 
 CREATE TABLE event_user (

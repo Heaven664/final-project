@@ -51,6 +51,17 @@ const updateCurr = (id) => {
     .then(res => res.rows[0]);
 };
 
+const updateCollect = (id) => {
+  const queryString = `
+  UPDATE fundraisers
+  SET collected = true, collected_date = CURRENT_TIMESTAMP
+  WHERE id = $1
+  RETURNING *;`;
+  const values = [id];
+  return db.query(queryString, values)
+    .then(res => res.rows[0]);
+};
+
 const remove = (id) => {
   const queryString = `DELETE FROM fundraisers WHERE id = $1 RETURNING *`;
   const values = [id]
@@ -60,4 +71,4 @@ const remove = (id) => {
 
 
 
-module.exports = { create, getAll, getById, update, remove, updateCurr };
+module.exports = { create, getAll, getById, update, remove, updateCurr, updateCollect };
