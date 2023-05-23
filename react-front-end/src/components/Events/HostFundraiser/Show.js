@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSackDollar, faPenToSquare, faIcons } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
 import Fundraisers from '../Fundraisers';
+import dateFormat from 'dateformat';
 
 
 export default function ShowHostFundraiser(props) {
@@ -34,7 +35,7 @@ export default function ShowHostFundraiser(props) {
   const barVariant = getProgress(percentage);
   console.log('perc', `${barVariant}`);
 
-
+  const eventDate = dateFormat(collected_date, "dddd, mmmm dS, yyyy hh:mm:ss");
 
   return (
 
@@ -57,7 +58,7 @@ export default function ShowHostFundraiser(props) {
               collected
                 ?
                 <>
-                  <span className='font16'>Collected on {collected_date}!</span>
+                  <span className='font16'>Collected on {eventDate}!</span>
                   <Link to={`/memories/${donation.id}`}>
                     <button onClick={onCollect} id="supportButton" className="background-fundraiser-color btn-style">
                   <FontAwesomeIcon icon={faIcons} /> <br />

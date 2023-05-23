@@ -19,7 +19,7 @@ export default function Memories(props) {
 
       <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
         <Link to='/groupchat'>
-          <button onClick={handleMessageClick} className="background-point-color btn-style">Go Back to Event Page</button>
+          <button onClick={""} className="background-point-color btn-style">Go Back to Event Page</button>
         </Link>
       </section>
 

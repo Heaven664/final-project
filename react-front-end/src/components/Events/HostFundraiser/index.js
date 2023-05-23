@@ -42,7 +42,7 @@ export default function HostFundraiser(props) {
 
   const editHostFundraiser = (value) => {
 
-    console.log("edit fundraiser: ", data);
+    console.log("edit fundraiser: ", value);
 
     return axios.put(`/api/fundraisers/${fundraiser.id}`, value)
       .then(res => {
