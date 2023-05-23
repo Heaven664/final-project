@@ -240,7 +240,7 @@ export default function NewEvent(props) {
               </Link>
               :
               <button onClick={validate}
-                className="background-point-color btn-style"> Create!</button>
+                className="background-add-color btn-style"> Create!</button>
           }
 
         </section>
