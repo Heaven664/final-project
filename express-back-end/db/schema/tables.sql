@@ -23,8 +23,8 @@ CREATE TABLE users (
 CREATE TABLE events (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
-  description VARCHAR(255) NOT NULL,
-  agenda VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL,
+  agenda TEXT NOT NULL,
   event_date timestamptz NOT NULL,
   event_location VARCHAR(255) NOT NULL,
   host_id INTEGER REFERENCES users(id) ON DELETE CASCADE
