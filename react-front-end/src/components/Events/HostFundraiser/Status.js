@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.scss";
 
 
-export default function StatusFundraiser(props) {
+export default function StatusHostFundraiser(props) {
 
   return (
     <main className="--status">

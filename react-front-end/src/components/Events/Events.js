@@ -131,6 +131,7 @@ export default function Events(props) {
                       fundraiser={fundraiser}
                       user={props.user}
                       setFundraiser={setFundraiser}
+                      event={state?.events_host_Info}
                     />
                   </section>
                   :

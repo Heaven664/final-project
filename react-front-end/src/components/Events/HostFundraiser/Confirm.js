@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 
 
-export default function ConfirmFundraiser(props) {
+export default function ConfirmHostFundraiser(props) {
 
   return (
     <main className="--status">
