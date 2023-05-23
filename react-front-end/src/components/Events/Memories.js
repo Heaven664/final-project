@@ -7,11 +7,12 @@ import Events from "./Events";
 import './Events.scss';
 import { useParams } from "react-router";
 import MemoriesListItem from "./MemoriesListItem";
+import dateFormat from 'dateformat';
 
 export default function Memories(props) {
 
   const [donations, setDonations] = useState([]);
-  const [event, setEvent] = useState([]);
+  const [event, setEvent] = useState({});
 
   // change the tab
   const [list, setList] = useState("allEvent");
@@ -32,13 +33,13 @@ export default function Memories(props) {
       })
       .catch(err => console.log(err));
   }, []);
-  
+
   useEffect(() => {
 
-    axios.get(`/api/fundraiser-user/fundraiserinfo/${fundraiser_id}`)
+    axios.get(`/api/events/fundraiser/${fundraiser_id}`)
       .then((res) => {
         console.log(res.data);
-        setDonations(res.data);
+        setEvent(res.data);
       })
       .catch(err => console.log(err));
   }, []);
@@ -63,18 +64,20 @@ export default function Memories(props) {
     );
   });
 
+  const eventDate = dateFormat(event.event_date, "dddd, mmmm dS, yyyy");
+
   return (
     <>
       <div className="eventListButtons display-flex">
 
         <button className={`background-primary-color flex-one upcoming ${list === 'upcoming' ? '--selected' : ''}`}>
-          Memories for {event_name} on {event_date}.
+          Memories for {event.name} on {eventDate}.
         </button>
       </div>
       <ul>{MessageProps}</ul>
 
       <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
-        <Link to={`/events/${event_id}`}>
+        <Link to={`/events/${event.id}`}>
           <button className="background-point-color btn-style">Go Back to Event Page</button>
         </Link>
       </section>
