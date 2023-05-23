@@ -31,6 +31,7 @@ export default function MyEventsList(props) {
       <Link to={`${event.event_id}`}>
       <EventsListItem
         key={event.event_id}
+        id={event.event_id}
         user={props.user}
         event_name={event.event_name}
         host_name={name}

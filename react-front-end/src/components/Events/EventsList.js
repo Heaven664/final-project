@@ -31,6 +31,8 @@ export default function EventsList(props) {
   }, []);
 
 
+
+
   const eventsProps = events.map((event) => {
 
     const name = event.host_first_name + " " + event.host_last_name;
@@ -39,6 +41,7 @@ export default function EventsList(props) {
       <Link to={`${event.event_id}`}>
       <EventsListItem
         key={event.event_id}
+        id={event.event_id}
         user={props.user}
         event_name={event.event_name}
         host_name={name}
