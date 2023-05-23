@@ -11,6 +11,8 @@ import { friendContext } from 'providers/FriendProvider';
 import GuestFundraiser from "./GuestFundraiser";
 import HostFundraiser from "./HostFundraiser";
 import ManageFundraisers from "components/NewEvents/ManageFundraisers";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 export default function MyEvents(props) {
@@ -128,7 +130,7 @@ export default function MyEvents(props) {
                         </section>
                         :
                         <section className="modification __card  user-detail">
-                          <Link to={`/myevents/${event_id}`}>
+                          <Link to={`/events/${event_id}`}>
                             <button
                               onClick={() => { setStatus('SHOW'); }} className="modi background-warning-color btn-style">Save Changes</button>
                           </Link>
@@ -241,7 +243,9 @@ export default function MyEvents(props) {
                   ?
                   <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
                     <Link to={`/manageguests/${event_id}`}>
-                      <button className="background-point-color btn-style">Manage Guests</button>
+                      <button className="background-point-color btn-style">
+                    <FontAwesomeIcon icon={faUsers} /> <br />
+                    Manage Guests</button>
                     </Link>
                   </section>
                   :

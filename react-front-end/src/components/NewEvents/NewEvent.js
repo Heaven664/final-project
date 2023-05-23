@@ -22,11 +22,26 @@ export default function NewEvent(props) {
 
 
   const [state, setState] = useState({
-    event_name: "",
+    event_name: "Demo Day",
     event_time: "",
-    event_agenda: "",
-    event_location: "",
-    event_description: ""
+    event_agenda: `
+    9:00 AM - Welcome and Introductions,
+    9:15 AM - Keynote Speech on the Importance of App Innovation,
+    9:30 AM - Presentation of App 1: Features Demo and Q&A,
+    10:00 AM - Presentation of App 2: Features Demo and Q&A,
+    10:30 AM - Coffee Break and Networking,
+    10:45 AM - Presentation of App 3: Features Demo and Q&A,
+    11:15 AM - Presentation of App 4: Features Demo and Q&A,
+    11:45 AM - Lunch Break,
+    1:00 PM - Presentation of App 5: Features Demo and Q&A,
+    1:30 PM - Presentation of App 6: Features Demo and Q&A,
+    2:00 PM - Panel Discussion: App Development Trends and Challenges,
+    2:30 PM - Presentation of App 7: Features Demo and Q&A,
+    3:00 PM - Presentation of App 8: Features Demo and Q&A,
+    3:30 PM - Coffee Break and Networking`,
+    event_location: "ONLINE",
+    event_description: `
+    Join us for an exciting App Demo Day, where innovative app developers showcase their creations! This event is a platform for app enthusiasts, entrepreneurs, and investors to witness the latest advancements in the app industry. From productivity tools to gaming experiences, each presentation will provide a unique opportunity to explore cutting-edge features and functionalities. Engage in live demos, ask questions, and discover the potential of these remarkable apps. With a diverse lineup of developers, this Demo Day promises to inspire, spark conversations, and forge new connections. Don't miss out on this immersive experience that showcases the future of mobile applications.`
   });
 
 
@@ -130,6 +145,7 @@ export default function NewEvent(props) {
                 className="event-nameField"
                 type="text"
                 name="event_name"
+                value={state.event_name}
                 onChange={(e) => setState({ ...state, event_name: e.target.value })}
               />
             </section>
@@ -140,6 +156,7 @@ export default function NewEvent(props) {
                 className="event_descriptionField"
                 type="text"
                 name="event_description"
+                value={state.event_description}
                 onChange={(e) => setState({ ...state, event_description: e.target.value })}
               />
             </section>
@@ -153,6 +170,7 @@ export default function NewEvent(props) {
                 className="event-timeField"
                 type="datetime-local"
                 name="event_time"
+                value={state.event_time}
                 onChange={(e) => setState({ ...state, event_time: e.target.value })}
               />
             </section>
@@ -164,6 +182,7 @@ export default function NewEvent(props) {
                 className="event-locationField"
                 type="text"
                 name="event_location"
+                value={state.event_location}
                 onChange={(e) => setState({ ...state, event_location: e.target.value })}
               />
             </section>
@@ -178,6 +197,7 @@ export default function NewEvent(props) {
                 className="event-agendaField"
                 type="text"
                 name="event_agenda"
+                value={state.event_agenda}
                 onChange={(e) => setState({ ...state, event_agenda: e.target.value })}
               />
             </section>
