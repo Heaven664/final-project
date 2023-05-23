@@ -18,7 +18,6 @@ CREATE TABLE users (
   birthday DATE,
   photo VARCHAR(255),
   about TEXT
-  -- upcoming INTEGER DEFAULT 30 NOT NULL
 );
 
 CREATE TABLE events (

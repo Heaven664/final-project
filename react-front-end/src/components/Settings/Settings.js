@@ -21,8 +21,7 @@ export default function Settings(props) {
 
   const {setUpdated} = props;
 
-  const updateProfile = (e) => {
-    e.preventDefault();
+  const updateProfile = () => {
     const data = {
       first_name: state.first_name,
       last_name: state.last_name,
@@ -126,7 +125,7 @@ export default function Settings(props) {
         </table>
         <div className="btn">
           <Link to='/myprofile'>
-            <button onClick={() => changePage('my-profile')} className="background-primary-color btn-style">
+            <button onClick={() =>{ changePage('my-profile'); updateProfile()}} className="background-primary-color btn-style">
               Save Change
             </button>
           </Link>
