@@ -8,11 +8,21 @@ VALUES
   ('Charlie', 'Brown', 'charlie@example.com', 'password789', 'United Kingdom', 'London', '1995-02-14', 'user-image-5.jpg', 'I''m a student and I love traveling.'),
   ('David', 'Lee', 'david@example.com', 'password123', 'Australia', 'Sydney', '1987-07-10', 'user-image-6.jpg', 'I''m a chef and I love experimenting with new recipes.'),
   ('Emma', 'Davis', 'emma@example.com', 'password456', 'United States', 'San Francisco', '1992-09-03', 'user-image-7.jpg', 'I''m a writer and I love reading books.'),
-  ('Frank', 'Johnson', 'frank@example.com', 'password789', 'Australia', 'Melbourne', '1998-04-22', 'user-image-1.jpg', 'I''m a photographer and I love taking pictures of nature.'),
-  ('Grace', 'Chen', 'grace@example.com', 'password123', 'China', 'Beijing', '1991-01-08', 'user-image-1.jpg', 'I''m a teacher and I love spending time with my students.'),
-  ('Henry', 'Kim', 'henry@example.com', 'password456', 'South Korea', 'Seoul', '1989-06-15', 'user-image-1.jpg', 'I''m a musician and I love playing the piano.'),
-  ('Isabel', 'Garcia', 'isabel@example.com', 'password789', 'Spain', 'Madrid', '1993-12-11', 'user-image-1.jpg', 'I''m a graphic designer and I love creating visual designs.'),
-  ('Jack', 'Wang', 'jack@example.com', 'password123', 'China', 'Shanghai', '1988-03-27', 'user-image-1.jpg', 'I''m a businessman and I love exploring new markets.');
+  ('Frank', 'Johnson', 'frank@example.com', 'password789', 'Australia', 'Melbourne', '1998-04-22', 'boy5.jpg', 'I''m a photographer and I love taking pictures of nature.'),
+  ('Grace', 'Chen', 'grace@example.com', 'password123', 'China', 'Beijing', '1991-01-08', 'girl1.jpg', 'I''m a teacher and I love spending time with my students.'),
+  ('Henry', 'Kim', 'henry@example.com', 'password456', 'South Korea', 'Seoul', '1989-06-15', 'girl2.jpg', 'I''m a musician and I love playing the piano.'),
+  ('Isabel', 'Garcia', 'isabel@example.com', 'password789', 'Spain', 'Madrid', '1993-12-11', 'girl3.jpg', 'I''m a graphic designer and I love creating visual designs.'),
+  ('Jack', 'Wang', 'jack@example.com', 'password123', 'China', 'Shanghai', '1988-03-27', 'boy2.jpg', 'I''m a businessman and I love exploring new markets.'),
+  ('Sakura', 'Tanaka', 'sakura.tanaka@example.com', 'password123', 'Japan', 'Tokyo', '1990-03-15', 'girl4.jpg', 'I love photography and traveling.'),
+  ('Yuki', 'Kim', 'yuki.kim@example.com', 'password456', 'South Korea', 'Seoul', '1985-08-22', 'girl5.jpg', 'I enjoy playing the piano and cooking Korean food.'),
+  ('Raj', 'Patel', 'raj.patel@example.com', 'password789', 'India', 'Mumbai', '1992-11-10', 'boy3.jpg', 'I am a software developer and love coding in my free time.'),
+  ('Li', 'Chen', 'li.chen@example.com', 'password123', 'China', 'Beijing', '1993-06-18', 'girl6.jpg', 'I am a tea enthusiast and enjoy traditional Chinese music.'),
+  ('Haruki', 'Nakamura', 'haruki.nakamura@example.com', 'password456', 'Japan', 'Osaka', '1988-02-05', 'boy4.jpg', 'I am a bookworm and love reading mystery novels.'),
+  ('Ji-hye', 'Lee', 'ji-hye.lee@example.com', 'password789', 'South Korea', 'Busan', '1995-09-30', 'girl7.jpg', 'I am a professional dancer and teach dance classes in my free time.'),
+  ('Wei', 'Liu', 'wei.liu@example.com', 'password123', 'China', 'Shanghai', '1991-07-20', 'boy1.jpg', 'I am a basketball player and play for my university team.'),
+  ('Rina', 'Takahashi', 'rina.takahashi@example.com', 'password456', 'Japan', 'Kyoto', '1987-04-12', 'girl8.jpg', 'I am a nature lover and enjoy hiking in the mountains.'),
+  ('Aarav', 'Sharma', 'aarav.sharma@example.com', 'password789', 'India', 'New Delhi', '1994-12-08', 'boy6.jpg', 'I am a music producer and compose electronic music.'),
+  ('Mei', 'Wong', 'mei.wong@example.com', 'password123', 'China', 'Guangzhou', '1990-01-25', 'girl9.jpg', 'I am a fashion designer and have my own clothing line.');
 
 -- Events table
 INSERT INTO events (name, description, agenda, event_date, event_location, host_id) 

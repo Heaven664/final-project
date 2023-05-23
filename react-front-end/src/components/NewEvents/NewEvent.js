@@ -32,10 +32,8 @@ export default function NewEvent(props) {
 
   const initializeEvent = () => {
 
-
-
     const data = {
-      host: 10,
+      host: props.user,
       name: state?.event_name,
       description: state?.event_description,
       agenda: state?.event_agenda,
@@ -49,25 +47,37 @@ export default function NewEvent(props) {
         console.log(res.data);
         setNewEvent(res.data?.id);
         // setNewEvent(3);
+
+        const data = {
+          user: props.user,
+          event: res.data?.id
+        };
+        console.log("add host: ", data);
+
+        axios.post(`/api/event-user/`, data)
+          .then(res => {
+            console.log(res.data);
+          })
+          .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
   };
 
-  const finalizeEvent = () => {
+  // const finalizeEvent = () => {
 
-    const data = {
-      host: props.user,
-      eventID: newEvent
-    };
+  //   const data = {
+  //     host: props.user,
+  //     eventID: newEvent
+  //   };
 
-    console.log("finalize a new new event: ", data);
+  //   console.log("finalize a new new event: ", data);
 
-    axios.put(`/api/events/new`, data)
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => console.log(err));
-  };
+  //   axios.put(`/api/events/new`, data)
+  //     .then(res => {
+  //       console.log(res.data);
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
 
   function validate() {
@@ -204,11 +214,13 @@ export default function NewEvent(props) {
             newEvent
               ?
               <Link to={`/events/${newEvent}`}>
-                <button onClick={finalizeEvent} className="background-point-color btn-style"> Create</button>
+                <button
+                  // onClick={finalizeEvent} 
+                  className="background-point-color btn-style"> Go to Event Page Now !</button>
               </Link>
               :
               <button onClick={validate}
-                className="background-point-color btn-style"> Next Step</button>
+                className="background-point-color btn-style"> Create!</button>
           }
 
         </section>
