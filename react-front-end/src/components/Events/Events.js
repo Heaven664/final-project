@@ -16,6 +16,7 @@ export default function Events(props) {
 
   // const [fundraiser, setFundaraiser] = useState(null);
   const [eventGuest, setEventGuest] = useState(null);
+  const [status, setStatus] = useState('SHOW');
 
   const params = useParams();
   const { textGroupWithId } = useContext(friendContext);
@@ -79,10 +80,28 @@ export default function Events(props) {
         {
           props.user === state.events_host_Info.host_id
             ?
-            <section className="modification __card  user-detail">
-              <button onClick={""} className="modi background-add-color btn-style">Edit Event</button>
-              <button onClick={""} className="modi background-bad-color btn-style">Cancel Event</button>
-            </section>
+            <>
+              {
+                status === 'SHOW'
+                  ?
+                  <section className="modification __card  user-detail">
+                    <Link className="modi background-add-color btn-style" to={`/editevent/${event_id}`}>Edit Event
+                    </Link>
+
+                    <button onClick={() => setStatus('CONFIRM')} className="modi background-bad-color btn-style">Cancel Event</button>
+
+                  </section>
+                  :
+                  <section className="modification __card  user-detail">
+
+                    <button onClick={() => setStatus('SHOW')} className="modi background-primary-color btn-style">Cancel</button>
+
+                    <button onClick={''} className="modi background-warning-color btn-style">Confirm</button>
+
+                  </section>
+              }
+
+            </>
             :
             <section className="invitation __card box-shadow border-radius15 background-point-color user-detail">
               <span>{`You are invited to ${getFullName(state.usersInfo)}'s ${state.events_host_Info.event_name}!`}
