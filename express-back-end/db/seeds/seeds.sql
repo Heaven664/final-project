@@ -227,6 +227,10 @@ VALUES
   (9, 21, 160, true, 'AMEX', 'Completed', 'Supporting your mission.'),
   (10, 22, 270, false, 'VISA', 'Pending', 'Happy to be part of this cause.');
 
+UPDATE fundraiser_user
+SET payment_status = 'Completed'
+WHERE payment_status = 'Pending';
+
 UPDATE fundraisers
 SET current_amount = subquery.sumamount
 FROM (
@@ -236,3 +240,5 @@ FROM (
   GROUP BY fundraiser_id
 ) as subquery
 WHERE fundraisers.id = subquery.fundraiser_id;
+
+
