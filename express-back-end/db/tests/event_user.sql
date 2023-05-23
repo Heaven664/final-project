@@ -85,7 +85,15 @@
 -- ) as subquery
 -- WHERE fundraisers.id = subquery.fundraiser_id;
 
-  UPDATE fundraisers
-  SET collected = true, collected_date = CURRENT_TIMESTAMP
-  WHERE id = 1
-  RETURNING *;
+  -- UPDATE fundraisers
+  -- SET collected = true, collected_date = CURRENT_TIMESTAMP
+  -- WHERE id = 1
+  -- RETURNING *;
+
+        SELECT
+        fundraiser_user.id, time, user_id, fundraiser_id, amount, payment_anonymous, message, users.first_name, users.last_name, users.photo
+      FROM fundraiser_user
+      INNER JOIN users
+      ON user_id = users.id
+      WHERE fundraiser_id = 2
+      AND payment_status = 'Completed';
