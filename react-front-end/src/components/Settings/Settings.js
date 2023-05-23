@@ -126,7 +126,7 @@ export default function Settings(props) {
         </table>
         <div className="btn">
           <Link to='/myprofile'>
-            <button className="background-primary-color btn-style">
+            <button onClick={() => changePage('my-profile')} className="background-primary-color btn-style">
               Save Change
             </button>
           </Link>

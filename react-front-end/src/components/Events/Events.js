@@ -160,7 +160,10 @@ export default function Events(props) {
         }
 
         <section className="event-info __card box-shadow border-radius20 background-box-color user-detail">
-          <EventsInfo events_host_Info={state.events_host_Info} hostInfo={state.usersInfo} />
+          <EventsInfo 
+          events_host_Info={state.events_host_Info} 
+          hostInfo={state.usersInfo}
+          id={event_id} />
 
         </section>
 

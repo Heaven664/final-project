@@ -17,6 +17,8 @@ export default function EventsInfo(props) {
 
   const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.events_host_Info.host_photo}`;
 
+  const pathToQrCode = `https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=http://localhost:3000/events/${props.id}&choe=UTF-8`;
+
   return (
     <main className="info-layout">
 
@@ -30,7 +32,6 @@ export default function EventsInfo(props) {
           className="-img"
           style={{ backgroundImage: `url(${pathToProfileThumbnail})` }}>
         </div>
-
       </div>
 
       {/* <section className='event-description'>
@@ -43,7 +44,14 @@ export default function EventsInfo(props) {
         </section>
       </div>
 
+
+
       <div className='info-meet'>
+        <div
+          id="qrcode"
+          style={{ backgroundImage: `url(${pathToQrCode})` }}>
+        </div>
+
         <section id='date'>
           <FontAwesomeIcon icon={faCalendar} />
           <span>{' '}{eventDate}</span>
@@ -59,6 +67,6 @@ export default function EventsInfo(props) {
       </div>
 
     </main>
-  )
+  );
 }
 
