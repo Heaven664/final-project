@@ -55,6 +55,7 @@ export default function App(props) {
     axios.post("api/login")
       .then(res => {
         setUser(res.data);
+        alert("Logged in as user id = 1, redirecting to events page now!");
       })
       .catch(err => {
         console.log("Login:", err.message);
@@ -66,6 +67,7 @@ export default function App(props) {
     axios.post("api/login/1")
       .then(res => {
         setUser(res.data);
+        alert("Logged in as user id = 2, redirecting to events page now!");
       })
       .catch(err => {
         console.log("Login:", err.message);
