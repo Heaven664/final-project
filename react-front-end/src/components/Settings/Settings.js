@@ -19,7 +19,7 @@ export default function Settings(props) {
     about: ""
   });
 
-  const { setUserUpdated } = props;
+  const {setUpdated} = props;
 
   const updateProfile = (e) => {
     e.preventDefault();
@@ -33,10 +33,10 @@ export default function Settings(props) {
     };
     axios.patch(`/api/users/${state.id}/edit`, data)
       .then(res => {
-        setUserUpdated(true);
+        setUpdated(true);
         changePage('my-profile');
       })
-      .then(setUserUpdated(false))
+      .then(setUpdated(false))
       .catch(err => console.log(err));
   };
 
@@ -47,6 +47,7 @@ export default function Settings(props) {
         if (user.birthday) {
           user.birthday = user.birthday.substring(0, 10);
         }
+
         setState(user);
       });
   }, []);
@@ -125,7 +126,7 @@ export default function Settings(props) {
         </table>
         <div className="btn">
           <Link to='/myprofile'>
-            <button className="background-primary-color btn-style">
+            <button onClick={() => changePage('my-profile')} className="background-primary-color btn-style">
               Save Change
             </button>
           </Link>

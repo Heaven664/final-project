@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import "./styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleDollarToSlot } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 
-export default function ShowGuestFundraiser(props) {
+export default function ShowFundraiser(props) {
 
-  const { donation, onSupport } = props;
+  const { donation } = props;
 
   console.log('donation', donation);
 
@@ -14,7 +14,7 @@ export default function ShowGuestFundraiser(props) {
 
   const barPercentage = Math.round(percentage * 100) + "%";
 
-  console.log('perc', percentage);
+  console.log('perc', percentage)
 
   const getProgress = (value) => {
     if (value > 0.75) {
@@ -33,21 +33,24 @@ export default function ShowGuestFundraiser(props) {
   console.log('perc', `${barVariant}`);
 
   return (
-
-    <main className="fundraisers-layout">
-
+    <main className="--status">
       <div className='fundraisers-info'>
-        <span className='wish font20'>Wish: {donation.title}</span>
-        <span className='target'>Target: ${donation.target_amount}</span>
+        <p className='wish'>Wish: <span>{donation.title}</span></p>
+        <p className='target'>Target: <span>${donation.target_amount}</span></p>
       </div>
+
       <div id='fundraisers-bar'>
         <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}
         </div>
       </div>
-      <button onClick={onSupport} className="supportButton background-fundraiser-color btn-style">
-        <FontAwesomeIcon icon={faCircleDollarToSlot} /> <br />
-        Support! </button>
 
+      <div id='status-button'>
+        <button onClick={props.onEdit} className="background-add-color btn-style">
+          <FontAwesomeIcon icon={faPenToSquare} />Edit </button>
+
+        <button onClick={props.onDelete} className="background-bad-color btn-style">
+          <FontAwesomeIcon icon={faTrashCan} />Delete </button>
+      </div>
     </main>
   );
 }

@@ -160,7 +160,7 @@ const db = require('../db/connection');
   //   .catch(error => response.json({Error: error, Message:"Error getting events."}));
   // });
 
-  //get events info with for event
+  //get events info for event
   router.get("/host/:id", (request, response) => {
     db.query(
       `
@@ -176,7 +176,23 @@ const db = require('../db/connection');
     .catch(error => response.json({Error: error, Message:"Error getting events for this host."}));
   });
 
-
+  //get events info for fundraiser
+  router.get("/fundraiser/:id", (request, response) => {
+    db.query(
+      `
+      SELECT
+        *
+      FROM fundraisers
+      INNER JOIN events
+      ON events.id = event_id
+      WHERE fundraisers.id = $1;
+      `,
+    [Number(request.params.id)])
+    .then(res => {
+      response.json(res.rows[0]);
+    })
+    .catch(error => response.json({Error: error, Message:"Error getting events for this host."}));
+  });
 
 
 

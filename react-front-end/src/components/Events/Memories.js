@@ -1,29 +1,86 @@
-import React, { useContext, useState } from "react";
-import './Events.scss';
-import EventsInfo from './EventsInfo';
-import EventGuestList from "./EventGuestList";
-import axios from 'axios';
-import useEventsData from "../../hooks/useEventsData";
-import { getEventGuests, getEventInfo } from "../../helpers/event_selectors";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock, faCompactDisc, faEnvelope, faLayerGroup, faMagnifyingGlass, faMicrophoneLines } from "@fortawesome/free-solid-svg-icons";
+import Events from "./Events";
+import './Events.scss';
 import { useParams } from "react-router";
-import { friendContext } from 'providers/FriendProvider';
-import GuestFundraiser from "./GuestFundraiser";
-import HostFundraiser from "./HostFundraiser";
-
+import MemoriesListItem from "./MemoriesListItem";
+import dateFormat from 'dateformat';
 
 export default function Memories(props) {
 
-  return (
-    <main className="event-layout">
+  const [donations, setDonations] = useState([]);
+  const [event, setEvent] = useState({});
 
-      <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
-        <Link to='/groupchat'>
-          <button onClick={""} className="background-point-color btn-style">Go Back to Event Page</button>
+  // change the tab
+  const [list, setList] = useState("allEvent");
+  function handleListClick(section) {
+    setList(section);
+  }
+
+  const params = useParams();
+
+  const fundraiser_id = params.id;
+
+  useEffect(() => {
+
+    axios.get(`/api/fundraiser-user/fundraiserinfo/${fundraiser_id}`)
+      .then((res) => {
+        console.log(res.data);
+        setDonations(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  useEffect(() => {
+
+    axios.get(`/api/events/fundraiser/${fundraiser_id}`)
+      .then((res) => {
+        console.log(res.data);
+        setEvent(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+
+  const MessageProps = donations.map((donation) => {
+
+    const name = donation.first_name + " " + donation.last_name;
+
+    return (
+        <MemoriesListItem
+          key={donation.id}
+          host={props.user}
+          user={donation.user_id}
+          message={donation.message}
+          name={name}
+          date={donation.time}
+          photo={donation.photo}
+          amount={donation.amount}
+          anonymous={donation.payment_anonymous}
+        />
+    );
+  });
+
+  const eventDate = dateFormat(event.event_date, "dddd, mmmm dS, yyyy");
+
+  return (
+    <>
+      <div className="eventListButtons event-memories display-flex">
+
+        <button className="background-point-color flex-one">
+          Memories for {event.name} on {eventDate}.
+        </button>
+      </div>
+      <ul className="event-list-items event-memories-items">{MessageProps}</ul>
+
+      <section className="event-memories event-wall __card border-radius20 user-detail">
+        <Link to={`/events/${event.id}`}>
+          <button className="background-add-color btn-style">Go Back to Event Page</button>
         </Link>
       </section>
-
-
-    </main>
+    </>
   );
 }

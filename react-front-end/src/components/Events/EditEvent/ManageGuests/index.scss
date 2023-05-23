@@ -1,0 +1,34 @@
+@import "../../../../styles/variables.scss";
+
+.search-input{
+  position: relative;
+  width: 100%;
+  padding: 30px;
+  background-color: $primary-color;
+
+  span{
+    position: absolute;
+    top: 46px;
+    right: 60px;
+  }
+  
+  input{
+    width: 100%;
+    height: 50px !important;
+    border: none;
+    padding: 0 20px !important;
+    margin-top: 0 !important;
+  }
+
+  #searchResult{
+    height: 40%;
+    padding: 30px;
+    background-color: $primary-color;
+  }  
+  
+  #addedToEvent{
+    height: 40%;
+    display: flex;
+    justify-content: center;
+  }
+}

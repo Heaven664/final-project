@@ -6,8 +6,7 @@ export default function HeaderHostFundraiser(props) {
 
   return (
     <header className="">
-      <h1 className="">Event Fundraiser</h1>
-      <hr className="__separator" />
+      <h1 className="">Manage Fundraiser</h1>
     </header>
   );
 }
