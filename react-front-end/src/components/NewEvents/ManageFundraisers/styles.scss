@@ -1,0 +1,73 @@
+@import "../../../styles/variables.scss";
+
+header{
+  h2{
+    font-weight: normal;
+    margin-bottom: 15px;
+  }
+}
+
+.fundraiser__add {
+    width: 100%;
+
+  button{
+    padding: 0 15px;
+
+    svg {
+      padding-left: 10px;
+      
+      path{
+      fill: #fff;
+      }
+    }
+  }
+}
+
+// buttons
+.appointment__card-right button, 
+#status-button button, 
+.--status button{
+  min-width: 100px;
+  margin-top: 20px;
+  margin-right: 15px;
+  padding: 0 15px;
+
+  svg {
+    margin-right: 10px;
+    path{
+      fill: #fff;
+    }
+  }
+}
+
+// Setup.js
+#fundraiser-wish-comment{
+  font-size: 14px;
+  font-style: italic;
+}
+.fundraiser-wishField{
+  margin-bottom: 20px;
+}
+.appointment__validation{
+  font-size: 14px;
+  margin-top: 5px;
+  color: $bad-color;
+}
+
+// Show.js
+.target{
+  margin: 15px 0;
+}
+.wish span, 
+.target span{
+  font-size: 18px;
+}
+
+// Confirm.js
+.--status{
+  h3{
+    font-weight: normal;
+  }
+
+
+}

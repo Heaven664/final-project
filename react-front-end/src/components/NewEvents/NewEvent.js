@@ -161,8 +161,8 @@ export default function NewEvent(props) {
             <section className="event-agenda __card event_align box-shadow border-radius20 background-box-color user-detail">
               <label id="event_agenda" className="font20">
                 Agenda:<br />
-                <span className="agenda-comment font16">(use Comma to separate things for the best result.)</span>
-              <span className="font-warning-color font16">{"  "}{error?.agenda}</span>
+                <span className="agenda-comment font16">(use Comma to separate things for the best result.)</span><br />
+                <span className="font-warning-color font16">{"  "}{error?.agenda}</span>
               </label>
               <textarea
                 className="event-agendaField"
@@ -175,56 +175,44 @@ export default function NewEvent(props) {
         </div>
       }
 
+      {
+        newEvent ?
+          <div className="new-event-guest-fundraiser display-flex">
+            <section className="manage-guest __card box-shadow border-radius20 background-box-color user-detail">
+              <ManageGuest
+                value={eventGuest}
+                onChange={setEventGuest}
+                event={newEvent}
+                user={props.user}
+              />
+            </section>
 
-          <div className=' -rightpanel'>
-            <section className="event-time __card event_align box-shadow border-radius20 background-box-color user-detail">
-              <label id="event_time" className="font20">Date and Time:</label>
-              <input
-                className="event-timeField"
-                type="datetime-local"
-                name="event_time"
-                onChange={(e) => setState({ ...state, event_time: e.target.value })}
+            <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail">
+              <ManageFundraisers
+                event={newEvent}
+                user={props.user}
               />
             </section>
           </div>
-      {
-    newEvent ?
-      <div className="new-event-guest-fundraiser display-flex">
-        <section className="manage-guest __card box-shadow border-radius20 background-box-color user-detail">
-          <ManageGuest
-            value={eventGuest}
-            onChange={setEventGuest}
-            event={newEvent}
-            user={props.user}
-          />
-        </section>
-
-        <section className="manage-fundraiser __card box-shadow border-radius20 background-box-color user-detail">
-          <ManageFundraisers
-            event={newEvent}
-            user={props.user}
-          />
-        </section>
-      </div>
-      :
-      ""
-  }
-
-  <div className='-lowerpanel'>
-    <section className="event-create">
-      {
-        newEvent
-          ?
-          <Link to={`/events/${newEvent}`}>
-            <button onClick={finalizeEvent} className="background-point-color btn-style "> Create</button>
-          </Link>
           :
-          <button onClick={validate}
-            className="background-point-color btn-style"> Next Step</button>
+          ""
       }
 
-    </section>
-  </div>
+      <div className='-lowerpanel'>
+        <section className="event-create">
+          {
+            newEvent
+              ?
+              <Link to={`/events/${newEvent}`}>
+                <button onClick={finalizeEvent} className="background-point-color btn-style"> Create</button>
+              </Link>
+              :
+              <button onClick={validate}
+                className="background-point-color btn-style"> Next Step</button>
+          }
+
+        </section>
+      </div>
 
     </form >
   );
