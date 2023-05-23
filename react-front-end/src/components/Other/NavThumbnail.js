@@ -12,10 +12,14 @@ export default function NavThumbnail(props) {
     props.handlePageClick('setting');
   };
 
+  // const propsUser = (props.user? props.user:"");
+
   const [state, setState] = useState({
     id: props.user,
     photo: ""
   });
+  const {userUpdated} = props;
+
   const {userUpdated} = props;
 
   useEffect(() => {

@@ -2,13 +2,23 @@
 
 .new-event-layout {
   flex-direction: column;
-  min-height: 75vh;
+  height: 60vh;
+  width: 95%;
+  font-size: $title-size;        
+  
+}
 
-  .-upperpanel {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: calc(100% - 50px);
+.-upperpanel {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 90%;
+
+
 
     .-leftpanel {
       display: flex;
@@ -40,66 +50,63 @@
     justify-content: left;
   }
 
-
-  .__card {
+  &.event-agenda {
+    height: 80%;
+    font-size: $title-size;
     width: 100%;
-    display: flex;
-    margin-bottom: 20px;
-    padding: 25px 30px;
 
-    input, textarea{
-      margin-top: 15px;
+    .event-agendaField{
+      margin-top: 1rem;
+      height: 70%;
+      font-size: $title-size;
       width: 100%;
       font-size: $font-size;
       padding: 5px;
     }
-    input{
-      height: 30px;
-    }
-
-    &.event_description {
-      flex: 1;
-
-      .event_descriptionField{
-        height: 90%;
-        width: 100%;
-      }
-    }
-
-    &.event-agenda {
-      flex-grow: 1;
-      width: 100%;
-
-      .agenda-comment{
-        color:$warning-color;
-        font-size: $font-size;
-      }
-      .event-agendaField{
-        height: 70%;
-      }
-    }
-
-  }  
-
-  .new-event-guest-fundraiser{
-    height: calc(100% - 50px);
-    flex-direction: column;
-   
-    .manage-guest {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex-grow: 1;
-    }
-
-    .manage-fundraiser {
-      display: flex;
-      min-height: 120px;
-      width: 100%;
-    }
   }
   
-  .event-create {
+  &.event_description {
+    height: 80%;
+    font-size: $title-size;
+    width: 100%;
+
+    .event_descriptionField{
+      margin-top: 1rem;
+      height: 90%;
+      font-size: $title-size;
+      width: 100%;
+  
+    }
+  }
+
+
+  &.manage-guest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 5;
+    width: 100%;
+  
+  }
+
+  &.manage-fundraiser {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-grow: 3;
+
+    width: 100%;
+
+  }
+
+}  
+
+#agenda-comment{
+  color:$add-color;
+  font-size: $font-size;
+}
+
+.event-create {
     display: flex;
     flex-direction: column;
     // justify-content: center;

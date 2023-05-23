@@ -10,13 +10,13 @@ export default function Guest(props) {
   const GuestListClass = classNames("Guest__item", {
     " Guest__item--selected": props.selected
   });
-  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.avatar}`;
+  // const pathToProfileThumbnail = `http://localhost:8080/thumbs/${props.avatar}`;
 
   return (
     <li className={GuestListClass} >
       <div
         className="thumbnail"
-        style={{ backgroundImage: `url(${pathToProfileThumbnail})` }}
+        style={{ backgroundImage: `url(${props?.avatar})` }}
         onClick={props.selected ? props.reset : props.setGuest}>
       </div>
 

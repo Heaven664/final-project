@@ -35,6 +35,22 @@ const update = (id, target_amount, title) => {
     .then(res => res.rows[0]);
 };
 
+const updateCurr = (id) => {
+  const queryString = `
+  UPDATE fundraisers
+  SET current_amount = (
+    SELECT SUM(amount)
+    FROM fundraiser_user
+    WHERE fundraiser_id = $1 
+    AND payment_status = 'Completed'
+  ) 
+  WHERE id = $1
+  RETURNING *;`;
+  const values = [id];
+  return db.query(queryString, values)
+    .then(res => res.rows[0]);
+};
+
 const remove = (id) => {
   const queryString = `DELETE FROM fundraisers WHERE id = $1 RETURNING *`;
   const values = [id]
@@ -44,4 +60,4 @@ const remove = (id) => {
 
 
 
-module.exports = { create, getAll, getById, update, remove };
+module.exports = { create, getAll, getById, update, remove, updateCurr };

@@ -11,6 +11,8 @@ export default function GuestList(props) {
     { "Guest__item--selected": props.selected }
   );
 
+
+
   const objToArray = (obj) => Object.assign([], Object.values(obj));
   // const guestsArray = props.guests;
 
@@ -22,22 +24,23 @@ export default function GuestList(props) {
 
   const invited = objToArray(propsInvited).map(user=> user.user_id);
 
-  let propsGusts = props.guests;
+  let propsGuests = props.guests;
 
   if (!props.guests){
-    propsGusts = {};
+    propsGuests = {};
   };
 
-  const GuestProps = objToArray(propsGusts).map((user) => {
+  const GuestProps = objToArray(propsGuests).map((user) => {
 
 
   const name = user.first_name + " " + user.last_name;
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${user.photo}`;
 
     return (
       <Guest
         key={user.id}
         name={name}
-        avatar={user.photo}
+        avatar={pathToProfileThumbnail}
         selected={user.id === props.value}
         invited={invited.includes(user.id)}
         onAdd={(e) => {e.preventDefault();props.onAdd(user.id)}}

@@ -1,0 +1,49 @@
+@import "../../../styles/variables.scss";
+
+.fundraisers-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20%;
+  margin-bottom: 20%;
+  width: 100%;
+  font-size: $title-size;
+  
+  .fundraisers-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+
+    .wish{
+    color: $primary-color;
+    margin-bottom: 1rem;
+    }
+  }
+
+
+#fundraisers-bar {
+  display: flex;
+  margin: 1rem;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+  background-color: grey;
+  height: 2rem;
+  border-radius: 0.5rem;
+}
+
+#progress {
+  height: 2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+  #suppotButton {
+    width: 70%;
+  }
+
+}

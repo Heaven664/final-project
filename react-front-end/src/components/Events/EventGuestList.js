@@ -17,12 +17,14 @@ export default function EventGuestList(props) {
   const eventGuestProps = objToArray(props.guests).map((user) => {
   // const eventGuestProps = guestsArray.map((user) => {
 
-  const name = user.first_name + " " + user.last_name;
+  const name = user.first_name + " " + user.last_name;  
+  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${user.photo}`;
     return (
       <EventGuestListItem
         key={user.id}
+        user={user.user_id}
         name={name}
-        avatar={user.photo}
+        avatar={pathToProfileThumbnail}
         selected={user.id === props.value}
         setEventGuest={() => props.onChange(user.id)}
         reset={() => props.onChange("")}

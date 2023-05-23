@@ -3,11 +3,16 @@ import axios from "axios";
 import io from "socket.io-client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import {getFriendsIds, getFriendsObjects, getFriendsMessages} from 'helpers/friends-data'
+import {
+  getFriendsIds,
+  getFriendsObjects,
+  getFriendsMessages,
+} from "helpers/friends-data";
 
 import PrivateChatList from "components/Chats/PrivateChatList";
 import MessageList from "components/Chats/MessageList";
 import { friendContext } from "providers/FriendProvider";
+import { Link } from "react-router-dom";
 
 import "./PrivateChat.scss";
 
@@ -113,7 +118,11 @@ export default function PrivateChat(props) {
   return (
     <div className="private-chat-component background-box-color box-shadow border-radius20">
       <div className="private-chats-list-container">
-        <PrivateChatList friends={state.chats} friend={state.friend_id} changeFriend={changeFriend} />
+        <PrivateChatList
+          friends={state.chats}
+          friend={state.friend_id}
+          changeFriend={changeFriend}
+        />
       </div>
 
       <div className="private-chats-chatroom border-radius20">
@@ -121,11 +130,16 @@ export default function PrivateChat(props) {
           <div>
             <div className="private-chats-chatroom-title background-fundraiser-color">
               <div className="private-chats-chatroom-title-image-container ">
-                <div
-                  className="thumbnail"
-                  style={{ backgroundImage: `url(${state.friend_id && pathToProfileThumbnail})` }}
-                  onClick={() => (openProfile(state.friend_id))}>
-                </div>
+                {state.friend?.photo && (
+                  <Link to='/profile'>
+                  <div
+                    className="thumbnail"
+                    style={{
+                      backgroundImage: `url(${pathToProfileThumbnail})`,
+                    }}
+                    onClick={() => openProfile(state.friend_id)}
+                  ></div></Link>
+                )}
               </div>
               <p className="font20">
                 {state.friend && state.friend.first_name}{" "}
@@ -133,10 +147,10 @@ export default function PrivateChat(props) {
               </p>
             </div>
             <div className="chatroom-messages-container">
-                <MessageList
-                  user_id={state.user_id}
-                  messages={state.messages}
-                ></MessageList>
+              <MessageList
+                user_id={state.user_id}
+                messages={state.messages}
+              ></MessageList>
             </div>
             <form
               className="chatroom-massage-input-container background-fundraiser-color"

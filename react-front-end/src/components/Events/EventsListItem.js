@@ -84,8 +84,12 @@ export default function EventsListItem(props) {
 
   return (
     <>
+          {/* <Routes>
+        <Route path=":id" element={
+        <Events user={props.user} />} />
+      </Routes> */}
     <li className="box-shadow border-radius20 list-style-none">
-      <div className="user-list border-radius20 display-flex" key={props.id}>
+      <div className="user-list border-radius20 display-flex" key={props.id} onClick={props.onClick}>
         <div className="friend-user display-flex">
           <div className="thumbnail" style={{ backgroundImage: `url(${pathToProfileThumbnail})` }}></div>
           <p className="font20 font-title-color">{props.event_name}</p>

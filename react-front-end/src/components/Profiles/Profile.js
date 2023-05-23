@@ -8,7 +8,7 @@ import ChangePhoto from "components/Buttons/ChangePhoto";
 import { getFriendsIds } from 'helpers/friends-data';
 import { Link } from "react-router-dom";
 
-export default function MyProfile(props) {
+export default function Profile(props) {
   const { profileID, textFriendWithId } = useContext(friendContext);
 
   // Get stored user data
@@ -83,7 +83,7 @@ export default function MyProfile(props) {
     <div className="my-profile">
       <div className="display-flex">
         <div className="user-photo">
-          <img src={state.photo && pathToProfileImage} className="border-radius20 box-shadow"></img>
+          <img src={state.photo && pathToProfileImage} alt="user profile" className="border-radius20 box-shadow"></img>
           {state.id === currentUser && <ChangePhoto userId={currentUser} reload={reload} />}
 
           {(state.id !== currentUser) && state.isFriend && <Link to='/chat'><ProfileButton interaction={() => messageFriend(profileID)}>Message</ProfileButton></Link>}

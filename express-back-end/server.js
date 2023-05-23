@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(session);
-app.use(morgan("dev"))
+app.use(morgan("dev"));
 
 
 const userRoutes = require('./routes/api-users');
@@ -28,6 +28,7 @@ const friendListRoutes = require('./routes/api-friendlists');
 const privateMessagesRoutes = require('./routes/api-private_messages');
 const groupMessagesRoutes = require('./routes/api-group_messages');
 const fundraisersRoutes = require('./routes/api-fundraisers');
+const fundraiserUserRoutes = require('./routes/api-fundraiser-user');
 
 
 app.use('/api/users', userRoutes);
@@ -37,6 +38,7 @@ app.use('/api/friendlists', friendListRoutes);
 app.use("/api/pmsg", privateMessagesRoutes);
 app.use("/api/gmsg", groupMessagesRoutes);
 app.use("/api/fundraisers", fundraisersRoutes);
+app.use("/api/fundraiser-user", fundraiserUserRoutes);
 
 // Allow socket.io to access session
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);

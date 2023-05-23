@@ -1,3 +1,5 @@
+@import './mixins.scss';
+
 $font-stack: 'Nanum Gothic', sans-serif;
 $primary-color: #69cada;
 $box-color: #f4f5f9;
@@ -80,7 +82,9 @@ body{
 .font-title-color{
   color: $title-color;
 }
-
+.font-warning-color{
+  color: $warning-color;
+}
 // button basic style
 .btn-style{
   border-radius: 15px;
@@ -126,6 +130,10 @@ body{
 
 .half-margin-right{
   margin-right: 0.5rem;
+}
+
+.half-margin-left{
+  margin-left: 0.5rem;
 }
 
 .list-style-none{
