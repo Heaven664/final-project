@@ -3,6 +3,8 @@ import EventGuestListItem from "./EventGuestListItem";
 import classNames from "classnames";
 import propTypes from 'prop-types';
 import "./EventGuestList.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestion } from '@fortawesome/free-solid-svg-icons';
 
 export default function EventGuestList(props) {
 
@@ -13,12 +15,16 @@ export default function EventGuestList(props) {
 
   const objToArray = (obj) => Object.assign([], Object.values(obj));
   // const guestsArray = props.guests;
-  
-  const eventGuestProps = objToArray(props.guests).map((user) => {
-  // const eventGuestProps = guestsArray.map((user) => {
 
-  const name = user.first_name + " " + user.last_name;  
-  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${user.photo}`;
+
+
+
+
+  const eventGuestProps = objToArray(props.guests).map((user) => {
+    // const eventGuestProps = guestsArray.map((user) => {
+
+    const name = user.first_name + " " + user.last_name;
+    const pathToProfileThumbnail = `http://localhost:8080/thumbs/${user.photo}`;
     return (
       <EventGuestListItem
         key={user.id}
@@ -33,10 +39,23 @@ export default function EventGuestList(props) {
   });
 
   return (
-    <section className={eventGuestClass}>
-      <h4 className="eventGuest__header font24 font-title-color text--light">Guests</h4>
-      <ul className="eventGuest__list">{eventGuestProps}</ul>
-    </section>
+    <>
+      {
+        props?.guests?.length === 0
+          ?
+          <section className={eventGuestClass}>
+            <h4 className="eventGuest__header font24 font-title-color text--light">Guests</h4>
+            <ul className="eventGuest__list">
+            {"🤷 Nobody here ?"}</ul>
+          </section>
+
+          :
+          <section className={eventGuestClass}>
+            <h4 className="eventGuest__header font24 font-title-color text--light">Guests</h4>
+            <ul className="eventGuest__list">{eventGuestProps}</ul>
+          </section>
+      }
+    </>
   );
 }
 

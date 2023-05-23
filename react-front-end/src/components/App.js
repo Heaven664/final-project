@@ -206,7 +206,7 @@ export default function App(props) {
         <Routes>
 
           <Route path="/login" element={<Login login1={login1} login2={login2}/>} />
-          <Route path="/*" element={<h1>404 not found ;( </h1>} />
+          <Route path="/*" element={<h1>ERROR 404: NOT FOUND. How did you end up here? 😄</h1>} />
           <Route element={<ProtectedRoute user={user?.id}/>}>
           
             <Route path="/friends" element={<Friend user={user?.id} />} />
