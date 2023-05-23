@@ -69,6 +69,7 @@
       align-items: center;
       padding: 30px;      
       list-style-type: none;
+      margin-bottom: 20px;
     }
 
     &.fundraisers {
@@ -89,9 +90,147 @@
       justify-content: center;
       align-items: center;
       padding: 30px;
+      margin-top: 20px;
+
+      a{
+        display: block;
+        width: 100%;
+
+        button{
+        width: 100%;
+        }
+      }
     }
 
   }  
 }
 
+// EventList.js
+.eventListButtons{
+  margin-bottom: 30px;
 
+  button{
+    margin-right: 2px;
+    height: 50px;
+    width: 200px;
+    box-shadow: none;
+    border-radius: 15px 15px 0 0;
+    border: none;
+    font-size: $font-size;
+
+    svg {
+      font-size: 14px;
+    }
+        
+    &.--selected {
+      color: #fff;
+      position: relative;
+
+      path {
+      fill: #fff;
+      }
+    }
+    &.--selected::before,
+    &.--selected::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      bottom: 0px;
+      position: absolute;
+    }
+
+    &.hosting{
+      background-color: #b8dbe1;
+      box-shadow: inset 0 -10px 10px -10px #79a7b0;
+
+      &.--selected {
+        background-color: $primary-color;
+      box-shadow: none;
+
+        &.--selected::after {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><path fill="rgb(105, 202, 218)" d="M20 20 Q0 20 0 0 L0 20Z" /></svg>');
+          right: -20px;
+        }
+      }
+    }
+
+    &.attending{
+      background-color: #f6cbbe;
+      box-shadow: inset 0 -10px 10px -10px #c29183;
+      
+      &.--selected {
+        background-color: rgb(251, 156, 128);
+      box-shadow: none;
+  
+        &.--selected::before {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><path fill="rgb(251, 156, 128)" d="M0 20 Q20 20 20 0 L20 20Z" /></svg>');
+          left: -20px;
+        }
+  
+        &.--selected::after {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><path fill="rgb(251, 156, 128)" d="M20 20 Q0 20 0 0 L0 20Z" /></svg>');
+          right: -20px;
+        }
+      }
+    }
+
+    &.history{
+      background-color: #e3d5b9;
+      box-shadow: inset 0 -10px 10px -10px #d0c299;
+
+      &.--selected {
+      background-color: rgb(240,208,151);
+      box-shadow: none;
+
+      &.--selected::before {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><path fill="rgb(240,208,151)" d="M0 20 Q20 20 20 0 L20 20Z" /></svg>');
+        left: -20px;
+      }
+
+      &.--selected::after {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><path fill="rgb(240,208,151)" d="M20 20 Q0 20 0 0 L0 20Z" /></svg>');
+        right: -20px;
+      }
+    }
+    }
+
+    &.allEvent{
+      background-color: #ced7f5;
+      box-shadow: inset 0 -10px 10px -10px #98a5d1;
+      
+      &.--selected {
+      background-color: rgb(170, 186, 245);
+      box-shadow: none;
+
+      &.--selected::before {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><path fill="rgb(170, 186, 245)" d="M0 20 Q20 20 20 0 L20 20Z" /></svg>');
+        left: -20px;
+      }
+
+      &.--selected::after {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><path fill="rgb(170, 186, 245)" d="M20 20 Q0 20 0 0 L0 20Z" /></svg>');
+        right: -20px;
+      }
+    }
+    }
+    &.upcoming{
+      margin-right: 0px;
+      background-color: #c19e9e;
+      box-shadow: inset 0 -10px 10px -10px #a26464;
+
+      &.--selected {
+      background-color: rgb(124, 8, 8);
+      box-shadow: none;
+
+      &.--selected::before {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><path fill="rgb(124, 8, 8)" d="M0 20 Q20 20 20 0 L20 20Z" /></svg>');
+        left: -20px;
+      }
+
+    }
+    }
+
+    
+
+  }
+}

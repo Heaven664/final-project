@@ -6,7 +6,7 @@ import { faCircleDollarToSlot, faPenToSquare, faTrashCan } from "@fortawesome/fr
 
 export default function ShowFundraiser(props) {
 
-  const {donation} = props;
+  const { donation } = props;
 
   console.log('donation', donation);
 
@@ -14,7 +14,7 @@ export default function ShowFundraiser(props) {
 
   const barPercentage = Math.round(percentage * 100) + "%";
 
-  console.log('perc',percentage)
+  console.log('perc', percentage)
 
   const getProgress = (value) => {
     if (value > 0.75) {
@@ -30,23 +30,23 @@ export default function ShowFundraiser(props) {
   };
 
   const barVariant = getProgress(percentage);
-  console.log('perc',`${barVariant}`);
+  console.log('perc', `${barVariant}`);
 
   return (
 
-      <main className="fundraisers-layout">
+    <main className="fundraisers-layout">
 
-<div className='fundraisers-info'>
-  <span className='wish'>Wish: {props.donation.title}</span>
-  <span className='target'>Target: ${props.donation.target_amount}</span>
-</div>
-  <div id='fundraisers-bar'>
-    <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}
-    </div>
-  </div>
-    <button onClick={""} id="supportButton" className="background-fundraiser-color btn-style">
-    <FontAwesomeIcon icon={faCircleDollarToSlot} />
-       Support! </button>
+      <div className='fundraisers-info'>
+        <p className='wish font20'>Wish:<br />{props.donation.title}</p>
+        <p className='target font16'>Target: ${props.donation.target_amount}</p>
+      </div>
+      <div id='fundraisers-bar'>
+        <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}
+        </div>
+      </div>
+      <button onClick={""} id="supportButton" className="background-fundraiser-color btn-style">
+        <FontAwesomeIcon icon={faCircleDollarToSlot} />
+        Support</button>
 
     </main>
   );
