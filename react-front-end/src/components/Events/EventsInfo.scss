@@ -2,56 +2,72 @@
 @import "../../styles/variables.scss";
 
 
-.info-layout{
+.info-layout {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
 
-.event-title{
-  margin-bottom: 20px;
-}
+  .event-title {
+    margin-bottom: 20px;
+  }
 
-.info-host {
-  text-align: center;
+  .info-host {
+    text-align: center;
 
-  .-img {
-    width: 200px;
-    height: 200px;
-    margin-top: 20px;
+    .-img {
+      width: 200px;
+      height: 200px;
+      margin-top: 20px;
+      overflow: hidden;
+      background-position: center;
+      background-size: 100%;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        @include button-active--opacity;
+      }
+    }
+  }
+
+
+  .event-agenda {
+    margin: 30px 0;
+  }
+
+  .info-meet {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: space-between;
+
+
+    #date {
+      margin-bottom: 1rem;
+    }
+
+    #location {
+      margin-top: 1rem;
+    }
+
+  }
+
+  #qrcode {
+    width: 100px;
+    height: 100px;
+    margin: -50px;
     overflow: hidden;
     background-position: center;
     background-size: 100%;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    &:hover {
-      @include button-active--opacity;
-    }
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
   }
-}
-
-
-.event-agenda{
-  margin: 30px 0;
-}
-
-.info-meet{
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: space-between;
-
-  #date{
-    margin-bottom: 1rem;
-  }  
-  
-  #location{
-    margin-top: 1rem;
-  }
-}
-
-
 }
