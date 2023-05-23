@@ -244,7 +244,7 @@ export default function MyEvents(props) {
                   <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
                     <Link to={`/manageguests/${event_id}`}>
                       <button className="background-add-color btn-style">
-                    <FontAwesomeIcon icon={faUsers} /> <br />
+                    <FontAwesomeIcon icon={faUsers} className="-icon"/> <br />
                     Manage Guests</button>
                     </Link>
                   </section>
@@ -252,7 +252,7 @@ export default function MyEvents(props) {
                   <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
                     <Link to='/groupchat'>
                       <button onClick={handleMessageClick} className="background-point-color btn-style">
-                        <FontAwesomeIcon icon={faComments} /><br />
+                        <FontAwesomeIcon icon={faComments} className="-icon"/><br />
                         Join Group Chat</button>
                     </Link>
                   </section>
