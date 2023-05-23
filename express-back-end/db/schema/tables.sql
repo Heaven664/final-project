@@ -78,5 +78,5 @@ CREATE TABLE fundraiser_user (
   payment_anonymous BOOLEAN NOT NULL,
   payment_method VARCHAR(255) NOT NULL,
   payment_status VARCHAR(255) NOT NULL,
-  message VARCHAR(255) NOT NULL,
+  message VARCHAR(255) NOT NULL
 );
