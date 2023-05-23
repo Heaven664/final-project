@@ -92,7 +92,7 @@ export default function EventsListItem(props) {
       <div className="user-list border-radius20 display-flex" key={props.id} onClick={props.onClick}>
         <div className="friend-user display-flex">
           <div className="thumbnail" style={{ backgroundImage: `url(${pathToProfileThumbnail})` }}></div>
-          <p className="font20 font-title-color">{props.event_name}</p>
+          <p className="font20 font-content-color">{props.event_name}</p>
           {/* <span className="font16 font-contents-color half-margin">{" - "}{props.host_name}</span> */}
         </div>
         <div className="btns display-flex flex-row">

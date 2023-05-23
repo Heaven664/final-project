@@ -7,7 +7,7 @@ export default function Fundraisers(props) {
   const percentage = props.donation.current_amount / props.donation.target_amount;
   const barPercentage = Math.round(percentage * 100) + "%";
 
-  console.log('perc',percentage)
+  console.log('perc', percentage)
 
   const getProgress = (value) => {
     if (value > 0.75) {
@@ -22,7 +22,7 @@ export default function Fundraisers(props) {
     return "#FFBF00";
   };
   const barVariant = getProgress(percentage);
-  console.log('perc',`${barVariant}`);
+  console.log('perc', `${barVariant}`);
 
 
   return (
@@ -32,11 +32,11 @@ export default function Fundraisers(props) {
         <span className='wish'>Wish: {props.donation.title}</span>
         <span className='target'>Target: ${props.donation.target_amount}</span>
       </div>
-        <div id='fundraisers-bar'>
-          <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}
-          </div>
+      <div id='fundraisers-bar'>
+        <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}
         </div>
-          <button onClick={""} id="supportButton" className="background-fundraiser-color btn-style"> Support! </button>
+      </div>
+      <button onClick={""} id="supportButton" className="background-fundraiser-color btn-style">Support</button>
 
 
     </main>

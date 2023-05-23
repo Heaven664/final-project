@@ -1,44 +1,85 @@
 @import "../../styles/variables.scss";
 
 .new-event-layout {
+  display: flex;
   flex-direction: column;
   min-height: 75vh;
+  justify-content: space-between;
+ 
+.-upperpanel {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: calc(75vh - 40px);
 
-  .-upperpanel {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 90%;
-
-    .-leftpanel {
-      display: flex;
-      flex-direction: column;
-      width: 50%;
-      height: 100%;
-      margin-right: 20px;
-    }
-
-    .-rightpanel {
-      display: flex;
-      flex-direction: column;
-      width: 50%;
-      height: 100%;
-    }
-
-  }
-
-  .-lowerpanel {
-    width: 100%;
-    height: 40px;
+  .-leftpanel {
     display: flex;
     flex-direction: column;
+    width: 50%;
+    height: 100%;
+    margin-right: 20px;
   }
+
+  .-rightpanel {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+  }
+
+}
 
   .event_align{
     display: flex;
     flex-direction: column;
     justify-content: left;
   }
+
+  
+  .__card {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 25px 30px;
+    align-content: stretch;
+
+    input, textarea{
+      margin-top: 15px;
+      width: 100%;
+      font-size: $font-size;
+      padding: 5px 10px;
+    }
+
+    input{
+      height: 30px;
+    }
+
+    &.event-name, &.event-time, &.event-location{
+      flex: 0;
+      height: 140px;
+    }
+
+    &.event_description {
+      flex: 1;
+
+      .event_descriptionField{
+        height: 90%;
+        width: 100%;
+      }
+    }
+
+    &.event-agenda {
+      flex: 1;
+      width: 100%;
+
+      .agenda-comment{
+        color:$add-color;
+      }
+      .event-agendaField{
+        height: 70%;
+      }
+    }
+
+  }  
 
   .new-event-guest-fundraiser{
     height: calc(100% - 50px);
@@ -57,48 +98,14 @@
       width: 100%;
     }
   }
+ 
 
-  .__card {
-    width: 100%;
-    display: flex;
-    margin-bottom: 20px;
-    padding: 25px 30px;
+#agenda-comment{
+  color:$add-color;
+  font-size: $font-size;
+}
 
-    input, textarea{
-      margin-top: 15px;
-      width: 100%;
-      font-size: $font-size;
-      padding: 5px;
-    }
-    input{
-      height: 30px;
-    }
-
-    &.event_description {
-      flex: 1;
-
-      .event_descriptionField{
-        height: 90%;
-        width: 100%;
-      }
-    }
-
-    &.event-agenda {
-      flex-grow: 1;
-      width: 100%;
-
-      .agenda-comment{
-        color:$warning-color;
-        font-size: $font-size;
-      }
-      .event-agendaField{
-        height: 70%;
-      }
-    }
-
-  }  
-
-  .event-create {
+.event-create {
     display: flex;
     flex-direction: column;
     // justify-content: center;
@@ -106,4 +113,13 @@
     height: 50px;
   }
 
+  .-lowerpanel {
+    width: 100%;
+    height: 40px;
+
+    button{
+      width: 100%;
+    }
+  }
 }
+

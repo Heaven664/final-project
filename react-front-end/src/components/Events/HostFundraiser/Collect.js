@@ -33,7 +33,7 @@ export default function CollectHostFundraiser(props) {
   }
 
   return (
-    <main className="">
+    <main className="fundraiser-collect">
 
       <section className="">
         <form onSubmit={(event) => { event.preventDefault(); }}>
@@ -59,11 +59,11 @@ export default function CollectHostFundraiser(props) {
       <section className="host-fundraiser__card-right">
 
         <button onClick={cancel}
-          className=""> Cancel
+          className="btn-style background-bad-color"> Cancel
         </button>
 
         <button onClick={validate}
-          className=""> Process
+          className="btn-style background-fundraiser-color"> Process
         </button>
 
       </section>

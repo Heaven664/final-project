@@ -42,8 +42,8 @@ export default function ShowHostFundraiser(props) {
     <main className="fundraisers-layout">
 
       <div className='fundraisers-info'>
-        <span className='wish'>Wish: {donation.title}</span>
-        <span className='target'>Target: ${donation.target_amount}</span>
+        <p className='wish font20'>Wish:<br />{props.donation.title}</p>
+        <p className='target font16'>Target: ${props.donation.target_amount}</p>
       </div>
       <div id='fundraisers-bar'>
         <div id="progress" style={{ width: barPercentage, "background-color": barVariant }}> {barPercentage}

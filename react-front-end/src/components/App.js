@@ -212,7 +212,7 @@ export default function App(props) {
             <Route path="/friends" element={<Friend user={user?.id} />} />
             <Route path="/chat" element={<PrivateChat user={user?.id} />} />
             <Route path="/groupchat" element={<GroupChat user={user?.id} />} />
-            <Route path="/setting" element={<Settings user={user?.id} />} />
+            <Route path="/setting" element={<Settings user={user?.id} setUpdated={setUpdated} />} />
             <Route path="/newevent" element={<NewEvent user={user?.id} />} />
             <Route path="/profile" element={<Profile user={user?.id} />} />
             <Route path="/myprofile" element={<MyProfile user={user?.id} />} />
