@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import "./styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSackDollar, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faSackDollar, faPenToSquare, faIcons } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
+import Fundraisers from '../Fundraisers';
 
 
 export default function ShowHostFundraiser(props) {
@@ -56,6 +58,12 @@ export default function ShowHostFundraiser(props) {
                 ?
                 <>
                   <span className='font16'>Collected on {collected_date}!</span>
+                  <Link to={`/memories/${donation.id}`}>
+                    <button onClick={onCollect} id="supportButton" className="background-fundraiser-color btn-style">
+                  <FontAwesomeIcon icon={faIcons} /> <br />
+                  Memories </button>
+                  </Link>
+
                 </>
                 :
                 <button onClick={onCollect} id="supportButton" className="background-fundraiser-color btn-style">

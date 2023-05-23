@@ -21,6 +21,7 @@ import Events from "./Events/Events";
 import { friendContext } from 'providers/FriendProvider';
 import ProtectedRoute from "./Other/ProtectedRoute";
 import Profile from "./Profiles/Profile";
+import Memories from "./Events/Memories";
 
 import './App.scss';
 
@@ -221,6 +222,7 @@ export default function App(props) {
             <Route path="/myevents" element={<MyEventsList user={user?.id} />} />
             <Route path="/events/:id" element={<Events user={user?.id} />} />
             <Route path="/myevents/:id" element={<Events user={user?.id} />} />
+            <Route path="/memories/:id" element={<Memories user={user?.id} />} />
           </Route>
         </Routes>
 
