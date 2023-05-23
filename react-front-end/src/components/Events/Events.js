@@ -90,7 +90,19 @@ export default function Events(props) {
       })
       .catch(err => console.log(err));
   };
-  console.log('state.fundraisers',state.fundraisers);
+
+
+  const handleCancelEvent = () => {
+
+    console.log(`Remove event ${event_id}`);
+
+    return axios.post(`/api/events/${event_id}/delete/`)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
 
   return (
     <main className="event-layout">
@@ -117,12 +129,12 @@ export default function Events(props) {
                         :
                         <section className="modification __card  user-detail">
                           <Link to={`/myevents/${event_id}`}>
-                          <button 
-                          onClick={() => {setStatus('SHOW')}} className="modi background-warning-color btn-style">Save Changes</button>
+                            <button
+                              onClick={() => { setStatus('SHOW'); }} className="modi background-warning-color btn-style">Save Changes</button>
                           </Link>
                           <Link to={`/editevent/${event_id}`}>
                             <div>
-                            <button className="modi background-primary-color btn-style">Edit Info</button>
+                              <button className="modi background-primary-color btn-style">Edit Info</button>
                             </div>
                           </Link>
                         </section>
@@ -131,8 +143,9 @@ export default function Events(props) {
                   :
                   <section className="modification __card  user-detail">
 
-                    <button onClick={''} className="modi background-warning-color btn-style">Confirm</button>
-
+                    <Link to={`/myevents/`}>
+                      <button onClick={handleCancelEvent} className="modi background-warning-color btn-style">Confirm</button>
+                    </Link>
                     <button onClick={() => setStatus('SHOW')} className="modi background-primary-color btn-style">Cancel</button>
 
                   </section>
@@ -176,7 +189,7 @@ export default function Events(props) {
         </section>
 
         {
-         state.fundraisers
+          state.fundraisers
             ?
             <>
               {
@@ -189,7 +202,7 @@ export default function Events(props) {
                       setFundraiser={setFundraiser}
                       event={state?.events_host_Info}
                     />
-                    
+
                   </section>
                   :
                   <section className="fundraisers __card box-shadow border-radius20 background-box-color user-detail">
