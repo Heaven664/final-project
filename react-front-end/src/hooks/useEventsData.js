@@ -53,5 +53,5 @@ export default function useEventsData(eventID, userID) {
     });
   }, []);
 
-  return { state, fundraiser, setFundraiser };
+  return { state, fundraiser, setFundraiser};
 };

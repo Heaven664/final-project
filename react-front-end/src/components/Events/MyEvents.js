@@ -13,7 +13,7 @@ import HostFundraiser from "./HostFundraiser";
 import ManageFundraisers from "components/NewEvents/ManageFundraisers";
 
 
-export default function Events(props) {
+export default function MyEvents(props) {
 
   const [eventGuest, setEventGuest] = useState(null);
   const [status, setStatus] = useState('SHOW');
@@ -143,7 +143,7 @@ export default function Events(props) {
                   :
                   <section className="modification __card  user-detail">
 
-                    <Link to={`/myevents/`}>
+                    <Link to={`/events`}>
                       <button onClick={handleCancelEvent} className="modi background-warning-color btn-style">Confirm</button>
                     </Link>
                     <button onClick={() => setStatus('SHOW')} className="modi background-primary-color btn-style">Cancel</button>

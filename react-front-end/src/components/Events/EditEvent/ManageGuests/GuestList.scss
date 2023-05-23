@@ -1,0 +1,19 @@
+@import "../../../../styles/variables.scss";
+
+.Guest {
+
+  display: flex;
+
+  &__header {
+    color: $primary-color;
+    margin: 20px 0 15px;
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: row wrap;
+    list-style-type: none;
+    justify-content: center;
+  }
+}

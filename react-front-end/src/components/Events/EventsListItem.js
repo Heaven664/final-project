@@ -21,7 +21,7 @@ export default function EventsListItem(props) {
           ?
           <span>
             <FontAwesomeIcon icon={faBoltLightning} className="half-margin-right"/>
-            It's today!
+            Today
           </span>
           :
           <span>
