@@ -40,11 +40,16 @@
   }
 
   .info-meet {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: space-between;
+    align-items: center;
 
+    #qrcode {
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      background-position: center;
+      background-size: 100%;
+      margin-right: 30px;
+    }
 
     #date {
       margin-bottom: 1rem;
@@ -56,18 +61,5 @@
 
   }
 
-  #qrcode {
-    width: 100px;
-    height: 100px;
-    margin: -50px;
-    overflow: hidden;
-    background-position: center;
-    background-size: 100%;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-  }
+
 }
