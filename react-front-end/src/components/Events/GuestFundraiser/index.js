@@ -39,7 +39,8 @@ export default function GuestFundraiser(props) {
       fundraiser:fundraiser?.id,
       pay_method: value?.pay_method,
       pay_status: 'Completed',
-      pay_anonymous: value?.pay_anonymous
+      pay_anonymous: value?.pay_anonymous,
+      message:value?.message
     };
 
     console.log("add new fundraiser transaction: ", data);

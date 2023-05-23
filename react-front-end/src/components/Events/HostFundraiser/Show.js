@@ -6,7 +6,7 @@ import { faSackDollar, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShowHostFundraiser(props) {
 
-  const { donation, onSupport, mature } = props;
+  const { donation, onCollect, onModify, mature, collected, collected_date } = props;
 
   console.log('donation', donation);
 
@@ -50,12 +50,23 @@ export default function ShowHostFundraiser(props) {
       {
         mature
           ?
-          <button onClick={onSupport} id="supportButton" className="background-fundraiser-color btn-style">
-            <FontAwesomeIcon icon={faSackDollar} /> <br />
-            Collect </button>
+          <>
+            {
+              collected
+                ?
+                <>
+                  <span className='font16'>Collected on {collected_date}!</span>
+                </>
+                :
+                <button onClick={onCollect} id="supportButton" className="background-fundraiser-color btn-style">
+                  <FontAwesomeIcon icon={faSackDollar} /> <br />
+                  Collect </button>
+
+            }
+          </>
           :
           <>
-            <button onClick={onSupport} id="supportButton" className="background-fundraiser-color btn-style">
+            <button onClick={onModify} id="supportButton" className="background-fundraiser-color btn-style">
               <FontAwesomeIcon icon={faPenToSquare} /> <br />
               Modify</button>
             <span className='font16'>Wait until event date to collect!</span>

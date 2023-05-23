@@ -9,6 +9,7 @@ import HeaderHostFundraiser from './Header';
 import SetupHostFundraiser from './Setup';
 import ShowHostFundraiser from './Show';
 import StatusHostFundraiser from './Status';
+import CollectHostFundraiser from './Collect';
 import useVisualMode from 'hooks/useVisualMode';
 
 
@@ -16,6 +17,7 @@ export default function HostFundraiser(props) {
 
   const SHOW = "SHOW";
   const SAVING = "SAVING";
+  const PROCESSING = "PROCESSING";
   const CONFIRM = "CONFIRM";
   const MODIFY = "MODIFY";
   const COLLECT = "COLLECT";
@@ -34,33 +36,31 @@ export default function HostFundraiser(props) {
   const dateDiff = (eventDate.getTime() - Date.now());
   const mature = (dateDiff <= 0 ? true : false);
 
-    console.log(event.event_date, mature, dateDiff)
+  console.log(event.event_date, mature, dateDiff);
 
   console.log('mode', mode);
 
-  const addHostFundraiser = (value) => {
+  const editHostFundraiser = (value) => {
 
-    const data = {
-      amount: value?.amount,
-      user: props?.user,
-      fundraiser: fundraiser?.id,
-      pay_method: value?.pay_method,
-      pay_status: 'Completed',
-      pay_anonymous: value?.pay_anonymous
-    };
+    console.log("edit fundraiser: ", data);
 
-    console.log("add new fundraiser transaction: ", data);
-
-    return axios.post(`/api/fundraiser-user/`, data)
+    return axios.put(`/api/fundraisers/${fundraiser.id}`, value)
       .then(res => {
         console.log(res.data);
+        setFundraiser(res.data);
+      })
+      .catch(err => console.log(err));
+  };
 
-        axios.put(`/api/fundraisers/current/${data?.fundraiser}`)
-          .then((res) => {
-            console.log(res.data);
-            setFundraiser(res.data);
-          })
-          .catch(err => console.log(err));
+
+  const collectHostFundraiser = () => {
+
+    console.log("collect fundraiser: ", fundraiser?.id);
+
+    return axios.put(`/api/fundraisers/collect/${fundraiser?.id}`)
+      .then(res => {
+        console.log(res.data);
+        setFundraiser(res.data);
       })
       .catch(err => console.log(err));
   };
@@ -69,7 +69,17 @@ export default function HostFundraiser(props) {
 
     transition(SAVING);
 
-    addHostFundraiser(value)
+    editHostFundraiser(value)
+      .then(() => transition(SHOW))
+      .catch(() => transition(ERROR_SAVE, true));
+
+  };
+
+  function collect() {
+
+    transition(PROCESSING);
+
+    collectHostFundraiser()
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
 
@@ -85,6 +95,8 @@ export default function HostFundraiser(props) {
           onModify={() => transition(MODIFY)}
           onCollect={() => transition(COLLECT)}
           mature={mature}
+          collected={fundraiser?.collected}
+          collected_date={fundraiser?.collected_date}
         />
       )
       }
@@ -99,9 +111,9 @@ export default function HostFundraiser(props) {
       }
 
       {mode === COLLECT && (
-        <SetupHostFundraiser
+        <CollectHostFundraiser
           donation={fundraiser}
-          onSave={save}
+          onCollect={collect}
           onCancel={back}
         />
       )
@@ -109,32 +121,23 @@ export default function HostFundraiser(props) {
 
       {mode === SAVING && (
         <StatusHostFundraiser
+          message={"Saving"}
+          onComplete={() => transition(SHOW)}
+        />
+      )
+      }
+
+      {mode === PROCESSING && (
+        <StatusHostFundraiser
           message={"Processing"}
           onComplete={() => transition(SHOW)}
         />
       )
       }
 
-      {mode === CONFIRM && (
-        <ConfirmHostFundraiser
-          message={"Are you sure you want to cancel?"}
-          // onConfirm={destory}
-          onCancel={back}
-        />
-      )
-      }
-
-      {mode === DELETING && (
-        <StatusHostFundraiser
-          message={"canceling"}
-        // onComplete={() => transition(EMPTY)}
-        />
-      )
-      }
-
       {mode === ERROR_DELETE && (
         <ErrorHostFundraiser
-          message={"Could not delete fundraiser"}
+          message={"Could not delete"}
           onClose={back}
         />
       )
@@ -142,7 +145,7 @@ export default function HostFundraiser(props) {
 
       {mode === ERROR_SAVE && (
         <ErrorHostFundraiser
-          message={"Could not save fundraiser"}
+          message={"Could not save"}
           onClose={back}
         />
       )

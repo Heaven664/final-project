@@ -1,42 +1,36 @@
 import React, { useState } from 'react';
 import "./styles.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export default function SetupHostFundraiser(props) {
 
   const [error, setError] = useState("");
 
-  const { donation } = props;
+
+  const propsTitle = props.donation ? props.donation.title : "";
+  const propsTarget = props.donation ? props.donation.target_amount : 1;
+  const propsCurrent = props.donation ? props.donation.current_amount : 0;
 
   const [state, setState] = useState({
-    amount: 1,
-    pay_method: "",
-    pay_anonymous: false
+    title: propsTitle,
+    target: propsTarget
   });
 
-  const maxAmount = donation?.target_amount - donation?.current_amount;
 
-
-  const reset = () => { setState({ amount: "", pay_method: "", pay_anonymous: false }); };
+  const reset = () => { setState({ title: "", target: "" }); };
 
   const cancel = () => { reset(); props.onCancel(); };
 
   function validate() {
-    if (state.amount === "") {
-      setError("Pleae specify an amount!");
+    if (state.title === "") {
+      setError("Pleae give your wish a name!");
       return;
     }
-    if (state.amount < 1 ) {
-      setError("Pleae check the amount entered!");
-      return;
-    }    
-    if (state.amount > maxAmount ) {
-      setError("That's more than needed!");
+    if (state.target === "") {
+      setError("Please set a target!");
       return;
     }
-    if (state.pay_method === "") {
-      setError("Please choose a payment method!");
+    if (state.target < propsCurrent) {
+      setError("Please set a target higher than current!");
       return;
     }
     props.onSave(state);
@@ -47,63 +41,40 @@ export default function SetupHostFundraiser(props) {
     <main className="">
       <section className="">
         <form onSubmit={(event) => { event.preventDefault(); }}>
-          <fieldset>
-            <label>
-              Amount:<br />
-              <span id="fundraiser-target-comment">{""}</span>
-              <input
-                className="fundraiser-targetField"
-                type="number"
-                name="guest-fundraiser-amount"
-                value={state.amount}
-                step={1}
-                onChange={(e) => setState({ ...state, amount: e.target.value })}
-              />
-            </label>
+          <label>
+            Make a Wish:<br />
+            <span id="fundraiser-wish-comment">(It could come true!)</span>
+            <input
+              className="fundraiser-wishField"
+              type="text"
+              name="fundraiser-wish"
+              value={state.title}
+              onChange={(e) => setState({ ...state, title: e.target.value })}
+            />
+          </label>
 
-            <label>
-              Payment Method:<br />
-              <select name="guest-fundraiser-pay-method" className="guest-fundraiser-pay-method"
-                onChange={(e) => setState({ ...state, pay_method: e.target.value })}>
-                <option value="" selected disabled hidden>--Please Choose--</option>
-                <option value="VISA">VISA</option>
-                <option value="MASTERCARD">MASTERCARD</option>
-                <option value="AMEX">AMEX</option>
-                <option value="PayPal" disabled>PayPal</option>
-                <option value="CASH" disabled>CASH</option>
-                <option value="Bitcoin" disabled>Bitcoin</option>
-              </select>
-            </label>
-
-            <label>
-            <FontAwesomeIcon icon={faEyeSlash} />
-              Anonymous?<br />
-              <input
-                className="guest-fundraiser-anonymous"
-                type="checkbox"
-                name="guest-fundraiser-anonymous"
-                value="anonymous"
-                checked={state.pay_anonymous}
-                onChange={(e) => setState({ ...state, pay_anonymous: e.target.checked })}
-              />
-            </label>
-
-          </fieldset>
+          <label id="fundraiser-target-comment">
+            Target:<br />
+            <span>{""}</span>
+            <input
+              className="fundraiser-targetField"
+              type="number"
+              name="fundraiser-target"
+              value={state.target}
+              onChange={(e) => setState({ ...state, target: e.target.value })}
+            />
+          </label>
 
         </form >
-        <section className="guest-fundraiser__validation">{error}</section>
+        <section className="appointment__validation">{error}</section>
       </section>
 
-      <section className="guest-fundraiser__card-right">
-
-        <button onClick={cancel}
-          className=""> Cancel
+      <section className="appointment__card-right">
+        <button className="background-fundraiser-color btn-style" onClick={validate}> Save
         </button>
 
-        <button onClick={validate}
-          className=""> Process
+        <button className="background-bad-color btn-style" onClick={cancel}> Cancel
         </button>
-
       </section>
     </main>
   );
