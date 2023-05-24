@@ -18,23 +18,24 @@ export default function GuestList(props) {
 
   let propsInvited = props.invited;
 
-  if (!props.invited){
+  if (!props.invited) {
     propsInvited = {};
   };
 
-  const invited = objToArray(propsInvited).map(user=> user.user_id);
+  const invited = objToArray(propsInvited).map(user => user.user_id);
 
   let propsGuests = props.guests;
 
-  if (!props.guests){
+  if (!props.guests) {
     propsGuests = {};
   };
 
   const GuestProps = objToArray(propsGuests).map((user) => {
 
+    const host = (props.user === user.id ? true : false);
 
-  const name = user.first_name + " " + user.last_name;
-  const pathToProfileThumbnail = `http://localhost:8080/thumbs/${user.photo}`;
+    const name = user.first_name + " " + user.last_name;
+    const pathToProfileThumbnail = `http://localhost:8080/thumbs/${user.photo}`;
 
     return (
       <Guest
@@ -43,10 +44,11 @@ export default function GuestList(props) {
         avatar={pathToProfileThumbnail}
         selected={user.id === props.value}
         invited={invited.includes(user.id)}
-        onAdd={(e) => {e.preventDefault();props.onAdd(user.id)}}
-        onKick={(e) => {e.preventDefault();props.onKick(user.event_user_id)}}
+        onAdd={(e) => { e.preventDefault(); props.onAdd(user.id); }}
+        onKick={(e) => { e.preventDefault(); props.onKick(user.event_user_id); }}
         setGuest={() => props.onClick(user.id)}
         reset={() => props.onClick("")}
+        host={host}
       />
     );
   });

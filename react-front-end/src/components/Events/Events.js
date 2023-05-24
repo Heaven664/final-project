@@ -11,7 +11,7 @@ import { friendContext } from 'providers/FriendProvider';
 import GuestFundraiser from "./GuestFundraiser";
 import HostFundraiser from "./HostFundraiser";
 import ManageFundraisers from "components/NewEvents/ManageFundraisers";
-import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faComments, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -246,15 +246,17 @@ export default function Events(props) {
                   ?
                   <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
                     <Link to={`/manageguests/${event_id}`}>
-                      <button className="background-point-color btn-style">
-                    <FontAwesomeIcon icon={faUsers} /> <br />
+                      <button className="background-add-color btn-style">
+                    <FontAwesomeIcon icon={faUsers} className="-icon"/> <br />
                     Manage Guests</button>
                     </Link>
                   </section>
                   :
                   <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
                     <Link to='/groupchat'>
-                      <button onClick={handleMessageClick} className="background-point-color btn-style">Join Group Chat</button>
+                      <button onClick={handleMessageClick} className="background-point-color btn-style">
+                        <FontAwesomeIcon icon={faComments} className="-icon"/><br />
+                        Join Group Chat</button>
                     </Link>
                   </section>
               }

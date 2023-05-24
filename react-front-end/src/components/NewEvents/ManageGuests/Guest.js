@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import "./Guest.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus, faUserXmark } from '@fortawesome/free-solid-svg-icons';
+import { faMicrophoneLines, faUserPlus, faUserXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Guest(props) {
@@ -29,9 +29,20 @@ export default function Guest(props) {
       {props.selected
         ?
         <>
+        {
+          props.host
+          ?
+          <>
+          <FontAwesomeIcon className="-icon"
+            icon={faMicrophoneLines}/>
+        </>
+          :
+          <>
           <FontAwesomeIcon className="-icon"
             icon={props.invited ? faUserXmark : faUserPlus}
             onClick={props.invited ? props.onKick : props.onAdd} />
+        </>
+        }
         </>
         :
         ""

@@ -149,6 +149,7 @@ export default function ManageGuest(props) {
         onAdd={addGuest}
         onKick={kickGuest}
         title={"Search Results"}
+        user={props.user}
       />
       </div>
       <div id="addedToEvent">
@@ -160,6 +161,7 @@ export default function ManageGuest(props) {
         onAdd={addGuest}
         onKick={kickGuest}
         title={"Event Guests"}
+        user={props.user}
       />
       </div>
     </>
