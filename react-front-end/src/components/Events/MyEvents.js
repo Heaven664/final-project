@@ -261,7 +261,9 @@ export default function MyEvents(props) {
             :
             <section className="event-wall __card box-shadow border-radius20 background-box-color user-detail">
               <Link to='/groupchat'>
-                <button onClick={handleMessageClick} className="background-point-color btn-style">Join Group Chat</button>
+                <button onClick={handleMessageClick} className="background-point-color btn-style">
+                  <FontAwesomeIcon icon={faComments} className="-icon"/><br />
+                Join Group Chat</button>
               </Link>
             </section>
 
