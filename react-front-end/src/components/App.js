@@ -41,7 +41,6 @@ export default function App(props) {
     setUpdateApp(prev => !prev);
   };
   const [updated, setUpdated] = useState(false);
-
   sessionStorage.setItem('user', JSON.stringify(user));
 
   const openMyProfile = () => {
@@ -220,7 +219,7 @@ export default function App(props) {
             <Route path="/setting" element={<Settings user={user?.id} setUpdated={setUpdated} />} />
             <Route path="/newevent" element={<NewEvent user={user?.id} />} />
             <Route path="/profile" element={<Profile user={user?.id} />} />
-            <Route path="/myprofile" element={<MyProfile user={user?.id} />} />
+            <Route path="/myprofile" element={<MyProfile user={user?.id} setUpdated={setUpdated}/>} />
 
             <Route path="/login" element={<Login user={user?.id} />} />
             <Route path="/events" element={<EventsList user={user?.id} />} />
