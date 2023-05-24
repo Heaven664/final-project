@@ -8,6 +8,7 @@ export default function ProfileButton(props) {
   const handleFileChange = (e) => {
     setSelectedImage(e.target.files[0]);
   };
+  const { setUpdated } = props;
 
   const handleUpload = (e) => {
     e.preventDefault();
@@ -15,8 +16,9 @@ export default function ProfileButton(props) {
     formData.append("image", selectedImage);
     axios
       .patch(`api/users/${props.userId}/update-photo`, formData)
-      .then((res) => console.log(res.data))
-      .then(() => props.reload())
+      .then((res) => {console.log(res.data); setUpdated(true);})
+      .then(() => {props.reload()})
+      .then(setUpdated(false))
       .catch(res => console.log(res.message))
   };
 
