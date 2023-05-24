@@ -70,7 +70,7 @@ VALUES
 -- Fundraisers table
 INSERT INTO fundraisers (title, event_id, target_amount)
 VALUES
-  ('Children''s Education Fundraiser', 1, 1500),
+  ('Children''s Education Fundraiser', 1, 2000),
   ('Community Food Drive', 2, 2000),
   ('Animal Shelter Renovation Project', 4, 1800),
   ('Support for Homeless Veterans', 6, 1300),
@@ -189,14 +189,14 @@ VALUES
 INSERT INTO fundraiser_user (user_id, fundraiser_id, amount, payment_anonymous, payment_method, payment_status, message)
 VALUES
   (1, 1, 100, true, 'VISA', 'Pending', 'Thank you for your support!'),
-  (2, 2, 50, false, 'AMEX', 'Completed', 'Keep up the good work!'),
-  (3, 3, 200, true, 'MASTERCARD', 'Pending', 'Happy to contribute!'),
-  (4, 4, 75, false, 'VISA', 'Completed', 'Wishing you success with the fundraiser.'),
-  (5, 5, 150, false, 'AMEX', 'Pending', 'Proud to be part of this cause.'),
-  (6, 6, 80, true, 'VISA', 'Completed', 'You are doing an amazing job!'),
-  (7, 7, 250, true, 'MASTERCARD', 'Pending', 'Supporting your cause wholeheartedly.'),
-  (8, 8, 120, false, 'AMEX', 'Completed', 'Best wishes for the fundraiser.'),
-  (9, 9, 300, true, 'VISA', 'Pending', 'Your work inspires us!'),
+  (2, 1, 50, false, 'AMEX', 'Completed', 'Keep up the good work!'),
+  (3, 1, 200, true, 'MASTERCARD', 'Pending', 'Happy to contribute!'),
+  (4, 1, 75, false, 'VISA', 'Completed', 'Wishing you success with the fundraiser.'),
+  (5, 1, 150, false, 'AMEX', 'Pending', 'Proud to be part of this cause.'),
+  (6, 1, 80, true, 'VISA', 'Completed', 'You are doing an amazing job!'),
+  (7, 1, 250, true, 'MASTERCARD', 'Pending', 'Supporting your cause wholeheartedly.'),
+  (8, 1, 120, false, 'AMEX', 'Completed', 'Best wishes for the fundraiser.'),
+  (9, 1, 300, true, 'VISA', 'Pending', 'Your work inspires us!'),
   (1, 10, 90, false, 'MASTERCARD', 'Completed', 'Keep making a difference.'),
   (2, 1, 175, true, 'AMEX', 'Pending', 'Contributing to a great cause.'),
   (3, 2, 60, false, 'VISA', 'Completed', 'Happy to support your mission.'),
@@ -206,7 +206,7 @@ VALUES
   (7, 6, 95, true, 'MASTERCARD', 'Completed', 'Supporting you all the way.'),
   (8, 7, 210, false, 'VISA', 'Pending', 'Thank you for making a difference.'),
   (9, 8, 130, true, 'AMEX', 'Completed', 'Your work is truly inspiring.'),
-  (10, 9, 250, false, 'VISA', 'Pending', 'We are with you in this journey.'),
+  (10, 1, 250, false, 'VISA', 'Pending', 'We are with you in this journey.'),
     (1, 10, 100, true, 'VISA', 'Pending', 'Thank you for your support!'),
   (2, 11, 50, false, 'AMEX', 'Completed', 'Keep up the good work!'),
   (3, 12, 200, true, 'MASTERCARD', 'Pending', 'Happy to contribute!'),

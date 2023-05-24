@@ -14,6 +14,7 @@ export default function MyProfile(props) {
   // Get stored user data
   const storedUser = sessionStorage.getItem('user');
   const currentUser = storedUser ? JSON.parse(storedUser).id : 0;
+  // const { setUpdated } = props;
 
   const [state, setState] = useState({
     id: profileID || currentUser,
@@ -27,7 +28,7 @@ export default function MyProfile(props) {
     isFriend: false,
   });
 
-  console.log('profileID',profileID);
+  // console.log('profileID',profileID);
   // Cause page reload
   const [reloadFlag, setReloadFlag] = useState(null);
   const reload = () => {
@@ -84,7 +85,7 @@ export default function MyProfile(props) {
       <div className="display-flex">
         <div className="user-photo">
           <img src={state.photo && pathToProfileImage} className="border-radius20 box-shadow"></img>
-          {state.id === currentUser && <ChangePhoto userId={currentUser} reload={reload} />}
+          {state.id === currentUser && <ChangePhoto userId={currentUser} reload={reload} setUpdated={props.setUpdated}/>}
 
           {(state.id !== currentUser) && state.isFriend && <Link to='/chat'><ProfileButton interaction={() => messageFriend(profileID)}>Message</ProfileButton></Link>}
 
