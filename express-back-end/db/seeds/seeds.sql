@@ -70,7 +70,7 @@ VALUES
 -- Fundraisers table
 INSERT INTO fundraisers (title, event_id, target_amount)
 VALUES
-  ('Children''s Education Fundraiser', 1, 1500),
+  ('Children''s Education Fundraiser', 1, 2000),
   ('Community Food Drive', 2, 2000),
   ('Animal Shelter Renovation Project', 4, 1800),
   ('Support for Homeless Veterans', 6, 1300),
