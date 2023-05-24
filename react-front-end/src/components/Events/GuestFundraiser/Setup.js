@@ -10,9 +10,9 @@ export default function SetupGuestFundraiser(props) {
   const { donation } = props;
 
   const [state, setState] = useState({
-    amount: 1,
+    amount: 99,
     pay_method: "",
-    message: "",
+    message: "Love you! 😘",
     pay_anonymous: false
   });
 

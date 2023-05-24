@@ -6,8 +6,8 @@ export default function SetupFundraiser(props) {
   const [error, setError] = useState("");
 
 
-  const propsTitle = props.donation ? props.donation.title : "";
-  const propsTarget = props.donation ? props.donation.target_amount : 1;
+  const propsTitle = props.donation ? props.donation.title : "Lighthouse Labs Bootcamp!";
+  const propsTarget = props.donation ? props.donation.target_amount : 14000;
 
   const [state, setState] = useState({
     title: propsTitle,
