@@ -1,9 +1,9 @@
 -- Users table
 INSERT INTO users (first_name, last_name, email, password_digest, country, city, birthday, photo, about)
 VALUES
-  ('Rain', 'Zhu', 'john.doe@example.com', 'password123', 'Canada', 'Vancouver', '1995-01-01', 'rain.jpg', 'I am a Full Stack Developer 👨🏻‍💻 with a background in Data Analysis 📊 📈 📉.'),
-  ('Taehee', 'Kim', 'jane.doe2@example.com', 'password456', 'Canada', 'Vancouver', '1991-05-20', 'taehee.jpg', 'I am a Full Stack Developer 👩🏻‍💻 with a background in Front End 💬 💻👩🏻‍🎨.'),
-  ('Omar', 'Hamid', 'alice@example.com', 'password123', 'Canada', 'Calgary', '2001-05-01', 'omar.jpg', 'I am a Full Stack Developer 👨🏻‍💻 with a background in Mechanical Engineering. ⚙️🔧👷🏻'),
+  ('Rain', 'Zhu', 'john.doe@example.com', 'password123', 'Canada', 'Vancouver', '1995-01-01', 'rain.jpg', 'I am a Full Stack Developer 👨🏻‍💻 [ Github: @Raincouver ] with a background in Data Analysis 📊 📈 📉. '),
+  ('Taehee', 'Kim', 'jane.doe2@example.com', 'password456', 'Canada', 'Vancouver', '1991-05-20', 'taehee.jpg', 'I am a Full Stack Developer 👩🏻‍💻 [ Github: @Tehi_kim ] with a background in Front End 💬 💻👩🏻‍🎨. '),
+  ('Omar', 'Hamid', 'alice@example.com', 'password123', 'Canada', 'Calgary', '2001-05-01', 'omar.jpg', 'I am a Full Stack Developer 👨🏻‍💻 [ Github: @Heaven664 ] with a background in Mechanical Engineering ⚙️🔧👷🏻. '),
   ('Lily', 'Smith', 'bob@example.com', 'password456', 'Canada', 'Toronto', '1985-11-18', 'user-image-4.jpg', 'I''m a software engineer and I enjoy playing basketball.'),
   ('Charlie', 'Brown', 'charlie@example.com', 'password789', 'United Kingdom', 'London', '1995-02-14', 'user-image-5.jpg', 'I''m a student and I love traveling.'),
   ('David', 'Lee', 'david@example.com', 'password123', 'Australia', 'Sydney', '1987-07-10', 'user-image-6.jpg', 'I''m a chef and I love experimenting with new recipes.'),
