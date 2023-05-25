@@ -152,7 +152,7 @@ const db = require('../db/connection');
         events AS e
       LEFT JOIN 
         users AS h ON e.host_id = h.id
-      LEFT JOIN (
+      INNER JOIN (
         SELECT 
           eu.event_id,
           u.first_name,
@@ -166,7 +166,6 @@ const db = require('../db/connection');
           eu.user_id = $1
       ) AS u ON e.id = u.event_id
       WHERE 
-        e.host_id = $1 AND 
         e.event_date < NOW()::timestamp
         ORDER BY e.event_date ASC;
         `,
@@ -182,7 +181,7 @@ const db = require('../db/connection');
     router.get("/upcoming/:id", (request, response) => {
       db.query(
         `
-      SELECT 
+        SELECT 
         e.id AS event_id,
         e.name AS event_name,
         e.event_date AS event_date,
@@ -194,7 +193,7 @@ const db = require('../db/connection');
         events AS e
       LEFT JOIN 
         users AS h ON e.host_id = h.id
-      LEFT JOIN (
+      INNER JOIN (
         SELECT 
           eu.event_id,
           u.first_name,
@@ -208,7 +207,6 @@ const db = require('../db/connection');
           eu.user_id = $1
       ) AS u ON e.id = u.event_id
       WHERE 
-        e.host_id = $1 AND 
         e.event_date > NOW()::timestamp AND 
         e.event_date < (NOW() +INTERVAL '30 DAYS')::TIMESTAMP
         ORDER BY e.event_date ASC;

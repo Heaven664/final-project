@@ -6,7 +6,7 @@
 
 ---
 
-## <span style="color:#2980B9">**Demo**</span>
+## **Demo**
 ### Profile/Friends
 https://github.com/Heaven664/final-project/assets/105215745/68e97f55-6641-4120-8a52-376a5407c2b7
 
@@ -34,7 +34,7 @@ We are committed to providing our users with the best and most up-to-date featur
 
 ---
 
-## <span style="color:#2980B9">**Dependencies**</span>
+## **Dependencies**
 
 To run the <span style="font-style:italic">Wish Whisper</span> project locally, you'll need the following dependencies:
 
