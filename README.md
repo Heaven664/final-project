@@ -34,7 +34,7 @@ We are committed to providing our users with the best and most up-to-date featur
 
 ---
 
-## <span style="color:#2980B9">**Dependencies**</span>
+## **Dependencies**
 
 To run the <span style="font-style:italic">Wish Whisper</span> project locally, you'll need the following dependencies:
 
