@@ -28,7 +28,7 @@ At <span style="font-style:italic">Wish Whisper</span>, we recognize the signifi
 
 At <span style="font-style:italic">Wish Whisper</span>, our goal is to create a warm and inviting platform for you and your friends, where you can freely share your thoughts, photos, and videos. We strive to provide a cozy space where you can engage with your social circle and express yourself through various forms of media.
 
-### <span style="color:#3498DB">**More and More**</span>
+### **More and More**
 
 We are committed to providing our users with the best and most up-to-date features of modern web communication. We continually monitor the latest advancements in social platforms to ensure that our users have access to cutting-edge functionalities. Our aim is to create an innovative and dynamic environment where you can stay connected with the latest trends and enjoy an exceptional user experience.
 
