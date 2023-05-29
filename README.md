@@ -20,7 +20,7 @@ https://github.com/Heaven664/final-project/assets/105215745/68e97f55-6641-4120-8
 
 <span style="font-style:italic">Wish Whisper</span> is a newly launched project, and we understand the importance of providing a usable platform as quickly as possible. However, we acknowledge that certain crucial features are currently missing. We want to assure you that we are actively working on delivering these features in the near future. Stay tuned as we continue to enhance <span style="font-style:italic">Wish Whisper</span> to meet your expectations.
 
-### <span style="color:#3498DB">**Friend Request**</span>
+### **Friend Request**
 
 We understand the frustration caused by the current functionality that allows adding people to our platform without their consent. We acknowledge that this is not an ideal experience, and we want to assure you that addressing this issue is our top priority. We are actively working on a solution to fix this and provide a more user-friendly experience. Thank you for your patience as we strive to improve our platform.
 
