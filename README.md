@@ -1,4 +1,4 @@
-# <span style="color:#61DAFB">**Wish Whisper**</span>
+# **Wish Whisper**
 
 ## **Description**
 
