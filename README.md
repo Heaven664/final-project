@@ -43,7 +43,7 @@ We are committed to providing our users with the best and most up-to-date featur
 To run the <span style="font-style:italic">Wish Whisper</span> project locally, you'll need the following dependencies:
 
 - Node.js (v14.0.0 or higher)
-- <span style="color:#FFD700">npm</span> (v6.0.0 or higher)
+- npm (v6.0.0 or higher)
 - PostgreSQL (v10.0 or higher)
 
 ---
