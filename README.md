@@ -30,7 +30,7 @@ At <span style="font-style:italic">Wish Whisper</span>, we recognize the signifi
 
 ### <span style="color:#3498DB">**Live Feed**</span>
 
-At <span style="font-style:italic">Wish Whisper</span>, our goal is to create a warm and inviting platform for you and your friends, where you can freely share your thoughts, photos, and videos. We strive to provide a cozy space where you can engage with your social circle and express yourself through various forms of media.
+At Wish Whisper our goal is to create a warm and inviting platform for you and your friends, where you can freely share your thoughts, photos, and videos. We strive to provide a cozy space where you can engage with your social circle and express yourself through various forms of media.
 
 ### **More and More**
 
