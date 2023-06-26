@@ -26,7 +26,7 @@ We understand the frustration caused by the current functionality that allows ad
 
 ### <span style="color:#3498DB">**Active Now**</span>
 
-At <span style="font-style:italic">Wish Whisper</span>, we recognize the significance of keeping track of your friends' activity on our platform. We understand that having the ability to see who is currently active is an awesome feature that can greatly enhance your social networking experience. We are thrilled to announce that implementing this feature is one of our top priorities in the upcoming updates.
+At Wish Whisper, we recognize the significance of keeping track of your friends' activity on our platform. We understand that having the ability to see who is currently active is an awesome feature that can greatly enhance your social networking experience. We are thrilled to announce that implementing this feature is one of our top priorities in the upcoming updates.
 
 ### <span style="color:#3498DB">**Live Feed**</span>
 
