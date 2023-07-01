@@ -78,7 +78,7 @@ To get started with the repository [final-project](https://github.com/Heaven664/
   npm start
   ```
 
-5. Now, let's set up the React frontend:
+5. Now, let's set up the React frontend: 
 
 - Open a new terminal or command prompt window.
 
