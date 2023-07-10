@@ -5,7 +5,7 @@
 <span style="font-style:italic">Wish Whisper</span> is a social networking platform focused on elegant event organization. With features like effortless event creation, integrated fundraising, and group/private live chats, it simplifies event planning and enhances communication. Built with <span style="color:#FFD700">React.js</span>, <span style="color:#FFD700">Express.js</span>, and <span style="color:#FFD700">PostgreSQL</span>, it offers a seamless user experience while providing essential social networking functionalities like friendlist management and profile customization.
 
 ---
-
+ 
 ## **Demo**
 ### Profile/Friends
 https://github.com/Heaven664/final-project/assets/105215745/68e97f55-6641-4120-8a52-376a5407c2b7
