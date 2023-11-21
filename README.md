@@ -11,7 +11,7 @@
 ### Profile/Friends   
 https://github.com/Heaven664/final-project/assets/105215745/68e97f55-6641-4120-8a52-376a5407c2b7    
  
-### Private Chats/Event Chats
+### Private Chats/Event Chats 
 [https://github.com/Heaven664/final-project/assets/105215745/dd2dd4b9-409e-4ac6-8d46-b85bfbd32fce](https://github.com/Heaven664/final-project/assets/105215745/963d6bcf-8119-415f-ba44-dbad7717b212
 )    
      
